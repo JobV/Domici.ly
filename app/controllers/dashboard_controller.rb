@@ -1,5 +1,7 @@
 class DashboardController < ApplicationController
   def index
-    @posts = current_user.posts
+    @posts = Post.all
+    # change to
+    # @posts = current_user.posts
   end
 end
