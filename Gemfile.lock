@@ -71,6 +71,7 @@ GEM
     minitest (5.2.3)
     multi_json (1.8.4)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     polyglot (0.3.4)
     puma (2.7.1)
       rack (>= 1.1, < 2.0)
@@ -145,6 +146,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   haml
   jquery-rails
+  pg
   puma
   rails (= 4.1.0.rc1)
   sass-rails (~> 4.0.1)
