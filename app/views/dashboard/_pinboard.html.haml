@@ -1,0 +1,16 @@
+.panel.panel-success
+  .panel-heading
+    %h1.panel-title.clearfix
+      Prikbord
+      = link_to new_post_path do
+        .btn.btn-success.pull-right
+          %span.glyphicon.glyphicon-tag
+          Nieuwe Prikker
+
+  .panel-body
+    Hieronder vindt u de kalender. Opkomende vergaderingen, clubmeetings en dansfestijnen.
+
+  %ul.list-group
+    = posts.each do |post|
+      %li.list-group-item
+        = post.title

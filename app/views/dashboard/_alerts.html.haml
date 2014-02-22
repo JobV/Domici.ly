@@ -1,0 +1,16 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title.clearfix
+      Meldingen
+      = link_to new_post_path do
+        .btn.btn-default.pull-right
+          %span.glyphicon.glyphicon-warning-sign
+          Nieuwe Melding
+
+  %ul.list-group
+    %li.list-group-item.list-group-item-danger 
+      Er staat iemand met een douche in z'n woonkamer.
+    %li.list-group-item.list-group-item-warning 
+      Kakkerlakken op de 8e verdieping
+    %li.list-group-item.list-group-item-success 
+      Omaatje van de flat wordt 90
