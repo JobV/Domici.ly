@@ -1,0 +1,7 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @hoa.name
+= link_to 'Edit', edit_hoa_path(@hoa)
+|
+\#{link_to 'Back', hoas_path}

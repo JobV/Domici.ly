@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @alert.title
+%p
+  %strong Body:
+  = @alert.body
+%p
+  %strong Severity:
+  = @alert.severity
+= link_to 'Edit', edit_alert_path(@alert)
+|
+\#{link_to 'Back', alerts_path}

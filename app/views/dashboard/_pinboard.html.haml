@@ -8,10 +8,10 @@
           Nieuwe Prikker
 
   .panel-body
-    Hieronder vindt u de kalender. Opkomende vergaderingen, clubmeetings en dansfestijnen.
+    Hieronder vindt u het prikbord.
 
   - if posts.length > 0
     %ul.list-group
       - posts.each do |post|
         %li.list-group-item
-          = post.title
+          = link_to post.title, post_path(post)

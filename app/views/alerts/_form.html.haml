@@ -1,0 +1,23 @@
+= form_for(@alert) do |f|
+  - if @alert.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@alert.errors.count, "error")
+        prohibited this alert from being saved:
+      %ul
+        - @alert.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :title
+    %br/
+    = f.text_field :title
+  .field
+    = f.label :body
+    %br/
+    = f.text_area :body
+  .field
+    = f.label :severity
+    %br/
+    = f.text_field :severity
+  .actions
+    = f.submit

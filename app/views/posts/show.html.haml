@@ -1,0 +1,13 @@
+.container
+  .col-md-6.centered
+    = notice
+
+    .page-header
+      %h1 
+        = @post.title
+
+      %p
+        = @post.body
+
+    = link_to 'Edit', edit_post_path(@post)
+    = link_to 'Back', root_path
