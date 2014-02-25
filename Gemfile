@@ -25,6 +25,8 @@ gem 'devise'
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
+  gem 'minitest'
+  gem 'minitest-reporters'
 end
 
 group :production do

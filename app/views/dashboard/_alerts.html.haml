@@ -10,7 +10,7 @@
   - if alerts.length > 0
     %ul.list-group
       - alerts.each do |alert|
-        %li.list-group-item.list-group-item-danger
+        %li.list-group-item
           - if alert.severity == 'high'
             %span.label.label-danger
               Belangrijke melding

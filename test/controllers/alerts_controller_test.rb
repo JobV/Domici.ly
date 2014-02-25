@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AlertsControllerTest < ActionController::TestCase
   setup do
-    @alert = alerts(:one)
+    @alert = create(:alert)
   end
 
   test "should get index" do

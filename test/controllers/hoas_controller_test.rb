@@ -2,7 +2,7 @@ require 'test_helper'
 
 class HoasControllerTest < ActionController::TestCase
   setup do
-    @hoa = hoas(:one)
+    @hoa = create(:hoa)
   end
 
   test "should get index" do
