@@ -11,11 +11,14 @@
     %ul.list-group
       - alerts.each do |alert|
         %li.list-group-item.list-group-item-danger
-          - if alert.severity == 'hoog'
+          - if alert.severity == 'high'
             %span.label.label-danger
-              = alert.severity
-          - else 
+              Belangrijke melding
+          - elsif alert.severity == 'medium'
             %span.label.label-warning
-              = alert.severity
+              Let op
+          - else
+            %span.label.label-primary
+              Geen nood
 
           = link_to alert.title, alert_path(alert)
