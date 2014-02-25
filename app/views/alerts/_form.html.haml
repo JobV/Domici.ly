@@ -7,17 +7,14 @@
       %ul
         - @alert.errors.full_messages.each do |msg|
           %li= msg
-  .field
-    = f.label :title
-    %br/
-    = f.text_field :title
-  .field
-    = f.label :body
-    %br/
-    = f.text_area :body
-  .field
-    = f.label :severity
-    %br/
-    = f.text_field :severity
+  .form-group
+    = f.label 'Melding'
+    = f.text_field :title, class: 'form-control input-lg'
+  .form-group
+    = f.label 'Details'
+    = f.text_area :body, class: 'form-control input-lg'
+  .form-group
+    = f.label 'Ernst'
+    = f.select :severity, [['Hoog','high'], ['Middel','medium'], ['Laag','low']], {}, class: 'form-control'
   .actions
-    = f.submit
+    = f.submit 'Publiceer melding', class: 'btn btn-primary btn-lg btn-block'

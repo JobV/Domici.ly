@@ -2,15 +2,20 @@
   .panel-heading
     %h3.panel-title.clearfix
       Meldingen
-      = link_to new_post_path do
+      = link_to new_alert_path do
         .btn.btn-default.pull-right
           %span.glyphicon.glyphicon-warning-sign
           Nieuwe Melding
 
-  %ul.list-group
-    %li.list-group-item.list-group-item-danger 
-      Er staat iemand met een douche in z'n woonkamer.
-    %li.list-group-item.list-group-item-warning 
-      Kakkerlakken op de 8e verdieping
-    %li.list-group-item.list-group-item-success 
-      Omaatje van de flat wordt 90
+  - if alerts.length > 0
+    %ul.list-group
+      - alerts.each do |alert|
+        %li.list-group-item.list-group-item-danger
+          - if alert.severity == 'hoog'
+            %span.label.label-danger
+              = alert.severity
+          - else 
+            %span.label.label-warning
+              = alert.severity
+
+          = link_to alert.title, alert_path(alert)

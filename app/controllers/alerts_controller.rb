@@ -24,7 +24,7 @@ class AlertsController < ApplicationController
     @alert = Alert.new(alert_params)
 
     if @alert.save
-      redirect_to @alert, notice: 'Alert was successfully created.'
+      redirect_to root_path, notice: 'Alert was successfully created.'
     else
       render action: 'new'
     end
