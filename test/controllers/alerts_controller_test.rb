@@ -21,7 +21,7 @@ class AlertsControllerTest < ActionController::TestCase
       post :create, alert: { body: @alert.body, severity: @alert.severity, title: @alert.title }
     end
 
-    assert_redirected_to alert_path(assigns(:alert))
+    assert_redirected_to root_path
   end
 
   test "should show alert" do
