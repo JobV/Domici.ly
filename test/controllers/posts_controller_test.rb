@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
   setup do
+    sign_in create(:user)
     @post = create(:post)
   end
 

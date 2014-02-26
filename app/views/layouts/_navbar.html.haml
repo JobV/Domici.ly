@@ -9,5 +9,7 @@
       %a.navbar-brand{href: "/"} Homely
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
-        %li.active
+        %li
           %a{href: "/"} Home
+        %li
+          = link_to 'Admin', admin_path

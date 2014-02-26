@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :hoas
 
+  get 'admin', to: 'admin#index', as: :admin
 
   root to: 'dashboard#index'
 
