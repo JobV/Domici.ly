@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/superadmin', :as => 'rails_admin'
   resources :alerts
   resources :posts
   resources :hoas

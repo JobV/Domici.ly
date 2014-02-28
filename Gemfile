@@ -22,6 +22,8 @@ gem 'puma'
 
 gem 'devise'
 
+gem 'rails_admin'
+
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
