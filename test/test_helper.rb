@@ -8,6 +8,11 @@ Minitest::Reporters.use! Minitest::Reporters::DefaultReporter.new(color: true)
 
 class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
-  include Devise::TestHelpers
+  # include Devise::TestHelpers
 end
 
+require 'capybara/rails'
+class ActionDispatch::IntegrationTest
+  # Make the Capybara DSL available in all integration tests
+  include Capybara::DSL
+end

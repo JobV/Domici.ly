@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     sign_in create(:user)
     @post = create(:post)

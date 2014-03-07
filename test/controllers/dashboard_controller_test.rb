@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class DashboardControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  
   def setup
     sign_in create(:user)
   end

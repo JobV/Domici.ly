@@ -31,6 +31,7 @@ group :test, :development do
   gem 'minitest-reporters'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'capybara'
 end
 
 group :production do
