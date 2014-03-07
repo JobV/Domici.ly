@@ -1,15 +1,33 @@
-.navbar.navbar-default.navbar-static-top{role: "navigation"}
-  .container
-    .navbar-header
-      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{href: "/"} Homely
-    .navbar-collapse.collapse
-      %ul.nav.navbar-nav
-        %li
-          %a{href: "/"} Home
-        %li
-          = link_to 'Admin', rails_admin_path
+.ui.secondary.pointing.menu
+  %a.active.item
+    %i.home.icon
+    Home
+  %a.item
+    %i.mail.icon
+    Messages
+  %a.item
+    %i.user.icon
+    Friends
+  .right.menu
+    .item
+      .ui.icon.input
+        %input{placeholder: "Search...", type: "text"}/
+        %i.search.link.icon
+    %a.ui.item
+      Logout
+
+/ .navbar.navbar-default.navbar-static-top{role: "navigation"}
+/   .container
+/     .navbar-header
+/       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+/         %span.sr-only Toggle navigation
+/         %span.icon-bar
+/         %span.icon-bar
+/         %span.icon-bar
+/       %a.navbar-brand{href: "/"} Homely
+/     .navbar-collapse.collapse
+/       %ul.nav.navbar-nav
+/         %li
+/           %a{href: "/"} Home
+/         %li
+/           = link_to 'Admin', rails_admin_path

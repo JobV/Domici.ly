@@ -1,24 +1,19 @@
-.panel.panel-default
-  .panel-heading
-    %h3.panel-title.clearfix
-      Meldingen
-      = link_to new_alert_path do
-        .btn.btn-default.pull-right
-          %span.glyphicon.glyphicon-warning-sign
-          Nieuwe Melding
+%h1.ui.header
+  %i.warning.icon
+  .content
+    Meldingen
+    .sub.header 
+      De laatste meldingen voor de bewonders van XYZ
 
-  - if alerts.length > 0
-    %ul.list-group
-      - alerts.each do |alert|
-        %li.list-group-item
-          - if alert.severity == 'high'
-            %span.label.label-danger
-              Belangrijke melding
-          - elsif alert.severity == 'medium'
-            %span.label.label-warning
-              Let op
-          - else
-            %span.label.label-primary
-              Geen nood
-
+.ui.stackable.items
+  - alerts.each do |alert|
+    .item.alert-item
+      .content
+        .meta
+          = alert.created_at.strftime("%d-%m-%Y")
+        .name
           = link_to alert.title, alert_path(alert)
+        %p.description
+          = alert.body
+      .extra
+        199 comments
