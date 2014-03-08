@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class AlertsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
+    sign_in create(:user)
     @alert = create(:alert)
   end
 

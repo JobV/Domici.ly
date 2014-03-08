@@ -1,11 +1,5 @@
-.container
-  .col-md-6.centered
-    .panel
-      %h1.text-center
-        Nieuwe Melding
+.row
+  .medium-8.medium-centered.column
+    %h1 Nieuwe Melding
 
-      = render 'form'
-
-      %br
-      .text-center
-        = link_to 'Terug', posts_path\
+    = render 'form'

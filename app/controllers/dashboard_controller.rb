@@ -4,8 +4,6 @@ class DashboardController < ApplicationController
   def index
     @posts = Post.all
     # @posts = current_user.posts
-
-    @alerts = Alert.all
-    # @alerts = current_user.alerts
+    @alerts = current_user.alerts.order(created_at: :desc)
   end
 end

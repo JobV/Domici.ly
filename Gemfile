@@ -35,6 +35,7 @@ group :test, :development do
   gem 'guard'
   gem 'guard-minitest'
   gem 'capybara'
+  gem 'rb-readline'
 end
 
 group :production do

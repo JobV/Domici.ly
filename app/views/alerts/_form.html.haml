@@ -7,14 +7,17 @@
       %ul
         - @alert.errors.full_messages.each do |msg|
           %li= msg
-  .form-group
-    = f.label 'Melding'
-    = f.text_field :title, class: 'form-control input-lg'
-  .form-group
-    = f.label 'Details'
-    = f.text_area :body, class: 'form-control input-lg'
-  .form-group
-    = f.label 'Ernst'
-    = f.select :severity, [['Hoog','high'], ['Middel','medium'], ['Laag','low']], {}, class: 'form-control'
-  .actions
-    = f.submit 'Publiceer melding', class: 'btn btn-primary btn-lg btn-block'
+  .ui.form.segment
+    .field
+      %label
+        = f.label 'Melding'
+      .ui.left.labeled.icon.input
+        = f.text_field :title, class: 'form-control input-lg'
+    .field
+      %label
+        = f.label 'Details'
+      = f.text_area :body, class: 'form-control input-lg'
+
+    .ui.buttons
+      = f.submit 'Publiceer melding', class: 'ui positive button'
+      = link_to 'Annuleer', root_path, class: 'ui button'

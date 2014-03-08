@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :alert do
-    title "MyString"
-    body "MyText"
-    severity "MyString"
+    title "Gat in muur, ergens."
+    body "Er is een gat ergens."
+    severity "high"
   end
 end

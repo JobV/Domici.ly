@@ -1,4 +1,4 @@
-- if current_user
+- if signed_in?
   .ui.secondary.pointing.menu
     %a.active.item{ href: '/' }
       %i.home.icon
@@ -8,4 +8,15 @@
         %i.settings.icon
         Admin
     .right.menu
+      .ui.dropdown.item
+        = current_user.name
+        %i.icon.dropdown
+        .menu
+          %a.item
+            %i.edit.icon
+            Mijn profiel
+          %a.item
+            %i.sign.out.icon
+            Log uit
+
       = link_to 'Log uit', destroy_user_session_path, class: 'ui item', method: :delete

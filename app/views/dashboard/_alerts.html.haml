@@ -16,7 +16,7 @@
     .item.alert-item
       .content
         .meta
-          = alert.created_at.strftime("%d-%m-%Y")
+          = format_date alert.created_at
         .name
           = link_to alert.title, alert_path(alert)
         %p.description

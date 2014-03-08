@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class HoasControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
+    sign_in create(:admin)
     @hoa = create(:hoa)
   end
 
