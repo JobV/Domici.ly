@@ -1,9 +1,15 @@
 %h1.ui.header
-  %i.warning.icon
   .content
     Meldingen
     .sub.header 
       De laatste meldingen voor de bewonders van XYZ
+
+.ui.divider
+
+= link_to new_alert_path do
+  .ui.labeled.icon.button
+    %i.add.icon
+    Nieuwe Melding
 
 .ui.stackable.items
   - alerts.each do |alert|
