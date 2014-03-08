@@ -185,6 +185,7 @@ GEM
       json (~> 1.4)
     ref (1.0.5)
     remotipart (1.2.1)
+    rolify (3.4.0)
     safe_yaml (1.0.1)
     sass (3.2.14)
     sass-rails (4.0.1)
@@ -249,6 +250,7 @@ DEPENDENCIES
   rails_12factor
   rails_admin
   rb-readline
+  rolify
   sass-rails (~> 4.0.1)
   sdoc (~> 0.4.0)
   semantic-ui-sass!

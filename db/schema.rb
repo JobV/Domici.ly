@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308210608) do
+ActiveRecord::Schema.define(version: 20140308224219) do
 
   create_table "alerts", force: true do |t|
     t.string   "title"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 20140308210608) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "board_members", id: false, force: true do |t|
+    t.integer "hoa_id"
+    t.integer "user_id"
   end
 
   create_table "hoas", force: true do |t|

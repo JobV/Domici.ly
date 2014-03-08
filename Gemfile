@@ -27,6 +27,8 @@ gem 'devise'
 
 gem 'rails_admin'
 
+gem 'rolify'
+
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
