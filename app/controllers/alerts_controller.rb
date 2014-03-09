@@ -23,6 +23,7 @@ class AlertsController < ApplicationController
   def create
     @alert = Alert.new(alert_params)
     @alert.user = current_user
+    @alert.hoa  = current_user.hoa
     if @alert.save
       redirect_to root_path, notice: 'Alert was successfully created.'
     else

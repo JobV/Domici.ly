@@ -3,7 +3,7 @@ require 'test_helper'
 class BoardMemberTest < ActionDispatch::IntegrationTest
   def setup
     @hoa = create(:hoa)
-    @user = create(:board_member)
+    @user = create(:board_member, hoa: @hoa)
     create(:alert)
   end
 
@@ -25,6 +25,7 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     click_on 'Log in'
 
     page_should_contain 'John'
+    page_should_contain 'VvE de Lotus'
     page_should_contain 'Nieuwe Melding'
 
     page_should_not_contain 'Admin'
@@ -45,4 +46,13 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
 
     page_should_not_contain 'Gat in muur, ergens.'
   end
+
+  test 'view alert' do
+    sign_in @user
+    create :alert, user_id: @user.id
+    visit root_path
+
+    page_should_contain 'Gat in muur'
+  end
+
 end

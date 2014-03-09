@@ -1,3 +1,15 @@
 .row
-  .large-4.medium-6.small-12.medium-centered.column
+  .large-10.medium-10.small-12.medium-centered.column
+    .ui.large.icon.message
+      %i.close.icon
+      %i.home.icon
+      .content
+        .header
+          = "#{current_user.hoa_name}"
+        = "Welkom #{current_user.name}. Je hebt X ongelezen meldingen. "
+
+%br
+
+.row
+  .large-10.medium-10.small-12.medium-centered.column
     = render 'alerts', alerts: @alerts

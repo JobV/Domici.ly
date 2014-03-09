@@ -1,9 +1,11 @@
-# This will guess the User class
+include FactoryGirl::Syntax::Methods
+
 FactoryGirl.define do
+
   factory :user do
     first_name 'John'
     last_name 'Doe'
-    email 'john@doe.com'
+    email 'test@new.com'
     password 'jobiscool'
     password_confirmation 'jobiscool'
   end

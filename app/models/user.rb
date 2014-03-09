@@ -16,4 +16,9 @@ class User < ActiveRecord::Base
     return email if email
     return 'undefined'
   end
+
+  def hoa_name
+    return hoa.name if hoa
+    return 'JAXONS'
+  end
 end

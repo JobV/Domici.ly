@@ -27,6 +27,10 @@ ready = function() {
     .checkbox()
   ;
 
+  $('.message .close').on('click', function() {
+    $(this).closest('.message').fadeOut();
+  });
+
 };
 
 $(document).ready(ready);
