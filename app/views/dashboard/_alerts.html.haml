@@ -2,26 +2,32 @@
   .content
     Meldingen
     .sub.header 
-      De laatste meldingen voor de bewoners van XYZ. Alleen bestuursleden kunnen meldingen aanmaken.
+      = "De laatste meldingen voor de bewoners van #{current_user.hoa_name}. Alleen bestuursleden kunnen meldingen aanmaken."
 
 .ui.divider
 
 .row
-  .small-12.small-centered.column.text-center
+  .small-12.small-centered.column
     = link_to new_alert_path do
       .ui.labeled.mini.icon.button
         %i.add.icon
         Nieuwe Melding
 
-.ui.stackable.items
-  - alerts.each do |alert|
-    .item.alert-item{ href: "/alerts/#{alert.id}" }
-      .content
-        .meta
-          = format_date alert.created_at
-        .name
-          = alert.title
-        %p.description
-          = alert.body
-      .extra
-        199 comments
+    .ui.stackable.items
+      - alerts.each do |alert|
+        .item.alert-item
+          .content
+            .meta
+              = format_date alert.created_at
+            .name
+              = link_to alert.title, alert_path(alert)
+            %p.description
+              = alert.body
+          .extra
+            = alert.user.name
+
+            .right.links
+              = link_to edit_alert_path(alert) do
+                %i.edit.icon
+              = link_to alert_path(alert), method: :delete do
+                %i.remove.sign.icon

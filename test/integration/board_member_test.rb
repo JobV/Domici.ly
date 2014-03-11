@@ -53,6 +53,12 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     visit root_path
 
     page_should_contain 'Gat in muur'
+    click_on 'Gat in muur'
+
+    page_should_contain 'Er is een gat ergens'
+    page_should_contain 'Geplaatst door John'
+    page_should_contain 'Aanpassen'
+    page_should_contain 'Terug'
   end
 
 end

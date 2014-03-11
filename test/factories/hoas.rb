@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :hoa do
-    name "MyString"
+    name "VvE de Lotus"
   end
 end

@@ -6,12 +6,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test '#name' do
-    assert_equal 'John', @user.name
+    assert_equal @user.first_name, @user.name
 
     @user.first_name = nil
-    assert_equal 'Doe', @user.name
+    assert_equal @user.last_name, @user.name
 
     @user.last_name = nil
-    assert_equal 'test@new.com', @user.name
+    assert_equal @user.email, @user.name
   end
 end

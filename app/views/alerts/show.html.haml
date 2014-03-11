@@ -1,13 +1,19 @@
-.container
-  .col-md-6.centered
+.row
+  .small-12.medium-8.medium-centered.column
+
     = notice
 
-    .page-header
-      %h1 
-        = @alert.title
+    %br
 
-      %p
-        = @alert.body
+    %h1.ui.header
+      = @alert.title
+      .sub.header
+        = "Geplaatst door #{@alert.user.name}"
 
-    = link_to 'Edit', edit_alert_path(@alert)
-    = link_to 'Back', root_path
+    %p.alert
+      = @alert.body
+
+      
+      .ui.buttons
+        = link_to 'Aanpassen', edit_alert_path(@alert), class: 'ui blue button'
+        = link_to 'Terug', root_path, class: 'ui button'

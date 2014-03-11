@@ -5,5 +5,6 @@ FactoryGirl.define do
     title "Gat in muur, ergens."
     body "Er is een gat ergens."
     severity "high"
+    user
   end
 end

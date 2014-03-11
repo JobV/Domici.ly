@@ -1,22 +1,22 @@
 - if signed_in?
-  .ui.secondary.pointing.menu
-    %a.active.item{ href: '/' }
-      %i.home.icon
-      Homely
-    - if admin?
-      %a.item{ href: '/superadmin'}
-        %i.settings.icon
-        Admin
-    .right.menu
-      .ui.dropdown.item
-        = current_user.name
-        %i.icon.dropdown
-        .menu
-          %a.item
-            %i.edit.icon
-            Mijn profiel
-          %a.item
-            %i.sign.out.icon
-            Log uit
-
-      = link_to 'Log uit', destroy_user_session_path, class: 'ui item', method: :delete
+  .row
+    .small-12.medium-10.medium-centered.column
+      .ui.secondary.pointing.menu
+        %a.active.item{ href: '/' }
+          %i.home.icon
+          = current_user.hoa_name
+        - if admin?
+          %a.item{ href: '/superadmin'}
+            %i.settings.icon
+            Admin
+        .right.menu
+          .ui.dropdown.item
+            = current_user.name
+            %i.icon.dropdown
+            .menu
+              %a.item
+                %i.user.icon
+                Mijn profiel
+              = link_to destroy_user_session_path, class: 'item', method: :delete do
+                %i.sign.out.icon
+                Log uit
