@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class ProfileTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @hoa = create(:hoa)
+    @user = create(:user, hoa: @hoa)
+    create(:alert)
+  end
+
+  
 end

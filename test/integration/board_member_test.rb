@@ -7,22 +7,12 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     create(:alert)
   end
 
-  def sign_in(user)
-    visit root_path
-
-    fill_in 'user_email', with: 'board@member.com'
-    fill_in 'user_password', with: 'jobiscool'
-
-    click_on 'Log in'
+  test 'sign in' do
+    sign_in @user
   end
 
   test 'board member log in' do
-    visit root_path
-
-    fill_in 'user_email', with: 'board@member.com'
-    fill_in 'user_password', with: 'jobiscool'
-
-    click_on 'Log in'
+    sign_in @user
 
     page_should_contain 'John'
     page_should_contain 'VvE de Lotus'
@@ -60,5 +50,4 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     page_should_contain 'Aanpassen'
     page_should_contain 'Terug'
   end
-
 end

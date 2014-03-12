@@ -14,6 +14,13 @@ require 'capybara/rails'
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
+
+  def sign_in(user)
+    visit root_path
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: 'jobiscool'
+    click_on 'Log in'
+  end
 end
 
 def page_should_contain(content)

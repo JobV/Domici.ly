@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :alerts
   resources :posts
   resources :hoas
-  resources :users, only: [:show]
+  # resources :users, only: [:show]
 
   root to: 'dashboard#index'
 
