@@ -27,10 +27,10 @@
             = alert.user_id == current_user.id ? 'Door jou geplaatst' : alert.user.name
 
             .right.links
-              - if moderator? || owner?(alert)
+              - if policy(alert).update?
                 = link_to edit_alert_path(alert) do
                   %i.edit.icon
 
-              - if moderator? || owner?(alert)
+              - if policy(alert).update?
                 = link_to alert_path(alert), method: :delete do
                   %i.remove.sign.icon

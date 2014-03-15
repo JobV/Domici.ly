@@ -1,4 +1,27 @@
 .row
   .medium-8.medium-centered.column
     %h1 Editing alert
-    = render 'form'
+    = form_for(@alert) do |f|
+      - if @alert.errors.any?
+        #error_explanation
+          %h2
+            = pluralize(@alert.errors.count, "error")
+            prohibited this alert from being saved:
+          %ul
+            - @alert.errors.full_messages.each do |msg|
+              %li= msg
+      .ui.form
+        .field
+          %label
+            = f.label 'Melding'
+          .ui.left.labeled.input
+            = f.text_field :title, class: 'form-control input-lg'
+        .field
+          %label
+            = f.label 'Details'
+          = f.text_area :body, class: 'form-control input-lg'
+
+        .ui.buttons
+          = f.submit 'Pas melding aan', class: 'ui positive button'
+          = link_to 'Annuleer', root_path, class: 'ui button'
+

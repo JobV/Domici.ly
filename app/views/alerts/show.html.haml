@@ -1,8 +1,6 @@
 .row
   .small-12.medium-8.medium-centered.column
 
-    = notice
-
     %br
 
     %h1.ui.header
@@ -13,7 +11,7 @@
     %p.alert
       = @alert.body
 
-      
       .ui.buttons
-        = link_to 'Aanpassen', edit_alert_path(@alert), class: 'ui blue button'
+        - if policy(@alert).update?
+          = link_to 'Aanpassen', edit_alert_path(@alert), class: 'ui blue button'
         = link_to 'Terug', root_path, class: 'ui button'

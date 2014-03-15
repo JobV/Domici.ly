@@ -20,3 +20,23 @@
               = link_to destroy_user_session_path, class: 'item', method: :delete do
                 %i.sign.out.icon
                 Log uit
+
+      - flash.each do |name, msg|
+        - if name == 'notice'
+          .ui.small.success.message
+            %i.close.icon
+            .content
+              .header
+                = msg
+        - elsif name == 'alert'
+          .ui.small.error.message
+            %i.close.icon
+            .content
+              .header
+                = msg
+        - else
+          .ui.small.warning.message
+            %i.close.icon
+            .content
+              .header
+                = msg

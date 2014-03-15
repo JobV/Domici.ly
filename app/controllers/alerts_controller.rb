@@ -33,6 +33,7 @@ class AlertsController < ApplicationController
 
   # PATCH/PUT /alerts/1
   def update
+    authorize @alert
     if @alert.update(alert_params)
       redirect_to @alert, notice: 'Alert was successfully updated.'
     else
@@ -42,6 +43,7 @@ class AlertsController < ApplicationController
 
   # DELETE /alerts/1
   def destroy
+    authorize @alert
     @alert.destroy
     redirect_to root_path, notice: 'Alert was successfully destroyed.'
   end

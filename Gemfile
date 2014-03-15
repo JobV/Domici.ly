@@ -28,6 +28,7 @@ gem 'devise'
 gem 'rails_admin'
 
 gem 'rolify'
+gem 'pundit'
 
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'

@@ -4,8 +4,9 @@ class AlertsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   setup do
-    sign_in create(:user)
-    @alert = create(:alert)
+    @user = create(:user)
+    sign_in @user
+    @alert = create(:alert, user: @user)
   end
 
   test "should get new" do
