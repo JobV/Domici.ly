@@ -1,0 +1,26 @@
+.row
+  .large-10.medium-10.small-12.medium-centered.column
+    = notice
+
+    %br
+
+    %h2.ui.green.header
+      %i.user.icon
+      .content
+        = current_user.full_name
+        .sub.header
+          = "Bewoner in #{current_user.hoa_name}"
+
+    .ui.piled.segment
+      %h2
+        Jouw meldingen
+      %table.ui.basic.table
+        %thead
+          %tr
+            %th Titel
+            %th Melding
+        %tbody
+          - current_user.alerts.each do |alert|
+            %tr
+              %td= alert.title
+              %td= alert.body

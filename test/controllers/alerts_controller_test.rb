@@ -8,12 +8,6 @@ class AlertsControllerTest < ActionController::TestCase
     @alert = create(:alert)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:alerts)
-  end
-
   test "should get new" do
     get :new
     assert_response :success
@@ -47,6 +41,6 @@ class AlertsControllerTest < ActionController::TestCase
       delete :destroy, id: @alert
     end
 
-    assert_redirected_to alerts_path
+    assert_redirected_to root_path
   end
 end

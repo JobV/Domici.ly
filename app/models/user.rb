@@ -11,14 +11,23 @@ class User < ActiveRecord::Base
   belongs_to :hoa
 
   def name
-    return first_name if first_name
-    return last_name if last_name
+    return first_name unless first_name.blank?
+    return_name
+  end
+
+  def full_name
+    return "#{first_name} #{last_name}" if first_name && last_name
+    return_name
+  end
+
+  def return_name
+    return last_name unless last_name.blank?
     return email if email
-    return 'undefined'
+    'undefined'
   end
 
   def hoa_name
     return hoa.name if hoa
-    return 'JAXONS'
+    'JAXONS'
   end
 end

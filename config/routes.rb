@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/superadmin', :as => 'rails_admin'
-  resources :alerts
+  resources :alerts, except: [:index]
   resources :posts
   resources :hoas
-  # resources :users, only: [:show]
+
+  get '/profile', to: 'profile#index', as: :profile
 
   root to: 'dashboard#index'
 

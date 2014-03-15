@@ -34,6 +34,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.5)
     ansi (1.4.3)
     arel (5.0.0)
     atomic (1.1.14)
@@ -100,6 +101,8 @@ GEM
     kaminari (0.15.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.4.2)
+      addressable (~> 2.3)
     libv8 (3.16.14.3)
     listen (2.6.1)
       celluloid (>= 0.15.2)
@@ -242,6 +245,7 @@ DEPENDENCIES
   guard-minitest
   haml
   jquery-rails
+  launchy
   minitest
   minitest-reporters
   pg

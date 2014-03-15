@@ -14,7 +14,7 @@
             = current_user.name
             %i.icon.dropdown
             .menu
-              %a.item
+              = link_to profile_path, class: 'item' do
                 %i.user.icon
                 Mijn profiel
               = link_to destroy_user_session_path, class: 'item', method: :delete do

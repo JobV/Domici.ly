@@ -39,7 +39,7 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
 
   test 'view alert' do
     sign_in @user
-    create :alert, user_id: @user.id
+    create :alert, user_id: @user.id, hoa: @hoa
     visit root_path
 
     page_should_contain 'Gat in muur'
