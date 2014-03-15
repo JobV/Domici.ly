@@ -141,6 +141,8 @@ GEM
       rack (>= 1.1, < 2.0)
     pundit (0.2.2)
       activesupport (>= 3.0.0)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-pjax (0.7.0)
       nokogiri (~> 1.5)
@@ -253,6 +255,7 @@ DEPENDENCIES
   pg
   puma
   pundit
+  quiet_assets
   rails (= 4.1.0.rc1)
   rails_12factor
   rails_admin

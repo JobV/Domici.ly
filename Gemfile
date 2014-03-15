@@ -40,6 +40,7 @@ group :test, :development do
   gem 'capybara'
   gem 'rb-readline'
   gem 'launchy'
+  gem 'quiet_assets'
 end
 
 group :production do

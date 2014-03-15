@@ -2,24 +2,18 @@
   .row
     .small-12.medium-10.medium-centered.column
       .ui.secondary.pointing.menu
-        %a.active.item{ href: '/' }
+        %a.item{ href: '/', class: ('active' if @active_tab == 'home') }
           %i.home.icon
-          = current_user.hoa_name
+          / # = current_user.hoa_name
         - if admin?
           %a.item{ href: '/superadmin'}
             %i.settings.icon
             Admin
         .right.menu
-          .ui.dropdown.item
-            = current_user.name
-            %i.icon.dropdown
-            .menu
-              = link_to profile_path, class: 'item' do
-                %i.user.icon
-                Mijn profiel
-              = link_to destroy_user_session_path, class: 'item', method: :delete do
-                %i.sign.out.icon
-                Log uit
+          = link_to profile_path, class: (@active_tab == 'profile' ? 'active item' : 'item') do
+            %i.user.icon
+          = link_to destroy_user_session_path, class: 'item', method: :delete do
+            %i.sign.out.icon
 
       - flash.each do |name, msg|
         - if name == 'notice'
