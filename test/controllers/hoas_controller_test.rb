@@ -4,8 +4,9 @@ class HoasControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   setup do
-    sign_in create(:admin)
     @hoa = create(:hoa)
+    @user = create(:admin, hoa: @hoa)
+    sign_in @user
   end
 
   test "should get index" do

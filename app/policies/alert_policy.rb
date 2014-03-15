@@ -1,7 +1,6 @@
 class AlertPolicy < ApplicationPolicy
   attr_reader :user, :alert
 
-
   def initialize(user, alert)
     @user = user
     @alert = alert

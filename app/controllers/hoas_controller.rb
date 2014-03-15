@@ -1,5 +1,6 @@
 class HoasController < ApplicationController
   before_action :set_hoa, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, :except => [:index, :create]
 
   # GET /hoas
   def index
@@ -8,21 +9,23 @@ class HoasController < ApplicationController
 
   # GET /hoas/1
   def show
+    authorize @hoa
   end
 
   # GET /hoas/new
   def new
     @hoa = Hoa.new
+    authorize @hoa
   end
 
   # GET /hoas/1/edit
   def edit
+    authorize @hoa
   end
 
   # POST /hoas
   def create
     @hoa = Hoa.new(hoa_params)
-
     if @hoa.save
       redirect_to @hoa, notice: 'Hoa was successfully created.'
     else
@@ -32,6 +35,7 @@ class HoasController < ApplicationController
 
   # PATCH/PUT /hoas/1
   def update
+    authorize @hoa
     if @hoa.update(hoa_params)
       redirect_to @hoa, notice: 'Hoa was successfully updated.'
     else
@@ -41,6 +45,7 @@ class HoasController < ApplicationController
 
   # DELETE /hoas/1
   def destroy
+    authorize @hoa
     @hoa.destroy
     redirect_to hoas_url, notice: 'Hoa was successfully destroyed.'
   end

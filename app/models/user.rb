@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    return "#{first_name} #{last_name}" if first_name && last_name
+    return "#{first_name} #{last_name}" unless first_name.blank? | last_name.blank?
     return_name
   end
 
