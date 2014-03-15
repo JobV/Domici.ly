@@ -1,4 +1,4 @@
-%h2.ui.header
+%h2.ui.black.header
   .content
     Meldingen
     .sub.header 
@@ -23,6 +23,7 @@
               = link_to alert.title, alert_path(alert)
             %p.description
               = alert.body
+
           .extra
             = alert.user_id == current_user.id ? 'Door jou geplaatst' : alert.user.name
 

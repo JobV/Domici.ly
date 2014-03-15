@@ -9,7 +9,7 @@ class ProfileTest < ActionDispatch::IntegrationTest
 
   def go_to_profile
     sign_in @user
-    click_on 'Mijn profiel'
+    click_on @user.name
   end
 
   test 'profile shows all basic information' do
@@ -21,4 +21,9 @@ class ProfileTest < ActionDispatch::IntegrationTest
     page_should_contain 'Kraan lekt'
   end
   
+  test 'edit personal information' do
+    go_to_profile
+
+    click_on 'Pas mijn gegevens aan'
+  end  
 end

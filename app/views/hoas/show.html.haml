@@ -1,6 +1,16 @@
-%p
-  %strong Name:
-  = @hoa.name
-= link_to 'Edit', edit_hoa_path(@hoa)
-|
-\#{link_to 'Back', hoas_path}
+- @active_tab = 'hoa'
+
+%br
+%br
+
+.row
+  .large-10.medium-10.small-12.medium-centered.column
+    %h1.ui.blue.header
+      %i.users.icon
+      .content
+        = current_user.hoa_name
+        .sub.header
+          = "#{current_user.hoa.users.count} leden"
+
+    .ui.successful.progress
+      .bar{ style: "width:80%" }

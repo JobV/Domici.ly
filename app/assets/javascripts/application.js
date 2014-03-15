@@ -31,6 +31,10 @@ ready = function() {
     $(this).closest('.message').fadeOut();
   });
 
+  $('.ui.accordion')
+    .accordion()
+  ;
+
 };
 
 $(document).ready(ready);
