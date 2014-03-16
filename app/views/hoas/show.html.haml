@@ -12,5 +12,5 @@
         .sub.header
           = "#{current_user.hoa.users.count} leden"
 
-    .ui.successful.progress
-      .bar{ style: "width:80%" }
+    %br
+    = render 'dashboard/alerts', alerts: @alerts

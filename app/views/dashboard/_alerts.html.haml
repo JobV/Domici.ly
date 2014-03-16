@@ -1,37 +1,21 @@
-%h2.ui.black.header
-  .content
-    Meldingen
-    .sub.header 
-      = "De laatste meldingen voor de bewoners van #{current_user.hoa_name}. "
-
-.ui.divider
-
 .row
   .small-12.small-centered.column
-    = link_to new_alert_path do
-      .ui.labeled.mini.icon.button
-        %i.add.icon
-        Nieuwe Melding
 
-    .ui.stackable.items
-      - alerts.each do |alert|
-        .item.alert-item
-          .content
-            .meta
-              = format_date alert.created_at
-            .name
-              = link_to alert.title, alert_path(alert)
-            %p.description
-              = alert.body
+    %h2.ui.black.header
+      Meldingen
 
-          .extra
-            = alert.user_id == current_user.id ? 'Door jou geplaatst' : alert.user.name
-
-            .right.links
-              - if policy(alert).update?
-                = link_to edit_alert_path(alert) do
-                  %i.edit.icon
-
-              - if policy(alert).update?
-                = link_to alert_path(alert), method: :delete do
-                  %i.remove.sign.icon
+    .ui.top.attached.segment
+      = link_to new_alert_path do
+        .ui.labeled.mini.icon.button
+          %i.add.icon
+          Nieuwe Melding
+    .ui.attached.segment
+      .ui.selection.divided.list
+        - alerts.each do |alert|
+          .item
+            .ui.red.horizontal.label
+              STATUS
+            .content
+              = link_to alert.title, alert_path(alert), class: 'header'
+              .description
+                = alert.body

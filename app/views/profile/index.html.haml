@@ -4,26 +4,39 @@
 
     %br
 
-    .text-center
-      .ui.green.button
-        Pas mijn gegevens aan
-    %h2.ui.green.header
-      %i.user.icon
-      .content
-        = current_user.full_name
-        .sub.header
-          = "Bewoner in #{current_user.hoa_name}"
+    .row
+      .small-12.column
+        = link_to 'Pas mijn gegevens aan', root_path, class: 'ui top attached positive button'
+        .ui.raised.attached.segment
+          %h2.ui.black.header
+            %i.user.icon
+            .content
+              = current_user.full_name
+              .sub.header
+                = "Bewoner in #{current_user.hoa_name}"
 
-    .ui.piled.segment
-      %h2
-        Jouw meldingen
-      %table.ui.basic.table
-        %thead
-          %tr
-            %th Titel
-            %th Melding
-        %tbody
-          - current_user.alerts.each do |alert|
-            %tr
-              %td= alert.title
-              %td= alert.body
+          %br
+
+          .ui.teal.ribbon.label
+            Mijn gegevens
+          %p
+            = render 'personal_info'
+
+
+          %br
+
+          .ui.orange.ribbon.label
+            Mijn meldingen  
+          %p
+            %table.ui.basic.table
+              %thead
+                %tr
+                  %th Titel
+                  %th Melding
+              %tbody
+                - current_user.alerts.each do |alert|
+                  %tr
+                    %td= alert.title
+                    %td= alert.body
+
+        / # = link_to 'Pas mijn gegevens aan', root_path, class: 'ui bottom attached mini positive button'

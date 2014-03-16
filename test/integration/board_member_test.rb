@@ -16,7 +16,6 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
 
     page_should_contain 'John'
     page_should_contain 'VvE de Lotus'
-    page_should_contain 'Nieuwe Melding'
 
     page_should_not_contain 'Admin'
   end
@@ -24,15 +23,17 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
   test 'add alert' do
     sign_in @user
 
+    click_on @hoa.name
     click_on 'Nieuwe Melding'
 
     fill_in 'alert_title', with: 'Kapotte tree in trappenhuis'
     fill_in 'alert_body', with: 'In het trappenhuis op de derde verdieping is een tree kapot. Heel erg kapot. Pas op voor de tree.'
     click_on 'Publiceer melding'
 
+    click_on @hoa.name
+
     page_should_contain 'Kapotte tree in trappenhuis'
     page_should_contain 'In het trappenhuis op de derde verdieping is een tree kapot. Heel erg kapot. Pas op voor de tree.'
-    page_should_contain 'Vandaag'
 
     page_should_not_contain 'Gat in muur, ergens.'
   end
@@ -41,6 +42,7 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     sign_in @user
     create :alert, user_id: @user.id, hoa: @hoa
     visit root_path
+    click_on @hoa.name
 
     page_should_contain 'Gat in muur'
     click_on 'Gat in muur'
@@ -49,5 +51,12 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     page_should_contain 'Geplaatst door John'
     page_should_contain 'Aanpassen'
     page_should_contain 'Terug'
+  end
+
+  test 'add member' do
+    sign_in @user
+
+    click_on @hoa.name
+
   end
 end

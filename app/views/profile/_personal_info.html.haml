@@ -1,0 +1,30 @@
+.ui.relaxed.horizontal.divided.list
+  .item
+    .content
+      %a.header Naam
+      .description
+        = current_user.full_name
+
+  .item
+    .content
+      %a.header Adres
+      .description
+        PLACEHOLDER
+
+  .item
+    .content
+      %a.header Email
+      .description
+        = current_user.email
+
+  .item
+    .content
+      %a.header Organisatie
+      .description
+        = current_user.hoa_name
+
+  .item
+    .content
+      %a.header Rol
+      .description
+        Bewoner

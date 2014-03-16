@@ -17,7 +17,7 @@ class ProfileTest < ActionDispatch::IntegrationTest
 
     page_should_contain 'Job van der Voort'
     page_should_contain 'VvE de Lotus'
-    page_should_contain 'Jouw meldingen'
+    page_should_contain 'Mijn meldingen'
     page_should_contain 'Kraan lekt'
   end
   

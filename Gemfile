@@ -43,6 +43,10 @@ group :test, :development do
   gem 'quiet_assets'
 end
 
+group :test do
+  gem 'simplecov', :require => false
+end
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'

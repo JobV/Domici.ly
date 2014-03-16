@@ -3,10 +3,6 @@ module ApplicationHelper
     current_user.admin if current_user
   end
 
-  def current_admin
-    current_user && current_user.admin
-  end
-
   def moderator?
     current_user.has_role? :moderator, current_user.hoa if current_user
   end

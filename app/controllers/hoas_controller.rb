@@ -10,6 +10,7 @@ class HoasController < ApplicationController
   # GET /hoas/1
   def show
     authorize @hoa
+    @alerts = current_user.hoa ? current_user.hoa.alerts.order(created_at: :desc) : current_user.alerts.order(created_at: :desc)
   end
 
   # GET /hoas/new

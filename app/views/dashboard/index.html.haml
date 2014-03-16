@@ -13,4 +13,40 @@
 
 .row
   .large-10.medium-10.small-12.medium-centered.column
-    = render 'alerts', alerts: @alerts
+    %br
+    .ui.piled.feed.segment
+      %h2.ui.header
+        Recent Activity
+      .event
+        .label
+          %i.circular.home.icon
+        .content
+          .date
+            Just moments ago
+          .summary
+            %a Sally Poodle
+            added you as a friend
+      .event
+        .label
+          %i.circular.pencil.icon
+        .content
+          .date
+            3 days ago
+          .summary
+            You submitted a new post to the page
+          .extra.text
+            I am a dog and I do not know how to make a post
+      .event
+        .label
+          %i.circular.photo.icon
+        .content
+          .date
+            3 days ago
+          .summary
+            %a Sally Poodle
+            added
+            %a 2 new photos
+            of you
+          .extra.images
+            %img{src: "/images/demo/item1.jpg"}/
+            %img{src: "/images/demo/item2.jpg"}/
