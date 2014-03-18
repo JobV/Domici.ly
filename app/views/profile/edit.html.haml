@@ -1,0 +1,18 @@
+.row
+  .large-10.medium-10.small-12.medium-centered.column
+
+    = form_for(current_user, url: update_profile_path(current_user)) do |f|
+      .ui.raised.segment
+        .ui.form
+          
+          - { first_name: 'Voornaam',
+              last_name: 'Achternaam',
+              email: 'Email' }.each do |key, name|
+            .field
+              %label
+                = f.label name
+              = f.text_field key
+
+          .ui.buttons
+            = f.submit 'Sla aanpassingen op', class: 'ui positive button'
+            = link_to 'Annuleer', profile_path, class: 'ui button'

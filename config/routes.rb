@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :hoas
 
   get '/profile', to: 'profile#index', as: :profile
+  get '/profile/edit', to: 'profile#edit', as: :edit_profile
+  patch '/profile/update', to: 'profile#update', as: :update_profile
 
   root to: 'dashboard#index'
 
