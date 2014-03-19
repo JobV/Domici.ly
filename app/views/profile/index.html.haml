@@ -6,14 +6,15 @@
 
     .row
       .small-12.column
-        = link_to 'Pas mijn gegevens aan', edit_profile_path, class: 'ui top attached positive button'
-        .ui.raised.attached.segment
+        .ui.raised.segment
           %h2.ui.black.header
             %i.user.icon
             .content
               = current_user.full_name
               .sub.header
                 = "Bewoner in #{current_user.hoa_name}"
+
+            = link_to "Pas mijn gegevens aan", edit_profile_path, class: 'ui positive button', style: "float: right; position: relative; top: -45px;"
 
           %br
 
@@ -38,5 +39,3 @@
                   %tr
                     %td= alert.title
                     %td= alert.body
-
-        / # = link_to 'Pas mijn gegevens aan', root_path, class: 'ui bottom attached mini positive button'

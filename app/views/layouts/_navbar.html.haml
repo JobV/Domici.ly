@@ -10,7 +10,7 @@
           .ui.orange.label
             12
         - if admin?
-          %a.item{ href: '/superadmin'}
+          %a.item{ href: '/admin'}
             %i.settings.icon
             Admin
         - if current_user.hoa && policy(current_user.hoa).show?

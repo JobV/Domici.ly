@@ -57,6 +57,7 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     sign_in @user
 
     click_on @hoa.name
+    click_on 'Nieuw lid'
 
   end
 end

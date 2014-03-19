@@ -5,12 +5,19 @@
 
 .row
   .large-10.medium-10.small-12.medium-centered.column
-    %h1.ui.blue.header
-      %i.users.icon
-      .content
-        = current_user.hoa_name
-        .sub.header
-          = "#{current_user.hoa.users.count} leden"
+    .ui.segment
+      %h1.ui.blue.header
+        %i.users.icon
+        .content
+          = current_user.hoa_name
+          .sub.header
+            = "#{current_user.hoa.users.count} leden"
 
-    %br
-    = render 'dashboard/alerts', alerts: @alerts
+      .ui.segment
+        = link_to '#' do
+          .ui.labeled.mini.icon.button
+            %i.add.icon
+            Nieuw Lid
+
+      %br
+      = render 'dashboard/alerts', alerts: @alerts
