@@ -57,7 +57,18 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     sign_in @user
 
     click_on @hoa.name
-    click_on 'Nieuw lid'
+    click_on 'new-member'
+
+    fill_in :user_email, with: 'new@member.com'
+    choose 'role_user'
+
+    click_on 'Verstuur uitnodiging'
+    email = ActionMailer::Base.deliveries.last
+
+    assert email
+
+    assert_equal ['new@member.com'], email.to
+
 
   end
 end

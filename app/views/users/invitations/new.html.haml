@@ -38,5 +38,5 @@
 
           %br
           .ui.buttons
-            = f.submit 'Verstuur uitnodiging', class: 'ui positive button'
+            = f.submit 'Verstuur uitnodiging', class: 'ui positive button', method: :post
             = link_to 'Annuleer', hoa_path(current_user.hoa), class: 'ui button'

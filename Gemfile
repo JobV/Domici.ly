@@ -44,6 +44,10 @@ group :test, :development do
   gem 'quiet_assets'
 end
 
+group :development do
+  gem "letter_opener"
+end
+
 group :test do
   gem 'simplecov', :require => false
 end
