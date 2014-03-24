@@ -24,6 +24,7 @@ gem 'spring',        group: :development
 gem 'puma'
 
 gem 'devise'
+gem 'devise_invitable'
 
 gem 'rails_admin'
 

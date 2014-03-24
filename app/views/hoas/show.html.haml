@@ -1,8 +1,5 @@
 - @active_tab = 'hoa'
 
-%br
-%br
-
 .row
   .large-10.medium-10.small-12.medium-centered.column
     .ui.segment
@@ -13,8 +10,8 @@
           .sub.header
             = "#{current_user.hoa.users.count} leden"
 
-      .ui.segment
-        = link_to '#' do
+      .ui.horizontal.segment
+        = link_to new_user_invitation_path do
           .ui.labeled.mini.icon.button
             %i.add.icon
             Nieuw Lid

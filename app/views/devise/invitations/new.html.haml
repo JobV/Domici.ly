@@ -1,0 +1,28 @@
+.row
+  .large-10.medium-10.small-12.medium-centered.column
+    .ui.segment
+      %h2= "Nodig nieuw lid uit voor #{current_user.hoa_name}"
+      .ui.form
+        = form_for resource, :as => resource_name, :url => invite_user_path, :html => {:method => :post} do |f|
+          = devise_error_messages!
+          .field
+            %label
+              = f.label 'Email adres'
+            .ui.input
+              = f.text_field :email, class: 'input-lg'
+
+          .field
+            %label
+              = f.label 'Email adres'
+            
+            .ui.selection.dropdown
+              %i.icon.dropdown
+              .menu
+                .item.active{ "data-value" => "user" } Bewoner
+                .item{ "data-value" => "moderator" } Bestuurslid
+            
+            = f.text_field :email, :email, class: 'input-lg'
+
+        .ui.buttons
+          = f.submit 'Verstuur uitnodiging', class: 'ui positive button'
+          = link_to 'Annuleer', hoa_path(current_user.hoa), class: 'ui button'
