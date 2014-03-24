@@ -31,6 +31,8 @@ gem 'rails_admin'
 gem 'rolify'
 gem 'pundit'
 
+gem 'bugsnag'
+
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
