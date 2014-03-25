@@ -1,6 +1,5 @@
 - if signed_in?
   %br
-  %br
   .row
     .small-12.medium-10.medium-centered.column
       .ui.pointing.menu.mainnav
@@ -9,14 +8,14 @@
           Home
           .ui.orange.label
             12
+        - if current_user.hoa && policy(current_user.hoa).show?
+          = link_to hoa_path(current_user.hoa), class: (@active_tab == 'hoa' ? 'active green item' : 'green item') do
+            %i.users.icon
+            = current_user.hoa_name
         - if admin?
           %a.item{ href: '/superadmin'}
             %i.settings.icon
             Admin
-        - if current_user.hoa && policy(current_user.hoa).show?
-          = link_to hoa_path(current_user.hoa), class: (@active_tab == 'hoa' ? 'active blue item' : 'blue item') do
-            %i.users.icon
-            = current_user.hoa_name
 
         .right.menu
           .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
@@ -24,7 +23,7 @@
             .menu
               = link_to 'Melding', new_alert_path, class: 'item'
               - if current_user.hoa && policy(current_user.hoa).show?
-                = link_to 'Lid', hoa_path(current_user.hoa), class: 'item'
+                = link_to 'Lid', new_user_invitation_path, class: 'item'
 
           = link_to profile_path, class: (@active_tab == 'profile' ? 'active item' : 'item') do
             %i.user.icon

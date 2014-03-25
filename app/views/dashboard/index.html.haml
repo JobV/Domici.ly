@@ -1,20 +1,8 @@
 - @active_tab = 'home'
-/ .row
-/   .large-10.medium-10.small-12.medium-centered.column
-/     .ui.large.blue.icon.message
-/       %i.close.icon
-/       %i.home.icon
-/       .content
-/         .header
-/           = "#{current_user.hoa_name}"
-/         = "Welkom #{current_user.name}. Je hebt X ongelezen meldingen. "
-
-%br
 
 .row
   .large-10.medium-10.small-12.medium-centered.column
-    %br
-    .ui.piled.feed.segment
+    .ui.feed.segment
       %h2.ui.header
         Recent Activity
       .event
