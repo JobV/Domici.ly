@@ -16,4 +16,8 @@ module ApplicationHelper
     return 'Gisteren' if (date - 1.day).today?
     return date.strftime("%d-%m-%Y")
   end
+
+  def format_time(time)
+    return time_ago_in_words time
+  end    
 end

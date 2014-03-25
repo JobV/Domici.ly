@@ -1,12 +1,9 @@
 source 'https://rubygems.org'
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0.rc1'
 gem 'sass-rails', '~> 4.0.1'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
-
 
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -14,12 +11,6 @@ gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'haml'
-
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
-
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
 
 gem 'puma'
 
@@ -31,7 +22,11 @@ gem 'rails_admin'
 gem 'rolify'
 gem 'pundit'
 
+# Bug tracking
 gem 'bugsnag'
+
+# Activity Feed => at release of 2.0, remove git ref.
+gem 'public_activity', github: 'pokonski/public_activity'
 
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
@@ -48,6 +43,8 @@ end
 
 group :development do
   gem "letter_opener"
+  gem 'spring'
+  gem 'annotate', github: 'ctran/annotate_models'
 end
 
 group :test do
@@ -57,4 +54,9 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+end
+
+# bundle exec rake doc:rails generates the API under doc/api.
+group :doc do
+  gem 'sdoc', '~> 0.4.0'
 end

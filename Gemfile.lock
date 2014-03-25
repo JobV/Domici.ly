@@ -1,9 +1,27 @@
 GIT
+  remote: git://github.com/ctran/annotate_models.git
+  revision: ed327d5a15226d0b5f78ab1d47649c0fdab66c8f
+  specs:
+    annotate (2.6.2)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
+
+GIT
   remote: git://github.com/doabit/semantic-ui-sass.git
   revision: bed137948dd2584aac7ffe680477bc0cd3da1b49
   specs:
     semantic-ui-sass (0.14.0.0)
       sass (~> 3.2)
+
+GIT
+  remote: git://github.com/pokonski/public_activity.git
+  revision: 2d7dd25e1ae632157476ac4c733067758eaac093
+  specs:
+    public_activity (2.0)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0)
+      i18n (>= 0.5.0)
+      railties (>= 3.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -259,6 +277,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate!
   bugsnag
   capybara
   coffee-rails (~> 4.0.0)
@@ -274,6 +293,7 @@ DEPENDENCIES
   minitest
   minitest-reporters
   pg
+  public_activity!
   puma
   pundit
   quiet_assets

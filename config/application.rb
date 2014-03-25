@@ -6,6 +6,10 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Set up circular fallbacks for i18n
+require "i18n/backend/fallbacks"
+I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
+
 module Vve
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -18,6 +22,7 @@ module Vve
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.default_locale = :nl
+    config.i18n.fallbacks = { 'nl' => 'en' }
   end
 end
