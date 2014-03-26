@@ -84,4 +84,9 @@ class Users::InvitationsController < Devise::InvitationsController
   def update_resource_params
     devise_parameter_sanitizer.sanitize(:accept_invitation)
   end
+
+  private
+   def resource_params
+     params.permit(user: [:name, :email,:invitation_token, :hoa])[:user]
+   end
 end

@@ -5,6 +5,20 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    # Only add some parameters
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:first_name, :last_name, :hoa]
+
+    # Override accepted parameters
+    devise_parameter_sanitizer.for(:accept_invitation) do |u|
+      u.permit(:first_name, :last_name, :hoa, :password, :password_confirmation,:invitation_token)
+    end
+  end
+
   private
 
   def user_not_authorized
