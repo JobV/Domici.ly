@@ -9,7 +9,10 @@
             .content
               = current_user.full_name
               .sub.header
-                = "Bewoner in #{current_user.hoa_name}"
+                - if current_user.has_role? :moderator, current_user.hoa
+                  = "Bestuurslid in #{current_user.hoa_name}"
+                - else
+                  = "Bewoner in #{current_user.hoa_name}"
 
             = link_to "Pas mijn gegevens aan", edit_profile_path, class: 'ui positive button', style: "float: right; position: relative; top: -45px;"
 

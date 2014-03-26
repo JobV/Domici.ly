@@ -41,6 +41,8 @@ class User < ActiveRecord::Base
 
   belongs_to :hoa
 
+  attr_reader :role
+
   def name
     return first_name unless first_name.blank?
     return_name

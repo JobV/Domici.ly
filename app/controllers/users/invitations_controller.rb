@@ -7,8 +7,10 @@ class Users::InvitationsController < Devise::InvitationsController
 
   # POST /resource/invitation
   def create
+    role = params[:role]
     self.resource = invite_resource
 
+    resource.add_role role, resource.hoa
     if resource.errors.empty?
       yield resource if block_given?
       set_flash_message :notice, :send_instructions, :email => self.resource.email if self.resource.invitation_sent_at
@@ -87,6 +89,6 @@ class Users::InvitationsController < Devise::InvitationsController
 
   private
    def resource_params
-     params.permit(user: [:name, :email,:invitation_token, :hoa])[:user]
+     params.permit(user: [:name, :email,:invitation_token, :hoa, :role])[:user]
    end
 end

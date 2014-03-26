@@ -11,12 +11,9 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     # Only add some parameters
-    devise_parameter_sanitizer.for(:accept_invitation).concat [:first_name, :last_name, :hoa]
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:first_name, :last_name, :hoa, :role]
 
-    # Override accepted parameters
-    devise_parameter_sanitizer.for(:accept_invitation) do |u|
-      u.permit(:first_name, :last_name, :hoa, :password, :password_confirmation,:invitation_token)
-    end
+    devise_parameter_sanitizer.for(:invite).concat [:first_name, :last_name, :hoa, :role]
   end
 
   private
