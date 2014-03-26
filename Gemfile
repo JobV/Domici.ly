@@ -24,6 +24,7 @@ gem 'pundit'
 
 # Bug tracking
 gem 'bugsnag'
+gem 'newrelic_rpm'
 
 # Activity Feed => at release of 2.0, remove git ref.
 gem 'public_activity', github: 'pokonski/public_activity'
