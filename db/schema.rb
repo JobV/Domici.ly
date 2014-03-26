@@ -55,11 +55,6 @@ ActiveRecord::Schema.define(version: 20140325210127) do
     t.integer  "hoa_id"
   end
 
-  create_table "board_members", id: false, force: true do |t|
-    t.integer "hoa_id"
-    t.integer "user_id"
-  end
-
   create_table "hoas", force: true do |t|
     t.string   "name"
     t.datetime "created_at"

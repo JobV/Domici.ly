@@ -49,7 +49,9 @@ class Users::InvitationsController < Devise::InvitationsController
   protected
 
   def invite_resource(&block)
-    resource_class.invite!(invite_params, current_inviter, &block)
+    resource_class.invite!(invite_params, current_inviter) do |u|
+      u.hoa = current_inviter.hoa
+    end
   end
   
   def accept_resource
