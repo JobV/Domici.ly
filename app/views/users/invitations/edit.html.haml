@@ -1,5 +1,6 @@
+%br
 .row
-  .large-10.medium-10.small-12.medium-centered.column
+  .large-6.medium-6.small-12.medium-centered.column
     .ui.segment
 
       %h2 Stel een wachtwoord in voor uw account in Domici.ly
@@ -9,14 +10,14 @@
         .ui.form
           .field
             %label
-              = f.label :password
+              = f.label 'Wachtwoord'
             .ui.input
               = f.password_field :password
           .field
             %label
-              = f.label :password_confirmation
+              = f.label 'Wachtwoord nogmaals'
             .ui.input
               = f.password_field :password_confirmation
 
           .ui.buttons
-            = f.submit t("devise.invitations.edit.submit_button"), class: 'ui success button'
+            = f.submit 'Maak dit mijn wachtwoord en log in!', class: 'positive ui button'
