@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.0.rc1'
+gem 'rails', '4.1.0.rc2'
 gem 'sass-rails', '~> 4.0.1'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
