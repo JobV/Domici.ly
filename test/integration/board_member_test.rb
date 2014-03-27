@@ -4,6 +4,7 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
   def setup
     @hoa = create(:hoa)
     @user = create(:board_member, hoa: @hoa)
+    @user.add_role :moderator, @hoa
     create(:alert)
   end
 
