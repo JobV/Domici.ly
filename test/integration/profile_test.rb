@@ -23,7 +23,6 @@ class ProfileTest < ActionDispatch::IntegrationTest
   
   test 'edit personal information' do
     go_to_profile
-
     click_on 'Pas mijn gegevens aan'
   end  
 end

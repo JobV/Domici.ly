@@ -12,7 +12,8 @@ class NormalUserTest < ActionDispatch::IntegrationTest
     page_should_not_contain 'Admin'
   end
 
-  test 'page should not contain hoa admin' do
-    page_should_not_contain 'Beheer'
+  test 'user cannot invite others' do
+    click_on 'VvE de Lotus'
+    page_should_not_contain 'Nieuw Lid'
   end
 end

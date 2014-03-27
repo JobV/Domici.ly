@@ -21,6 +21,8 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     page_should_not_contain 'Admin'
   end
 
+  ## Alerts
+
   test 'add alert' do
     sign_in @user
 
@@ -54,22 +56,33 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     page_should_contain 'Terug'
   end
 
-  test 'add member' do
-    sign_in @user
+  ## Add member
 
+  def add_member(email, role)
+    sign_in @user
     click_on @hoa.name
     click_on 'new-member'
-
-    fill_in :user_email, with: 'new@member.com'
-    choose 'role_user'
-
+    fill_in :user_email, with: email
+    choose role
     click_on 'Verstuur uitnodiging'
+  end
+
+  test 'add member' do
+    assert_difference('User.count') do
+      add_member 'user@normal.com', 'role_user'
+    end
+
+    assert ! User.last.has_role?(:moderator, @hoa)
+
     email = ActionMailer::Base.deliveries.last
-
     assert email
+    assert_equal ['user@normal.com'], email.to
+  end
 
-    assert_equal ['new@member.com'], email.to
-
-
+  test 'add board member' do
+    assert_difference('User.count') do
+      add_member 'boardie@member.com', 'role_moderator'
+    end
+    assert User.last.has_role?(:moderator, @hoa)
   end
 end
