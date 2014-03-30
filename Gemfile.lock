@@ -52,6 +52,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (2.4.1)
+      rails (>= 3, < 5)
     addressable (2.3.6)
     ansi (1.4.3)
     arel (5.0.0)
@@ -277,6 +279,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on
   annotate!
   bugsnag
   capybara

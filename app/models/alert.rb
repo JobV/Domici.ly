@@ -13,15 +13,19 @@
 #
 
 class Alert < ActiveRecord::Base
-  include PublicActivity::Model
-
   # public_activity -> set current_user as owner by default
   # only track creation events
+  include PublicActivity::Model
   tracked only: :create, owner: Proc.new{ |controller, model| controller && controller.current_user }
 
   # active_admin
   resourcify
-  
+
+  # Acts as taggable on
+  # preserve order so that in state, the last is the current state
+  acts_as_ordered_taggable # Alias for acts_as_taggable_on :tags
+  acts_as_ordered_taggable_on :state
+
   belongs_to :user
   belongs_to :hoa
 end

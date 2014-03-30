@@ -6,7 +6,7 @@
 
       = form_for @post do |f|
         .ui.fluid.action.input
-          = f.text_field :title, placeholder: 'Plaats een bericht'
+          = f.text_field :title, placeholder: 'Plaats een bericht', autofocus: true
           .ui.icon.button
             %i.level.down.icon
       

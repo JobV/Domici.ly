@@ -1,29 +1,12 @@
 .row
   .small-12.medium-10.medium-centered.column
 
-    %br
-
     %h1.ui.block.black.header
       = @alert.title
       .sub.header
         = "Geplaatst door #{@alert.user.name}"
 
-    .ui.four.steps
-      .ui.step
-        gepubliceerd
-      .ui.step
-        bevestigd
-      .ui.step.active
-        in behandeling
-      .ui.step.disabled
-        voltooid
-
-    %br
-
-    .ui.warning.top.attached.progress
-      .bar{ style: "width:80%" }
-    .ui.attached.segment
-      Gezien door 80% van alle bewoners
+    = render 'alerts/states'
 
     .ui.segment
       %p.alert

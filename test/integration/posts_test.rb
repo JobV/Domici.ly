@@ -10,6 +10,5 @@ class PostsTest < ActionDispatch::IntegrationTest
 
   test 'user can create post' do
     fill_in 'post_title', with: 'This is a test'
-    
   end
 end

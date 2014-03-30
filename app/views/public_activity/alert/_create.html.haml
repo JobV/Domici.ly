@@ -7,7 +7,7 @@
         = "#{format_time(activity.created_at)} geleden"
       .summary
         = link_to((activity.owner.full_name if activity.owner), '#')
-        meldt:
+        heeft de volgende melding aangemaakt:
       .extra.text
         %h3{ style: "margin-top: 0;" }
           = activity.trackable.title
