@@ -3,12 +3,12 @@
 .row
   .large-10.medium-10.small-12.medium-centered.column
     .ui.feed.segment
-      %h2.ui.header
-        Recente Activiteit
 
-      .ui.fluid.icon.input
-        = form_for @post do |f|
-          = f.text_field :title
-
+      = form_for @post do |f|
+        .ui.fluid.action.input
+          = f.text_field :title, placeholder: 'Plaats een bericht'
+          .ui.icon.button
+            %i.level.down.icon
+      
       - @activities.each do |activity|
         = render_activity activity

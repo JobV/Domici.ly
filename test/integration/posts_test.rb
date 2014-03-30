@@ -9,6 +9,7 @@ class PostsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user can create post' do
-    page_should_contain 'Plaats een bericht'
+    fill_in 'post_title', with: 'This is a test'
+    
   end
 end
