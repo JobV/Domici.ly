@@ -7,7 +7,8 @@
         Recente Activiteit
 
       .ui.fluid.icon.input
-        %input
+        = form_for @post do |f|
+          = f.text_field :title
 
       - @activities.each do |activity|
         .event
@@ -19,9 +20,9 @@
             .summary
               = link_to((activity.owner.full_name if activity.owner), '#')
               = render_activity activity
-            - if activity.trackable
-              .extra.text
-                %h3{ style: "margin-top: 0;" }
-                  = activity.trackable.title
-                %p
-                  = activity.trackable.body
+            / - if activity.trackable
+            /   .extra.text
+            /     %h3{ style: "margin-top: 0;" }
+            /       = activity.trackable.title
+            /     %p
+            /       = activity.trackable.body

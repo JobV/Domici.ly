@@ -1,5 +1,9 @@
 meldt:
 - if activity.trackable
-  / iets hier
+  .extra.text
+    %h3{ style: "margin-top: 0;" }
+      = activity.trackable.title
+    %p
+      = activity.trackable.body
 - else
   /iets anders hier
