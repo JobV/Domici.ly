@@ -7,6 +7,10 @@ module ApplicationHelper
     current_user.has_role? :moderator, current_user.hoa if current_user
   end
 
+  def maintenance?
+    current_user.has_role? :maintenance, current_user.hoa if current_user
+  end
+
   def owner?(resource)
     current_user.id == resource.user_id
   end
