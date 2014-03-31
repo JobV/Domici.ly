@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/superadmin', :as => 'rails_admin'
   resources :alerts, except: [:index]
+  post '/alerts/:id/close', to: 'alerts#close', as: :close_alert
+  post '/alerts/:id/reopen', to: 'alerts#reopen', as: :reopen_alert
   resources :posts
   resources :hoas
 

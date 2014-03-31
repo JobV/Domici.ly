@@ -13,7 +13,7 @@
       .ui.selection.divided.list
         - alerts.each do |alert|
           .item
-            = render 'alerts/state_label', state: alert.state_list.last
+            = render 'alerts/state_label', alert: alert
             .content
               = link_to alert.title, alert_path(alert), class: 'header'
               .description

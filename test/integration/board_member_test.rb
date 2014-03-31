@@ -56,6 +56,22 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     page_should_contain 'Terug'
   end
 
+  test 'change state of alert' do
+    sign_in @user
+    create :alert, hoa: @hoa
+    click_on @user.hoa_name
+    
+    page_should_contain 'Nieuw'
+    click_on 'Gat in muur, ergens.'
+
+    page_should_contain 'Nieuw'
+
+    page_should_contain 'Sluit melding'
+
+    visit root_path
+    
+  end
+
   ## Add member
 
   def add_member(email, role)

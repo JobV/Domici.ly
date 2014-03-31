@@ -1,9 +1,9 @@
-- if state == nil
-  .ui.red.horizontal.label
+- if new_alert? alert
+  .ui.green.horizontal.label
     Nieuw
-- elsif state == 'in progress'
-  .ui.orange.horizontal.label
+- elsif alert_in_progress? alert
+  .ui.blue.horizontal.label
     In behandeling
 - else
-  .ui.green.horizontal.label
+  .ui.horizontal.label
     Klaar

@@ -1,5 +1,5 @@
 class AlertsController < ApplicationController
-  before_action :set_alert, only: [:show, :edit, :update, :destroy]
+  before_action :set_alert, only: [:show, :edit, :update, :destroy, :close, :reopen]
 
   # GET /alerts
   def index
@@ -38,6 +38,27 @@ class AlertsController < ApplicationController
       redirect_to @alert, notice: 'Alert was successfully updated.'
     else
       render action: 'edit'
+    end
+  end
+
+  # POST /alerts/1/close
+  def close
+    authorize @alert
+    @alert.state_list.add('completed')
+    if @alert.save
+      redirect_to @alert
+    else
+      redirect_to @alert, alert: 'Something went wrong.'
+    end
+  end
+
+  # POST /alerts/1/reopen
+  def reopen
+    @alert.state_list.remove('completed')
+    if @alert.save
+      redirect_to @alert
+    else
+      redirect_to @alert, alert: 'Something went wrong.'
     end
   end
 

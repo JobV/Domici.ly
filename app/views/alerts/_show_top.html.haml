@@ -1,0 +1,20 @@
+- if new_alert? alert
+  .ui.green.top.attached.message
+    .content
+      .header
+        Nieuwe melding
+        = render 'alerts/actions'
+
+- elsif alert_in_progress? alert
+  .ui.blue.top.attached.message
+    .content
+      .header
+        Melding in behandeling
+        = render 'alerts/actions'
+
+- elsif alert_completed? alert
+  .ui.top.attached.message
+    .content
+      .header
+        Melding afgehandeld
+        = render 'alerts/actions'

@@ -1,0 +1,6 @@
+- if policy(@alert).update?
+  .top-alert-buttons
+    - if new_alert?(@alert) or alert_in_progress?(@alert)
+      = link_to 'Sluit melding', close_alert_path(@alert), class: 'ui small green button', method: :post
+    - elsif alert_completed?(@alert)
+      = link_to 'Heropen melding', reopen_alert_path(@alert), class: 'ui small button', method: :post
