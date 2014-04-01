@@ -17,7 +17,7 @@ class Alert < ActiveRecord::Base
   # public_activity -> set current_user as owner by default
   # only track creation events
   include PublicActivity::Model
-  tracked only: :create, owner: Proc.new{ |controller, model| controller && controller.current_user }
+  tracked only: [:create, :update], owner: Proc.new{ |controller, model| controller && controller.current_user }
 
   # active_admin
   resourcify
