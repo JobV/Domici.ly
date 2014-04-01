@@ -34,14 +34,14 @@ class Alert < ActiveRecord::Base
   belongs_to :hoa
 
   def new?
-    progress == 'new'
+    self.progress == 'new'
   end
 
   def in_progress?
-    progress == 'in progress'
+    self.progress == 'in progress'
   end
 
   def completed?
-    progress == 'completed'
+    self.progress == 'completed'
   end
 end

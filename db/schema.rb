@@ -56,11 +56,6 @@ ActiveRecord::Schema.define(version: 20140401202635) do
     t.string   "progress",   default: "new"
   end
 
-  create_table "board_members", id: false, force: true do |t|
-    t.integer "hoa_id"
-    t.integer "user_id"
-  end
-
   create_table "hoas", force: true do |t|
     t.string   "name"
     t.datetime "created_at"

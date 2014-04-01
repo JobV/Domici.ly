@@ -25,7 +25,7 @@ class AlertsController < ApplicationController
     @alert.user = current_user
     @alert.hoa  = current_user.hoa
     if @alert.save
-      redirect_to(request.referrer || root_path, notice: 'Alert was successfully created.')
+      redirect_to @alert, notice: 'Alert was successfully created.'
     else
       render action: 'new'
     end
@@ -35,9 +35,9 @@ class AlertsController < ApplicationController
   def update
     authorize @alert
     if @alert.update(alert_params)
-      redirect_to @alert, notice: 'Alert was successfully updated.'
+      redirect_to @alert
     else
-      render action: 'edit'
+      render action: 'edit', alert: "Woops!"
     end
   end
 
