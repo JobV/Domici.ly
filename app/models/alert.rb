@@ -26,6 +26,9 @@ class Alert < ActiveRecord::Base
   acts_as_ordered_taggable # Alias for acts_as_taggable_on :tags
   acts_as_ordered_taggable_on :state
 
+  # unread gem
+  acts_as_readable on: :created_at
+
   belongs_to :user
   belongs_to :hoa
 end

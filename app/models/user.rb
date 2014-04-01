@@ -31,6 +31,9 @@
 
 class User < ActiveRecord::Base
   rolify
+
+  # unread gem
+  acts_as_reader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,

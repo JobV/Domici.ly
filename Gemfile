@@ -32,6 +32,8 @@ gem 'public_activity', github: 'pokonski/public_activity'
 # Tags
 gem 'acts-as-taggable-on'
 
+gem 'unread'
+
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
