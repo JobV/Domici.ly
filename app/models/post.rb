@@ -14,7 +14,7 @@
 class Post < ActiveRecord::Base
   # Public Activity
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller && controller.current_user }
+  tracked owner: Proc.new{ |controller, model| controller && controller.current_user }, hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
 
   belongs_to :user
   belongs_to :hoa
