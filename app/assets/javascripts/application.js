@@ -35,6 +35,12 @@ ready = function() {
     .accordion()
   ;
 
+  $('.image')
+    .dimmer({
+      on: 'hover'
+    })
+  ;
+  
 };
 
 $(document).ready(ready);

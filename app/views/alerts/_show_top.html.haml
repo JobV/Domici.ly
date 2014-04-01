@@ -1,24 +1,6 @@
-- if new_alert? alert
-  .ui.three.steps
-    .ui.step
-      Nieuw
-    .ui.step
-      In behandeling
-    .ui.step
-      Klaar
+.ui.three.steps
+  = link_to  'Nieuw', alert_path(alert, alert: { progress: "new" }), method: :patch, class: "ui step #{'active' if alert.new?}"
+  = link_to  'In behandeling', alert_path(alert, alert: { progress: "in progress" }), method: :patch, class: "ui step #{'active' if alert.in_progress?}"
+  = link_to  'Klaar', alert_path(alert, alert: { progress: "completed" }), method: :patch, class: "ui step #{'active' if alert.completed?}"
 
-  %br
-
-- elsif alert_in_progress? alert
-  .ui.blue.top.attached.message
-    .content
-      .header
-        Melding in behandeling
-        = render 'alerts/actions'
-
-- elsif alert_completed? alert
-  .ui.top.attached.message
-    .content
-      .header
-        Melding afgehandeld
-        = render 'alerts/actions'
+%br

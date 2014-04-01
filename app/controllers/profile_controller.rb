@@ -1,5 +1,6 @@
 class ProfileController < ApplicationController
   def index
+    @alerts = current_user.alerts.order('updated_at DESC')
   end
 
   def edit

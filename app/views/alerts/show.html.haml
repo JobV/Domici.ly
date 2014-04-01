@@ -5,13 +5,33 @@
 
     .ui.bottom.attached.segment
       %h1.ui.header
+        .float-right
+          - if policy(@alert).update?
+            = link_to 'Aanpassen', edit_alert_path(@alert), class: 'ui basic button'
+
         = @alert.title
         .sub.header
-          = "Geplaatst door #{@alert.user.name}"
-          = " - #{format_time(@alert.created_at)} geleden"
+          .ui.relaxed.selection.horizontal.list
+            .item
+              .ui.avatar.image
+              .content
+                .header Melding door
+                = @alert.user.full_name
+
+            .item
+              .ui.avatar.image
+              .content
+                .header Toegewezen aan
+                Piet van Vliet
+
+            .item
+              .content
+                .header Melding aangemaakt
+                = "#{format_time(@alert.created_at)} geleden"    
+            
+
+        / .ui.divider
+
 
       %p.alert
         = @alert.body
-
-    .ui.buttons
-      = link_to 'Terug', (request.referrer || root_path), class: 'ui button'

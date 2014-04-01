@@ -4,6 +4,9 @@
 - elsif alert_in_progress? alert
   .ui.blue.horizontal.label
     In behandeling
-- else
+- elsif alert_completed? alert
   .ui.horizontal.label
     Klaar
+- else
+  .ui.red.horizontal.label
+    Geen status

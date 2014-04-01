@@ -1,9 +1,9 @@
 class AlertsController < ApplicationController
-  before_action :set_alert, only: [:show, :edit, :update, :destroy, :close, :reopen]
+  before_action :set_alert, only: [:show, :edit, :update, :destroy]
 
   # GET /alerts
   def index
-    @alerts = current_user.hoa.alerts
+    @alerts = current_user.hoa.alerts.order('updated_at DESC')
   end
 
   # GET /alerts/1
@@ -41,27 +41,6 @@ class AlertsController < ApplicationController
     end
   end
 
-  # POST /alerts/1/close
-  def close
-    authorize @alert
-    @alert.state_list.add('completed')
-    if @alert.save
-      redirect_to @alert
-    else
-      redirect_to @alert, alert: 'Something went wrong.'
-    end
-  end
-
-  # POST /alerts/1/reopen
-  def reopen
-    @alert.state_list.remove('completed')
-    if @alert.save
-      redirect_to @alert
-    else
-      redirect_to @alert, alert: 'Something went wrong.'
-    end
-  end
-
   # DELETE /alerts/1
   def destroy
     authorize @alert
@@ -77,6 +56,6 @@ class AlertsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def alert_params
-      params.require(:alert).permit(:title, :body, :severity)
+      params.require(:alert).permit(:title, :body, :severity, :progress)
     end
 end

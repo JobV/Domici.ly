@@ -10,6 +10,7 @@
 #  updated_at :datetime
 #  user_id    :integer
 #  hoa_id     :integer
+#  state      :string(255)
 #
 
 class Alert < ActiveRecord::Base
@@ -31,4 +32,16 @@ class Alert < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :hoa
+
+  def new?
+    progress == 'new'
+  end
+
+  def in_progress?
+    progress == 'in progress'
+  end
+
+  def completed?
+    progress == 'completed'
+  end
 end

@@ -2,7 +2,7 @@
 
 .row
   .large-10.medium-10.small-12.medium-centered.column
-    .ui.segment
+    .ui.raised.segment
       %h1.ui.blue.header
         %i.users.icon
         .content
@@ -18,4 +18,18 @@
               Nieuw Lid
 
       %br
-      = render 'dashboard/alerts', alerts: @alerts
+
+      .ui.teal.ribbon.label
+        Bestuurders
+
+      %br
+      %br
+
+      - @moderators.each do |moderator|
+        .ui.circular.image.dimmable
+          .ui.dimmer
+            .content
+              .center
+                = moderator.full_name
+          %img{ src: 'http://semantic-ui.com/images/demo/photo2.jpg'}
+

@@ -10,6 +10,7 @@
 #  updated_at :datetime
 #  user_id    :integer
 #  hoa_id     :integer
+#  state      :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
