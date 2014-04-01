@@ -4,6 +4,15 @@
   .large-10.medium-10.small-12.medium-centered.column
     .ui.feed.segment
 
+      .ui.small.button
+        Nieuwe Melding
+
+      - if moderator?
+        .ui.small.button
+          Bestuurlijke Mededeling
+
+      %br
+      %br
       = form_for @post do |f|
         .ui.fluid.action.input
           = f.text_field :title, placeholder: 'Plaats een bericht', autofocus: true

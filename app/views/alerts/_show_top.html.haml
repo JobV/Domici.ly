@@ -1,9 +1,13 @@
 - if new_alert? alert
-  .ui.green.top.attached.message
-    .content
-      .header
-        Nieuwe melding
-        = render 'alerts/actions'
+  .ui.three.steps
+    .ui.step
+      Nieuw
+    .ui.step
+      In behandeling
+    .ui.step
+      Klaar
+
+  %br
 
 - elsif alert_in_progress? alert
   .ui.blue.top.attached.message

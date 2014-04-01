@@ -15,6 +15,11 @@ module ApplicationHelper
     current_user.id == resource.user_id
   end
 
+  def pretty_role
+    return 'Bestuurder' if moderator?
+    'Eigenaar'
+  end
+
   def format_date(date)
     return 'Vandaag' if date.today?
     return 'Gisteren' if (date - 1.day).today?

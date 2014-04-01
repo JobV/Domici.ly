@@ -3,7 +3,7 @@ class AlertsController < ApplicationController
 
   # GET /alerts
   def index
-    @alerts = Alert.all
+    @alerts = current_user.hoa.alerts
   end
 
   # GET /alerts/1
@@ -25,7 +25,7 @@ class AlertsController < ApplicationController
     @alert.user = current_user
     @alert.hoa  = current_user.hoa
     if @alert.save
-      redirect_to root_path, notice: 'Alert was successfully created.'
+      redirect_to(request.referrer || root_path, notice: 'Alert was successfully created.')
     else
       render action: 'new'
     end

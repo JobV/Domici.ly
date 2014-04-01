@@ -5,11 +5,11 @@
       .description
         = current_user.full_name
 
-  .item
-    .content
-      %a.header Adres
-      .description
-        PLACEHOLDER
+  / .item
+  /   .content
+  /     %a.header Adres
+  /     .description
+  /       PLACEHOLDER
 
   .item
     .content
@@ -19,7 +19,7 @@
 
   .item
     .content
-      %a.header Organisatie
+      %a.header Vereniging
       .description
         = current_user.hoa_name
 
@@ -27,4 +27,4 @@
     .content
       %a.header Rol
       .description
-        Bewoner
+        = pretty_role

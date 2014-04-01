@@ -10,7 +10,7 @@
             - if current_user.hoa && policy(current_user.hoa).show?
               = link_to 'Lid', new_user_invitation_path, class: 'item'
         %a.item{ href: '/', class: ('active' if @active_tab == 'home') }
-          %i.inbox.icon
+          %i.unordered.list.icon
           / Home
           / .ui.orange.label
           /   12
@@ -18,6 +18,11 @@
           = link_to hoa_path(current_user.hoa), class: (@active_tab == 'hoa' ? 'active green item' : 'green item') do
             %i.users.icon
             = current_user.hoa_name
+
+        = link_to alerts_path, class: (@active_tab == 'alerts' ? 'active green item' : 'green item') do
+          %i.warning.icon
+          Meldingen
+
         - if admin?
           %a.item{ href: '/superadmin'}
             %i.settings.icon

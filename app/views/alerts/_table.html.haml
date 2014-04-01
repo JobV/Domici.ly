@@ -1,0 +1,29 @@
+%table.ui.table.segment
+  %thead
+    %tr
+      %th Status
+      %th Melding
+      %th Toegewezen aan
+      %th Laatste aanpassing
+      %th Acties
+
+  %tbody
+    - alerts.each do |alert|
+      %tr
+        %td
+          = render 'alerts/state_label', alert: alert
+
+        %td
+          = link_to alert.title, alert
+
+        %td
+          = link_to 'PIET DE VLIET', edit_alert_path(alert)
+
+        %td
+          = "#{format_time(alert.updated_at)} geleden"
+
+        %td.right
+          = link_to edit_alert_path(alert) do
+            %i.black.ellipsis.horizontal.icon
+          = link_to alert, method: :delete, data: { confirm: 'Weet je zeker dat je deze melding wilt verwijderen?' } do
+            %i.black.remove.icon

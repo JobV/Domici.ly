@@ -5,14 +5,11 @@
       .small-12.column
         .ui.raised.segment
           %h2.ui.black.header
-            %i.user.icon
+            %i.circular.user.icon
             .content
               = current_user.full_name
               .sub.header
-                - if current_user.has_role? :moderator, current_user.hoa
-                  = "Bestuurslid in #{current_user.hoa_name}"
-                - else
-                  = "Bewoner in #{current_user.hoa_name}"
+                = "#{pretty_role} in #{current_user.hoa_name}"
 
             = link_to "Pas mijn gegevens aan", edit_profile_path, class: 'ui positive button', style: "float: right; position: relative; top: -45px;"
 
@@ -28,14 +25,4 @@
 
           .ui.orange.ribbon.label
             Mijn meldingen  
-          %p
-            %table.ui.basic.table
-              %thead
-                %tr
-                  %th Titel
-                  %th Melding
-              %tbody
-                - current_user.alerts.each do |alert|
-                  %tr
-                    %td= alert.title
-                    %td= alert.body
+          = render 'alerts/table', alerts: current_user.alerts
