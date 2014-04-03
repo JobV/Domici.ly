@@ -30,8 +30,10 @@
                 = "#{format_time(@alert.created_at)} geleden"    
             
 
-        / .ui.divider
+      .ui.divider
 
 
       %p.alert
         = @alert.body
+
+    = render 'comments/standard', comment: @comment, resource: @alert

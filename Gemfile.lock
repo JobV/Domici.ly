@@ -54,6 +54,7 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
+    acts_as_commentable (4.0.1)
     addressable (2.3.6)
     ansi (1.4.3)
     arel (5.0.0)
@@ -282,6 +283,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  acts_as_commentable
   annotate!
   bugsnag
   capybara

@@ -30,6 +30,9 @@ class Alert < ActiveRecord::Base
   # unread gem
   acts_as_readable on: :created_at
 
+  # Comments
+  acts_as_commentable
+
   belongs_to :user
   belongs_to :hoa
 

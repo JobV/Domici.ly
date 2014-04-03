@@ -8,6 +8,8 @@ class AlertsController < ApplicationController
 
   # GET /alerts/1
   def show
+    @comments = @alert.comments
+    @comment = Comment.new(user: current_user)
   end
 
   # GET /alerts/new
@@ -30,6 +32,7 @@ class AlertsController < ApplicationController
       render action: 'new'
     end
   end
+
 
   # PATCH/PUT /alerts/1
   def update

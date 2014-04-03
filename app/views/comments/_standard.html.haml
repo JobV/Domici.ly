@@ -1,0 +1,29 @@
+.ui.piled.blue.segment
+  %h2.ui.header
+    %i.icon.inverted.circular.blue.comment
+    Discussie
+
+  .ui.comments
+    - resource.comments.each do |c|
+      .comment
+        %a.avatar
+          %img{src: "http://semantic-ui.com/images/demo/photo2.jpg"}/
+        .content
+          %a.author
+            = c.user.full_name if c.user
+          .metadata
+            %span.date
+              = "#{format_time(c.created_at)} geleden"
+          .text
+            = c.comment
+          .actions
+            %a.reply Aanpassen
+            %a.delete Verwijderen
+
+    // REPLY
+    = form_for [resource, comment], html: { class: 'ui form comment-form' } do |f|
+      .field
+        = f.hidden_field :commentable_type, value: resource.class
+        = f.hidden_field :commentable_id,   value: resource.id
+        = f.text_area :comment
+      = f.submit 'Plaats Reactie' , class: ' ui fluid blue labeled submit icon button'
