@@ -23,11 +23,14 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user = current_user
-    
+
+    session[:return_to] = request.referer
+
     if @comment.save
-      redirect_to root_path
+      redirect_to session.delete(:return_to)
     else
-      render action: 'new'
+      flash[:alert] = 'Whoopsidosi!'
+      redirect_to session.delete(:return_to)
     end
   end
 

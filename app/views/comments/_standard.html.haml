@@ -20,7 +20,7 @@
             %a.reply Aanpassen
             %a.delete Verwijderen
 
-    // REPLY
+    // Reply
     = form_for [resource, comment], html: { class: 'ui form comment-form' } do |f|
       .field
         = f.hidden_field :commentable_type, value: resource.class
