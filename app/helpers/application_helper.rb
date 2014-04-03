@@ -15,6 +15,10 @@ module ApplicationHelper
     current_user.id == resource.user_id
   end
 
+  def owner_or_moderator?(resource)
+    owner?(resource) || moderator?
+  end
+
   def pretty_role
     return 'Bestuurder' if moderator?
     'Eigenaar'

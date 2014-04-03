@@ -17,8 +17,8 @@
           .text
             = c.comment
           .actions
-            %a.reply Aanpassen
-            %a.delete Verwijderen
+            / %a.reply Aanpassen
+            = link_to 'Verwijderen', alert_comment_path(resource, c), method: :delete, class: 'delete'
 
     // Reply
     = form_for [resource, comment], html: { class: 'ui form comment-form' } do |f|
