@@ -24,8 +24,8 @@
           %i.warning.icon
           Meldingen
 
-        = link_to '#', class: (@active_tab == 'agenda' ? 'active green item' : 'green item') do
-          %i.warning.icon
+        = link_to events_path, class: (@active_tab == 'events' ? 'active green item' : 'green item') do
+          %i.calendar.icon
           Agenda
 
         - if admin?

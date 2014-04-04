@@ -11,6 +11,7 @@ gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'haml'
+gem 'haml-rails'
 
 gem 'puma'
 

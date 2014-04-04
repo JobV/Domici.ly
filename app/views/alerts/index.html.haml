@@ -2,4 +2,8 @@
 .row
   .large-10.medium-10.small-12.medium-centered.column
 
-    = render 'alerts/table', alerts: @alerts
+    .ui.segment
+
+      = link_to 'Nieuwe Melding', new_alert_path, class: 'ui button'
+
+      = render 'alerts/table', alerts: @alerts

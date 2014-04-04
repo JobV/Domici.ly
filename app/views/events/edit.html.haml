@@ -1,0 +1,10 @@
+.row
+  .large-10.medium-10.small-12.medium-centered.column
+    .ui.segment
+      %h1 Gebeurtenis aanpassen
+
+      = render 'form'
+
+      = link_to 'Show', @event
+      \|
+      = link_to 'Back', events_path
