@@ -57,12 +57,13 @@ GEM
     acts_as_commentable (4.0.1)
     addressable (2.3.6)
     ansi (1.4.3)
+    appsignal (0.8.7)
+      activesupport (>= 3.0)
+      rack
+      thread_safe
     arel (5.0.0)
     atomic (1.1.16)
     bcrypt (3.1.7)
-    bugsnag (1.8.6)
-      httparty (>= 0.6, < 1.0)
-      multi_json (~> 1.0)
     builder (3.2.2)
     capybara (2.2.1)
       mime-types (>= 1.16)
@@ -117,9 +118,6 @@ GEM
       tilt
     hashie (2.0.5)
     hike (1.2.3)
-    httparty (0.13.0)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     i18n (0.6.9)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
@@ -154,7 +152,6 @@ GEM
       minitest (>= 5.0)
       powerbar
     multi_json (1.9.2)
-    multi_xml (0.5.5)
     nested_form (0.3.2)
     newrelic_rpm (3.7.3.204)
     nio4r (1.0.0)
@@ -285,7 +282,7 @@ DEPENDENCIES
   acts-as-taggable-on
   acts_as_commentable
   annotate!
-  bugsnag
+  appsignal
   capybara
   coffee-rails (~> 4.0.0)
   devise

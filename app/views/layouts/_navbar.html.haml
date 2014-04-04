@@ -24,6 +24,10 @@
           %i.warning.icon
           Meldingen
 
+        = link_to '#', class: (@active_tab == 'agenda' ? 'active green item' : 'green item') do
+          %i.warning.icon
+          Agenda
+
         - if admin?
           %a.item{ href: '/superadmin'}
             %i.settings.icon
