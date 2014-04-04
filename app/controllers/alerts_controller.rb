@@ -38,7 +38,7 @@ class AlertsController < ApplicationController
   def update
     authorize @alert
     if @alert.update(alert_params)
-      redirect_to @alert
+      redirect_to @alert, notice: "Melding aangepast!"
     else
       render action: 'edit', alert: "Woops!"
     end
