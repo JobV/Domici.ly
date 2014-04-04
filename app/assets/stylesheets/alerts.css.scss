@@ -2,3 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.new-step,
+.new-step:after {
+  background: #A1CF64!important;
+}
+
+.in-progress-step,
+.in-progress-step:after {
+  background: #F05940!important;
+}
+

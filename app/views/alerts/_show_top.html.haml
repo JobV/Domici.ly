@@ -1,6 +1,6 @@
 .ui.three.steps
-  = link_to  'Nieuw', alert_path(alert, alert: { progress: "new" }), method: :patch, class: "ui step #{'active' if alert.new?}"
-  = link_to  'In behandeling', alert_path(alert, alert: { progress: "in progress" }), method: :patch, class: "ui step #{'active' if alert.in_progress?}"
+  = link_to  'Nieuw', alert_path(alert, alert: { progress: "new" }), method: :patch, class: "ui step #{'active new-step' if alert.new?}"
+  = link_to  'In behandeling', alert_path(alert, alert: { progress: "in progress" }), method: :patch, class: "ui step #{'active in-progress-step' if alert.in_progress?}"
   = link_to  'Klaar', alert_path(alert, alert: { progress: "completed" }), method: :patch, class: "ui step #{'active' if alert.completed?}"
 
 %br
