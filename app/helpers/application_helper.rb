@@ -30,6 +30,10 @@ module ApplicationHelper
     return date.strftime("%d-%m-%Y")
   end
 
+  def format_date_time(date)
+    
+  end
+
   def format_time(time)
     return time_ago_in_words time
   end

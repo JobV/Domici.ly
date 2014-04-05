@@ -1,15 +1,18 @@
-%p#notice= notice
+.row
+  .small-12.medium-10.medium-centered.column
+    .ui.segment
+      %p#notice= notice
 
-%p
-  %b Date:
-  = @event.date
-%p
-  %b Name:
-  = @event.name
-%p
-  %b Location:
-  = @event.location
+      %p
+        %b Date:
+        = @event.date
+      %p
+        %b Name:
+        = @event.name
+      %p
+        %b Location:
+        = @event.location
 
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Back', events_path
+      = link_to 'Edit', edit_event_path(@event)
+      \|
+      = link_to 'Back', events_path
