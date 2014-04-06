@@ -21,7 +21,7 @@
     .field
       %label
         = f.label 'Aangewezen aan'
-      = f.select :assignee_id, @assignees.map {|u| [u.full_name, u.id]}, { include_blank: true }, {class: 'chosen-select' }
+      = f.select :assignee_id, @assignees.map {|u| [u.full_name, u.id]}, { include_blank: true }, {class: 'chosen-select', "data-placeholder" => 'Selecteer iemand om die op de hoogte te brengen van deze melding' }
 
     .ui.buttons
       = f.submit 'Publiceer melding', class: 'ui positive button'

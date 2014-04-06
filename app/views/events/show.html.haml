@@ -28,7 +28,7 @@
               .ui.avatar.image
               .content
                 .header Aangemaakt door
-                = @event.user.full_name
+                = @event.user.full_name if @event.user
 
             .item
               .content
