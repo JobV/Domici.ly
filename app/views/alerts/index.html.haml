@@ -6,4 +6,28 @@
 
       = link_to 'Nieuwe Melding', new_alert_path, class: 'ui button'
 
-      = render 'alerts/table', alerts: @alerts
+      .ui.divider
+
+      .ui.tabular.menu
+        %a.item{href: '#tab1'} 
+          Alle
+          .ui.green.label
+            = @alerts.count
+        %a.item{href: '#tab2'} 
+          Nieuw
+          .ui.blue.label
+            = @new_alerts.count
+        %a.item{href: '#tab3'}
+          Mijn
+          .ui.teal.label
+            = @my_alerts.count
+
+      #tabs
+        .tab#tab1
+          = render 'alerts/table', alerts: @alerts
+
+        .tab#tab2
+          = render 'alerts/table', alerts: @new_alerts
+
+        .tab#tab3
+          = render 'alerts/table', alerts: @my_alerts

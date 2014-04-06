@@ -66,6 +66,21 @@ ready = function() {
     .sidebar()
   ;
 
+  // Alerts tabs
+  $('#tabs .tab').hide();
+  $('#tabs .tab:first').show();
+  $('.ui.tabular.menu a.item:first').addClass('active');
+
+  $('.ui.tabular.menu a.item').click(function(){
+    $('.ui.tabular.menu a').removeClass('active');
+    $(this).addClass('active');
+
+    var currentTab = $(this).attr('href');
+    $('#tabs .tab').hide();
+    $(currentTab).show();
+    return false
+  });
+
 };
 
 $(document).ready(ready);

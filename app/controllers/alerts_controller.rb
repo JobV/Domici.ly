@@ -4,7 +4,9 @@ class AlertsController < ApplicationController
 
   # GET /alerts
   def index
-    @alerts = current_user.hoa.alerts.order('updated_at DESC')
+    @alerts     = current_user.hoa.alerts.order('updated_at DESC')
+    @new_alerts = @alerts.where(progress: 'new')
+    @my_alerts  = @alerts.where(user: current_user)
   end
 
   # GET /alerts/1
