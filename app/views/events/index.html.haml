@@ -4,5 +4,8 @@
 
     .ui.segment
       = link_to 'Nieuwe Afspraak', new_event_path, class: 'ui button'
+
+      .ui.divider
+      
       = render 'events/table', events: @events
 
