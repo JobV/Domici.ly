@@ -1,12 +1,12 @@
 - if new_alert? alert
   .ui.green.horizontal.label
-    Nieuw
+    = progress_name alert
 - elsif alert_in_progress? alert
   .ui.orange.horizontal.label
-    In behandeling
+    = progress_name alert
 - elsif alert_completed? alert
   .ui.horizontal.label
-    Klaar
+    = progress_name alert
 - else
   .ui.red.horizontal.label
     Geen status

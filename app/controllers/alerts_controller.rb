@@ -37,7 +37,14 @@ class AlertsController < ApplicationController
   # PATCH/PUT /alerts/1
   def update
     authorize @alert
+    progress_before = @alert.progress
+
     if @alert.update(alert_params)
+
+      unless progress_before == @alert.progress
+        @alert.create_activity(:progress_changed, owner: current_user, hoa_id: current_user.hoa.id)
+      end
+
       redirect_to @alert, notice: "Melding aangepast!"
     else
       render action: 'edit', alert: "Woops!"

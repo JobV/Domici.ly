@@ -209,3 +209,8 @@ nl:
   activerecord:
     errors:
       <<: *errors
+
+  alert:
+    new: 'nieuw'
+    in_progress: 'in behandeling'
+    completed: 'klaar'

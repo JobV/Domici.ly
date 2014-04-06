@@ -10,4 +10,10 @@ module AlertsHelper
   def alert_completed?(alert)
     alert.progress == 'completed'
   end
+
+  def progress_name(alert)
+    return I18n.t('alert.new') if new_alert?(alert)
+    return I18n.t('alert.in_progress') if alert_in_progress?(alert)
+    return I18n.t('alert.completed') if alert_completed?(alert)
+  end
 end
