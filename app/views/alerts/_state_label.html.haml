@@ -1,11 +1,11 @@
 - if new_alert? alert
-  .ui.green.horizontal.label
+  .ui.red.horizontal.label
     = progress_name alert
 - elsif alert_in_progress? alert
-  .ui.orange.horizontal.label
+  .ui.purple.horizontal.label
     = progress_name alert
 - elsif alert_completed? alert
-  .ui.horizontal.label
+  .ui.green.horizontal.label
     = progress_name alert
 - else
   .ui.red.horizontal.label
