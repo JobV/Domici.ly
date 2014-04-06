@@ -11,16 +11,21 @@
       .ui.tabular.menu
         %a.item{href: '#tab1'} 
           Alle
-          .ui.green.label
+          .ui.label
             = @alerts.count
         %a.item{href: '#tab2'} 
           Nieuw
-          .ui.blue.label
+          .ui.green.label
             = @new_alerts.count
         %a.item{href: '#tab3'}
-          Mijn
-          .ui.teal.label
+          Aangemaakt
+          .ui.blue.label
             = @my_alerts.count
+        %a.item{href: '#tab4'}
+          Toegewezen
+          .ui.red.label
+            = @assigned_to_me.count
+
 
       #tabs
         .tab#tab1
@@ -31,3 +36,6 @@
 
         .tab#tab3
           = render 'alerts/table', alerts: @my_alerts
+
+        .tab#tab4
+          = render 'alerts/table', alerts: @assigned_to_me
