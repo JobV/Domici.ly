@@ -1,6 +1,7 @@
 %table.ui.basic.table.segment
   %thead
     %tr
+      %th Datum
       %th Tijd
       %th Onderwerp
       %th Locatie
@@ -10,7 +11,10 @@
     - events.each do |event|
       %tr
         %td
-          = format_date event.date
+          = format_event_date event.date if event.date
+
+        %td
+          = format_event_time event.date if event.date
 
         %td
           = link_to event.name, event

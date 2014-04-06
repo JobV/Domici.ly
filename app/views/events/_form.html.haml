@@ -7,15 +7,28 @@
           %li= msg
 
   .ui.form
+    .three.fields
+      .field
+        %label
+          = f.label 'Datum'
+        %input{ type: :text, id: 'datepicker', name: 'event[date]'}
+
+      .field
+        %label
+          = f.label 'Uren'
+        %input{ type: :text, id: 'event_hour', name: 'event[hour]'}
+
+      .field
+        %label
+          = f.label 'Minuten'
+        %input{ type: :text, id: 'event_min', name: 'event[min]'}
+
     .field
-      %label
-        = f.label :date
-      = f.datetime_select :date
-    .field
-      = f.label :name
+      = f.label 'Afspraak naam'
       = f.text_field :name
     .field
-      = f.label :location
+      = f.label 'Locatie'
       = f.text_field :location
     .actions
       = f.submit 'Save'
+

@@ -13,6 +13,9 @@
 #
 
 class Event < ActiveRecord::Base
+
+  attr_writer :hour, :min
+
   # Comments
   acts_as_commentable
 

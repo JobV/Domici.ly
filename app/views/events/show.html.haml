@@ -15,8 +15,14 @@
           .ui.horizontal.divided.list
             .item
               .content
+                .header Datum
+                = format_event_date @event.date
+
+
+            .item
+              .content
                 .header Tijd
-                = format_date_time @event.date
+                = format_event_time @event.date
 
             .item
               .ui.avatar.image

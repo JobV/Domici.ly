@@ -30,8 +30,12 @@ module ApplicationHelper
     return date.strftime("%d-%m-%Y")
   end
 
-  def format_date_time(date)
-    date.strftime("%-d %B %Y %R")
+  def format_event_date(date)
+    date.strftime("%-d %B %Y")
+  end
+
+  def format_event_time(date)
+    date.strftime("%R")
   end
 
   def format_time(time)

@@ -7,7 +7,7 @@
           %i.plus.icon
           .menu
             = link_to 'Melding', new_alert_path, class: 'item'
-            = link_to 'Gebeurtenis', new_event_path, class: 'item'
+            = link_to 'Afspraak', new_event_path, class: 'item'
             = link_to 'Bericht', root_path, class: 'item'
             - if current_user.hoa && policy(current_user.hoa).show?
               = link_to 'Lid', new_user_invitation_path, class: 'item'

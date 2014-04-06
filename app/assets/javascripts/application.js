@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require semantic-ui
+//= require moment
+//= require pikaday
 //= require_tree .
 
 var ready;
@@ -40,7 +42,14 @@ ready = function() {
       on: 'hover'
     })
   ;
-  
+
+  var picker = new Pikaday({
+        field: $('#datepicker')[0],
+        format: 'YYYY-MM-DD',
+        onSelect: function() {
+          $('#datepicker').val(picker.toString());
+        }
+    });
 };
 
 $(document).ready(ready);

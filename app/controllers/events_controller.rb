@@ -24,6 +24,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    @event.date = @event.date.change({hour: params[:event][:hour], min: params[:event][:min]})
 
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
@@ -34,6 +35,7 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1
   def update
+    @event.date = @event.date.change({hour: params[:event][:hour], min: params[:event][:min]})
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
@@ -55,6 +57,10 @@ class EventsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:date, :name, :location)
+      params.require(:event).permit(:date, :name, :location, :hour, :min)
+    end
+
+    def update_date_with_time(date, time)
+      date.change({hour: time.hour, min: time.min})
     end
 end

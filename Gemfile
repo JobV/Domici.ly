@@ -39,6 +39,11 @@ gem 'unread'
 # Comments
 gem 'acts_as_commentable'
 
+# Date picker js
+gem 'pikaday-gem'
+gem 'momentjs-rails'
+gem 'chronic'
+
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
