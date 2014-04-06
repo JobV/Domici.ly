@@ -10,14 +10,20 @@
 #  updated_at :datetime
 #  user_id    :integer
 #  hoa_id     :integer
-#  state      :string(255)
+#  progress   :string(255)      default("new")
 #
 
 class Alert < ActiveRecord::Base
+
+  # Validations
+  validate :title, :user_id, :hoa_id, :progress, presence: true
+
   # public_activity -> set current_user as owner by default
   # only track creation events
   include PublicActivity::Model
-  tracked only: [:create, :update], owner: Proc.new{ |controller, model| controller && controller.current_user }, hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
+  tracked only: [:create, :update], 
+    owner:  Proc.new{ |controller, model| controller && controller.current_user }, 
+    hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa }
 
   # active_admin
   resourcify

@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def format_date_time(date)
-    
+    date.strftime("%-d %B %Y %R")
   end
 
   def format_time(time)

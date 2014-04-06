@@ -3,13 +3,16 @@
 
     = render 'alerts/show_top', alert: @alert
 
-    .ui.bottom.attached.segment
+    .ui.segment
       %h1.ui.header
         .float-right
           - if policy(@alert).update?
             = link_to 'Aanpassen', edit_alert_path(@alert), class: 'ui basic button'
 
         = @alert.title
+
+        .ui.divider
+
         .sub.header
           .ui.relaxed.selection.horizontal.list
             .item

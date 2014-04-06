@@ -43,19 +43,19 @@
 
       - flash.each do |name, msg|
         - if name == 'notice'
-          .ui.small.success.message
+          .ui.small.floating.success.message
             %i.close.icon
             .content
               .header
                 = msg
         - elsif name == 'alert'
-          .ui.small.error.message
+          .ui.small.floating.error.message
             %i.close.icon
             .content
               .header
                 = msg
         - else
-          .ui.small.warning.message
+          .ui.small.floating.warning.message
             %i.close.icon
             .content
               .header

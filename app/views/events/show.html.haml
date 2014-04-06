@@ -1,20 +1,51 @@
 .row
   .small-12.medium-10.medium-centered.column
-    .ui.segment
-      %p#notice= notice
 
-      %p
-        %b Date:
-        = @event.date
-      %p
-        %b Name:
+    .ui.segment.bottom.attached
+      %h1.ui.header
+        .float-right
+          - if policy(@event).update?
+            = link_to 'Aanpassen', edit_event_path(@event), class: 'ui basic button'
         = @event.name
-      %p
-        %b Location:
-        = @event.location
 
-      = link_to 'Edit', edit_event_path(@event)
-      \|
-      = link_to 'Back', events_path
+        .ui.divider
+
+        .sub.header
+
+          .ui.horizontal.divided.list
+            .item
+              .content
+                .header Tijd
+                = format_date_time @event.date
+
+            .item
+              .ui.avatar.image
+              .content
+                .header Aangemaakt door
+                = @event.user.full_name
+
+            .item
+              .content
+                .header Genodigden
+                Alleen bestuurders
+
+            .item
+              .content
+                .header Aanwezig
+                3 / 5
+
+            .item
+              .content
+                .header Locatie
+                Thuis
+
+
+          / = format_date_time @event.date
+          / %br
+          / = @event.location
+
+      .ui.divider
+      %p
+        Beschrijving hier
 
     = render 'comments/standard', comment: Comment.new(user: current_user), resource: @event

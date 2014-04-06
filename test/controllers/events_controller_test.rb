@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class EventsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  
   setup do
-    @event = events(:one)
+    @user = create(:user)
+    sign_in @user
+    @event = create(:event, user: @user)
   end
 
   test "should get index" do
