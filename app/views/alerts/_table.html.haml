@@ -9,7 +9,7 @@
 
   %tbody
     - alerts.each do |alert|
-      %tr
+      %tr{ class: "#{'positive' if alert.assignee == current_user}"}
         %td
           = render 'alerts/state_label', alert: alert
 
@@ -17,7 +17,7 @@
           = link_to alert.title, alert
 
         %td
-          = link_to 'PIET DE VLIET', edit_alert_path(alert)
+          = print_assignee alert
 
         %td
           = "#{format_time(alert.updated_at)} geleden"

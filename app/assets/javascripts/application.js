@@ -16,6 +16,7 @@
 //= require semantic-ui
 //= require moment
 //= require pikaday
+//= require chosen-jquery
 //= require_tree .
 
 var ready;
@@ -43,6 +44,12 @@ ready = function() {
     })
   ;
 
+  $('.chosen-select').chosen({
+    allow_single_deselect: true,
+    no_results_text: 'Geen match =('
+  });
+
+
   var picker = new Pikaday({
         field: $('#datepicker')[0],
         format: 'YYYY-MM-DD',
@@ -50,6 +57,7 @@ ready = function() {
           $('#datepicker').val(picker.toString());
         }
     });
+
 };
 
 $(document).ready(ready);

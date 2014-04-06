@@ -18,6 +18,11 @@
         = f.label 'Details'
       = f.text_area :body, class: 'form-control input-lg'
 
+    .field
+      %label
+        = f.label 'Aangewezen aan'
+      = f.select :assignee_id, @assignees.map {|u| [u.full_name, u.id]}, { include_blank: true }, {class: 'chosen-select' }
+
     .ui.buttons
       = f.submit 'Publiceer melding', class: 'ui positive button'
       = link_to 'Annuleer', (request.referrer || root_path), class: 'ui button'

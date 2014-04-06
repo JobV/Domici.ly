@@ -1,5 +1,6 @@
 class AlertsController < ApplicationController
   before_action :set_alert, only: [:show, :edit, :update, :destroy]
+  before_action :set_assignees, only: [:edit, :new]
 
   # GET /alerts
   def index
@@ -72,6 +73,10 @@ class AlertsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def alert_params
-      params.require(:alert).permit(:title, :body, :severity, :progress)
+      params.require(:alert).permit(:title, :body, :severity, :progress, :assignee_id)
+    end
+
+    def set_assignees
+      @assignees = current_user.hoa.users
     end
 end

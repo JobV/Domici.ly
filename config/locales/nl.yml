@@ -215,3 +215,5 @@ nl:
     in_progress: 'in behandeling'
     completed: 'klaar'
     unknown_state: 'onbekende status'
+    no_assignee: 'niet aangewezen'
+    assigned_to_you: 'jou!'

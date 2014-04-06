@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.0.rc2'
 gem 'sass-rails', '~> 4.0.1'
+gem 'sass', '3.2.18'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
@@ -42,7 +43,9 @@ gem 'acts_as_commentable'
 # Date picker js
 gem 'pikaday-gem'
 gem 'momentjs-rails'
-gem 'chronic'
+
+# Awesome dropdown
+gem 'chosen-rails'
 
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'

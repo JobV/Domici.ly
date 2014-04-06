@@ -23,4 +23,14 @@ module AlertsHelper
     return I18n.t('alert.completed')      if string == 'completed'
     return I18n.t('alert.unknown_state')
   end
+
+  def print_assignee(alert)
+    if alert.assignee && alert.assignee == current_user
+      return t('alert.assigned_to_you')
+    elsif alert.assignee
+      return alert.assignee.full_name if alert.assignee
+    else
+      return t('alert.no_assignee')
+    end
+  end
 end
