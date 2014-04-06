@@ -1,0 +1,17 @@
+- if activity.trackable
+  - @resource = resource_from_comment(activity.trackable)
+  .event
+    .label
+      %i.circular.inverted.teal.comment.outline.icon
+    .content
+      .date
+        = "#{format_time(activity.created_at)} geleden"
+      .summary
+        = link_to((activity.owner.full_name if activity.owner), '#')
+        heeft gereageerd op
+        = link_to @resource.title, @resource
+      .extra.text
+        %p
+          = activity.trackable.comment
+- else
+  /iets anders hier

@@ -42,14 +42,17 @@ class AlertsController < ApplicationController
 
     if @alert.update(alert_params)
 
+      # REFACTOR
       # on progress update, perfom shit
       unless progress_before == @alert.progress
         @alert.create_activity(:progress_changed, owner: current_user, hoa_id: current_user.hoa.id, parameters: {progress_before: progress_before, progress_after: @alert.progress})
 
+        Comment.public_activity_off
         comment = @alert.comments.create
         comment.comment = "heeft de status aangepast naar #{view_context.progress_name(@alert)}"
         comment.user = current_user
         comment.save
+        Comment.public_activity_on
       end
 
       redirect_to @alert, notice: "Melding aangepast!"
