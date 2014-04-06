@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406141658) do
+ActiveRecord::Schema.define(version: 20140406155650) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20140406141658) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "hoa_id"
+    t.text     "description"
   end
 
   create_table "hoas", force: true do |t|

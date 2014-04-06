@@ -30,6 +30,10 @@ ready = function() {
     .checkbox()
   ;
 
+  $('.ui.checkbox')
+    .checkbox()
+  ;
+
   $('.message .close').on('click', function() {
     $(this).closest('.message').fadeOut();
   });
@@ -57,6 +61,10 @@ ready = function() {
           $('#datepicker').val(picker.toString());
         }
     });
+
+  $('ui.sidebar')
+    .sidebar()
+  ;
 
 };
 

@@ -52,6 +52,6 @@
 
       .ui.divider
       %p
-        Beschrijving hier
+        = @event.description
 
     = render 'comments/standard', comment: Comment.new(user: current_user), resource: @event

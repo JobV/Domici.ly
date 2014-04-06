@@ -7,28 +7,62 @@
           %li= msg
 
   .ui.form
+    
+    .field
+      = f.label 'Afspraak naam'
+      .ui.left.icon.input
+        = f.text_field :name
+        %i.tag.icon
+
     .three.fields
       .field
         %label
           = f.label 'Datum'
-        %input{ type: :text, id: 'datepicker', name: 'event[date]'}
+        .ui.left.icon.input
+          %input{ type: :text, id: 'datepicker', name: 'event[date]', value: @date}
+          %i.calendar.icon
 
       .field
         %label
           = f.label 'Uren'
-        %input{ type: :text, id: 'event_hour', name: 'event[hour]'}
+        .ui.left.icon.input
+          %input{ type: :text, id: 'event_hour', name: 'event[hour]', value: @hour}
+          %i.time.icon
 
       .field
         %label
           = f.label 'Minuten'
-        %input{ type: :text, id: 'event_min', name: 'event[min]'}
+        .ui.left.icon.input
+          %input{ type: :text, id: 'event_min', name: 'event[min]', value: @min}
+          %i.time.icon
 
-    .field
-      = f.label 'Afspraak naam'
-      = f.text_field :name
     .field
       = f.label 'Locatie'
-      = f.text_field :location
+      .ui.left.icon.input
+        = f.text_field :location
+        %i.map.marker.icon
+
+    .field
+      = f.label 'Beschrijving'
+      = f.text_area :description
+
+    .field
+      = f.label 'Genodigden'
+    
+    .grouped.inline.fields
+
+      .field
+        .ui.radio.checkbox
+          = radio_button_tag :invitees, 'everyone', true
+          %label
+        %label Iedereen
+
+      .field
+        .ui.radio.checkbox
+          = radio_button_tag :invitees, 'moderators'
+          %label
+        %label Bestuurders
+
     .actions
       = f.submit 'Afspraak opslaan', class: 'ui positive button'
-
+      = link_to 'Annuleren', (request.referrer || events_path), class: 'ui button'

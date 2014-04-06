@@ -18,6 +18,9 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @hour = @event.date.hour.to_s
+    @min  = @event.date.min.to_s
+    @date = @event.date.strftime("%Y-%m-%d")
   end
 
   # POST /events
@@ -35,8 +38,10 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1
   def update
-    @event.date = @event.date.change({hour: params[:event][:hour], min: params[:event][:min]})
-    if @event.update(event_params)
+    original_date = @event.date
+    @event.assign_attributes(event_params)
+    @event.date = original_date.change({hour: params[:event][:hour], min: params[:event][:min]})
+    if @event.save
       redirect_to @event, notice: 'Event was successfully updated.'
     else
       render action: 'edit'
@@ -57,7 +62,7 @@ class EventsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:date, :name, :location, :hour, :min)
+      params.require(:event).permit(:date, :name, :location, :hour, :min, :description)
     end
 
     def update_date_with_time(date, time)
