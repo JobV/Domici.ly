@@ -214,3 +214,4 @@ nl:
     new: 'nieuw'
     in_progress: 'in behandeling'
     completed: 'klaar'
+    unknown_state: 'onbekende status'
