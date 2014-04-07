@@ -1,6 +1,8 @@
 class ProfileController < ApplicationController
   def index
     @alerts = current_user.alerts.order('updated_at DESC')
+    @assigned_alerts = Alert.where(assignee: current_user)
+    @events = current_user.participations.where(presence: true).map {|p| p.event }.sort_by! { |e| e.date }
   end
 
   def edit
