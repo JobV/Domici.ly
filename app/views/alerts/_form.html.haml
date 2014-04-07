@@ -26,3 +26,6 @@
     .ui.buttons
       = f.submit 'Publiceer melding', class: 'ui positive button'
       = link_to 'Annuleer', (request.referrer || root_path), class: 'ui button'
+
+    - if @alert.created_at
+      = link_to 'Verwijder Melding', alert_path(@alert), class: 'ui negative button float-right', method: :delete

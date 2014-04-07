@@ -66,3 +66,6 @@
     .actions
       = f.submit 'Afspraak opslaan', class: 'ui positive button'
       = link_to 'Annuleren', (request.referrer || events_path), class: 'ui button'
+
+      - if @event.created_at
+        = link_to 'Verwijder Afspraak', event_path(@event), class: 'ui negative button float-right', method: :delete
