@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
   has_many :alerts
 
   belongs_to :hoa
+  has_many :participations
+  has_many :events, through: :participations
 
   attr_reader :role
 

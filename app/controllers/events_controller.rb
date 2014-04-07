@@ -9,6 +9,7 @@ class EventsController < ApplicationController
   # GET /events/1
   def show
     @comments = @event.comments
+    @participation = @event.participations.find_or_create_by(user: current_user)
   end
 
   # GET /events/new

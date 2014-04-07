@@ -22,4 +22,6 @@ class Event < ActiveRecord::Base
   # Associations
   belongs_to :user
   belongs_to :hoa
+  has_many :participations
+  has_many :users, through: :participations
 end

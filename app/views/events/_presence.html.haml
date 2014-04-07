@@ -1,0 +1,19 @@
+- if @participation.presence == nil
+  .ui.blue.message
+    %i.question.icon  
+    = "#{current_user.name}, ben je aanwezig voor deze afspraak?"
+    .ui.buttons.message-buttons
+      = link_to 'Ja', participation_path(participation, participation: { presence: true}), method: :patch, class: 'ui small green button'
+      = link_to 'Nee', participation_path(participation, participation: { presence: false}), method: :patch, class: 'ui small red button'
+- elsif @participation.presence == true
+  .ui.green.message
+    %i.check.mark.icon  
+    = "Je hebt aangegeven aanwezig te zijn voor deze afspraak."
+    .ui.buttons.message-buttons
+      = link_to 'Ik ben toch niet aanwezig', participation_path(participation, participation: { presence: false}), method: :patch, class: 'ui small basic button'
+- elsif @participation.presence == false
+  .ui.red.message
+    %i.ban.circle.icon  
+    = "Je hebt aangegeven niet aanwezig te zijn voor deze afspraak."
+    .ui.buttons.message-buttons
+      = link_to 'Ik ben toch wel aanwezig', participation_path(participation, participation: { presence: true}), method: :patch, class: 'ui small basic button'

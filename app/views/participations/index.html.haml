@@ -1,0 +1,17 @@
+%h1 Listing participations
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @participations.each do |participation|
+    %tr
+      %td= link_to 'Show', participation
+      %td= link_to 'Edit', edit_participation_path(participation)
+      %td= link_to 'Destroy', participation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Participation', new_participation_path

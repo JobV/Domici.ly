@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   
   resources :posts
   resources :hoas
+  resources :participations
 
   get '/profile', to: 'profile#index', as: :profile
   get '/profile/edit', to: 'profile#edit', as: :edit_profile
