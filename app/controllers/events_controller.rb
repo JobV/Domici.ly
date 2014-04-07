@@ -3,7 +3,9 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all
+    @events     = current_user.hoa.events.order('date ASC')
+    @coming     = events_with_presence(true)
+    @not_coming = events_with_presence(false)
   end
 
   # GET /events/1
@@ -29,7 +31,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     @event.date = @event.date.change({hour: params[:event][:hour], min: params[:event][:min]})
-
+    @event.hoa = current_user.hoa
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
@@ -63,10 +65,15 @@ class EventsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:date, :name, :location, :hour, :min, :description)
+      params.require(:event).permit(:date, :title, :location, :hour, :min, :description)
     end
 
     def update_date_with_time(date, time)
       date.change({hour: time.hour, min: time.min})
+    end
+
+    # REFACTOR: make full SQL query
+    def events_with_presence(bool)
+      current_user.participations.where(presence: bool).map { |p| p.event }
     end
 end

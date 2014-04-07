@@ -6,44 +6,8 @@
         .float-right
           - if policy(@event).update?
             = link_to 'Aanpassen', edit_event_path(@event), class: 'ui basic button'
-        = @event.name
-
-        .sub.header
-          %p
-          .ui.segment
-            .ui.horizontal.divided.list
-              .item
-                .content
-                  .header Datum
-                  = format_event_date @event.date
-
-
-              .item
-                .content
-                  .header Tijd
-                  = format_event_time @event.date
-
-              .item
-                .ui.avatar.image
-                .content
-                  .header Aangemaakt door
-                  = @event.user.full_name if @event.user
-
-              .item
-                .content
-                  .header Genodigden
-                  Iedereen
-
-              .item
-                .content
-                  .header Aanwezig
-                  3 / 5
-
-              .item
-                .content
-                  .header Locatie
-                  = @event.location
-
+        = @event.title
+        = render 'events/details', event: @event
       = render 'events/presence', participation: @participation
 
       %p

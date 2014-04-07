@@ -7,5 +7,29 @@
 
       .ui.divider
       
-      = render 'events/table', events: @events
+      .ui.tabular.menu
+        %a.item{href: '#tab1'}
+          Alle
+          .ui.label
+            = @events.count
+        %a.item{href: '#tab2'} 
+          Aanwezig
+          .ui.label
+            = @coming.count
+        %a.item{href: '#tab3'}
+          Afgemeld
+          .ui.label
+            = @not_coming.count
+
+
+      #tabs
+        .tab#tab1
+          = render 'events/table', events: @events
+
+        .tab#tab2
+          = render 'events/table', events: @coming
+
+        .tab#tab3
+          = render 'events/table', events: @not_coming
+
 
