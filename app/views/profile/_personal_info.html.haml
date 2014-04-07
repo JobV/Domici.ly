@@ -3,7 +3,7 @@
     .content
       %a.header Naam
       .description
-        = current_user.full_name
+        = user.full_name
 
   / .item
   /   .content
@@ -15,16 +15,16 @@
     .content
       %a.header Email
       .description
-        = current_user.email
+        = user.email
 
   .item
     .content
       %a.header Vereniging
       .description
-        = current_user.hoa_name
+        = user.hoa_name
 
   .item
     .content
       %a.header Rol
       .description
-        = pretty_role
+        = pretty_role user

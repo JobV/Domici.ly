@@ -1,0 +1,28 @@
+.row
+  .large-10.medium-10.small-12.medium-centered.column
+    .row
+      .small-12.column
+        .ui.raised.segment
+          %h2.ui.black.header
+            %i.circular.user.icon
+            .content
+              = @user.full_name
+              .sub.header
+                = "#{pretty_role(@user)} in #{@user.hoa_name}"
+
+          %br
+
+          .ui.teal.ribbon.label
+            Gegevens
+          %p
+            = render 'profile/personal_info', user: @user
+
+
+          %br
+
+          .ui.orange.ribbon.label
+            Meldingen door
+            = @user.name
+
+          %p
+            = render 'alerts/table', alerts: @user.alerts

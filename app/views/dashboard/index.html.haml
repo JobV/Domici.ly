@@ -6,7 +6,7 @@
 
       = link_to 'Nieuwe Melding', new_alert_path, class: 'ui small button'
       = link_to 'Nieuwe Afspraak', new_event_path, class: 'ui small button'
-      - if moderator?
+      - if moderator?(current_user)
         .ui.small.button
           Bestuurlijke Mededeling
 

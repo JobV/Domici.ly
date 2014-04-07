@@ -3,12 +3,12 @@ module ApplicationHelper
     current_user.admin if current_user
   end
 
-  def moderator?
-    current_user.has_role? :moderator, current_user.hoa if current_user
+  def moderator?(user)
+    user.has_role? :moderator, user.hoa if user
   end
 
-  def maintenance?
-    current_user.has_role? :maintenance, current_user.hoa if current_user
+  def maintenance?(user)
+    user.has_role? :maintenance, user.hoa if user
   end
 
   def owner?(resource)
@@ -19,8 +19,8 @@ module ApplicationHelper
     owner?(resource) || moderator?
   end
 
-  def pretty_role
-    return 'Bestuurder' if moderator?
+  def pretty_role(user)
+    return 'Bestuurder' if moderator?(user)
     'Eigenaar'
   end
 
@@ -40,5 +40,9 @@ module ApplicationHelper
 
   def format_time(time)
     return time_ago_in_words time
+  end
+
+  def link_to_activity_owner(activity)
+    link_to((activity.owner.full_name if activity.owner), user_path(activity.owner))
   end
 end
