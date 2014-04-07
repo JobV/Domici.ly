@@ -21,8 +21,25 @@
           %br
 
           .ui.orange.ribbon.label
-            Meldingen door
+            Meldingen van
             = @user.name
 
-          %p
-            = render 'alerts/table', alerts: @user.alerts
+
+          .ui.tabular.menu
+            %a.item{href: '#tab1'} 
+              Aangemaakt door
+              = @user.name
+              .ui.label
+                = @alerts.count
+            %a.item{href: '#tab2'} 
+              Toegewezen aan
+              = @user.name
+              .ui.label
+                = @assigned_alerts.count
+
+          #tabs
+            .tab#tab1
+              = render 'alerts/table', alerts: @alerts
+
+            .tab#tab2
+              = render 'alerts/table', alerts: @assigned_alerts

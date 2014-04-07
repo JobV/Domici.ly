@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     redirect_to root_path unless current_user.hoa == @user.hoa
+    @alerts = @user.alerts
+    @assigned_alerts = Alert.where(assignee: @user)
   end
 
   # GET /users/new
