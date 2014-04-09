@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ParticipationTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'validations' do
+    are_attrs_validated?(Post,[:title])
+  end
 end

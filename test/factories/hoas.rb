@@ -12,6 +12,6 @@
 
 FactoryGirl.define do
   factory :hoa do
-    name "VvE de Lotus"
+    sequence(:name) {|n| "vve#{n}" }
   end
 end

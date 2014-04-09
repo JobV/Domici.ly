@@ -2,17 +2,24 @@
 #
 # Table name: events
 #
-#  id         :integer          not null, primary key
-#  date       :datetime
-#  name       :string(255)
-#  location   :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  user_id    :integer
-#  hoa_id     :integer
+#  id          :integer          not null, primary key
+#  date        :datetime
+#  title       :string(255)
+#  location    :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  user_id     :integer
+#  hoa_id      :integer
+#  description :text
 #
 
 class Event < ActiveRecord::Base
+  # Validations
+  validates :date,
+            :user_id,
+            :hoa_id,
+            :title,
+            presence: true
 
   attr_writer :hour, :min
 

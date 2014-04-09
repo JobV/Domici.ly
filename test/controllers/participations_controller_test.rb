@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class ParticipationsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
-    @participation = participations(:one)
+    sign_in create(:user)
+    @event = create(:event)
+    @participation = create(:participation, event: @event, user: @user)
   end
 
   test "should get index" do
@@ -18,7 +22,7 @@ class ParticipationsControllerTest < ActionController::TestCase
 
   test "should create participation" do
     assert_difference('Participation.count') do
-      post :create, participation: {  }
+      post :create, participation: { presence: true }
     end
 
     assert_redirected_to participation_path(assigns(:participation))
@@ -35,8 +39,8 @@ class ParticipationsControllerTest < ActionController::TestCase
   end
 
   test "should update participation" do
-    patch :update, id: @participation, participation: {  }
-    assert_redirected_to participation_path(assigns(:participation))
+    patch :update, id: @participation, participation: { presence: true }
+    assert_redirected_to event_path(@event)
   end
 
   test "should destroy participation" do

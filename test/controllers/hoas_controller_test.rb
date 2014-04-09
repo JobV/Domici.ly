@@ -22,7 +22,7 @@ class HoasControllerTest < ActionController::TestCase
 
   test "should create hoa" do
     assert_difference('Hoa.count') do
-      post :create, hoa: { name: @hoa.name }
+      post :create, hoa: { name: 'meeh' }
     end
 
     assert_redirected_to hoa_path(assigns(:hoa))

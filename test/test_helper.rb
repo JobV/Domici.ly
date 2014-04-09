@@ -37,3 +37,13 @@ end
 def page_should_have_button(button_name)
   assert page.has_button?(button_name), "Expected to find button named #{button_name}, but couldn't find it."
 end
+
+def are_attrs_validated?(model, attributes)
+  m = model.new
+  attributes.each do |at|
+    m[at] = nil
+    assert !m.valid?, "#{m} should be invalid!"
+    assert m.errors[at].any?, "Expected #{model} to validate #{at}, but it didn't!"
+  end
+end
+

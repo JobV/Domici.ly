@@ -2,21 +2,26 @@
 #
 # Table name: alerts
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  body       :text
-#  severity   :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  user_id    :integer
-#  hoa_id     :integer
-#  progress   :string(255)      default("new")
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  body        :text
+#  severity    :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  user_id     :integer
+#  hoa_id      :integer
+#  progress    :string(255)      default("new")
+#  assignee_id :integer
 #
 
 class Alert < ActiveRecord::Base
 
   # Validations
-  validate :title, :user_id, :hoa_id, :progress, presence: true
+  validates :title, 
+            :user_id, 
+            :hoa_id, 
+            :progress, 
+            presence: true
 
   # public_activity -> set current_user as owner by default
   # only track creation events

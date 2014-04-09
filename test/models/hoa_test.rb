@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class HoaTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'validations' do
+    are_attrs_validated?(Hoa,[:name])
+  end
 end

@@ -15,8 +15,8 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
   test 'board member log in' do
     sign_in @user
 
-    page_should_contain 'John'
-    page_should_contain 'VvE de Lotus'
+    page_should_contain @user.first_name
+    page_should_contain @hoa.name
 
     page_should_not_contain 'Admin'
   end
