@@ -45,4 +45,9 @@ module ApplicationHelper
   def link_to_activity_owner(activity)
     link_to((activity.owner.full_name if activity.owner), user_path(activity.owner))
   end
+
+  def gravatar_url(user)
+    hash = Digest::MD5.hexdigest(user.email)
+    "http://www.gravatar.com/avatar/#{hash}?d=retro"
+  end
 end

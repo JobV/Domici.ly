@@ -25,9 +25,7 @@ module AlertsHelper
   end
 
   def print_assignee(alert)
-    if alert.assignee && alert.assignee == current_user
-      return t('alert.assigned_to_you')
-    elsif alert.assignee
+    if alert.assignee
       return alert.assignee.full_name if alert.assignee
     else
       return t('alert.no_assignee')

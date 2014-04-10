@@ -1,7 +1,7 @@
 - if activity.trackable
   .event
     .label
-      %i.circular.inverted.blue.comment.icon
+      %img{ src: gravatar_url(activity.owner) }
     .content
       .date
         = "#{format_time(activity.created_at)} geleden"

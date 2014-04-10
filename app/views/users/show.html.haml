@@ -4,7 +4,8 @@
       .small-12.column
         .ui.raised.segment
           %h2.ui.black.header
-            %i.circular.user.icon
+            / %i.circular.user.icon
+            %img.circular.ui.image{src: "#{gravatar_url(@user)}"}
             .content
               = @user.full_name
               .sub.header

@@ -2,7 +2,7 @@
   - @resource = resource_from_comment(activity.trackable)
   .event
     .label
-      %i.circular.inverted.teal.comment.outline.icon
+      %img{ src: gravatar_url(activity.owner) }
     .content
       .date
         = "#{format_time(activity.created_at)} geleden"

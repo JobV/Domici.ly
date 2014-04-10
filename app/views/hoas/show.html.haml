@@ -48,7 +48,7 @@
       .ui.celled.small.selection.list
         - @owners.each do |owner|
           .item
-            %img.ui.avatar.image{ src: 'http://semantic-ui.com/images/demo/avatar2.jpg' }
+            %img.ui.avatar.image{ src: gravatar_url(owner) }
             = link_to user_path(owner), class: 'content' do
               .header= owner.full_name
               .description= owner.email
