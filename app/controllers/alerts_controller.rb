@@ -1,5 +1,5 @@
 class AlertsController < ApplicationController
-  before_action :set_alert, only: [:show, :edit, :update, :destroy]
+  before_action :set_alert, only: [:show, :edit, :update, :destroy, :remove_tag]
   before_action :set_assignees, only: [:edit, :new]
 
   # GET /alerts
@@ -71,6 +71,14 @@ class AlertsController < ApplicationController
     redirect_to root_path, notice: 'Alert was successfully destroyed.'
   end
 
+  # POST /alert/1/remove_tag
+  def remove_tag
+    session[:return_to] = request.referer
+    @alert.tag_list.remove(params[:tag])
+    @alert.save
+    redirect_to session.delete(:return_to)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_alert
@@ -79,7 +87,7 @@ class AlertsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def alert_params
-      params.require(:alert).permit(:title, :body, :severity, :progress, :assignee_id, :tag_list)
+      params.require(:alert).permit(:title, :body, :severity, :progress, :assignee_id, :tag_list, :tag)
     end
 
     def set_assignees

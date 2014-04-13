@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :alerts do
     resources :comments
+    post '/remove_tag', to: 'alerts#remove_tag', as: :remove_tag
   end
 
   resources :events do
