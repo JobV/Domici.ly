@@ -79,7 +79,7 @@ class AlertsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def alert_params
-      params.require(:alert).permit(:title, :body, :severity, :progress, :assignee_id)
+      params.require(:alert).permit(:title, :body, :severity, :progress, :assignee_id, :tag_list)
     end
 
     def set_assignees

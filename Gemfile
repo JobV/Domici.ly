@@ -64,7 +64,6 @@ group :development do
   gem "letter_opener"
   gem 'spring'
   gem 'annotate', github: 'ctran/annotate_models'
-  gem 'sprockets_better_errors'
   gem "binding_of_caller"
   gem "better_errors"
 end
