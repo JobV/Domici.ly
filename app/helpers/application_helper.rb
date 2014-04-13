@@ -50,4 +50,9 @@ module ApplicationHelper
     hash = Digest::MD5.hexdigest(user.email)
     "http://www.gravatar.com/avatar/#{hash}?d=retro"
   end
+
+  def big_gravatar(user,size)
+    hash = Digest::MD5.hexdigest(user.email)
+    "http://www.gravatar.com/avatar/#{hash}?d=retro&size=#{size}"
+  end
 end
