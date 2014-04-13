@@ -80,7 +80,6 @@ ready = function() {
     $(currentTab).show();
     return false
   });
-
 };
 
 $(document).ready(ready);

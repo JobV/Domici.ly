@@ -39,9 +39,15 @@
                 = "#{format_time(@alert.created_at)} geleden"    
             
 
+
+      %p
+        - @alert.tags.each do |tag|
+          .ui.label
+            = tag.name
+            = link_to alert_remove_tag_path(@alert, id: @alert.id, tag: tag.name), method: :post do
+              %i.delete.icon
+
       .ui.divider
-
-
       %p.alert
         = @alert.body
 
