@@ -5,8 +5,8 @@
         .ui.raised.segment
           %h2.ui.black.header
             / %i.circular.user.icon
-            %img.circular.ui.image{src: "#{gravatar_url(@user)}"}
-            .content
+            %img.circular.ui.image.profile-image{src: "#{gravatar_url(@user)}"}
+            .content.name-header
               = @user.full_name
               .sub.header
                 = "#{pretty_role(@user)} in #{@user.hoa_name}"
