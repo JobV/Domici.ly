@@ -217,3 +217,7 @@ nl:
     unknown_state: 'onbekende status'
     no_assignee: 'niet toegewezen'
     assigned_to_you: 'jou!'
+
+    updated: "Melding aangepast."
+    created: "Melding aangemaakt."
+    destroyed: "Melding verwijderd."

@@ -31,7 +31,7 @@ class AlertsController < ApplicationController
     @alert.user = current_user
     @alert.hoa  = current_user.hoa
     if @alert.save
-      redirect_to @alert, notice: 'Alert was successfully created.'
+      redirect_to @alert, notice: I18n.t('alert.created')
     else
       render action: 'new'
     end
@@ -42,7 +42,7 @@ class AlertsController < ApplicationController
   def update
     authorize @alert
     progress_before = @alert.progress
-    @alert.assignee = find_assignee(alert_params[:assignee_id])
+    @alert.assignee = find_assignee(alert_params[:assignee_id]) if alert_params[:assignee_id]
     if @alert.update(alert_params)
 
       # REFACTOR
@@ -58,7 +58,7 @@ class AlertsController < ApplicationController
         Comment.public_activity_on
       end
 
-      redirect_to @alert, notice: "Melding aangepast!"
+      redirect_to @alert, notice: I18n.t('alert.updated')
     else
       render action: 'edit', alert: "Woops!"
     end
@@ -68,7 +68,7 @@ class AlertsController < ApplicationController
   def destroy
     authorize @alert
     @alert.destroy
-    redirect_to root_path, notice: 'Alert was successfully destroyed.'
+    redirect_to root_path, notice: I18n.t('alert.destroyed')
   end
 
   # POST /alert/1/remove_tag
