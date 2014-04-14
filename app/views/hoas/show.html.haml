@@ -26,7 +26,7 @@
       %br
 
       - @moderators.each do |moderator|
-        .ui.circular.image.dimmable
+        = link_to user_path(moderator), class:  'ui circular image dimmable' do
           .ui.dimmer
             .content
               .center
