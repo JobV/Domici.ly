@@ -42,7 +42,7 @@ class AlertsController < ApplicationController
   def update
     authorize @alert
     progress_before = @alert.progress
-
+    @alert.assignee = find_assignee(alert_params[:assignee_id])
     if @alert.update(alert_params)
 
       # REFACTOR
@@ -83,6 +83,10 @@ class AlertsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_alert
       @alert = Alert.find(params[:id])
+    end
+
+    def find_assignee(id)
+      User.find(id)
     end
 
     # Only allow a trusted parameter "white list" through.
