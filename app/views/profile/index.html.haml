@@ -5,13 +5,14 @@
       .small-12.column
         .ui.raised.segment
           %h2.ui.black.header
-            %i.circular.user.icon
+            = image_tag(big_gravatar(current_user,65), class: 'ui circular image profile-image')
+
             .content
               = current_user.full_name
               .sub.header
                 = "#{pretty_role(current_user)} in #{current_user.hoa_name}"
 
-            = link_to "Pas mijn gegevens aan", edit_profile_path, class: 'ui basic button', style: "float: right; position: relative; top: -45px;"
+            = link_to "Pas mijn gegevens aan", edit_profile_path, class: 'ui basic button', style: "float: right; position: relative;"
 
           %br
 
