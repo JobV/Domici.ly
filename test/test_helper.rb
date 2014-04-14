@@ -47,3 +47,21 @@ def are_attrs_validated?(model, attributes)
   end
 end
 
+
+class ExampleAlert
+  def self.title
+    'Test melding titel'
+  end
+
+  def self.body
+    'De body van een testende melding.'
+  end
+
+  def self.tag
+    'tag1'
+  end
+
+  def self.assignee
+    'Job'
+  end
+end

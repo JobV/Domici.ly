@@ -3,73 +3,55 @@ require 'test_helper'
 class BoardMemberTest < ActionDispatch::IntegrationTest
   def setup
     @hoa = create(:hoa)
+    create(:user, hoa: @hoa, first_name: 'Job')
     @user = create(:board_member, hoa: @hoa)
     @user.add_role :moderator, @hoa
-    create(:alert)
-  end
-
-  test 'sign in' do
-    sign_in @user
+    @alert = create(:alert)
   end
 
   test 'board member log in' do
     sign_in @user
-
-    page_should_contain @user.first_name
-    page_should_contain @hoa.name
-
     page_should_not_contain 'Admin'
   end
-
-  ## Alerts
 
   test 'add alert' do
     sign_in @user
 
-    click_on @hoa.name
     click_on 'Nieuwe Melding'
 
-    fill_in 'alert_title', with: 'Kapotte tree in trappenhuis'
-    fill_in 'alert_body', with: 'In het trappenhuis op de derde verdieping is een tree kapot. Heel erg kapot. Pas op voor de tree.'
+    fill_in 'alert_title', with: ExampleAlert.title
+    fill_in 'alert_body', with: ExampleAlert.body
+    select ExampleAlert.assignee
+    fill_in 'alert_tag_list', with: ExampleAlert.tag
     click_on 'Publiceer melding'
 
-    click_on @hoa.name
+    click_on 'Meldingen'
+    within('#tab1') do
+      click_on ExampleAlert.title
+    end
+    
+    page_should_contain ExampleAlert.title
+    page_should_contain ExampleAlert.body
+    page_should_contain ExampleAlert.tag
 
-    page_should_contain 'Kapotte tree in trappenhuis'
-    page_should_contain 'In het trappenhuis op de derde verdieping is een tree kapot. Heel erg kapot. Pas op voor de tree.'
-
-    page_should_not_contain 'Gat in muur, ergens.'
-  end
-
-  test 'view alert' do
-    sign_in @user
-    create :alert, user_id: @user.id, hoa: @hoa
-    visit root_path
-    click_on @hoa.name
-
-    page_should_contain 'Gat in muur'
-    click_on 'Gat in muur'
-
-    page_should_contain 'Er is een gat ergens'
-    page_should_contain 'Geplaatst door John'
-    page_should_contain 'Aanpassen'
-    page_should_contain 'Terug'
+    page_should_not_contain @alert.body
   end
 
   test 'change state of alert' do
+    new_alert = create :alert, hoa: @hoa, user: @user
     sign_in @user
-    create :alert, hoa: @hoa
-    click_on @user.hoa_name
-    
-    page_should_contain 'Nieuw'
-    click_on 'Gat in muur, ergens.'
 
-    page_should_contain 'Nieuw'
+    visit alert_path(new_alert)
 
-    page_should_contain 'Sluit melding'
+    assert_equal new_alert.progress, 'new'
 
-    visit root_path
-    
+    click_on 'In behandeling'
+
+    assert_equal 'in progress', new_alert.progress
+
+    click_on 'Klaar'
+
+    assert_equal new_alert.progress, 'completed'
   end
 
   ## Add member
