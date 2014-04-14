@@ -33,7 +33,7 @@ class EventsController < ApplicationController
     @event.date = @event.date.change({hour: params[:event][:hour], min: params[:event][:min]})
     @event.hoa = current_user.hoa
     if @event.save
-      redirect_to @event, notice: 'Event was successfully created.'
+      redirect_to @event, notice: I18n.t('event.created')
     else
       render action: 'new'
     end
@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     @event.assign_attributes(event_params)
     @event.date = original_date.change({hour: params[:event][:hour], min: params[:event][:min]})
     if @event.save
-      redirect_to @event, notice: 'Event was successfully updated.'
+      redirect_to @event, notice: I18n.t('event.updated')
     else
       render action: 'edit'
     end
@@ -54,7 +54,7 @@ class EventsController < ApplicationController
   # DELETE /events/1
   def destroy
     @event.destroy
-    redirect_to events_url, notice: 'Event was successfully destroyed.'
+    redirect_to events_url, notice: I18n.t('event.destroyed')
   end
 
   private

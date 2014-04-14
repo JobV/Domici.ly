@@ -221,3 +221,8 @@ nl:
     updated: "Melding aangepast."
     created: "Melding aangemaakt."
     destroyed: "Melding verwijderd."
+
+  event:
+    created: "Afspraak aangemaakt."
+    updated: "Afspraak aangepast."
+    destroyed: "Afspraak verwijderd."
