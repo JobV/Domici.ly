@@ -11,22 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413191227) do
-
-  create_table "active_admin_comments", force: true do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+ActiveRecord::Schema.define(version: 20140414140753) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -58,6 +43,10 @@ ActiveRecord::Schema.define(version: 20140413191227) do
     t.integer  "assignee_id"
   end
 
+  add_index "alerts", ["assignee_id"], name: "index_alerts_on_assignee_id"
+  add_index "alerts", ["hoa_id"], name: "index_alerts_on_hoa_id"
+  add_index "alerts", ["user_id"], name: "index_alerts_on_user_id"
+
   create_table "comments", force: true do |t|
     t.string   "title",            limit: 50, default: ""
     t.text     "comment"
@@ -72,6 +61,7 @@ ActiveRecord::Schema.define(version: 20140413191227) do
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type"
+  add_index "comments", ["hoa_id"], name: "index_comments_on_hoa_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "events", force: true do |t|
@@ -84,6 +74,9 @@ ActiveRecord::Schema.define(version: 20140413191227) do
     t.integer  "hoa_id"
     t.text     "description"
   end
+
+  add_index "events", ["hoa_id"], name: "index_events_on_hoa_id"
+  add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "hoas", force: true do |t|
     t.string   "name"
@@ -99,6 +92,9 @@ ActiveRecord::Schema.define(version: 20140413191227) do
     t.datetime "updated_at"
   end
 
+  add_index "participations", ["event_id"], name: "index_participations_on_event_id"
+  add_index "participations", ["user_id"], name: "index_participations_on_user_id"
+
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "body"
@@ -107,6 +103,9 @@ ActiveRecord::Schema.define(version: 20140413191227) do
     t.integer  "user_id"
     t.integer  "hoa_id"
   end
+
+  add_index "posts", ["hoa_id"], name: "index_posts_on_hoa_id"
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "read_marks", force: true do |t|
     t.integer  "readable_id"
@@ -175,8 +174,10 @@ ActiveRecord::Schema.define(version: 20140413191227) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["hoa_id"], name: "index_users_on_hoa_id"
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true
   add_index "users", ["invitations_count"], name: "index_users_on_invitations_count"
+  add_index "users", ["invited_by_id", "invited_by_type"], name: "index_users_on_invited_by_id_and_invited_by_type"
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
