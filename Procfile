@@ -1,1 +1,1 @@
-web: bundle exec puma -t ${PUMA_MIN_THREADS:-8}:${PUMA_MAX_THREADS:-12} -w ${PUMA_WORKERS:-2} -p $PORT
+custom_web: bundle exec unicorn_rails -c config/unicorn.rb -E $RAILS_ENV -D

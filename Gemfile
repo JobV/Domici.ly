@@ -14,7 +14,7 @@ gem 'turbolinks'
 gem 'haml'
 gem 'haml-rails'
 
-gem 'puma'
+gem 'unicorn'
 
 gem 'devise'
 gem 'devise_invitable'
