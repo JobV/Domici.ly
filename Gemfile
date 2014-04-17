@@ -16,8 +16,11 @@ gem 'haml-rails'
 
 gem 'unicorn'
 
+# Devise
 gem 'devise'
 gem 'devise_invitable'
+gem 'devise-async'
+
 
 gem 'rails_admin'
 
@@ -47,7 +50,11 @@ gem 'momentjs-rails'
 # Awesome dropdown
 gem 'chosen-rails'
 
+# Logentries
 gem 'le'
+
+# Sidekiq
+gem 'sidekiq', git: 'git@github.com:mperham/sidekiq.git', tag: 'v3.0.0'
 
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
