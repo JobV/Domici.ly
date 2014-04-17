@@ -47,6 +47,8 @@ gem 'momentjs-rails'
 # Awesome dropdown
 gem 'chosen-rails'
 
+gem 'le'
+
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
