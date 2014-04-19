@@ -15,6 +15,8 @@ end
 
 require 'sidekiq/testing'
 require 'helper_methods/role_test_helper'
+Devise.mailer = Devise::Mailer
+
 
 require 'capybara/rails'
 class ActionDispatch::IntegrationTest
