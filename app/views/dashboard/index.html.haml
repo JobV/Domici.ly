@@ -4,7 +4,7 @@
   .large-10.medium-10.small-12.medium-centered.column
     .ui.small.feed.segment
 
-      = link_to 'Nieuwe Melding', new_alert_path, class: 'ui small button'
+      = link_to 'Nieuwe Melding', new_alert_path, class: 'ui small button', id: 'new-alert'
       = link_to 'Nieuwe Afspraak', new_event_path, class: 'ui small button'
       - if moderator?(current_user)
         .ui.small.button

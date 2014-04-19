@@ -42,7 +42,7 @@ class AlertsController < ApplicationController
   def update
     authorize @alert
     progress_before = @alert.progress
-    @alert.assignee = find_assignee(alert_params[:assignee_id]) if alert_params[:assignee_id]
+    @alert.assignee = find_assignee(alert_params[:assignee_id]) if alert_params[:assignee_id] && current_user.has_role?(:moderator, @alert.hoa)
     if @alert.update(alert_params)
 
       # REFACTOR

@@ -70,33 +70,3 @@ class InviteMemberTest < ActionDispatch::IntegrationTest
     assert_equal email_addr, email.to[0]
   end
 end
-
-# ## Add member
-
-# def add_member(email, role)
-#   sign_in @user
-#   click_on @hoa.name
-#   click_on 'new-member'
-#   fill_in :user_email, with: email
-#   choose role
-#   click_on 'Verstuur uitnodiging'
-# end
-
-# test 'add member' do
-#   assert_difference('User.count') do
-#     add_member 'user@normal.com', 'role_user'
-#   end
-
-#   assert ! User.last.has_role?(:moderator, @hoa)
-
-  # email = ActionMailer::Base.deliveries.last
-  # assert email
-  # assert_equal ['user@normal.com'], email.to
-# end
-
-# test 'add board member' do
-#   assert_difference('User.count') do
-#     add_member 'boardie@member.com', 'role_moderator'
-#   end
-#   assert User.last.has_role?(:moderator, @hoa)
-# end
