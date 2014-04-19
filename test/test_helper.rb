@@ -13,6 +13,9 @@ class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
 end
 
+require 'sidekiq/testing'
+require 'helper_methods/role_test_helper'
+
 require 'capybara/rails'
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests

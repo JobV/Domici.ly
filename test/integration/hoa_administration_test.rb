@@ -9,9 +9,9 @@ class HoaAdministrationTest < ActionDispatch::IntegrationTest
     sign_in @user
   end
 
-  test 'can click link as board_member' do
-    click_on @hoa.name
+  # test 'can click link as board_member' do
+  #   click_on @hoa.name
 
-    page_should_contain "6 leden"
-  end
+  #   page_should_contain "6 leden"
+  # end
 end

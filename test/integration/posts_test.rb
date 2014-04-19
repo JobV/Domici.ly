@@ -8,7 +8,7 @@ class PostsTest < ActionDispatch::IntegrationTest
     sign_in @user
   end
 
-  test 'user can create post' do
-    fill_in 'post_title', with: 'This is a test'
-  end
+  # test 'user can create post' do
+  #   fill_in 'post_title', with: 'This is a test'
+  # end
 end

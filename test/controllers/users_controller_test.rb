@@ -4,8 +4,9 @@ class UsersControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   setup do
-    sign_in create(:user)
-    @user = create(:user)
+    hoa = create(:hoa)
+    sign_in create(:user, hoa: hoa)
+    @user = create(:user, hoa: hoa)
   end
 
   # test "should get index" do

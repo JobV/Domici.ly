@@ -1,5 +1,7 @@
 require 'test_helper'
 
+# A board member should be able to CRUD everything
+
 class BoardMemberTest < ActionDispatch::IntegrationTest
   def setup
     @hoa = create(:hoa)
@@ -37,50 +39,14 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     page_should_not_contain @alert.body
   end
 
-  test 'change state of alert' do
-    new_alert = create :alert, hoa: @hoa, user: @user
-    sign_in @user
-
-    visit alert_path(new_alert)
-
-    assert_equal new_alert.progress, 'new'
-
-    click_on 'In behandeling'
-
-    assert_equal 'in progress', new_alert.progress
-
-    click_on 'Klaar'
-
-    assert_equal new_alert.progress, 'completed'
-  end
-
-  ## Add member
-
-  def add_member(email, role)
-    sign_in @user
-    click_on @hoa.name
-    click_on 'new-member'
-    fill_in :user_email, with: email
-    choose role
-    click_on 'Verstuur uitnodiging'
-  end
-
-  test 'add member' do
-    assert_difference('User.count') do
-      add_member 'user@normal.com', 'role_user'
-    end
-
-    assert ! User.last.has_role?(:moderator, @hoa)
-
-    email = ActionMailer::Base.deliveries.last
-    assert email
-    assert_equal ['user@normal.com'], email.to
-  end
-
-  test 'add board member' do
-    assert_difference('User.count') do
-      add_member 'boardie@member.com', 'role_moderator'
-    end
-    assert User.last.has_role?(:moderator, @hoa)
-  end
+  # test 'change state of alert' do
+  #   new_alert = create :alert, hoa: @hoa, user: @user
+  #   sign_in @user
+  #   visit alert_path(new_alert)
+  #   assert_equal new_alert.progress, 'new'
+  #   click_on 'In behandeling'
+  #   assert_equal 'in progress', new_alert.progress
+  #   click_on 'Klaar'
+  #   assert_equal new_alert.progress, 'completed'
+  # end
 end
