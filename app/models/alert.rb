@@ -59,4 +59,17 @@ class Alert < ActiveRecord::Base
   def completed?
     self.progress == 'completed'
   end
+
+  around_update :email_if_assignee_changed
+
+   private
+
+   def email_if_assignee_changed
+     assignee_changed = self.assignee_id_changed?
+
+     yield
+
+     notify_assignee if assignee_changed
+   end
+
 end

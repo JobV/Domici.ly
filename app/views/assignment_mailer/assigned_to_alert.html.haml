@@ -1,0 +1,13 @@
+%h1 Domici.ly Melding toegewezen
+
+%p= "#{@assignee.name}, je bent een melding toegewezen door #{@assigner.name}:"
+
+%h2
+  = @alert.title
+
+%p
+  = @alert.body
+
+%p
+  = link_to 'Klik hier', alert_path(@alert)
+  om de melding te bekijken in Domici.ly

@@ -31,6 +31,7 @@ class AlertsController < ApplicationController
     @alert.user = current_user
     @alert.hoa  = current_user.hoa
     if @alert.save
+      AssignmentMailer.assigned_to_alert(current_user, @alert.assignee, @alert).deliver if @alert.assignee
       redirect_to @alert, notice: I18n.t('alert.created')
     else
       render action: 'new'
@@ -43,21 +44,9 @@ class AlertsController < ApplicationController
     authorize @alert
     progress_before = @alert.progress
     @alert.assignee = find_assignee(alert_params[:assignee_id]) if alert_params[:assignee_id] && current_user.has_role?(:moderator, @alert.hoa)
+
     if @alert.update(alert_params)
-
-      # REFACTOR
-      # on progress update, perfom shit
-      unless progress_before == @alert.progress
-        @alert.create_activity(:progress_changed, owner: current_user, hoa_id: current_user.hoa.id, parameters: {progress_before: progress_before, progress_after: @alert.progress})
-
-        Comment.public_activity_off
-        comment = @alert.comments.create
-        comment.comment = "heeft de status aangepast naar #{view_context.progress_name(@alert)}"
-        comment.user = current_user
-        comment.save
-        Comment.public_activity_on
-      end
-
+      on_progress_change_post_comment(progress_before)
       redirect_to @alert, notice: I18n.t('alert.updated')
     else
       render action: 'edit', alert: "Woops!"
@@ -96,5 +85,22 @@ class AlertsController < ApplicationController
 
     def set_assignees
       @assignees = current_user.hoa.users
+    end
+
+    def notify_assignee
+      AssignmentMailer.assigned_to_alert(current_user, @alert.assignee, @alert).deliver
+    end
+
+    def on_progress_change_post_comment(progress_before)
+      unless progress_before == @alert.progress
+        @alert.create_activity(:progress_changed, owner: current_user, hoa_id: current_user.hoa.id, parameters: {progress_before: progress_before, progress_after: @alert.progress})
+
+        Comment.public_activity_off
+        comment = @alert.comments.create
+        comment.comment = "heeft de status aangepast naar #{view_context.progress_name(@alert)}"
+        comment.user = current_user
+        comment.save
+        Comment.public_activity_on
+      end
     end
 end

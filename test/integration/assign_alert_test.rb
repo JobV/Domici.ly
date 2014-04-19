@@ -38,4 +38,22 @@ class AssignAlertTest < ActionDispatch::IntegrationTest
     click_on 'new-alert'
     page_should_contain 'Toewijzen aan'
   end
+
+  test 'assigned user gets an email on new alert' do
+    sign_in @moderator
+    click_on 'new-alert'
+    fill_in 'alert_title', with: ExampleAlert.title
+    fill_in 'alert_body', with: ExampleAlert.body
+    select 'Piet'
+    fill_in 'alert_tag_list', with: ExampleAlert.tag
+
+    assert_difference('Alert.count') do
+      click_on 'Publiceer melding'
+    end
+
+    alert = Alert.last
+    Sidekiq::Testing.inline!
+    email = ActionMailer::Base.deliveries.last
+    assert_equal alert.assignee.email, email.to[0]
+  end
 end
