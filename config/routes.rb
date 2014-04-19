@@ -24,4 +24,9 @@ Rails.application.routes.draw do
   root to: 'dashboard#index'
 
   resources :dashboard, only: [:index]
+
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
