@@ -3,8 +3,8 @@
 # Mailer proxy to send devise emails in the background
 class DeviseBackgrounder
 
-  def self.invitations_instructions(record, token opts = {})
-    new(:invitations_instructions, record, token, opts)
+  def self.invitation_instructions(record, token, opts = {})
+    new(:invitation_instructions, record, token, opts)
   end
 
   def self.confirmation_instructions(record, token, opts = {})
