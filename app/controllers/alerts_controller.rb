@@ -31,21 +31,23 @@ class AlertsController < ApplicationController
     @alert.user = current_user
     @alert.hoa  = current_user.hoa
     if @alert.save
-      AssignmentMailer.assigned_to_alert(current_user, @alert.assignee, @alert).deliver if @alert.assignee
+      notify_assignee if @alert.assignee
       redirect_to @alert, notice: I18n.t('alert.created')
     else
       render action: 'new'
     end
   end
 
-
   # PATCH/PUT /alerts/1
   def update
     authorize @alert
     progress_before = @alert.progress
-    @alert.assignee = find_assignee(alert_params[:assignee_id]) if alert_params[:assignee_id] && current_user.has_role?(:moderator, @alert.hoa)
+    assignee_before = @alert.assignee
+
+    @alert.assignee_id = alert_params[:assignee_id] if alert_params[:assignee_id] && current_user.has_role?(:moderator, @alert.hoa)
 
     if @alert.update(alert_params)
+      on_assignee_change_notify(assignee_before)
       on_progress_change_post_comment(progress_before)
       redirect_to @alert, notice: I18n.t('alert.updated')
     else
@@ -87,8 +89,12 @@ class AlertsController < ApplicationController
       @assignees = current_user.hoa.users
     end
 
+    def on_assignee_change_notify(assignee_before)
+      notify_assignee unless assignee_before == @alert.assignee
+    end
+
     def notify_assignee
-      AssignmentMailer.assigned_to_alert(current_user, @alert.assignee, @alert).deliver
+      AssignmentMailer.delay.assigned_to_alert(current_user, @alert.assignee, @alert)
     end
 
     def on_progress_change_post_comment(progress_before)

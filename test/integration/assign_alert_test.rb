@@ -47,13 +47,35 @@ class AssignAlertTest < ActionDispatch::IntegrationTest
     select 'Piet'
     fill_in 'alert_tag_list', with: ExampleAlert.tag
 
-    assert_difference('Alert.count') do
-      click_on 'Publiceer melding'
+    Sidekiq::Testing.inline! do
+      assert_difference('Alert.count') do
+        click_on 'Publiceer melding'
+      end
+
+      alert = Alert.last
+      email = ActionMailer::Base.deliveries.last
+      assert_equal alert.assignee.email, email.to[0]
+    end
+  end
+
+  test 'assigned user gets an email on existing alert' do
+    sign_in @moderator
+    new_alert = create(:alert, hoa: @hoa, user: @moderator, title: 'Lalalala alert')
+    click_on 'Meldingen'
+    within('#tab1') do
+      click_on new_alert.title
     end
 
-    alert = Alert.last
-    Sidekiq::Testing.inline!
-    email = ActionMailer::Base.deliveries.last
-    assert_equal alert.assignee.email, email.to[0]
+    click_on 'Aanpassen' 
+    select 'Piet Doe', from: 'alert_assignee_id'
+
+    Sidekiq::Testing.inline! do
+      click_on 'Publiceer melding'
+
+      assert Alert.last.assignee, 'Alert should have an assignee'
+
+      email = ActionMailer::Base.deliveries.last
+      assert_equal Alert.last.assignee.email, email.to[0]
+    end
   end
 end
