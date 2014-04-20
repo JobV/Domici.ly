@@ -7,7 +7,7 @@
     - resource.comments.each do |c|
       .comment
         %a.avatar
-          %img{src: "http://semantic-ui.com/images/demo/photo2.jpg"}/
+          %img{src: gravatar_url(c.user)}
         .content
           %a.author
             = c.user.full_name if c.user
