@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :participations
   resources :users, only: [:show]
 
+  get '/help', to: 'help#index', as: :help
+
   get '/profile', to: 'profile#index', as: :profile
   get '/profile/edit', to: 'profile#edit', as: :edit_profile
   patch '/profile/update', to: 'profile#update', as: :update_profile
