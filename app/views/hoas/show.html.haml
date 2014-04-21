@@ -47,8 +47,10 @@
 
       .ui.celled.small.selection.list
         - @owners.each do |owner|
-          .item
+          .item.hover-show
             %img.ui.avatar.image{ src: gravatar_url(owner) }
             = link_to user_path(owner), class: 'content' do
               .header= owner.full_name
               .description= owner.email
+            .right.floated.tiny.teal.ui.button.hover-display
+              Verwijder uit VvE
