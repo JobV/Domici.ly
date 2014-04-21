@@ -1,0 +1,11 @@
+%h3= "Domici.ly support ticket id:"
+
+%p
+  %ul
+    %li= "User: #{@sender.full_name} id: #{@sender.id}"
+    %li= "Org: #{@sender.hoa_name}"
+    %li= "Email: #{@sender.email}"
+    %li= "User since: #{@sender.created_at}"
+
+%p
+  = @text

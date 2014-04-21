@@ -14,8 +14,8 @@ class HelpPageTest < ActionDispatch::IntegrationTest
     sign_in @home_owner
     click_on 'Help'
 
-    fill_in 'Beschrijving van jouw probleem of suggestie', with: 'Woo woo'
-    click_on 'Verstuur naar Support'
+    fill_in 'support_message_body', with: 'Woo woo'
+    click_on 'Verstuur naar JAXONS'
 
     Sidekiq::Testing.inline! do
       email = ActionMailer::Base.deliveries.last

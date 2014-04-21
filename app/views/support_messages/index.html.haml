@@ -1,0 +1,23 @@
+%h1 Listing support_messages
+
+%table
+  %tr
+    %th Body
+    %th User
+    %th Hoa
+    %th
+    %th
+    %th
+
+  - @support_messages.each do |support_message|
+    %tr
+      %td= support_message.body
+      %td= support_message.user_id
+      %td= support_message.hoa_id
+      %td= link_to 'Show', support_message
+      %td= link_to 'Edit', edit_support_message_path(support_message)
+      %td= link_to 'Destroy', support_message, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Support message', new_support_message_path

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :support_messages
+
   devise_for :users, :controllers => { :invitations => 'users/invitations' }
 
   mount RailsAdmin::Engine => '/superadmin', :as => 'rails_admin'
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
   resources :participations
   resources :users, only: [:show]
 
-  get '/help', to: 'help#index', as: :help
+  get '/help', to: 'support_messages#new', as: :help
 
   get '/profile', to: 'profile#index', as: :profile
   get '/profile/edit', to: 'profile#edit', as: :edit_profile
