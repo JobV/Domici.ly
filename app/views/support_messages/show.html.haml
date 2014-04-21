@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Body:
+  = @support_message.body
+%p
+  %b User:
+  = @support_message.user_id
+%p
+  %b Hoa:
+  = @support_message.hoa_id
+
+= link_to 'Edit', edit_support_message_path(@support_message)
+\|
+= link_to 'Back', support_messages_path

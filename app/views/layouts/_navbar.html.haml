@@ -1,7 +1,7 @@
 - if signed_in?
   %br
   .row
-    .small-12.medium-10.medium-centered.column
+    .small-12.medium-12.medium-centered.column
       .ui.inverted.purple.menu.mainnav
         .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
           %i.plus.icon
@@ -35,7 +35,9 @@
             Admin
 
         .right.menu
-
+          = link_to help_path,  class: (@active_tab == 'help' ? 'active item' : 'item') do
+            %i.help.icon
+            Help
           = link_to profile_path, class: (@active_tab == 'profile' ? 'active item' : 'item') do
             %i.user.icon
             = current_user.name

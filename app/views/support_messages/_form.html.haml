@@ -1,0 +1,15 @@
+= form_for @support_message do |f|
+  - if @support_message.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@support_message.errors.count, "error")} prohibited this support_message from being saved:"
+      %ul
+        - @support_message.errors.full_messages.each do |msg|
+          %li= msg
+
+  .ui.form
+    .field
+      %label
+        = f.label 'Beschrijving van jouw probleem of suggestie'
+      = f.text_area :body
+    .actions
+      = f.submit 'Verstuur naar JAXONS', class: 'ui positive button'
