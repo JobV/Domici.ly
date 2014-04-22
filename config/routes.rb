@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   resources :participations
   resources :users, only: [:show]
 
+  post '/users/:id/remove', to: 'users#remove_from_hoa', as: :remove_from_hoa
+
   get '/help', to: 'support_messages#new', as: :help
 
   get '/profile', to: 'profile#index', as: :profile

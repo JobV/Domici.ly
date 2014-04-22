@@ -20,6 +20,8 @@ class HoaAdministrationTest < ActionDispatch::IntegrationTest
     sign_in @moderator
     click_on @hoa.name
     page_should_contain @home_owner.full_name
-    
+    click_on "remove-#{@home_owner.id}"
+
+    assert ! @home_owner.hoa, 'User should be removed from HOA, but is not.'
   end
 end

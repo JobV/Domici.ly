@@ -48,6 +48,18 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
+  # POST /users/1/remove
+  def remove_from_hoa
+    user =  User.find(params[:id])
+    authorize current_user
+    user.hoa = nil
+    if user.save
+      redirect_to hoa_path(current_user.hoa), notice: "#{user.full_name} is verwijderd uit #{current_user.hoa_name}"
+    else
+      redirect_to hoa_path(current_user.hoa), alert: "Whoopsie! Something went wrong!"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -56,6 +68,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params[:user]
+      params.require(:user).permit(:hoa_id)
     end
 end
