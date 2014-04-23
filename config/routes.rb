@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :support_messages
+  get '/help', to: 'support_messages#new', as: :help
 
   devise_for :users, :controllers => { :invitations => 'users/invitations' }
 
@@ -18,10 +19,9 @@ Rails.application.routes.draw do
   resources :hoas
   resources :participations
   resources :users, only: [:show]
-
   post '/users/:id/remove', to: 'users#remove_from_hoa', as: :remove_from_hoa
 
-  get '/help', to: 'support_messages#new', as: :help
+  get '/welcome', to: 'welcome#welcome', as: :welcome
 
   get '/profile', to: 'profile#index', as: :profile
   get '/profile/edit', to: 'profile#edit', as: :edit_profile

@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  protected
+  def after_sign_in_path_for(resource)
+    current_user.hoa ? root_path : welcome_path
+  end
+
+protected
 
   def configure_permitted_parameters
     # Only add some parameters
@@ -18,7 +22,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:invite).concat [:first_name, :last_name, :hoa, :role]
   end
 
-  private
+private
 
   def user_not_authorized
     flash[:error] = "Helaas pindakaas. Die actie mag je niet doen."
