@@ -1,4 +1,5 @@
 class SupportMessagesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_support_message, only: [:show, :edit, :update, :destroy]
 
   # GET /support_messages

@@ -1,4 +1,5 @@
 class ParticipationsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_participation, only: [:show, :edit, :update, :destroy]
 
   # GET /participations
