@@ -1,5 +1,6 @@
 class HomepagesController < ApplicationController
   before_action :set_homepage, only: [:destroy]
+  before_action :set_homepage_by_subdomain, only: [:show, :edit, :update]
 
   # GET /homepages
   def index
@@ -8,7 +9,6 @@ class HomepagesController < ApplicationController
 
   # GET /homepages/1
   def show
-    @homepage = Homepage.find_by(subdomain_name:request.subdomain)
   end
 
   # GET /homepages/new
@@ -50,6 +50,10 @@ class HomepagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_homepage
       @homepage = Homepage.find(params[:id])
+    end
+
+    def set_homepage_by_subdomain
+      @homepage = Homepage.find_by(subdomain_name:request.subdomain)
     end
 
     # Only allow a trusted parameter "white list" through.

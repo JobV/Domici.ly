@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   # before_filter :authenticate_user!
+  before_filter :check_subdomain
 
   include PublicActivity::StoreController
   include Pundit
@@ -10,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    current_user.hoa ? dashboards_path : welcome_path
+    current_user.hoa ? dashboard_index_path : welcome_path
   end
 
 protected
@@ -23,6 +24,14 @@ protected
   end
 
 private
+
+  def check_subdomain
+    if request.subdomain.present?
+      redirect_to new_user_session_path if request.subdomain == 'app'
+    else
+      redirect_to "http://www.domici.ly"
+    end
+  end
 
   def user_not_authorized
     flash[:error] = "Helaas pindakaas. Die actie mag je niet doen."

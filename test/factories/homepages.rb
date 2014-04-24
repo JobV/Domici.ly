@@ -12,5 +12,6 @@
 
 FactoryGirl.define do
   factory :homepage do
+    subdomain_name 'jaxons'
   end
 end
