@@ -12,9 +12,6 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    logger.debug 'BBBBBBBB'
-    logger.debug request.subdomain
-
     redirect_to_correct_subdomain(resource)
   end
 
@@ -25,6 +22,8 @@ class ApplicationController < ActionController::Base
       else
         return dashboard_index_url(subdomain: user.hoa.subdomain_name)
       end
+    else
+      dashboard_index_path
     end
   end
 
