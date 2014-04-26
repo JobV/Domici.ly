@@ -25,18 +25,17 @@ Rails.application.routes.draw do
 
   get '/welcome', to: 'welcome#welcome', as: :welcome
 
-  get '/profile', to: 'profile#index', as: :profile
-  get '/profile/edit', to: 'profile#edit', as: :edit_profile
-  patch '/profile/update', to: 'profile#update', as: :update_profile
-
+  get   '/profile',         to: 'profile#index',  as: :profile
+  get   '/profile/edit',    to: 'profile#edit',   as: :edit_profile
+  patch '/profile/update',  to: 'profile#update', as: :update_profile
 
   resources :dashboard, only: [:index]
 
   constraints(Subdomain) do
-    get '/' => 'homepages#show'  
+    get '/' => 'dashboard#index'  
   end
 
-  root to: 'homepages#show'
+  root to: 'dashboard#index'
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do

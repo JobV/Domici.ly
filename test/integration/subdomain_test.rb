@@ -12,14 +12,18 @@ require 'test_helper'
 #
 # 5. wrongsubdomain.domici.ly -> see homepage
 #
-# 6. wrongsubdomaian.domici.ly/something -> sign in and redirect to subdomain.domici.ly
+# 6. wrongsubdomain.domici.ly/something -> sign in and redirect to subdomain.domici.ly
 
 class SubdomainTest < ActionDispatch::IntegrationTest
   def setup
   end
 
-  test 'domici.ly redirects to www.domici.ly' do
-    visit root_path
-    assert_redirected_to 'http://www.domici.ly'
-  end 
+  # test 'domici.ly redirects to www.domici.ly' do
+  #   visit root_path
+  #   assert_redirected_to 'http://www.domici.ly'
+  # end 
+
+  test 'logging in on wrong subdomain redirects to correct subdomain' do
+    
+  end
 end

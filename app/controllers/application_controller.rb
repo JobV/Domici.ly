@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
-  # before_filter :authenticate_user!
-  before_filter :check_subdomain
+  before_filter :authenticate_user!
+
+  include UrlHelper
 
   include PublicActivity::StoreController
   include Pundit
@@ -11,7 +12,20 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    current_user.hoa ? dashboard_index_path : welcome_path
+    logger.debug 'BBBBBBBB'
+    logger.debug request.subdomain
+
+    redirect_to_correct_subdomain(resource)
+  end
+
+  def redirect_to_correct_subdomain(user)
+    if user.hoa && user.hoa.subdomain_name
+      if request.subdomain == user.hoa.subdomain_name
+        return dashboard_index_path
+      else
+        return dashboard_index_url(subdomain: user.hoa.subdomain_name)
+      end
+    end
   end
 
 protected
@@ -25,18 +39,11 @@ protected
 
 private
 
-  def check_subdomain
-    if request.subdomain.present?
-      redirect_to new_user_session_path if request.subdomain == 'app'
-    else
-      redirect_to "http://www.domici.ly"
-    end
-  end
-
   def user_not_authorized
     flash[:error] = "Helaas pindakaas. Die actie mag je niet doen."
     redirect_to(request.referrer || root_path)
   end
+
 end
 
 ## Include if necessary
