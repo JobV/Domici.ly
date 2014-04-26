@@ -2,10 +2,11 @@
 #
 # Table name: hoas
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  subdomain_name :string(255)
 #
 
 # Home Owners Association, smartass.
@@ -20,4 +21,5 @@ class Hoa < ActiveRecord::Base
   has_many :alerts
   has_many :users
   has_many :events
+  has_one :homepage
 end

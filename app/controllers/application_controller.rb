@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
+  include UrlHelper
+
   include PublicActivity::StoreController
   include Pundit
   protect_from_forgery with: :exception
@@ -10,7 +12,19 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    current_user.hoa ? root_path : welcome_path
+    redirect_to_correct_subdomain(resource)
+  end
+
+  def redirect_to_correct_subdomain(user)
+    if user.hoa && user.hoa.subdomain_name
+      if request.subdomain == user.hoa.subdomain_name
+        return dashboard_index_path
+      else
+        return dashboard_index_url(subdomain: user.hoa.subdomain_name)
+      end
+    else
+      dashboard_index_path
+    end
   end
 
 protected
@@ -28,6 +42,7 @@ private
     flash[:error] = "Helaas pindakaas. Die actie mag je niet doen."
     redirect_to(request.referrer || root_path)
   end
+
 end
 
 ## Include if necessary

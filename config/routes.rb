@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :homepages
+
   resources :support_messages
   get '/help', to: 'support_messages#new', as: :help
 
@@ -23,13 +25,17 @@ Rails.application.routes.draw do
 
   get '/welcome', to: 'welcome#welcome', as: :welcome
 
-  get '/profile', to: 'profile#index', as: :profile
-  get '/profile/edit', to: 'profile#edit', as: :edit_profile
-  patch '/profile/update', to: 'profile#update', as: :update_profile
-
-  root to: 'dashboard#index'
+  get   '/profile',         to: 'profile#index',  as: :profile
+  get   '/profile/edit',    to: 'profile#edit',   as: :edit_profile
+  patch '/profile/update',  to: 'profile#update', as: :update_profile
 
   resources :dashboard, only: [:index]
+
+  constraints(Subdomain) do
+    get '/' => 'dashboard#index'  
+  end
+
+  root to: 'dashboard#index'
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do

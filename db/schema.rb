@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421124607) do
+ActiveRecord::Schema.define(version: 20140423210147) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -97,7 +97,20 @@ ActiveRecord::Schema.define(version: 20140421124607) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "subdomain_name"
   end
+
+  add_index "hoas", ["subdomain_name"], name: "index_hoas_on_subdomain_name", unique: true
+
+  create_table "homepages", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "subdomain_name"
+    t.integer  "hoa_id"
+  end
+
+  add_index "homepages", ["hoa_id"], name: "index_homepages_on_hoa_id"
+  add_index "homepages", ["subdomain_name"], name: "index_homepages_on_subdomain_name", unique: true
 
   create_table "participations", force: true do |t|
     t.integer  "user_id"

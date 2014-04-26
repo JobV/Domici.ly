@@ -52,6 +52,9 @@ def are_attrs_validated?(model, attributes)
   end
 end
 
+# def get_subdomain(subdomain = 'jaxons')
+#   @request.host = "#{subdomain}.localhost"
+# end
 
 class ExampleAlert
   def self.title

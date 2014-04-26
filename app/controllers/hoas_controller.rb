@@ -1,4 +1,5 @@
 class HoasController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_hoa, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, :except => [:index, :create]
 
