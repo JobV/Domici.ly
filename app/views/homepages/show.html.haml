@@ -1,7 +1,10 @@
-%h1 Hello!
-/ %p#notice= notice
-
-
-/ = link_to 'Edit', edit_homepage_path(@homepage)
-/ \|
-/ = link_to 'Back', homepages_path
+- if @homepage
+  %h1= @title
+- else
+  %br
+  .row
+    .medium-12.small-12.medium-centered.column
+      .ui.segment
+        %h2 Er bestaat nog geen vereniging op dit adres!
+        .ui.positive.button
+          Registreer nu bij domici.ly om dit adres in gebruik te nemen!

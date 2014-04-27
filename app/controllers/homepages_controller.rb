@@ -1,6 +1,7 @@
 class HomepagesController < ApplicationController
   before_action :set_homepage, only: [:destroy]
   before_action :set_homepage_by_subdomain, only: [:show, :edit, :update]
+  before_filter :authenticate_user!, except: [:show]
 
   # GET /homepages
   def index
@@ -9,6 +10,8 @@ class HomepagesController < ApplicationController
 
   # GET /homepages/1
   def show
+    # TODO Replace by call to @homepage.title
+    # @title = @homepage.hoa.name
   end
 
   # GET /homepages/new

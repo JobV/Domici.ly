@@ -6,6 +6,7 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  subdomain_name :string(255)
+#  hoa_id         :integer
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

@@ -41,18 +41,18 @@ FactoryGirl.define do
     hoa
   end
 
-  factory :user_without_hoa, class: User do
-    first_name 'John'
-    last_name 'Doe'
-    sequence(:email) { |n| "test#{n}@new.com" }
-    password 'jobiscool'
-    password_confirmation 'jobiscool'
-  end
-
   factory :board_member, class: User do
     first_name 'John'
     last_name 'Doe'
     email 'board@member.com'
+    password 'jobiscool'
+    password_confirmation 'jobiscool'
+  end
+
+  factory :user_without_hoa, class: User do
+    first_name 'John'
+    last_name 'Doe'
+    sequence(:email) { |n| "test_no_hoa@new.com" }
     password 'jobiscool'
     password_confirmation 'jobiscool'
   end

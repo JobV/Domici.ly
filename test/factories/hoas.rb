@@ -14,5 +14,6 @@
 FactoryGirl.define do
   factory :hoa do
     sequence(:name) {|n| "vve#{n}" }
+    sequence(:subdomain_name) {|n| "vve#{n}" }
   end
 end

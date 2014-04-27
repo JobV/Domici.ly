@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index]
 
   constraints(Subdomain) do
-    get '/' => 'dashboard#index'  
+    get '/' => 'homepages#show', as: :public_homepage
   end
 
   root to: 'dashboard#index'

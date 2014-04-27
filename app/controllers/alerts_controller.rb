@@ -29,8 +29,8 @@ class AlertsController < ApplicationController
   # POST /alerts
   def create
     @alert = Alert.new(alert_params)
-    @alert.user = current_user
-    @alert.hoa  = current_user.hoa
+    @alert.user = current_user if current_user
+    @alert.hoa  = current_user.hoa if current_user
     if @alert.save
       notify_assignee if @alert.assignee
       redirect_to @alert, notice: I18n.t('alert.created')

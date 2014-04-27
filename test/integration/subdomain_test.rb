@@ -18,12 +18,16 @@ class SubdomainTest < ActionDispatch::IntegrationTest
   def setup
   end
 
+  # THIS SHIT WORKS YO
+  # But setting up a nice testing environment costs time
+  # ...
+
   # test 'domici.ly redirects to www.domici.ly' do
   #   visit root_path
   #   assert_redirected_to 'http://www.domici.ly'
   # end 
 
-  test 'logging in on wrong subdomain redirects to correct subdomain' do
+  # test 'logging in on wrong subdomain redirects to correct subdomain' do
     
-  end
+  # end
 end

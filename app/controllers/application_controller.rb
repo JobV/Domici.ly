@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
 
   include UrlHelper
 
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
         return dashboard_index_url(subdomain: user.hoa.subdomain_name)
       end
     else
-      user.hoa ? dashboard_index_path : welcome_path
+      user.hoa ? dashboard_index_url(subdomain: 'app') : welcome_url(subdomain: 'app')
     end
   end
 
