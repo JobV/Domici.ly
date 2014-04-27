@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
         return dashboard_index_url(subdomain: user.hoa.subdomain_name)
       end
     else
-      dashboard_index_path
+      user.hoa ? dashboard_index_path : welcome_path
     end
   end
 
