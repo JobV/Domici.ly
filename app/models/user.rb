@@ -66,6 +66,6 @@ class User < ActiveRecord::Base
 
   def hoa_name
     return hoa.name if hoa
-    'JAXONS'
+    'Domici.ly'
   end
 end

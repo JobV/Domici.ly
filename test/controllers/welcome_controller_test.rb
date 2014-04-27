@@ -4,7 +4,7 @@ class WelcomeControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   setup do
-    @user = create(:user)
+    @user = create(:user_without_hoa)
     sign_in @user
   end
 

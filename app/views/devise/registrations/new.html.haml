@@ -1,19 +1,44 @@
-.container
-  .col-md-6.centered
-    %h2 Sign up
+.row
+  .medium-8.medium-centered.column
+
+    %h2 Registreer bij Domici.ly
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
-      %div
-        = f.label :email
-        %br/
-        = f.email_field :email, :autofocus => true
-      %div
-        = f.label :password
-        %br/
-        = f.password_field :password
-      %div
-        = f.label :password_confirmation
-        %br/
-        = f.password_field :password_confirmation
-      %div= f.submit "Sign up"
-    = render "devise/shared/links"
+      .ui.form.segment
+
+        .field
+          %label
+            Email
+          .ui.left.labeled.icon.input
+            = f.email_field :email, :autofocus => true
+            %i.user.icon
+
+        .field
+          %label
+            Voornaam
+          .ui.input
+            = f.text_field :first_name
+
+        .field
+          %label
+            Achternaam
+          .ui.input
+            = f.text_field :last_name
+
+        .field
+          %label
+            Wachtwoord (minimaal 8 karakters)
+          .ui.left.leabeld.icon.input
+            = f.password_field :password
+            %i.icon.lock
+
+        .field
+          %label
+            Wachtwoord nogmaals
+          .ui.left.leabeld.icon.input
+            = f.password_field :password_confirmation
+            %i.icon.lock
+
+        = f.submit "Registreer en log in", class: 'ui positive submit button'
+
+        / # = render "devise/shared/links"
