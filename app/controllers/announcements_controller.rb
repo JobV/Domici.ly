@@ -23,8 +23,10 @@ class AnnouncementsController < ApplicationController
   def create
     @announcement = Announcement.new(announcement_params)
     send_announcement unless @announcement.target_group.blank?
+    @announcement.user = current_user
+    @announcement.hoa  = current_user.hoa
     if @announcement.save
-      redirect_to @announcement, notice: 'Announcement was successfully created.'
+      redirect_to hoa_path(current_user.hoa), notice: 'Mededeling aangemaakt en (eventueel) verstuurd.'
     else
       render :new
     end

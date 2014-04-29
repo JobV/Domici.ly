@@ -28,19 +28,19 @@
     .grouped.inline.fields
       .field
         .ui.radio.checkbox
-          = radio_button_tag :target_group, 'everyone', true
+          = f.radio_button :target_group, 'everyone', checked: true
           %label
         %label= "Alle leden van #{current_user.hoa_name}"
 
       .field
         .ui.radio.checkbox
-          = radio_button_tag :target_group, 'moderators'
+          = f.radio_button :target_group, 'moderators'
           %label
         %label= "Alleen de bestuurders van #{current_user.hoa_name}"
 
       .field
         .ui.radio.checkbox
-          = radio_button_tag :target_group, ''
+          = f.radio_button :target_group, ''
           %label
         %label= "Verstuur geen email."
 
