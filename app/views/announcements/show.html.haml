@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @announcement.title
+%p
+  %b Body:
+  = @announcement.body
+%p
+  %b Hoa:
+  = @announcement.hoa_id
+%p
+  %b User:
+  = @announcement.user_id
+%p
+  %b Target group:
+  = @announcement.target_group
+
+= link_to 'Edit', edit_announcement_path(@announcement)
+\|
+= link_to 'Back', announcements_path

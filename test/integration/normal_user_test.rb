@@ -22,4 +22,9 @@ class NormalUserTest < ActionDispatch::IntegrationTest
     sign_in @user_without_hoa
     # click_on 'Maak een vereniging aan'
   end
+
+  test 'user can not create announcement' do
+    sign_in build(:user)
+    page_should_not_contain 'Mededeling'
+  end
 end

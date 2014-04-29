@@ -1,0 +1,11 @@
+- @active_tab = 'add'
+.row
+  .medium-12.small-12.medium-centered.column
+    .ui.segment
+      %h1.ui.header 
+        .content
+          Nieuwe mededeling
+        .sub.header 
+          = "De mededeling wordt opgenomen op de pagina van #{current_user.hoa_name} en automatisch verzonden naar leden van #{current_user.hoa_name}."
+
+      = render 'form'

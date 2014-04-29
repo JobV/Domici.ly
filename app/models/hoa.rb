@@ -21,5 +21,6 @@ class Hoa < ActiveRecord::Base
   has_many :alerts
   has_many :users
   has_many :events
+  has_many :announcements
   has_one :homepage
 end

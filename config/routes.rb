@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :announcements
+
   resources :homepages
 
   resources :support_messages

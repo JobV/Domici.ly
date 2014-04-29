@@ -1,0 +1,49 @@
+= form_for(@announcement) do |f|
+  - if @announcement.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@announcement.errors.count, "error")
+        prohibited this announcement from being saved:
+      %ul
+        - @announcement.errors.full_messages.each do |msg|
+          %li= msg
+
+  .ui.form
+    .field
+      %label
+        = f.label 'Titel'
+      .ui.input
+        = f.text_field :title
+
+    .field
+      %label
+        = f.label 'Bericht'
+      .ui.input
+        = f.text_area :body
+
+    .field
+      %label
+        = f.label 'Email de mededeling naar:'
+
+    .grouped.inline.fields
+      .field
+        .ui.radio.checkbox
+          = radio_button_tag :target_group, 'everyone', true
+          %label
+        %label= "Alle leden van #{current_user.hoa_name}"
+
+      .field
+        .ui.radio.checkbox
+          = radio_button_tag :target_group, 'moderators'
+          %label
+        %label= "Alleen de bestuurders van #{current_user.hoa_name}"
+
+      .field
+        .ui.radio.checkbox
+          = radio_button_tag :target_group, ''
+          %label
+        %label= "Verstuur geen email."
+
+    .ui.buttons
+      = f.submit 'Publiceer prikker', class: 'ui positive button'
+      = link_to 'Annuleer', (request.referrer || root_path), class: 'ui button'

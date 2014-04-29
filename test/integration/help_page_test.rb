@@ -15,7 +15,7 @@ class HelpPageTest < ActionDispatch::IntegrationTest
     click_on 'Help'
 
     fill_in 'support_message_body', with: 'Woo woo'
-    click_on 'Verstuur naar JAXONS'
+    click_on 'Verstuur naar Domici.ly'
 
     Sidekiq::Testing.inline! do
       email = ActionMailer::Base.deliveries.last
