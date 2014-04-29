@@ -5,7 +5,7 @@ class AlertsController < ApplicationController
 
   # GET /alerts
   def index
-    @alerts     = current_user.hoa.alerts.order('updated_at DESC')
+    @alerts     = current_user.hoa.alerts.includes(:assignee).order('updated_at DESC')
     @new_alerts = @alerts.where(progress: 'new')
     @my_alerts  = @alerts.where(user: current_user)
     @assigned_to_me = @alerts.where(assignee: current_user)
@@ -13,7 +13,7 @@ class AlertsController < ApplicationController
 
   # GET /alerts/1
   def show
-    @comments = @alert.comments
+    @comments = @alert.comments.includes(:user, :hoa)
     @comment = Comment.new(user: current_user)
   end
 

@@ -19,7 +19,6 @@ gem 'unicorn'
 # Devise
 gem 'devise'
 gem 'devise_invitable'
-# gem 'devise-async'
 
 gem 'rails_admin'
 
@@ -56,7 +55,6 @@ gem 'le'
 gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', :require => nil
 
-
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
@@ -76,6 +74,7 @@ group :development do
   gem 'annotate', github: 'ctran/annotate_models'
   gem "binding_of_caller"
   gem "better_errors"
+  gem 'bullet'
 end
 
 group :test do
