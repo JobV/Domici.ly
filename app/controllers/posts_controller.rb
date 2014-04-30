@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to root_path, notice: 'Post was successfully created.'
     else
-      render action: 'new'
+      redirect_to dashboard_index_path
     end
   end
 

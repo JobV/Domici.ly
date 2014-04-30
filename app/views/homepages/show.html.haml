@@ -5,9 +5,14 @@
   .row
     .medium-12.small-12.medium-centered.column
       .ui.segment
+        Hier komt straks de homepage van jouw vereniging (optioneel).
+        %br
+        Suggesties meer dan welkom!
 
-        TODO
+        - unless current_user
+          = link_to new_user_session_path, class: 'ui huge positive button' do
+            Log in
         
         / %h2 Er bestaat nog geen vereniging op dit adres!
-        / .ui.positive.button
+        /  ui.positive.button
         /   Registreer nu bij domici.ly om dit adres in gebruik te nemen!

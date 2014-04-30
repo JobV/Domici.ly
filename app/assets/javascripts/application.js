@@ -66,6 +66,66 @@ ready = function() {
     .sidebar()
   ;
 
+  
+  $('.ui.form')
+    .form({
+      alert_title: {
+        identifier: 'alert_title',
+        rules: [{
+          type: 'empty',
+          prompt: 'Voer een titel in'
+        }]
+      },
+      event_title: {
+        identifier: 'event_title',
+        rules: [{
+          type: 'empty',
+          prompt: 'Voer een titel in'
+        }]
+      },
+      event_date: {
+        identifier: 'datepicker',
+        rules: [{
+          type: 'empty',
+          prompt: 'Kies een datum'
+        }]
+      },
+      event_hour: {
+        identifier: 'event_hour',
+        rules: [{
+          type: 'empty',
+          prompt: 'Voer een tijdstip in'
+        },
+        {
+          type: 'maxLength[2]',
+          prompt: 'Incorrect tijdstip'
+        }]
+      },
+      event_min: {
+        identifier: 'event_min',
+        rules: [{
+          type: 'empty',
+          prompt: 'Voer een tijdstip in'
+        },
+        {
+          type: 'maxLength[2]',
+          prompt: 'Incorrect tijdstip'
+        }]
+      },
+      user_email: {
+        identifier: 'user_email',
+        rules: [{
+          type: 'email',
+          prompt: 'Voer een emailadres in'
+        }]
+      }
+    }, 
+    {
+      inline : true,
+      on     : 'blur'
+    })
+  ;
+
   // Alerts tabs
   $('#tabs .tab').hide();
   $('#tabs .tab:first').show();
@@ -78,7 +138,7 @@ ready = function() {
     var currentTab = $(this).attr('href');
     $('#tabs .tab').hide();
     $(currentTab).show();
-    return false
+    return false;
   });
 };
 

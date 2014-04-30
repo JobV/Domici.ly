@@ -5,21 +5,23 @@
         - @alert.errors.full_messages.each do |msg|
           %li= msg
           
-  .ui.form
+  .ui.form.alert
+
     .field
       %label
         = f.label 'Melding'
-      .ui.left.labeled.input
-        = f.text_field :title, class: 'form-control input-lg'
+      .ui.left.input
+        = f.text_field :title
+
     .field
       %label
         = f.label 'Details'
-      = f.text_area :body, class: 'form-control input-lg'
+      = f.text_area :body
 
     - if policy(@alert).assign?
       .field
         %label
-          = f.label 'Toewijzen aan'
+          = f.label 'Toewijzen aan (deze persoon krijgt een email met deze melding)'
         = f.select :assignee_id, @assignees.map {|u| [u.full_name, u.id]}, { include_blank: true }, {class: 'chosen-select', "data-placeholder" => 'Selecteer iemand om die op de hoogte te brengen van deze melding' }
 
     .field

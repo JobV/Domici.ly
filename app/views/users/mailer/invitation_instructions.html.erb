@@ -1,5 +1,5 @@
 <p>Hoi <%= @resource.email %>!</p>
 
-<p>Je bent uitgenodigd voor Domici.ly, waarschijnlijk door iemand in jouw buurt of gebouw! Klik op de link hieronder om de uitnodiging te accepteren.</p>
+<p>Je bent uitgenodigd voor Domici.ly door jouw vereniging <%= @resource.hoa_name %>! Klik op de link hieronder om de uitnodiging te accepteren.</p>
 
-<p><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @token) %></p>
+<p><%= link_to 'Accepteer uitnodiging', accept_invitation_url(@resource, :invitation_token => @token) %></p>

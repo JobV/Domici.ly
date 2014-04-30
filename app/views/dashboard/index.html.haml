@@ -21,10 +21,8 @@
       %br
       %br
       = form_for @post do |f|
-        .ui.fluid.action.input
-          = f.text_field :title, placeholder: 'Plaats een bericht', autofocus: true
-          .ui.icon.button
-            %i.level.down.icon
+        .ui.fluid.input
+          = f.text_field :title, placeholder: 'Plaats een bericht (Enter)', autofocus: true
       
     - @activities.each do |activity|
       .ui.feed.segment

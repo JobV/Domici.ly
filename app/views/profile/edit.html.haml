@@ -1,8 +1,7 @@
 .row
   .medium-12.small-12.medium-centered.column
-
     = form_for(current_user, url: update_profile_path(current_user)) do |f|
-      .ui.raised.segment
+      .ui.segment
         .ui.form
           
           - { first_name: 'Voornaam',

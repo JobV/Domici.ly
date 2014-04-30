@@ -75,6 +75,6 @@ class EventsController < ApplicationController
 
     # REFACTOR: make full SQL query
     def events_with_presence(bool)
-      current_user.participations.where(presence: bool).map { |p| p.event }
+      current_user.participations.includes(:event).where(presence: bool).map { |p| p.event }
     end
 end
