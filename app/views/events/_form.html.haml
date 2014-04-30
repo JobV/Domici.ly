@@ -6,7 +6,7 @@
         - @event.errors.full_messages.each do |msg|
           %li= msg
 
-  .ui.form
+  .ui.form.event
     
     .field
       = f.label 'Afspraak naam'
@@ -62,6 +62,8 @@
           = radio_button_tag :invitees, 'moderators'
           %label
         %label Bestuurders
+
+    .ui.error.message
 
     .actions
       = f.submit 'Afspraak opslaan', class: 'ui positive button'

@@ -12,8 +12,9 @@ class HoasController < ApplicationController
   def show
     authorize @hoa
     @alerts     = current_user.hoa ? current_user.hoa.alerts.order(created_at: :desc) : current_user.alerts.order(created_at: :desc)
-    @moderators = @hoa.users.with_role(:moderator, current_user.hoa)
-    @owners      = @hoa.users - @moderators
+    @moderators   = @hoa.users.with_role(:moderator, current_user.hoa)
+    @maintenance_staff = @hoa.users.with_role(:maintenance, current_user.hoa)
+    @owners      = @hoa.users - @moderators - @maintenance_staff
   end
 
   # GET /hoas/new

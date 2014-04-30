@@ -39,6 +39,16 @@
       .ui.blue.ribbon.label
         Huismeesters
 
+      .ui.celled.small.selection.list
+        - @maintenance_staff.each do |maintenance|
+          .item.hover-show
+            %img.ui.avatar.image{ src: gravatar_url(maintenance) }
+            = link_to user_path(maintenance), class: 'content' do
+              .header= maintenance.full_name
+              .description= maintenance.email
+            = link_to remove_from_hoa_path(maintenance), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{maintenance.id}" do
+              Verwijder uit vereniging
+
       %br
       %br
 

@@ -21,6 +21,7 @@ module ApplicationHelper
 
   def pretty_role(user)
     return 'Bestuurder' if moderator?(user)
+    return 'Huismeester' if maintenance?(user)
     'Eigenaar'
   end
 

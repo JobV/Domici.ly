@@ -1,9 +1,6 @@
 = form_for(@announcement) do |f|
   - if @announcement.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@announcement.errors.count, "error")
-        prohibited this announcement from being saved:
+    .ui.red.message
       %ul
         - @announcement.errors.full_messages.each do |msg|
           %li= msg
