@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :support_messages
   get '/help', to: 'support_messages#new', as: :help
+  get '/updates', to: 'static_pages#updates', as: :updates
 
   devise_for :users, :controllers => { :invitations => 'users/invitations' }
 
