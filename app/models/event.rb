@@ -16,9 +16,9 @@
 class Event < ActiveRecord::Base
   # Validations
   validates :date,
+            :title,
             :user_id,
             :hoa_id,
-            :title,
             presence: true
 
   attr_writer :hour, :min

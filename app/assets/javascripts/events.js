@@ -1,12 +1,5 @@
 var ready;
 ready = function() {
-
-  // $('.ui.dropdown')
-  //   .form(validationRules, {
-  //     inline : true,
-  //     on     : 'blur'
-  //   })
-  // ;
   
   $('.ui.form')
     .form({
@@ -16,9 +9,28 @@ ready = function() {
           type: 'empty',
           prompt: 'Voer een titel in'
         }]
+      },
+      event_hour: {
+        identifier: 'event_hour',
+        rules: [{
+          type: 'empty',
+          prompt: 'Voer een tijdstip in'
+        }]
+      },
+      event_min: {
+        identifier: 'event_min',
+        rules: [{
+          type: 'empty',
+          prompt: 'Voer een tijdstip in'
+        }]
       }
+    }, 
+    {
+      inline : true,
+      on     : 'blur'
     })
   ;
+
 };
 
 $(document).ready(ready);

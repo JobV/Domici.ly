@@ -1,7 +1,6 @@
 = form_for @event do |f|
   - if @event.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+    .ui.error.message
       %ul
         - @event.errors.full_messages.each do |msg|
           %li= msg
@@ -24,7 +23,7 @@
 
       .field
         %label
-          = f.label 'Uren'
+          = f.label 'Tijd: Uur'
         .ui.left.icon.input
           %input{ type: :text, id: 'event_hour', name: 'event[hour]', value: @hour}
           %i.time.icon
@@ -66,7 +65,7 @@
     .ui.error.message
 
     .actions
-      = f.submit 'Afspraak opslaan', class: 'ui positive button'
+      = f.submit 'Afspraak opslaan', class: 'ui positive submit button'
       = link_to 'Annuleren', (request.referrer || events_path), class: 'ui button'
 
       - if @event.created_at

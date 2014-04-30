@@ -31,8 +31,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-    @event.date = @event.date.change({hour: params[:event][:hour], min: params[:event][:min]})
     @event.hoa = current_user.hoa
+    @event.date = @event.date.change({hour: params[:event][:hour], min: params[:event][:min]}) if @event.date
     if @event.save
       redirect_to @event, notice: I18n.t('event.created')
     else
