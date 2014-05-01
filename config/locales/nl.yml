@@ -97,6 +97,9 @@ nl:
       year: jaar
   errors: &errors
     format: ! '%{attribute} %{message}'
+    attributes:
+      title: 'Titel'
+
     messages:
       accepted: moet worden geaccepteerd
       blank: moet opgegeven zijn
@@ -207,6 +210,12 @@ nl:
     errors:
       <<: *errors
   activerecord:
+    attributes:
+      alert:
+        title: 'Melding'
+      event:
+        date: 'Datum'
+        title: 'Afspraak naam'
     errors:
       <<: *errors
 

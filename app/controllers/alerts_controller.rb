@@ -1,7 +1,7 @@
 class AlertsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_alert, only: [:show, :edit, :update, :destroy, :remove_tag]
-  before_action :set_assignees, only: [:edit, :new]
+  before_action :set_assignees, only: [:create, :edit, :new]
 
   # GET /alerts
   def index

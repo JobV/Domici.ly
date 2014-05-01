@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to root_path, notice: 'Post was successfully created.'
+      redirect_to dashboard_index_path, notice: 'Bericht geplaatst.'
     else
       redirect_to dashboard_index_path
     end
