@@ -17,7 +17,7 @@
           .ui.relaxed.selection.horizontal.list
             .item
               .ui.avatar.image
-                / = image_tag gravatar_url @alert.user
+                = image_tag gravatar_url @alert.user
               .content
                 .header Melding door
                 = link_to @alert.user.full_name, user_path(@alert.user)
@@ -25,7 +25,7 @@
             .item
               .ui.avatar.image
                 - if @alert.assignee
-                  / = image_tag gravatar_url @alert.assignee
+                  = image_tag gravatar_url @alert.assignee
               .content
                 .header Toegewezen aan
                 - if @alert.assignee
