@@ -3,7 +3,7 @@ class AnnouncementMailer < ActionMailer::Base
 
   def announcement_to_group(announcement)
     @announcement = announcement
-    mail(bcc: recipients_from_target_group, subject: @announcement.title, from: announcement.user.email)
+    mail(bcc: recipients_from_target_group, subject: "[Domici.ly] Mededeling: #{@announcement.title}", from: announcement.user.email)
   end
 
   private

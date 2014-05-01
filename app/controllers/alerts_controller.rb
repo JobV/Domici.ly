@@ -60,7 +60,7 @@ class AlertsController < ApplicationController
   def destroy
     authorize @alert
     @alert.destroy
-    redirect_to root_path, notice: I18n.t('alert.destroyed')
+    redirect_to dashboard_index_path, notice: I18n.t('alert.destroyed')
   end
 
   # POST /alert/1/remove_tag

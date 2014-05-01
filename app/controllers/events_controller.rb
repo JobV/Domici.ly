@@ -44,7 +44,7 @@ class EventsController < ApplicationController
   def update
     original_date = @event.date
     @event.assign_attributes(event_params)
-    @event.date = original_date.change({hour: params[:event][:hour], min: params[:event][:min]})
+    @event.date = @event.date.change({hour: params[:event][:hour], min: params[:event][:min]})
     if @event.save
       redirect_to @event, notice: I18n.t('event.updated')
     else
