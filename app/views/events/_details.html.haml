@@ -1,7 +1,7 @@
 .sub.header
   %p
   .ui.segment
-    .ui.horizontal.divided.list
+    .ui.horizontal.selection.divided.list
       .item
         .content
           .header Datum
@@ -20,17 +20,17 @@
           .header Aangemaakt door
           = event.user.full_name if event.user
 
-      .item
-        .content
-          .header Genodigden
-          Iedereen
-
       / .item
       /   .content
-      /     .header Aanwezig
-      /     3 / 5
+      /     .header Genodigden
+      /     Iedereen
+
+      .item.toggle-sidebar
+        .content
+          .header Aanwezig
+          = @participations.count
 
       .item
         .content
           .header Locatie
-          = event.location
+          = ! event.location.blank? ? event.location : 'Niet gespecificeerd'

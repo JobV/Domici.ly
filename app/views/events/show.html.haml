@@ -14,3 +14,13 @@
         = @event.description
 
     = render 'comments/standard', comment: Comment.new(user: current_user), resource: @event
+
+.ui.right.thin.styled.inverted.red.vertical.menu.presence.sidebar
+  .header.item
+    Aanwezigen
+  - unless @participations.empty?
+    - @participations.each do |p|
+      .item
+        = link_to p.user.full_name, user_path(p.user)
+  - else
+    Uhhh

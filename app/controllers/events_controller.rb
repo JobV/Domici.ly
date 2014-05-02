@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   def show
     @comments = @event.comments
     @participation = @event.participations.find_or_create_by(user: current_user)
+    @participations = @event.participations.where(event: @event)
   end
 
   # GET /events/new

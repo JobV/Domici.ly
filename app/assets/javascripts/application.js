@@ -140,6 +140,17 @@ ready = function() {
     $(currentTab).show();
     return false;
   });
+
+  // $('.presence.sidebar')
+  //   .sidebar('toggle')
+  // ;
+
+  $('.toggle-sidebar').click(function() {
+    $('.presence.sidebar')
+      .sidebar({overlay: true})
+      .sidebar('toggle')
+    ;
+  });
 };
 
 $(document).ready(ready);
