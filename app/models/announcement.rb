@@ -16,4 +16,12 @@ class Announcement < ActiveRecord::Base
   validates :title, :body, presence: true
   belongs_to :hoa
   belongs_to :user
+
+  # Active admin
+  resourcify
+
+  include PublicActivity::Model
+  tracked only: [:create], 
+    owner:  Proc.new{ |controller, model| controller && controller.current_user }, 
+    hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
 end

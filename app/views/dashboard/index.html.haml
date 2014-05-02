@@ -25,6 +25,5 @@
           = f.text_field :title, placeholder: 'Plaats een bericht (Enter)', autofocus: true
       
     - @activities.each do |activity|
-      .ui.feed.segment
-        = render_activity activity
+      = render_activity activity
         

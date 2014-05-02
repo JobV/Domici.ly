@@ -1,25 +1,26 @@
-- if activity.trackable
-  .event
-    .label
-      = render 'public_activity/alert/progress_icons', progress: activity.parameters[:progress_after]
-    .content
-      .date
-        = "#{format_time(activity.created_at)} geleden"
-      .summary
-        = link_to_activity_owner activity
-        heeft
-        = link_to alert_path(activity.trackable) do
-          = activity.trackable.title
-        op
-        = link_to progress_name_from_string(activity.parameters[:progress_after]), alert_path(activity.trackable)
-        gezet
-- else
-  .event
-    .label
-      %i.circular.inverted.red.flag.icon
-    .content
-      .date
-        = "#{format_time(activity.created_at)} geleden"
-      .summary
-        = link_to_activity_owner activity
-        had een melding van status veranderd. De melding is reeds verwijderd.
+.ui.feed.segment
+  - if activity.trackable
+    .event
+      .label
+        = render 'public_activity/alert/progress_icons', progress: activity.parameters[:progress_after]
+      .content
+        .date
+          = "#{format_time(activity.created_at)} geleden"
+        .summary
+          = link_to_activity_owner activity
+          heeft
+          = link_to alert_path(activity.trackable) do
+            = activity.trackable.title
+          op
+          = link_to progress_name_from_string(activity.parameters[:progress_after]), alert_path(activity.trackable)
+          gezet
+  - else
+    .event
+      .label
+        %i.circular.inverted.red.flag.icon
+      .content
+        .date
+          = "#{format_time(activity.created_at)} geleden"
+        .summary
+          = link_to_activity_owner activity
+          had een melding van status veranderd. De melding is reeds verwijderd.

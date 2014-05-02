@@ -1,27 +1,28 @@
-- if activity.trackable
-  .event
-    .label
-      %i.circular.inverted.red.flag.icon
-    .content
-      .date
-        = "#{format_time(activity.created_at)} geleden"
-      .summary
-        = link_to_activity_owner activity
-        heeft
-        = link_to 'een melding', alert_path(activity.trackable)
-        aangemaakt:
-      .extra.text
-        %h3{ style: "margin-top: 0;" }
-          = activity.trackable.title
-        %p
-          = activity.trackable.body
-- else
-  .event
-    .label
-      %i.circular.inverted.red.flag.icon
-    .content
-      .date
-        = "#{format_time(activity.created_at)} geleden"
-      .summary
-        = link_to_activity_owner activity
-        had een melding aangemaakt. Deze is reeds verwijderd.
+.ui.feed.segment
+  - if activity.trackable
+    .event
+      .label
+        %i.circular.inverted.red.flag.icon
+      .content
+        .date
+          = "#{format_time(activity.created_at)} geleden"
+        .summary
+          = link_to_activity_owner activity
+          heeft
+          = link_to 'een melding', alert_path(activity.trackable)
+          aangemaakt:
+        .extra.text
+          %h3{ style: "margin-top: 0;" }
+            = activity.trackable.title
+          %p
+            = activity.trackable.body
+  - else
+    .event
+      .label
+        %i.circular.inverted.red.flag.icon
+      .content
+        .date
+          = "#{format_time(activity.created_at)} geleden"
+        .summary
+          = link_to_activity_owner activity
+          had een melding aangemaakt. Deze is reeds verwijderd.
