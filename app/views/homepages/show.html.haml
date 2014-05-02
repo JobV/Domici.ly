@@ -1,18 +1,20 @@
-- if @homepage
-  %h1= @title
-- else
-  %br
-  .row
-    .medium-12.small-12.medium-centered.column
-      .ui.segment
-        Hier komt straks de homepage van jouw vereniging (optioneel).
-        %br
-        Suggesties meer dan welkom!
-        %br
-        - unless current_user
-          = link_to new_user_session_path, class: 'ui huge positive button' do
-            Log in
-        
-        / %h2 Er bestaat nog geen vereniging op dit adres!
-        /  ui.positive.button
-        /   Registreer nu bij domici.ly om dit adres in gebruik te nemen!
+- @active_tab = 'homepage'
+- unless current_user
+  .logo
+    Domici.ly
+
+.row
+  .small-12.column
+
+    .big-header
+      -if @hoa
+        %h1.title
+          = @hoa.name
+      -else
+        %h3
+          Dit subdomein is nog vrij!
+
+      - unless current_user
+        = link_to new_user_session_path, class: 'ui huge positive button' do
+          Log in
+

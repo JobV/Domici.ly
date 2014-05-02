@@ -12,6 +12,7 @@ class HomepagesController < ApplicationController
   def show
     # TODO Replace by call to @homepage.title
     # @title = @homepage.hoa.name
+    @hoa = find_hoa_by_subdomain
   end
 
   # GET /homepages/new
@@ -57,6 +58,10 @@ class HomepagesController < ApplicationController
 
     def set_homepage_by_subdomain
       @homepage = Homepage.find_by(subdomain_name:request.subdomain)
+    end
+
+    def find_hoa_by_subdomain
+      Hoa.find_by(subdomain_name: request.subdomain)
     end
 
     # Only allow a trusted parameter "white list" through.
