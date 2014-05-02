@@ -45,22 +45,22 @@
       = f.label 'Beschrijving'
       = f.text_area :description
 
-    .field
-      = f.label 'Genodigden'
+    / .field
+    /   = f.label 'Genodigden'
     
-    .grouped.inline.fields
+    / .grouped.inline.fields
 
-      .field
-        .ui.radio.checkbox
-          = radio_button_tag :invitees, 'everyone', true
-          %label
-        %label Iedereen
+    /   .field
+    /     .ui.radio.checkbox
+    /       = radio_button_tag :invitees, 'everyone', true
+    /       %label
+    /     %label Iedereen
 
-      .field
-        .ui.radio.checkbox
-          = radio_button_tag :invitees, 'moderators'
-          %label
-        %label Bestuurders
+    /   .field
+    /     .ui.radio.checkbox
+    /       = radio_button_tag :invitees, 'moderators'
+    /       %label
+    /     %label Bestuurders
 
     .ui.error.message
 

@@ -28,11 +28,15 @@ module ApplicationHelper
   def format_date(date)
     return 'Vandaag' if date.today?
     return 'Gisteren' if (date - 1.day).today?
-    return date.strftime("%d-%m-%Y")
+    return l date, format: :short
   end
 
   def format_event_date(date)
-    date.strftime("%-d %B %Y")
+    l date, format: :shorter
+  end
+
+  def format_event_date_time(date)
+    l date, format: :shorter_with_time
   end
 
   def format_event_time(date)

@@ -15,6 +15,7 @@
 
       .item
         .ui.avatar.image
+          = image_tag gravatar_url event.user
         .content
           .header Aangemaakt door
           = event.user.full_name if event.user

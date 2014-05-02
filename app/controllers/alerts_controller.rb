@@ -13,7 +13,7 @@ class AlertsController < ApplicationController
 
   # GET /alerts/1
   def show
-    @comments = @alert.comments.includes(:user, :hoa)
+    @comments = @alert.comments.includes(:user)
     @comment = Comment.new(user: current_user)
   end
 
