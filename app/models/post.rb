@@ -16,9 +16,13 @@ class Post < ActiveRecord::Base
 
   # Public Activity
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller && controller.current_user }, hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
+  tracked only: [:create],
+    owner: Proc.new{ |controller, model| controller && controller.current_user }, hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
 
   # Associations
   belongs_to :user
   belongs_to :hoa
+
+  # Comments
+  acts_as_commentable
 end

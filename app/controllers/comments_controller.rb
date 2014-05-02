@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
   def destroy
     session[:return_to] = request.referer
     @comment.destroy
-    redirect_to session.delete(:return_to), notice: 'Comment was successfully destroyed.'
+    redirect_to session.delete(:return_to), notice: 'Reactie verwijderd.'
   end
 
   private

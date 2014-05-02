@@ -1,18 +1,18 @@
 - if activity.trackable
-  .ui.feed.segment
-    - @resource = resource_from_comment(activity.trackable)
-    .event
-      .label
-        %img{ src: gravatar_url(activity.owner) }
-      .content
-        .date
-          = "#{format_time(activity.created_at)} geleden"
-        .summary
-          = link_to_activity_owner activity
-          heeft gereageerd op
-          = link_to @resource.title, @resource
-        .extra.text
-          %p
-            = activity.trackable.comment
+  / .ui.feed.segment
+  /   - @resource = resource_from_comment(activity.trackable)
+  /   .event
+  /     .label
+  /       %img{ src: gravatar_url(activity.owner) }
+  /     .content
+  /       .date
+  /         = "#{format_time(activity.created_at)} geleden"
+  /       .summary
+  /         = link_to_activity_owner activity
+  /         heeft gereageerd op
+  /         = link_to @resource.title, @resource
+  /       .extra.text
+  /         %p
+  /           = activity.trackable.comment
 - else
   /iets anders hier

@@ -1,13 +1,45 @@
 - if activity.trackable
-  .ui.feed.segment
-    .event
-      .label
-        %img{ src: gravatar_url(activity.owner) }
-      .content
-        .date
-          = "#{format_time(activity.created_at)} geleden"
-        .summary
-          = link_to_activity_owner activity
-          = activity.trackable.title
+  .ui.segment
+    .ui.threaded.comments
+      .comment
+        %a.avatar
+          %img{ src: gravatar_url(activity.owner) }
+
+        .content
+          %a.author= link_to_activity_owner(activity)
+          .metadata
+            %span.date
+              = "#{format_time(activity.created_at)} geleden"
+          .text
+            = activity.trackable.title
+          .actions
+            - if policy(activity.trackable).destroy?
+              = link_to I18n.t('delete'), post_path(activity.trackable), class: 'delete', method: :delete
+
+        .comments
+          - activity.trackable.comments.includes(:user).each do |comment|
+            .comment
+              %a.avatar
+                %img{ src: gravatar_url(comment.user) }
+
+              .content
+                %a.author
+                  = link_to comment.user.full_name, user_path(comment.user)
+                .metadata
+                  %span.date
+                    = "#{format_time(comment.created_at)} geleden"
+                .text
+                  = comment.comment
+                .actions
+                  - if policy(activity.trackable).destroy?
+                    = link_to I18n.t('delete'), post_comment_path(activity.trackable, comment), class: 'delete', method: :delete
+
+
+    = form_for [activity.trackable, activity.trackable.comments.new(user: current_user)] do |f|
+      .ui.small.fluid.input
+        = f.hidden_field :commentable_type, value: activity.trackable.class
+        = f.hidden_field :commentable_id,   value: activity.trackable.id
+        = f.text_field :comment, placeholder: 'Reageer (Enter)'
+
 - else
   /iets anders hier

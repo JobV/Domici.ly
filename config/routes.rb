@@ -19,8 +19,11 @@ Rails.application.routes.draw do
   resources :events do
     resources :comments
   end
+
+  resources :posts do
+    resources :comments
+  end
   
-  resources :posts
   resources :hoas
   resources :participations
   resources :users, only: [:show]
