@@ -100,6 +100,7 @@ nl:
     format: ! '%{attribute} %{message}'
     attributes:
       title: 'Titel'
+      body: 'Bericht'
 
     messages:
       accepted: moet worden geaccepteerd
@@ -237,4 +238,4 @@ nl:
   event:
     created: "Afspraak aangemaakt."
     updated: "Afspraak aangepast."
-    destroyed: "Afspraak verwijderd."
+    destroyed: "Afspraak verwijderd."    
