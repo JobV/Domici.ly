@@ -23,5 +23,5 @@ class Announcement < ActiveRecord::Base
   include PublicActivity::Model
   tracked only: [:create], 
     owner:  Proc.new{ |controller, model| controller && controller.current_user }, 
-    hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
+    hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id if controller.current_user}
 end

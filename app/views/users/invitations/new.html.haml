@@ -3,7 +3,11 @@
 .row
   .medium-12.small-12.medium-centered.column
     .ui.segment
-      %h2= "Nodig nieuw lid uit voor #{current_user.hoa_name}"
+      %h1.ui.header
+        .content
+          = "Nodig nieuw lid uit voor #{current_user.hoa_name}"
+        .sub.header
+          Voor meerdere leden, een email adres per regel.
       .ui.form
         = form_for resource, :as => resource_name, :url => user_invitation_path, :html => {:method => :post} do |f|
           = devise_error_messages!
@@ -11,7 +15,7 @@
             %label
               = f.label 'Emailadres'
             .ui.input
-              = f.text_field :email, class: 'input-lg'
+              = text_area_tag :emails
 
           .field
             %label

@@ -8,16 +8,24 @@ class Users::InvitationsController < Devise::InvitationsController
   # POST /resource/invitation
   def create
     role = params[:role]
-    self.resource = invite_resource
+    emails = params[:emails].split("\n")
 
-    resource.add_role role, resource.hoa
-    if resource.errors.empty?
-      yield resource if block_given?
-      set_flash_message :notice, :send_instructions, :email => self.resource.email if self.resource.invitation_sent_at
-      respond_with resource, :location => after_invite_path_for(resource)
-    else
-      respond_with_navigational(resource) { render :new }
+    emails.each do |e|
+      user = User.invite!(email: e, hoa: current_inviter.hoa)
+      user.add_role role, user.hoa
     end
+
+    redirect_to hoa_path(current_inviter.hoa), notice: 'Uitnodiging(en) verzonden.'
+
+    # TODO Handle errors better
+    # if resource.errors.empty?
+    #   set_flash_message :notice, :send_instructions, :email => self.resource.email if self.resource.invitation_sent_at
+    #   yield resource if block_given?
+    #   respond_with resource, :location => after_invite_path_for(resource)
+    # else
+    #   respond_with_navigational(resource) { render :new }
+    # end
+
   end
 
   # GET /resource/invitation/accept?invitation_token=abcdef
@@ -89,6 +97,6 @@ class Users::InvitationsController < Devise::InvitationsController
 
   private
    def resource_params
-     params.permit(user: [:name, :email,:invitation_token, :hoa, :role])[:user]
+     params.permit(user: [:name, :email, :emails, :invitation_token, :hoa, :role])[:user]
    end
 end

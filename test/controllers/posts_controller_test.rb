@@ -24,7 +24,7 @@ class PostsControllerTest < ActionController::TestCase
       post :create, post: { body: @post.body, title: @post.title }
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_index_path
   end
 
   test "should show post" do
@@ -47,6 +47,6 @@ class PostsControllerTest < ActionController::TestCase
       delete :destroy, id: @post
     end
 
-    assert_redirected_to posts_path
+    assert_redirected_to dashboard_index_path
   end
 end

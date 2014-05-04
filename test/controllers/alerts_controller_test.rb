@@ -42,6 +42,6 @@ class AlertsControllerTest < ActionController::TestCase
       delete :destroy, id: @alert
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_index_path
   end
 end

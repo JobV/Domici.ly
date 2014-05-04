@@ -68,4 +68,9 @@ class User < ActiveRecord::Base
     return hoa.name if hoa
     'Domici.ly'
   end
+
+  def subdomain
+    return hoa.subdomain_name if hoa
+    'app'
+  end
 end

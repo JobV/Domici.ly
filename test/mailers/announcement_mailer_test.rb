@@ -1,10 +1,13 @@
 require 'test_helper'
 
 class AnnouncementMailerTest < ActionMailer::TestCase
+  require 'public_activity/testing'
+  PublicActivity.enabled = false
+
   test 'announcement to everyone' do
+    user = create(:user)
     hoa = create(:hoa)
     5.times { create(:user, hoa: hoa) }
-    user = create(:user)
     announcement = create(:announcement, hoa: hoa, user: user)
 
     email = AnnouncementMailer.announcement_to_group(announcement).deliver
@@ -13,7 +16,7 @@ class AnnouncementMailerTest < ActionMailer::TestCase
 
     assert_equal [user.email], email.from
     assert_equal 5, email.bcc.length
-    assert_equal announcement.title, email.subject
+    assert_equal "[Domici.ly] Mededeling: #{announcement.title}", email.subject
   end
 
   test 'announcement to moderators' do
@@ -29,20 +32,6 @@ class AnnouncementMailerTest < ActionMailer::TestCase
 
     assert_equal [user.email], email.from
     assert_equal 5, email.bcc.length
-    assert_equal announcement.title, email.subject
+    assert_equal "[Domici.ly] Mededeling: #{announcement.title}", email.subject
   end
 end
-  # test "assigned_to_alert" do
-  #   assignee = create(:user)
-  #   assigner = create(:user)
-  #   alert = create(:alert)
-
-  #   email = AssignmentMailer.assigned_to_alert(assigner, assignee, alert).deliver
-  #   assert_not ActionMailer::Base.deliveries.empty?, 
-  #     'Email should not be empty'
-
-  #   # Test the body of the sent email contains what we expect it to
-  #   assert_equal ['info@domici.ly'], email.from
-  #   assert_equal [assignee.email], email.to
-  #   assert_equal "Toegewezen: #{alert.title}", email.subject
-  # end

@@ -3,9 +3,14 @@ require 'test_helper'
 class AnnouncementsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
+  require 'public_activity/testing'
+  PublicActivity.enabled = false
+
   setup do
-    sign_in create(:user)
-    @announcement = create(:announcement)
+    hoa = create(:hoa)
+    user = create(:user, hoa: hoa)
+    @announcement = create(:announcement, user: user, hoa: hoa)
+    sign_in user
   end
 
   test "should get index" do
@@ -24,7 +29,7 @@ class AnnouncementsControllerTest < ActionController::TestCase
       post :create, announcement: { body: @announcement.body, hoa_id: @announcement.hoa_id, target_group: @announcement.target_group, title: @announcement.title, user_id: @announcement.user_id }
     end
 
-    assert_redirected_to announcement_path(assigns(:announcement))
+    assert_redirected_to dashboard_index_path
   end
 
   test "should show announcement" do
