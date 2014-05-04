@@ -3,7 +3,7 @@
   .row
     .small-12.medium-12.medium-centered.column
       .ui.inverted.purple.menu.mainnav
-        = link_to root_path, class: (@active_tab == 'homepage' ? 'active item' : 'item') do
+        = link_to root_url(subdomain: current_user.hoa.subdomain_name), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
           %b Domici.ly
         - if current_user.hoa
           .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
