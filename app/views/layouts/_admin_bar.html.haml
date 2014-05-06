@@ -6,7 +6,7 @@
     %i.sitemap.icon
     .menu
       - Hoa.all.each do |hoa|
-        = link_to hoa.name, change_hoa_path(hoa), class: 'item'
+        = link_to hoa.name, change_hoa_path(hoa), class: 'item', method: :post
 
   .right.menu
     .item
