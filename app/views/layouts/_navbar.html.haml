@@ -1,4 +1,6 @@
 - if signed_in?
+  - if current_user.admin
+    = render 'layouts/admin_bar'
   %br
   .row
     .small-12.medium-12.medium-centered.column

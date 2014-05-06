@@ -1,0 +1,27 @@
+.ui.inverted.red.menu.mainnav
+  = link_to root_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
+    %b ADMIN
+
+  .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
+    %i.sitemap.icon
+    .menu
+      - Hoa.all.each do |hoa|
+        = link_to hoa.name, change_hoa_path(hoa), class: 'item'
+
+  .right.menu
+    .item
+      HOA: 
+      %b
+        = truncate(current_user.hoa.name, length: 10) if current_user.hoa
+
+    .item
+      Latest user:
+      %b= User.last.full_name
+
+    .item
+      Users:
+      %b= User.count
+
+    .item
+      HOAs:
+      %b= Hoa.count
