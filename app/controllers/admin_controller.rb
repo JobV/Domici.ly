@@ -4,6 +4,7 @@ class AdminController < ApplicationController
       hoa = Hoa.find(params[:id])
       current_user.hoa = hoa
       current_user.save
+      current_user.add_role :moderator, hoa
       redirect_to dashboard_index_url(subdomain: hoa.subdomain_name)
     else
       redirect_to dashboard_index_path
