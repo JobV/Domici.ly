@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    authorize @user
     redirect_to root_path unless current_user.hoa == @user.hoa
     @alerts = @user.alerts.includes(:assignee)
     @assigned_alerts = Alert.where(assignee: @user)
@@ -55,9 +56,9 @@ class UsersController < ApplicationController
     authorize current_user
     user.hoa = nil
     if user.save
-      redirect_to hoa_path(current_user.hoa), notice: "#{user.full_name} is verwijderd uit #{current_user.hoa_name}"
+      redirect_to organisation_path, notice: "#{user.full_name} is verwijderd uit #{current_user.hoa_name}"
     else
-      redirect_to hoa_path(current_user.hoa), alert: "Whoopsie! Something went wrong!"
+      redirect_to organisation_path, alert: "Whoopsie! Something went wrong!"
     end
   end
 

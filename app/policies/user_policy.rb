@@ -6,6 +6,10 @@ class UserPolicy < ApplicationPolicy
     @subject = subject
   end
 
+  def show?
+    user.hoa == subject.hoa
+  end
+
   def remove_from_hoa?
     user.has_role?(:moderator, subject.hoa) or user.admin
   end

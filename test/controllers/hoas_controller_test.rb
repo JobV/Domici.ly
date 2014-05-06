@@ -25,7 +25,7 @@ class HoasControllerTest < ActionController::TestCase
       post :create, hoa: { name: 'meeh' }
     end
 
-    assert_redirected_to hoa_path(assigns(:hoa))
+    assert_redirected_to organisation_path
   end
 
   test "should show hoa" do
@@ -40,7 +40,7 @@ class HoasControllerTest < ActionController::TestCase
 
   test "should update hoa" do
     patch :update, id: @hoa, hoa: { name: @hoa.name }
-    assert_redirected_to hoa_path(assigns(:hoa))
+    assert_redirected_to organisation_path
   end
 
   test "should destroy hoa" do

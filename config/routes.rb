@@ -24,7 +24,9 @@ Rails.application.routes.draw do
     resources :comments
   end
   
-  resources :hoas
+  resources :hoas, except: [:show]
+  get '/organisation', to: 'hoas#show', as: :organisation
+
   resources :participations
   resources :users, only: [:show]
   post '/users/:id/remove', to: 'users#remove_from_hoa', as: :remove_from_hoa

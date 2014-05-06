@@ -22,7 +22,7 @@
             / .ui.orange.label
             /   12
           - if current_user.hoa && policy(current_user.hoa).show?
-            = link_to hoa_path(current_user.hoa), class: (@active_tab == 'hoa' ? 'active green item' : 'green item') do
+            = link_to organisation_path, class: (@active_tab == 'hoa' ? 'active green item' : 'green item') do
               %i.users.icon
               = current_user.hoa_name
 

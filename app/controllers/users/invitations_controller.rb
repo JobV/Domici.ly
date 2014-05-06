@@ -10,12 +10,13 @@ class Users::InvitationsController < Devise::InvitationsController
     role = params[:role]
     emails = params[:emails].split("\n")
 
+    # Make this async
     emails.each do |e|
       user = User.invite!(email: e, hoa: current_inviter.hoa)
       user.add_role role, user.hoa
     end
 
-    redirect_to hoa_path(current_inviter.hoa), notice: 'Uitnodiging(en) verzonden.'
+    redirect_to organisation_path, notice: 'Uitnodiging(en) verzonden.'
 
     # TODO Handle errors better
     # if resource.errors.empty?

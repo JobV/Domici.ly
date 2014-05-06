@@ -1,6 +1,6 @@
 class HoasController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_hoa, only: [:show, :edit, :update, :destroy]
+  before_action :set_hoa, only: [:edit, :update, :destroy]
   after_action :verify_authorized, :except => [:index, :create]
 
   # GET /hoas
@@ -10,6 +10,7 @@ class HoasController < ApplicationController
 
   # GET /hoas/1
   def show
+    @hoa = current_user.hoa
     authorize @hoa
     @alerts     = current_user.hoa ? current_user.hoa.alerts.order(created_at: :desc) : current_user.alerts.order(created_at: :desc)
     @moderators   = @hoa.users.with_role(:moderator, current_user.hoa)
@@ -32,7 +33,7 @@ class HoasController < ApplicationController
   def create
     @hoa = Hoa.new(hoa_params)
     if @hoa.save
-      redirect_to @hoa, notice: 'Hoa was successfully created.'
+      redirect_to organisation_path, notice: 'Hoa was successfully created.'
     else
       render action: 'new'
     end
@@ -42,7 +43,7 @@ class HoasController < ApplicationController
   def update
     authorize @hoa
     if @hoa.update(hoa_params)
-      redirect_to @hoa, notice: 'Hoa was successfully updated.'
+      redirect_to organisation_path, notice: 'Hoa was successfully updated.'
     else
       render action: 'edit'
     end
