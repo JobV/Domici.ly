@@ -48,7 +48,7 @@
               %i.delete.icon
 
       .ui.divider
-      %p.alert
-        = @alert.body
+      .alert-body
+        = simple_format @alert.body
 
     = render 'comments/standard', comment: @comment, resource: @alert
