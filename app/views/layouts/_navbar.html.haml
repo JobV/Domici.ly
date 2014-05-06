@@ -24,7 +24,7 @@
           - if current_user.hoa && policy(current_user.hoa).show?
             = link_to organisation_path, class: (@active_tab == 'hoa' ? 'active green item' : 'green item') do
               %i.users.icon
-              = current_user.hoa_name
+              = truncate(current_user.hoa_name, length: 20)
 
           = link_to alerts_path, class: (@active_tab == 'alerts' ? 'active green item' : 'green item') do
             %i.warning.icon
@@ -49,7 +49,7 @@
             Help
           = link_to profile_path, class: (@active_tab == 'profile' ? 'active item' : 'item') do
             %i.user.icon
-            = current_user.name
+            = truncate(current_user.name, length: 23, separator: '@', omission: '')
           = link_to destroy_user_session_path, class: 'item icon', method: :delete do
             %i.sign.out.icon
 
