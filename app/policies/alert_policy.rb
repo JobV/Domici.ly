@@ -23,7 +23,7 @@ class AlertPolicy < ApplicationPolicy
   end
 
   def part_of_hoa?
-    user.hoa == alert.hoa
+    user.hoa == alert.hoa or alert.user == user or user.admin
   end
 
   def admin_moderator_or_maintenance?
