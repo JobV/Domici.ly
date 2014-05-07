@@ -15,12 +15,22 @@
 
     = render 'comments/standard', comment: Comment.new(user: current_user), resource: @event
 
-.ui.right.thin.styled.inverted.red.vertical.menu.presence.sidebar
-  .header.item
-    Aanwezigen
-  - unless @participations.empty?
-    - @participations.each do |p|
+.ui.right.styled.inverted.red.vertical.menu.presence.sidebar
+
+  - unless @people_present.empty?
+    .header.item
+      = "Aanwezigen (#{@people_present.count})"
+    - @people_present.each do |p|
       .item
         = link_to p.user.full_name, user_path(p.user)
-  - else
-    Uhhh
+
+  - unless @people_absent.empty?
+    .header.item
+      = "Afgemeld (#{@people_absent.count})"
+
+    - @people_absent.each do |a|
+      .item
+        = link_to a.user.full_name, user_path(a.user)
+
+  .header.item
+    = "Geen bericht: #{pluralize(@no_status, 'persoon')}"

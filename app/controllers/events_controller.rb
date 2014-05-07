@@ -14,7 +14,11 @@ class EventsController < ApplicationController
     authorize @event
     @comments = @event.comments
     @participation = @event.participations.find_or_create_by(user: current_user)
-    @participations = @event.participations.where(event: @event)
+
+    participations  = @event.participations.where(event: @event)
+    @people_present = participations.where(presence: true)
+    @people_absent  = participations.where(presence: false)
+    @no_status      = (current_user.hoa.users - @people_absent - @people_present).count
   end
 
   # GET /events/new
