@@ -1,7 +1,11 @@
 class AlertsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_alert, only: [:show, :edit, :update, :destroy, :remove_tag]
+
+  before_action :set_alert, 
+    only: [:show, :edit, :update, :destroy, :remove_tag]
   before_action :set_assignees, only: [:create, :edit, :new]
+
+  # after_action :verify_authorized, except: [:index]
 
   # GET /alerts
   def index
@@ -13,6 +17,7 @@ class AlertsController < ApplicationController
 
   # GET /alerts/1
   def show
+    authorize @alert
     @comments = @alert.comments.includes(:user)
     @comment = Comment.new(user: current_user)
   end

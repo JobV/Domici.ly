@@ -3,7 +3,7 @@
 - if @assigner == @assignee
   %p= "#{@assignee.name}, je hebt jezelf een melding toegewezen:"
 - else
-  %p= "#{@assignee.name}, je bent een melding toegewezen door #{@assigner.name}:"
+  %p= "#{@assignee.name}, een melding is door #{@assigner.name} aan je toegewezen:"
 
 %h2
   = @alert.title

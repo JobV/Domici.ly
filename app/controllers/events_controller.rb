@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
+    authorize @event
     @comments = @event.comments
     @participation = @event.participations.find_or_create_by(user: current_user)
     @participations = @event.participations.where(event: @event)

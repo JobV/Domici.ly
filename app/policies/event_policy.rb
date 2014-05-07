@@ -6,12 +6,20 @@ class EventPolicy < ApplicationPolicy
     @event = event
   end
 
+  def show?
+    part_of_hoa?
+  end
+
   def destroy?
     admin_moderator_or_owner?
   end
 
   def update?
     admin_moderator_or_owner?
+  end
+
+  def part_of_hoa?
+    user.hoa == event.hoa
   end
 
   def admin_moderator_or_owner?

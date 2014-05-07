@@ -4,9 +4,10 @@ class EventsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   
   setup do
-    @user = create(:user)
+    @hoa  = create(:hoa)
+    @user = create(:user, hoa: @hoa)
     sign_in @user
-    @event = create(:event, user: @user)
+    @event = create(:event, user: @user, hoa: @hoa)
   end
 
   test "should get index" do
