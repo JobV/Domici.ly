@@ -12,6 +12,8 @@
                 = f.label name
               = f.text_field key
 
+          .ui.message
+            = link_to "Klik hier om uw wachtwoord aan te passen", edit_user_registration_path
           .ui.buttons
             = f.submit 'Sla aanpassingen op', class: 'ui positive button'
             = link_to 'Annuleer', profile_path, class: 'ui button'

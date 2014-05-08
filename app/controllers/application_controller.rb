@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   include PublicActivity::StoreController
   include Pundit
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -36,6 +36,10 @@ protected
     devise_parameter_sanitizer.for(:sign_up).concat [:first_name, :last_name]
 
     devise_parameter_sanitizer.for(:invite).concat [:first_name, :last_name, :hoa, :role, :emails]
+
+    devise_parameter_sanitizer.for(:account_update) { |u| 
+          u.permit(:password, :password_confirmation, :current_password) 
+        }
   end
 
 private
