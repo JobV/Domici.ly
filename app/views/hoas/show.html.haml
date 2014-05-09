@@ -15,7 +15,7 @@
           = link_to new_user_invitation_path, id: 'new-member' do
             .ui.labeled.mini.icon.button
               %i.add.icon
-              Nieuw Lid
+              Nieuwe Leden
 
       %br
 
@@ -25,42 +25,45 @@
       %br
       %br
 
-      - @moderators.each do |moderator|
-        = link_to user_path(moderator), class:  'ui circular image dimmable' do
-          .ui.dimmer
-            .content
-              .center
-                = moderator.full_name
-          %img{ src: "#{big_gravatar moderator, 120}"}
+      - if ! @moderators.empty?
+        - @moderators.each do |moderator|
+          = link_to user_path(moderator), class:  'ui circular image dimmable' do
+            .ui.dimmer
+              .content
+                .center
+                  = moderator.name
+            %img{ src: "#{big_gravatar moderator, 80}"}
 
-      %br
-      %br
+        %br
+        %br
 
-      .ui.blue.ribbon.label
-        Huismeesters
+      - if ! @maintenance_staff.empty?
+        .ui.blue.ribbon.label
+          Huismeesters
 
-      .ui.celled.small.selection.list
-        - @maintenance_staff.each do |maintenance|
-          .item.hover-show
-            %img.ui.avatar.image{ src: gravatar_url(maintenance) }
-            = link_to user_path(maintenance), class: 'content' do
-              .header= maintenance.full_name
-              .description= maintenance.email
-            = link_to remove_from_hoa_path(maintenance), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{maintenance.id}" do
-              Verwijder uit vereniging
+        .ui.celled.small.selection.list
+          - @maintenance_staff.each do |maintenance|
+            .item.hover-show
+              %img.ui.avatar.image{ src: gravatar_url(maintenance) }
+              = link_to user_path(maintenance), class: 'content' do
+                .header= maintenance.full_name
+                .description= maintenance.email
+              = link_to remove_from_hoa_path(maintenance), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{maintenance.id}" do
+                Verwijder uit vereniging
 
-      %br
-      %br
+        %br
+        %br
 
-      .ui.green.ribbon.label
-        Eigenaars
+      - if ! @owners.empty?
+        .ui.green.ribbon.label
+          Eigenaars
 
-      .ui.celled.small.selection.list
-        - @owners.each do |owner|
-          .item.hover-show
-            %img.ui.avatar.image{ src: gravatar_url(owner) }
-            = link_to user_path(owner), class: 'content' do
-              .header= owner.full_name
-              .description= owner.email
-            = link_to remove_from_hoa_path(owner), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{owner.id}" do
-              Verwijder uit vereniging
+        .ui.celled.small.selection.list
+          - @owners.each do |owner|
+            .item.hover-show
+              %img.ui.avatar.image{ src: gravatar_url(owner) }
+              = link_to user_path(owner), class: 'content' do
+                .header= owner.full_name
+                .description= owner.email
+              = link_to remove_from_hoa_path(owner), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{owner.id}" do
+                Verwijder uit vereniging

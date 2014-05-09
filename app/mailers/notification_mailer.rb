@@ -5,6 +5,6 @@ class NotificationMailer < ActionMailer::Base
     @alert    = alert
     @comment  = comment
     @user_email     = user_email
-    mail(to: @user_email, subject: "[Domici.ly] Reactie op #{@alert.title}")
+    mail(to: @user_email, subject: "[Domici.ly] Reactie op #{@alert.title}", content_type: "text/html")
   end
 end
