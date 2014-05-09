@@ -1,0 +1,8 @@
+= "#{@comment.user.full_name}:"
+%br
+= @comment.comment
+%br
+%br
+= "--"
+%br
+= "Bekijk #{link_to 'deze melding', alert_url(@alert)} in #{link_to 'Domici.ly', dashboard_index_url}"

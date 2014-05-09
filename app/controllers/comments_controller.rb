@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
-  after_action :set_collaborators, only: [:create]
+  after_action :set_collaborators,    only: [:create]
+  after_action :notify_collaborators, only: [:create]
 
   # GET /comments
   def index
@@ -76,6 +77,16 @@ class CommentsController < ApplicationController
 
     def add_user_to_collaboration(user)
       @comment.commentable.collaborations.create(user: current_user, collaborable_type: @comment.commentable_type, collaborable_id: @comment.commentable_id)
+    end
+
+    def notify_collaborators
+      # Only for Alert so far.
+      if @comment.commentable_type == 'Alert'
+        emails = @comment.commentable.collaborations.map {|c| c.user.email} - [current_user.email]
+        emails.each do |email|
+          NotificationMailer.delay.comment_on_alert(@comment.commentable, @comment, email)
+        end
+      end
     end
 end
     
