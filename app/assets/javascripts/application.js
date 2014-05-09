@@ -146,10 +146,16 @@ ready = function() {
   // ;
 
   $('.toggle-sidebar').click(function() {
-    $('.presence.sidebar')
+    $('.sidebar')
       .sidebar({overlay: true})
       .sidebar('toggle')
     ;
+  });
+
+  $('.disable-sidebar').click(function(argument) {
+    $('.sidebar')
+      .sidebar('toggle')
+      ;
   });
 };
 

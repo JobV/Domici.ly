@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
+  after_action :set_collaborators, only: [:create]
+
   # GET /comments
   def index
     @comments = Comment.all
@@ -61,4 +63,19 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:comment, :commentable_id, :commentable_type, :user_id)
     end
+
+    def set_collaborators
+      unless collaboration_exists?(current_user)
+        add_user_to_collaboration(current_user)
+      end
+    end
+
+    def collaboration_exists?(user)
+      @comment.commentable.collaborations.exists?(user: user)
+    end
+
+    def add_user_to_collaboration(user)
+      @comment.commentable.collaborations.create(user: current_user, collaborable_type: @comment.commentable_type, collaborable_id: @comment.commentable_id)
+    end
 end
+    

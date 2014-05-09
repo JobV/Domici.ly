@@ -30,7 +30,6 @@
 #
 
 class User < ActiveRecord::Base
-  rolify
 
   # unread gem
   acts_as_reader
@@ -40,13 +39,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
-  has_many :alerts
+  has_many :alerts 
   has_many :announcements
   belongs_to :hoa
   has_many :participations
   has_many :events, through: :participations
+  has_many :collaborations
 
   attr_reader :role
+  rolify
 
   def name
     return first_name unless first_name.blank?

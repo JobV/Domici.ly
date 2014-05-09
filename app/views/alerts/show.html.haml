@@ -39,6 +39,10 @@
                 = "#{format_time(@alert.created_at)} geleden"    
             
 
+            .item.toggle-sidebar
+              .content
+                .header Deelnemers
+                = "#{@alert.collaborations.count} (klik voor details)"
 
       %p
         - @alert.tags.each do |tag|
@@ -52,3 +56,23 @@
         = simple_format @alert.body
 
     = render 'comments/standard', comment: @comment, resource: @alert
+
+.ui.styled.sidebar.disable-sidebar
+  
+  .ui.menu
+    .item.header
+      = "Deelnemers (#{@alert.collaborations.count})"
+
+    - @alert.collaborations.includes(:user).each do |collaboration|
+      .item
+        .ui.avatar.image
+          = image_tag gravatar_url collaboration.user
+        = link_to collaboration.user.full_name, user_path(collaboration.user)
+
+  - if @collaboration
+    = link_to alert_collaboration_path(@alert, @collaboration), method: :delete, class: ' ui black fluid button' do
+      Stop deelname
+
+  - else
+    = link_to alert_collaborations_path(@alert, @new_collaboration, collaborable_type: @alert.class, collaborable_id: @alert.id), method: :post, class: 'ui positive fluid button' do
+      Volg melding

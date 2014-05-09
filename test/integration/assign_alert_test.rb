@@ -56,6 +56,8 @@ class AssignAlertTest < ActionDispatch::IntegrationTest
       email = ActionMailer::Base.deliveries.last
       assert_equal alert.assignee.email, email.to[0]
     end
+
+    assert_equal Alert.last.collaborations.length, 2, 'Should have two collaborations: one for current and other for assignee'
   end
 
   test 'assigned user gets an email on existing alert' do

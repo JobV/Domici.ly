@@ -4,7 +4,7 @@
     Discussie
 
   .ui.comments
-    - resource.comments.each do |c|
+    - resource.comments.includes(:user).each do |c|
       .comment
         %a.avatar
           %img{src: gravatar_url(c.user)}

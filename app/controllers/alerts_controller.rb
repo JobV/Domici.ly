@@ -5,6 +5,8 @@ class AlertsController < ApplicationController
     only: [:show, :edit, :update, :destroy, :remove_tag]
   before_action :set_assignees, only: [:create, :edit, :new]
 
+  after_action :set_collaborators, only: [:create, :update]
+
   # after_action :verify_authorized, except: [:index]
 
   # GET /alerts
@@ -20,6 +22,8 @@ class AlertsController < ApplicationController
     authorize @alert
     @comments = @alert.comments.includes(:user)
     @comment = Comment.new(user: current_user)
+    @collaboration = @alert.collaborations.find_by(user: current_user)
+    @new_collaboration = @alert.collaborations.new(user: current_user)
   end
 
   # GET /alerts/new
@@ -114,5 +118,18 @@ class AlertsController < ApplicationController
         comment.save
         Comment.public_activity_on
       end
+    end
+
+    def set_collaborators
+      add_user_as_collaborator(current_user)
+      add_user_as_collaborator(@alert.assignee) if @alert.assignee
+    end
+
+    def add_user_as_collaborator(user)
+      @alert.collaborations.create(user: user) unless collaboration_exists?(user)
+    end
+
+    def collaboration_exists?(user)
+      @alert.collaborations.exists?(user: user)
     end
 end

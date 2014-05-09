@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :alerts do
     resources :comments
+    resources :collaborations
     post '/remove_tag', to: 'alerts#remove_tag', as: :remove_tag
   end
 
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   resources :hoas, except: [:show]
   get '/organisation', to: 'hoas#show', as: :organisation
 
+  
   resources :participations
   resources :users, only: [:show]
   post '/users/:id/remove', to: 'users#remove_from_hoa', as: :remove_from_hoa

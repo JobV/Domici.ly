@@ -47,6 +47,8 @@ class Alert < ActiveRecord::Base
   belongs_to :user
   belongs_to :assignee, class_name: 'User', foreign_key: :assignee_id
   belongs_to :hoa
+  
+  has_many :collaborations, as: :collaborable
 
   def new?
     self.progress == 'new'

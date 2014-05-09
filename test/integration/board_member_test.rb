@@ -39,6 +39,8 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     page_should_contain ExampleAlert.body
     page_should_contain ExampleAlert.tag
 
+    assert_equal Alert.last.collaborations.length, 2, 'On create of Alert, a collaboration should be made including the current user and the assignee.'
+
     # page_should_not_contain @alert.body
   end
 end
