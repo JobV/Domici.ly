@@ -1,25 +1,25 @@
 %table.ui.basic.table.segment
   %thead
     %tr
-      %th Status
-      %th Melding
-      %th Toegewezen aan
-      %th Laatste aanpassing
+      %th.sort{ "data-sort" => "state"} Status
+      %th.sort{ "data-sort" => "title"} Melding
+      %th.sort{ "data-sort" => "assignee"} Toegewezen aan
+      %th.sort{ "data-sort" => "updated_at"} Laatste aanpassing
       %th Acties
 
-  %tbody
+  %tbody.list
     - alerts.each do |alert|
       %tr{ class: "#{'positive' if alert.assignee == current_user}"}
-        %td
+        %td.state
           = render 'alerts/state_label', alert: alert
 
-        %td
+        %td.title
           = link_to alert.title, alert
 
-        %td
+        %td.assignee
           = print_assignee alert
 
-        %td
+        %td.updated_at
           = "#{format_time(alert.updated_at)} geleden"
 
         %td.right

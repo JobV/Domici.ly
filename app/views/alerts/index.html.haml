@@ -2,40 +2,28 @@
 .row
   .medium-12.small-12.medium-centered.column
 
-    .ui.segment
+    #alerts-table
+      .ui.top.attached.segment
+        .ui.small.icon.input.alert-search
+          %input.search{placeholder: 'Zoek op melding..', style: {width: "300px"}}
+          %i.inverted.search.icon
 
-      = link_to 'Nieuwe Melding', new_alert_path, class: 'ui button'
+        .ui.small.icon.black.button.sort{ "data-sort" => "updated_at" }
+          %i.sort.icon
+          Update
 
-      .ui.divider
+        .ui.small.icon.black.button.sort{ "data-sort" => "assignee" }
+          %i.sort.icon
+          Toegewezen
 
-      .ui.tabular.menu
-        %a.item{href: '#tab1'} 
-          Alle
-          .ui.label
-            = @alerts.count
-        %a.item{href: '#tab2'} 
-          Nieuw
-          .ui.label
-            = @new_alerts.count
-        %a.item{href: '#tab3'}
-          Aangemaakt
-          .ui.label
-            = @my_alerts.count
-        %a.item{href: '#tab4'}
-          Toegewezen aan mij
-          .ui.label
-            = @assigned_to_me.count
+        .ui.small.icon.black.button.sort{ "data-sort" => "state" }
+          %i.sort.icon
+          Status
 
+        = link_to new_alert_path, id: 'new-alert' do
+          .ui.labeled.small.green.icon.button.float-right
+            %i.add.icon
+            Melding
 
-      #tabs
-        .tab#tab1
-          = render 'alerts/table', alerts: @alerts
-
-        .tab#tab2
-          = render 'alerts/table', alerts: @new_alerts
-
-        .tab#tab3
-          = render 'alerts/table', alerts: @my_alerts
-
-        .tab#tab4
-          = render 'alerts/table', alerts: @assigned_to_me
+      .ui.attached.segment
+        = render 'alerts/table', alerts: @alerts

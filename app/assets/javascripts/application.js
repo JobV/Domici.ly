@@ -17,6 +17,7 @@
 //= require moment
 //= require pikaday
 //= require chosen-jquery
+//= require list
 //= require_tree .
 
 var ready;
@@ -157,6 +158,12 @@ ready = function() {
       .sidebar('toggle')
       ;
   });
+
+  var options = {
+    valueNames: ['state', 'title','assignee', 'updated_at']
+  };
+
+  var alertsTable = new List('alerts-table', options);
 };
 
 $(document).ready(ready);
