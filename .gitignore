@@ -18,3 +18,5 @@
 /coverage
 
 dump.rdb
+
+.ruby-version
