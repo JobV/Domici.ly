@@ -19,20 +19,20 @@
 
       %br
 
-      .ui.teal.ribbon.label
-        Bestuurders
-
-      %br
-      %br
-
       - if ! @moderators.empty?
-        - @moderators.each do |moderator|
-          = link_to user_path(moderator), class:  'ui circular image dimmable' do
-            .ui.dimmer
-              .content
-                .center
-                  = moderator.name
-            %img{ src: "#{big_gravatar moderator, 80}"}
+        .ui.green.ribbon.label
+          Bestuurders
+
+        .ui.celled.small.selection.list
+          - @moderators.each do |moderator|
+            .item.hover-show
+              %img.ui.avatar.image{ src: gravatar_url(moderator) }
+              = link_to user_path(moderator), class: 'content' do
+                .header= moderator.full_name
+                .description= moderator.email
+              = link_to remove_from_hoa_path(moderator), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{moderator.id}" do
+                Verwijder uit vereniging
+
 
         %br
         %br
