@@ -58,6 +58,9 @@ gem 'sinatra', '>= 1.3.0', :require => nil
 # List.js
 gem 'listjs-rails'
 
+# Redis
+gem 'redis-rails'
+
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
