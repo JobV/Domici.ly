@@ -34,10 +34,10 @@
                 Verwijder uit vereniging
 
 
-        %br
-        %br
 
       - if ! @maintenance_staff.empty?
+        %br
+        %br
         .ui.blue.ribbon.label
           Huismeesters
 
@@ -51,10 +51,10 @@
               = link_to remove_from_hoa_path(maintenance), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{maintenance.id}" do
                 Verwijder uit vereniging
 
-        %br
-        %br
 
       - if ! @owners.empty?
+        %br
+        %br
         .ui.green.ribbon.label
           Eigenaars
 

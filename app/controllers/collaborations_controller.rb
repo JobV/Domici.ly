@@ -1,9 +1,11 @@
 class CollaborationsController < ApplicationController
   def create
     @collaboration = Collaboration.new(collaboration_params)
-    @collaboration.user = current_user
-    @collaboration.save
-    redirect_to @collaboration.collaborable
+    if @collaboration.save
+      redirect_to @collaboration.collaborable
+    else
+      redirect_to alerts_path
+    end
   end
 
   def destroy
@@ -16,6 +18,6 @@ class CollaborationsController < ApplicationController
   private
 
   def collaboration_params
-    params.permit(:collaborable_type, :collaborable_id)
+    params.require(:collaboration).permit(:collaborable_type, :collaborable_id, :user_id)
   end
 end

@@ -22,8 +22,12 @@ class AlertsController < ApplicationController
     authorize @alert
     @comments = @alert.comments.includes(:user)
     @comment = Comment.new(user: current_user)
-    @collaboration = @alert.collaborations.find_by(user: current_user)
-    @new_collaboration = @alert.collaborations.new(user: current_user)
+
+    @collaboration      = @alert.collaborations.find_by(user: current_user)
+    @new_collaboration  = @alert.collaborations.new(user: current_user)
+    @collaborations     = @alert.collaborations.includes(:user)
+
+    @users = current_user.hoa.users
   end
 
   # GET /alerts/new
@@ -92,7 +96,7 @@ class AlertsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def alert_params
-      params.require(:alert).permit(:title, :body, :severity, :progress, :assignee_id, :tag_list, :tag)
+      params.require(:alert).permit(:title, :body, :severity, :progress, :assignee_id, :tag_list, :tag, :user_id)
     end
 
     def set_assignees
