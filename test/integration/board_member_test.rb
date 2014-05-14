@@ -31,9 +31,7 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
     click_on 'Publiceer melding'
 
     click_on 'Meldingen'
-    within('#tab1') do
-      click_on ExampleAlert.title
-    end
+    click_on ExampleAlert.title
     
     page_should_contain ExampleAlert.title
     page_should_contain ExampleAlert.body

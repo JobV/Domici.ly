@@ -64,9 +64,7 @@ class AssignAlertTest < ActionDispatch::IntegrationTest
     sign_in @moderator
     new_alert = create(:alert, hoa: @hoa, user: @moderator, title: 'Lalalala alert')
     click_on 'Meldingen'
-    within('#tab1') do
-      click_on new_alert.title
-    end
+    click_on new_alert.title
 
     click_on 'Aanpassen' 
     select 'Piet Doe', from: 'alert_assignee_id'
