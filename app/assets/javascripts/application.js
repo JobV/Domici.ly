@@ -153,6 +153,16 @@ ready = function() {
     ;
   });
 
+  // Hide sidebar on click outside of sidebar
+  $(document).mouseup(function (e) {
+    var container = $('.sidebar');
+
+    if (!container.is(e.target)
+        && container.has(e.target).length === 0) {
+        container.sidebar('hide');
+        }
+  });
+
   $('.disable-sidebar').click(function(argument) {
     $('.sidebar')
       .sidebar('toggle')
