@@ -2,6 +2,10 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+  after_action only: [:show] do
+    @event.mark_as_read! for: current_user
+  end
+  
   # GET /events
   def index
     @events     = current_user.hoa.events.order('date ASC')

@@ -9,7 +9,7 @@
 
   %tbody
     - events.each do |event|
-      %tr
+      %tr{ class: "#{'positive' if event.unread?(current_user)}"}
         %td
           = format_event_date event.date if event.date
 

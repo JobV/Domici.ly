@@ -9,7 +9,7 @@
 
   %tbody.list
     - alerts.each do |alert|
-      %tr{ class: "#{'positive' if alert.assignee == current_user}"}
+      %tr{ class: "#{'positive' if alert.unread?(current_user)}"}
         %td.state
           = render 'alerts/state_label', alert: alert
 
