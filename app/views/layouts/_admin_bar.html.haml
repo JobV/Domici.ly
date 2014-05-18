@@ -1,27 +1,35 @@
-.ui.inverted.red.menu.mainnav
-  = link_to root_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
-    %b ADMIN
+.ui.small.fluid.vertical.menu
+  .header.item
+    Admin
 
-  .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
-    %i.sitemap.icon
-    .menu
-      - Hoa.all.each do |hoa|
-        = link_to hoa.name, change_hoa_path(hoa), class: 'item', method: :post
+  = link_to 'Administration', '/superadmin', class: 'item'
 
-  .right.menu
-    .item
-      HOA: 
-      %b
-        = truncate(current_user.hoa.name, length: 10) if current_user.hoa
+  .item
+    Current org: 
+    %b
+      = truncate(current_user.hoa.name, length: 10) if current_user.hoa
 
-    .item
-      Latest user:
-      %b= User.last.full_name
+  .item
+    Newest user:
+    %b= link_to truncate(User.last.full_name, length: 10), user_path(User.last)
 
-    .item
-      Users:
-      %b= User.count
+  .item
+    Last deploy:
 
-    .item
-      HOAs:
-      %b= Hoa.count
+  .item
+    .ui.label
+      = User.count
+    Users
+
+  .item
+    .ui.label= Hoa.count
+    Organisations
+
+  .ui.item
+    .ui.fluid.selection.dropdown
+      .text
+        Switch Org
+      %i.sitemap.icon
+      .menu
+        - Hoa.all.each do |hoa|
+          = link_to hoa.name, change_hoa_path(hoa), class: 'item', method: :post

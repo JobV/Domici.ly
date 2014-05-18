@@ -33,3 +33,6 @@
     Laatste updates
   %a.item{ href: '/help' }
     Vragen en suggesties
+
+- if current_user.admin
+  = render 'layouts/admin_bar'
