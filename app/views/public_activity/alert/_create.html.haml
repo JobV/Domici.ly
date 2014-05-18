@@ -1,22 +1,24 @@
-.ui.feed.segment
-  - if activity.trackable
-    .event
-      .label
-        %i.circular.inverted.red.flag.icon
-      .content
-        .date
-          = "#{format_time(activity.created_at)} geleden"
-        .summary
-          = link_to_activity_owner activity
-          heeft
-          = link_to 'een melding', alert_path(activity.trackable)
-          aangemaakt:
-        .extra.text
-          %h3{ style: "margin-top: 0;" }
-            = activity.trackable.title
-          %p
-            = activity.trackable.body
-  - else
+- if activity.trackable
+  .ui.top.attached.secondary.segment.alert-feed-top
+    %i.red.flag.icon
+    = link_to_activity_owner activity
+    heeft
+    = link_to 'een melding', alert_path(activity.trackable)
+    aangemaakt.
+    .float-right
+      = "#{format_time(activity.created_at)} geleden"
+  .ui.attached.segment
+    .alert-feed-title
+      = activity.trackable.title
+    .alert-feed-body
+      = activity.trackable.body
+
+  .ui.tiny.secondary.bottom.attached.segment.alert-feed-actions
+    .ui.tiny.horizontal.link.list
+      = link_to 'Bekijk melding', alert_path(activity.trackable), class: 'item'
+
+- else
+  .ui.feed.segment
     .event
       .label
         %i.circular.inverted.red.flag.icon
@@ -26,3 +28,4 @@
         .summary
           = link_to_activity_owner activity
           had een melding aangemaakt. Deze is reeds verwijderd.
+

@@ -22,3 +22,26 @@
 .alert-search {
   width: 300px;
 }
+
+.event {
+  padding: 0 !important;
+}
+
+.alert-feed-top {
+  text-transform: none !important;
+}
+
+.alert-feed-title {
+  font-weight: bold;
+  font-size: 1.2em;
+  // margin-top: 1.5em !important;
+  color: #555;
+}
+
+.alert-feed-body {
+  margin-top: 0.3em !important;
+}
+
+.alert-feed-actions {
+  padding: 4px 15px !important;
+}
