@@ -1,0 +1,35 @@
+.ui.small.fluid.vertical.menu
+  
+  - if @unread_alerts.count > 0
+    .header.item
+      %i.info.icon
+      Laatste updates
+
+    - if @unread_alerts.count == 1
+      = link_to alert_path(@unread_alerts.first), class: 'item' do
+        = "Je hebt een ongelezen melding (klik)."
+    - elsif @unread_alerts.count > 1
+      = link_to alerts_path do
+        = "Je hebt #{@unread_alerts.count} ongelezen meldingen!"
+
+  - unless current_user.got_started?
+    .header.item
+      %i.user.icon
+      Aan de slag met Domici.ly
+
+    - if current_user.first_name.blank? or current_user.last_name.blank?
+      = link_to edit_profile_path, class: 'item' do
+        Geef je naam op in je profiel.
+
+    - if current_user.alerts.count == 0
+      = link_to new_alert_path, class: 'item' do
+        Doe een melding
+
+  .header.item
+    %i.question.icon
+    Over Domici.ly
+
+  %a.item{ href: '/updates' }
+    Laatste updates
+  %a.item{ href: '/help' }
+    Vragen en suggesties

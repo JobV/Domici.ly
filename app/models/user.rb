@@ -74,4 +74,10 @@ class User < ActiveRecord::Base
     return hoa.subdomain_name if hoa
     'app'
   end
+
+  def got_started?
+    ! first_name.blank?
+    ! last_name.blank?
+    ! alerts.last.nil?
+  end
 end

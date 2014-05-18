@@ -24,4 +24,25 @@ class UserTest < ActiveSupport::TestCase
     @user.last_name = nil
     assert_equal @user.email, @user.full_name
   end
+
+  test '#got_started?' do
+    user = create(:user)
+
+    user.first_name = ''
+    user.last_name = ''
+    assert ! user.got_started?, 'user is not started without names'
+
+    user.first_name = 'Job'
+    assert ! user.got_started?, 'user is not started without last_name'
+
+    user.last_name = 'van der Voort'
+    assert ! user.got_started?, 'user is not started without an alert'
+
+    assert_equal 0, user.alerts.count, 'user should not have any alerts'
+    create(:alert, user: user)
+    assert_equal 1, user.alerts.count, 'user should have one alert'
+
+    assert user.got_started?, 'user has names and an alert, should be started'
+
+  end
 end
