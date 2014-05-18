@@ -20,7 +20,7 @@
                 = link_to 'Mededeling', new_announcement_path, class: 'item'
           %a.item{ href: '/dashboard', class: ('active' if @active_tab == 'home') }
             %i.unordered.list.icon
-            / Home
+            Home
             / .ui.orange.label
             /   12
           - if current_user.hoa && policy(current_user.hoa).show?

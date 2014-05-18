@@ -5,7 +5,7 @@
     heeft
     = link_to 'een melding', alert_path(activity.trackable)
     aangemaakt.
-    .float-right
+    .date-right
       = "#{format_time(activity.created_at)} geleden"
   .ui.attached.segment
     .alert-feed-title
@@ -20,14 +20,10 @@
         = "#{activity.trackable.comments.count} reacties"
 
 - else
-  .ui.feed.segment
-    .event
-      .label
-        %i.circular.inverted.red.flag.icon
-      .content
-        .date
-          = "#{format_time(activity.created_at)} geleden"
-        .summary
-          = link_to_activity_owner activity
-          had een melding aangemaakt. Deze is reeds verwijderd.
+  .ui.segment.alert-feed-top
+    %i.circular.inverted.red.flag.icon
+    = link_to_activity_owner activity
+    had een melding aangemaakt. Deze is reeds verwijderd.
+    .date-right
+      = "#{format_time(activity.created_at)} geleden"
 
