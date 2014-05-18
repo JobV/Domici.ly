@@ -40,4 +40,5 @@ class Event < ActiveRecord::Base
     owner:  Proc.new{ |controller, model| controller && controller.current_user }, 
     hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
 
+  has_many :collaborations, as: :collaborable
 end

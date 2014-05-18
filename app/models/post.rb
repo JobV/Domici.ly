@@ -25,4 +25,6 @@ class Post < ActiveRecord::Base
 
   # Comments
   acts_as_commentable
+
+  has_many :collaborations, as: :collaborable
 end

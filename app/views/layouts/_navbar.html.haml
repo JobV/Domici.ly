@@ -1,52 +1,51 @@
 - if signed_in?
-  %br
+  .ui.inverted.domicily-blue.menu.mainnav
+    = link_to dashboard_index_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
+      %b Domici.ly
+    - if current_user.hoa
+      .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
+        %i.plus.icon
+        .menu
+          = link_to 'Melding', new_alert_path, class: 'item'
+          = link_to 'Afspraak', new_event_path, class: 'item'
+          = link_to 'Bericht', dashboard_index_path, class: 'item'
+          - if current_user.hoa && policy(current_user.hoa).show?
+            = link_to 'Lid', new_user_invitation_path, class: 'item'
+          - if policy(Announcement).new?
+            = link_to 'Mededeling', new_announcement_path, class: 'item'
+      %a.item{ href: '/dashboard', class: ('active' if @active_tab == 'home') }
+        %i.unordered.list.icon
+        Home
+        / .ui.orange.label
+        /   12
+      - if current_user.hoa && policy(current_user.hoa).show?
+        = link_to organisation_path, class: (@active_tab == 'hoa' ? 'active green item' : 'green item') do
+          %i.users.icon
+          = truncate(current_user.hoa_name, length: 20)
+
+      = link_to alerts_path, class: (@active_tab == 'alerts' ? 'active green item' : 'green item') do
+        %i.warning.icon
+        Meldingen
+
+      = link_to events_path, class: (@active_tab == 'events' ? 'active green item' : 'green item') do
+        %i.calendar.icon
+        Agenda
+    - else
+      = link_to welcome_path, class: (@active_tab == 'welcome' ? 'active green item' : 'green item') do
+        %i.cloud.icon
+        Start met Domici.ly
+
+    .right.menu
+      = link_to help_path,  class: (@active_tab == 'help' ? 'active item' : 'item') do
+        %i.question.icon
+        Help
+      = link_to profile_path, class: (@active_tab == 'profile' ? 'active item' : 'item') do
+        %i.user.icon
+        = truncate(current_user.name, length: 23, separator: '@', omission: '')
+      = link_to destroy_user_session_path, class: 'item icon', method: :delete do
+        %i.sign.out.icon
   .row
     .small-12.medium-12.medium-centered.column
-      .ui.inverted.purple.menu.mainnav
-        = link_to root_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
-          %b Domici.ly
-        - if current_user.hoa
-          .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
-            %i.plus.icon
-            .menu
-              = link_to 'Melding', new_alert_path, class: 'item'
-              = link_to 'Afspraak', new_event_path, class: 'item'
-              = link_to 'Bericht', dashboard_index_path, class: 'item'
-              - if current_user.hoa && policy(current_user.hoa).show?
-                = link_to 'Lid', new_user_invitation_path, class: 'item'
-              - if policy(Announcement).new?
-                = link_to 'Mededeling', new_announcement_path, class: 'item'
-          %a.item{ href: '/dashboard', class: ('active' if @active_tab == 'home') }
-            %i.unordered.list.icon
-            Home
-            / .ui.orange.label
-            /   12
-          - if current_user.hoa && policy(current_user.hoa).show?
-            = link_to organisation_path, class: (@active_tab == 'hoa' ? 'active green item' : 'green item') do
-              %i.users.icon
-              = truncate(current_user.hoa_name, length: 20)
-
-          = link_to alerts_path, class: (@active_tab == 'alerts' ? 'active green item' : 'green item') do
-            %i.warning.icon
-            Meldingen
-
-          = link_to events_path, class: (@active_tab == 'events' ? 'active green item' : 'green item') do
-            %i.calendar.icon
-            Agenda
-        - else
-          = link_to welcome_path, class: (@active_tab == 'welcome' ? 'active green item' : 'green item') do
-            %i.cloud.icon
-            Start met Domici.ly
-
-        .right.menu
-          = link_to help_path,  class: (@active_tab == 'help' ? 'active item' : 'item') do
-            %i.question.icon
-            Help
-          = link_to profile_path, class: (@active_tab == 'profile' ? 'active item' : 'item') do
-            %i.user.icon
-            = truncate(current_user.name, length: 23, separator: '@', omission: '')
-          = link_to destroy_user_session_path, class: 'item icon', method: :delete do
-            %i.sign.out.icon
 
       - flash.each do |name, msg|
         - if name == 'notice'
