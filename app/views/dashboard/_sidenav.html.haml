@@ -9,7 +9,7 @@
       = link_to alert_path(@unread_alerts.first), class: 'item' do
         = "Je hebt een ongelezen melding (klik)."
     - elsif @unread_alerts.count > 1
-      = link_to alerts_path do
+      = link_to alerts_path, class: 'item' do
         = "Je hebt #{@unread_alerts.count} ongelezen meldingen!"
 
   - unless current_user.got_started?
