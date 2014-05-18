@@ -1,5 +1,5 @@
 - if activity.trackable
-  .ui.top.attached.secondary.segment.alert-feed-top
+  .ui.top.attached.segment.alert-feed-top
     %i.red.flag.icon
     = link_to_activity_owner activity
     heeft
@@ -16,6 +16,8 @@
   .ui.tiny.secondary.bottom.attached.segment.alert-feed-actions
     .ui.tiny.horizontal.link.list
       = link_to 'Bekijk melding', alert_path(activity.trackable), class: 'item'
+      .item
+        = "#{activity.trackable.comments.count} reacties"
 
 - else
   .ui.feed.segment
