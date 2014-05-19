@@ -44,5 +44,8 @@ class UserTest < ActiveSupport::TestCase
 
     assert user.got_started?, 'user has names and an alert, should be started'
 
+    user.first_name = ''
+
+    assert ! user.got_started?, 'user does not have a first name anymore is not started'
   end
 end

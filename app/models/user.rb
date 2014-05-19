@@ -76,8 +76,8 @@ class User < ActiveRecord::Base
   end
 
   def got_started?
-    ! first_name.blank?
-    ! last_name.blank?
+    ! first_name.blank? &&
+    ! last_name.blank? &&
     ! alerts.last.nil?
   end
 end

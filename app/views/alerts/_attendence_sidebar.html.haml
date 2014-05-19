@@ -4,7 +4,7 @@
       Stop deelname
 
   - else
-    = link_to alert_collaborations_path(@alert, @new_collaboration, collaborable_type: @alert.class, collaborable_id: @alert.id), method: :post, class: 'ui positive fluid button' do
+    = link_to alert_collaborations_path(@alert, @new_collaboration, collaboration: {user_id: current_user.id, collaborable_type: @alert.class, collaborable_id: @alert.id}), method: :post, class: 'ui positive fluid button' do
       Volg melding
   
   %br
