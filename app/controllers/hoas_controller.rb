@@ -16,6 +16,9 @@ class HoasController < ApplicationController
     @moderators   = @hoa.users.with_role(:moderator, current_user.hoa)
     @maintenance_staff = @hoa.users.with_role(:maintenance, current_user.hoa)
     @owners      = @hoa.users - @moderators - @maintenance_staff
+
+    current_user.hoa ? @activities = PublicActivity::Activity.where(hoa_id: current_user.hoa.id).includes(:trackable, :owner).order('created_at desc').limit(20) : @activities = []
+    
   end
 
   # GET /hoas/new

@@ -1,24 +1,23 @@
 - @active_tab = 'hoa'
 
-.small-1.column
-  .ui.vertical.labeled.icon.menu
-
-    %a.red.item
-      %i.users.icon
-      Leden
-
-    %a.teal.item
-      %i.settings.icon
-      Opties
-
-    %a.green.item
-      %i.payment.icon
-      Facturatie
 .row
-  
+  .small-2.column.side-buttons
+    .ui.vertical.labeled.icon.menu
+
+      %a.red.item
+        %i.users.icon
+        Leden
+
+      %a.green.item
+        %i.payment.icon
+        Facturatie
+
+      %a.teal.item
+        %i.settings.icon
+        Opties
 
 
-  .medium-11.small-11.column
+  .small-7.column
     .ui.raised.segment
       %h1.ui.blue.header
         %i.users.icon
@@ -34,7 +33,16 @@
               %i.add.icon
               Nieuwe Leden
 
-    .ui.raised.segment
-      = render 'hoas/members'
+    - @activities.each do |activity|
+      = render_activity activity
+    
+    / .ui.raised.segment
+    /   = render 'hoas/members'
 
+  .small-3.column
+    .ui.small.fluid.vertical.menu
+      .header.item
+        Test
 
+      .item
+        Hallo
