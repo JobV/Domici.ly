@@ -18,14 +18,14 @@
 
 
   .small-7.column
-    .ui.raised.segment
+    / .ui.raised.segment
 
-      .ui.horizontal.segment
-        - if current_user.has_role?(:moderator, current_user.hoa) or current_user.admin
-          = link_to new_user_invitation_path, id: 'new-member' do
-            .ui.labeled.mini.icon.button
-              %i.add.icon
-              Nieuwe Leden
+    /   / .ui.horizontal.segment
+    /   /   - if current_user.has_role?(:moderator, current_user.hoa) or current_user.admin
+    /   /     = link_to new_user_invitation_path, id: 'new-member' do
+    /   /       .ui.labeled.mini.icon.button
+    /   /         %i.add.icon
+    /   /         Nieuwe Leden
 
     = render 'dashboard/top_form'
     - @activities.each do |activity|
