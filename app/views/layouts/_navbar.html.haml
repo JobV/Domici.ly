@@ -9,7 +9,7 @@
           = link_to 'Melding', new_alert_path, class: 'item'
           = link_to 'Afspraak', new_event_path, class: 'item'
           = link_to 'Bericht', dashboard_index_path, class: 'item'
-          - if current_user.hoa && policy(current_user.hoa).show?
+          - if current_user.has_role?(:moderator, current_user.hoa)
             = link_to 'Lid', new_user_invitation_path, class: 'item'
           - if policy(Announcement).new?
             = link_to 'Mededeling', new_announcement_path, class: 'item'

@@ -1,8 +1,12 @@
 class Users::InvitationsController < Devise::InvitationsController
 
   def new
-    self.resource = User.new
-    render :new
+    unless current_user.has_role?(:moderator, current_user.hoa)
+      redirect_to root_path
+    else
+      self.resource = User.new
+      render :new
+    end
   end
 
   # POST /resource/invitation

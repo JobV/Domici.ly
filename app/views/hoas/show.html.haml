@@ -30,8 +30,9 @@
               = link_to user_path(moderator), class: 'content' do
                 .header= moderator.full_name
                 .description= moderator.email
-              = link_to remove_from_hoa_path(moderator), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{moderator.id}" do
-                Verwijder uit vereniging
+              - if current_user.has_role?(:moderator, current_user.hoa)
+                = link_to remove_from_hoa_path(moderator), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{moderator.id}" do
+                  Verwijder uit vereniging
 
 
 
@@ -48,8 +49,9 @@
               = link_to user_path(maintenance), class: 'content' do
                 .header= maintenance.full_name
                 .description= maintenance.email
-              = link_to remove_from_hoa_path(maintenance), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{maintenance.id}" do
-                Verwijder uit vereniging
+              - if current_user.has_role?(:moderator, current_user.hoa)
+                = link_to remove_from_hoa_path(maintenance), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{maintenance.id}" do
+                  Verwijder uit vereniging
 
 
       - if ! @owners.empty?
@@ -65,5 +67,6 @@
               = link_to user_path(owner), class: 'content' do
                 .header= owner.full_name
                 .description= owner.email
-              = link_to remove_from_hoa_path(owner), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{owner.id}" do
-                Verwijder uit vereniging
+              - if current_user.has_role?(:moderator, current_user.hoa)
+                = link_to remove_from_hoa_path(owner), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{owner.id}" do
+                  Verwijder uit vereniging
