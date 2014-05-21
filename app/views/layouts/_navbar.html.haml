@@ -54,15 +54,21 @@
             .content
               .header
                 = msg
+          %br
         - elsif name == 'alert'
           .ui.small.floating.error.message
             %i.close.icon
             .content
               .header
                 = msg
+
+          %br
+
         - else
           .ui.small.floating.warning.message
             %i.close.icon
             .content
               .header
                 = msg
+          %br
+          

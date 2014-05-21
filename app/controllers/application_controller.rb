@@ -45,7 +45,7 @@ protected
 private
 
   def user_not_authorized
-    flash[:error] = "Helaas pindakaas. Die actie mag je niet doen."
+    flash[:error] = "Die actie mag je niet doen."
     redirect_to(request.referrer || root_path)
   end
 

@@ -1,11 +1,38 @@
 - @active_tab = 'home'
 
 .row
-  .medium-9.small-12.column
+  .small-2.column.side-buttons
+    .ui.vertical.labeled.icon.menu
+
+      %a.red.item
+        %i.users.icon
+        Leden
+
+      %a.green.item
+        %i.payment.icon
+        Facturatie
+
+      %a.teal.item
+        %i.settings.icon
+        Opties
+
+
+  .small-7.column
+    .ui.raised.segment
+
+      .ui.horizontal.segment
+        - if current_user.has_role?(:moderator, current_user.hoa) or current_user.admin
+          = link_to new_user_invitation_path, id: 'new-member' do
+            .ui.labeled.mini.icon.button
+              %i.add.icon
+              Nieuwe Leden
+
     = render 'dashboard/top_form'
-      
     - @activities.each do |activity|
       = render_activity activity
+    
+    / .ui.raised.segment
+    /   = render 'hoas/members'
 
-  .medium-3.small-12.column
+  .small-3.column
     = render 'dashboard/sidenav'  
