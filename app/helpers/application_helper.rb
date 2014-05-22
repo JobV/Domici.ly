@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+  def current_hoa
+    current_user.hoa
+  end
+
   def admin?
     current_user.admin if current_user
   end

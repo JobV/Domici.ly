@@ -29,7 +29,7 @@ class AnnouncementsControllerTest < ActionController::TestCase
       post :create, announcement: { body: @announcement.body, hoa_id: @announcement.hoa_id, target_group: @announcement.target_group, title: @announcement.title, user_id: @announcement.user_id }
     end
 
-    assert_redirected_to dashboard_index_path
+    assert_redirected_to organisation_path
   end
 
   test "should show announcement" do

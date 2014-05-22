@@ -23,24 +23,28 @@ class AssignAlertTest < ActionDispatch::IntegrationTest
 
   test 'home_owner can not assign an alert' do
     sign_in @home_owner
+    click_on 'alerts'
     click_on 'new-alert'
     page_should_not_contain 'Toewijzen aan'
   end
 
   test 'maintenance can assign an alert' do
     sign_in @maintenance
+    click_on 'alerts'
     click_on 'new-alert'
     page_should_contain 'Toewijzen aan'
   end
 
   test 'moderator can assign an alert' do
     sign_in @moderator
+    click_on 'alerts'
     click_on 'new-alert'
     page_should_contain 'Toewijzen aan'
   end
 
   test 'assigned user gets an email on new alert' do
     sign_in @moderator
+    click_on 'alerts'
     click_on 'new-alert'
     fill_in 'alert_title', with: ExampleAlert.title
     fill_in 'alert_body', with: ExampleAlert.body

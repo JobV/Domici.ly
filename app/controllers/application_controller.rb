@@ -18,12 +18,12 @@ class ApplicationController < ActionController::Base
   def redirect_to_correct_subdomain(user)
     if user.hoa && user.hoa.subdomain_name
       if request.subdomain == user.hoa.subdomain_name
-        return dashboard_index_path
+        return organisation_path
       else
-        return dashboard_index_url(subdomain: user.hoa.subdomain_name)
+        return organisation_url(subdomain: user.hoa.subdomain_name)
       end
     else
-      user.hoa ? dashboard_index_url(subdomain: 'app') : welcome_url(subdomain: 'app')
+      user.hoa ? organisation_url(subdomain: 'app') : welcome_url(subdomain: 'app')
     end
   end
 

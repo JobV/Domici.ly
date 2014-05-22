@@ -1,8 +1,7 @@
-.ui.small.fluid.vertical.menu
+.ui.small.fluid.secondary.vertical.menu
 
   - if @unread_alerts.count > 0
     .header.item
-      %i.info.icon
       Laatste updates
 
     - if @unread_alerts.count == 1
@@ -25,8 +24,11 @@
       = link_to new_alert_path, class: 'item' do
         Doe een melding
 
+  .divider
+
+.ui.small.fluid.secondary.vertical.menu
+
   .header.item
-    %i.question.icon
     Over Domici.ly
 
   %a.item{ href: '/updates' }

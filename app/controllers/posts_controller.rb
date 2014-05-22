@@ -25,9 +25,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to dashboard_index_path, notice: 'Bericht geplaatst.'
+      redirect_to organisation_path, notice: 'Bericht geplaatst.'
     else
-      redirect_to dashboard_index_path
+      redirect_to organisation_path
     end
   end
 
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
-    redirect_to dashboard_index_path, notice: 'Bericht verwijderd.'
+    redirect_to organisation_path, notice: 'Bericht verwijderd.'
   end
 
   private

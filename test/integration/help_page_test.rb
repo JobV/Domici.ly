@@ -12,7 +12,7 @@ class HelpPageTest < ActionDispatch::IntegrationTest
 
   test 'Anyone can send an email to support by going to help' do
     sign_in @home_owner
-    click_on 'Help'
+    click_on 'help'
 
     fill_in 'support_message_body', with: 'Woo woo'
     click_on 'Verstuur naar Domici.ly'

@@ -1,100 +1,13 @@
-/ - @active_tab = 'hoa'
+- @active_tab     = 'home'
+- @active_button  = 'dashboard'
 
-/ .row
-/   .small-2.column.side-buttons
-/     .ui.vertical.labeled.icon.menu
+.row
+  = render 'dashboard/sidebuttons'
 
-/       %a.red.item
-/         %i.users.icon
-/         Leden
-
-/       %a.green.item
-/         %i.payment.icon
-/         Facturatie
-
-/       %a.teal.item
-/         %i.settings.icon
-/         Opties
-
-
-/   .small-7.column
-/     .ui.raised.segment
-/       %h1.ui.blue.header
-/         %i.users.icon
-/         .content
-/           = current_user.hoa_name
-/           .sub.header
-/             = "#{current_user.hoa.users.count} leden"
-
-/       .ui.horizontal.segment
-/         - if current_user.has_role?(:moderator, current_user.hoa) or current_user.admin
-/           = link_to new_user_invitation_path, id: 'new-member' do
-/             .ui.labeled.mini.icon.button
-/               %i.add.icon
-/               Nieuwe Leden
-
-/ <<<<<<< HEAD
-/     - @activities.each do |activity|
-/       = render_activity activity
+  .small-7.column
+    = render 'dashboard/top_form'
+    - @activities.each do |activity|
+      = render_activity activity
     
-/     / .ui.raised.segment
-/     /   = render 'hoas/members'
-/ =======
-/       %br
-
-/       - if ! @moderators.empty?
-/         .ui.green.ribbon.label
-/           Bestuurders
-
-/         .ui.celled.small.selection.list
-/           - @moderators.each do |moderator|
-/             .item.hover-show
-/               %img.ui.avatar.image{ src: gravatar_url(moderator) }
-/               = link_to user_path(moderator), class: 'content' do
-/                 .header= moderator.full_name
-/                 .description= moderator.email
-/               - if current_user.has_role?(:moderator, current_user.hoa)
-/                 = link_to remove_from_hoa_path(moderator), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{moderator.id}" do
-/                   Verwijder uit vereniging
-
-
-
-/       - if ! @maintenance_staff.empty?
-/         %br
-/         %br
-/         .ui.blue.ribbon.label
-/           Huismeesters
-
-/         .ui.celled.small.selection.list
-/           - @maintenance_staff.each do |maintenance|
-/             .item.hover-show
-/               %img.ui.avatar.image{ src: gravatar_url(maintenance) }
-/               = link_to user_path(maintenance), class: 'content' do
-/                 .header= maintenance.full_name
-/                 .description= maintenance.email
-/               - if current_user.has_role?(:moderator, current_user.hoa)
-/                 = link_to remove_from_hoa_path(maintenance), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{maintenance.id}" do
-/                   Verwijder uit vereniging
-
-/ >>>>>>> master
-
-/   .small-3.column
-/     .ui.small.fluid.vertical.menu
-/       .header.item
-/         Test
-
-/ <<<<<<< HEAD
-/       .item
-/         Hallo
-/ =======
-/         .ui.celled.small.selection.list
-/           - @owners.each do |owner|
-/             .item.hover-show
-/               %img.ui.avatar.image{ src: gravatar_url(owner) }
-/               = link_to user_path(owner), class: 'content' do
-/                 .header= owner.full_name
-/                 .description= owner.email
-/               - if current_user.has_role?(:moderator, current_user.hoa)
-/                 = link_to remove_from_hoa_path(owner), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{owner.id}" do
-/                   Verwijder uit vereniging
-/ >>>>>>> master
+  .small-3.column
+    = render 'dashboard/sidenav'  

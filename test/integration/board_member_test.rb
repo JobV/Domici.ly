@@ -20,9 +20,7 @@ class BoardMemberTest < ActionDispatch::IntegrationTest
   test 'add alert' do
     sign_in @user
 
-    within('#feed-head') do
-      click_on 'Melding'
-    end
+    click_on 'Melding'
 
     fill_in 'alert_title', with: ExampleAlert.title
     fill_in 'alert_body', with: ExampleAlert.body
