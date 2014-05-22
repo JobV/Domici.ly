@@ -5,9 +5,9 @@ class AdminController < ApplicationController
       current_user.hoa = hoa
       current_user.save
       current_user.add_role :moderator, hoa
-      redirect_to dashboard_index_url(subdomain: hoa.subdomain_name)
+      redirect_to organisation_url(subdomain: hoa.subdomain_name)
     else
-      redirect_to dashboard_index_path
+      redirect_to organisation_path
     end
   end
 end
