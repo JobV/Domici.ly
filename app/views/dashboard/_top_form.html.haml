@@ -1,21 +1,5 @@
 .ui.feed.segment#feed-head
 
-  = link_to new_alert_path, id: 'new-alert' do
-    .ui.labeled.mini.icon.button
-      %i.add.icon
-      Melding
-  = link_to new_event_path do
-    .ui.labeled.mini.icon.button
-      %i.add.icon
-      Afspraak
-  - if moderator?(current_user)
-    = link_to new_announcement_path do
-      .ui.labeled.mini.icon.button
-        %i.add.icon
-        Mededeling
-
-  %br
-  %br
   = form_for @post do |f|
     .ui.fluid.input
       = f.text_field :title, placeholder: 'Plaats een bericht (Enter)', autofocus: true

@@ -68,7 +68,7 @@ class InviteMemberTest < ActionDispatch::IntegrationTest
   def add_member(email_addr, role)
     assert_difference('User.count') do
       sign_in @moderator
-      click_on @hoa.name
+      click_on 'members'
       click_on 'new-member'
       fill_in :emails, with: email_addr
       choose role unless role == 'role_user' # User role should be default
@@ -82,7 +82,7 @@ class InviteMemberTest < ActionDispatch::IntegrationTest
 
   def add_multiple_members(email_addrs = [], role)
     sign_in @moderator
-    click_on @hoa.name
+    click_on 'members'
     click_on 'new-member'
     emails = ""
     email_addrs.each do |e|

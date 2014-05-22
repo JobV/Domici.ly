@@ -26,8 +26,10 @@ Rails.application.routes.draw do
   end
   
   resources :hoas, except: [:show]
-  get '/organisation', to: 'hoas#show', as: :organisation
-
+  get '/organisation',          to: 'hoas#show',       as: :organisation
+  get '/organisation/members',  to: 'hoas#members',    as: :members
+  get '/organisation/billing',  to: 'hoas#billing',    as: :billing
+  get '/organisation/settings', to: 'hoas#settings',   as: :settings
   
   resources :participations
   resources :users, only: [:show]
@@ -39,7 +41,6 @@ Rails.application.routes.draw do
   get   '/profile/edit',    to: 'profile#edit',   as: :edit_profile
   patch '/profile/update',  to: 'profile#update', as: :update_profile
 
-  resources :dashboard, only: [:index]
 
   constraints(Subdomain) do
     get '/' => 'homepages#show', as: :public_homepage

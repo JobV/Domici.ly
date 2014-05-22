@@ -1,11 +1,13 @@
-- @active_tab = 'home'
+- @active_tab     = 'home'
+- @active_button  = 'dashboard'
 
 .row
-  .medium-9.small-12.column
+  = render 'dashboard/sidebuttons'
+
+  .small-7.column
     = render 'dashboard/top_form'
-      
     - @activities.each do |activity|
       = render_activity activity
-
-  .medium-3.small-12.column
-    = render 'dashboard/sidenav'    
+    
+  .small-3.column
+    = render 'dashboard/sidenav'  

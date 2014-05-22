@@ -26,7 +26,7 @@ class AnnouncementsController < ApplicationController
     @announcement.hoa  = current_user.hoa
     if @announcement.save
       send_announcement unless @announcement.target_group.blank?
-      redirect_to dashboard_index_path, notice: 'Mededeling aangemaakt en (eventueel) verstuurd.'
+      redirect_to organisation_path, notice: 'Mededeling aangemaakt en (eventueel) verstuurd.'
     else
       render :new
     end

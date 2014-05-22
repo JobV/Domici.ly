@@ -1,44 +1,39 @@
 - if signed_in?
   .ui.inverted.domicily-blue.menu.mainnav
-    = link_to dashboard_index_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
+    = link_to organisation_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
       %b Domici.ly
-    - if current_user.hoa
-      .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
-        %i.plus.icon
-        .menu
-          = link_to 'Melding', new_alert_path, class: 'item'
-          = link_to 'Afspraak', new_event_path, class: 'item'
-          = link_to 'Bericht', dashboard_index_path, class: 'item'
-          - if current_user.has_role?(:moderator, current_user.hoa)
-            = link_to 'Lid', new_user_invitation_path, class: 'item'
-          - if policy(Announcement).new?
-            = link_to 'Mededeling', new_announcement_path, class: 'item'
-      %a.item{ href: '/dashboard', class: ('active' if @active_tab == 'home') }
-        %i.unordered.list.icon
-        Home
-        / .ui.orange.label
-        /   12
-      - if current_user.hoa && policy(current_user.hoa).show?
-        = link_to organisation_path, class: (@active_tab == 'hoa' ? 'active green item' : 'green item') do
-          %i.users.icon
-          = truncate(current_user.hoa_name, length: 20)
+    - if current_hoa
 
-      = link_to alerts_path, class: (@active_tab == 'alerts' ? 'active green item' : 'green item') do
+      - if current_hoa && policy(current_hoa).show?            
+        = link_to organisation_url(subdomain: current_hoa.subdomain_name), class: (@active_tab == 'home' ? 'active green item' : 'green item') do
+          %i.home.icon
+          = truncate(current_hoa.name, length: 20)
+
+      = link_to alerts_path, class: (@active_tab == 'alerts' ? 'active green item' : 'green item'), id: 'alerts' do
         %i.warning.icon
         Meldingen
 
       = link_to events_path, class: (@active_tab == 'events' ? 'active green item' : 'green item') do
         %i.calendar.icon
         Agenda
+
     - else
       = link_to welcome_path, class: (@active_tab == 'welcome' ? 'active green item' : 'green item') do
         %i.cloud.icon
         Start met Domici.ly
 
     .right.menu
-      = link_to help_path,  class: (@active_tab == 'help' ? 'active item' : 'item') do
+      .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
+        %i.plus.icon
+        .menu
+          = link_to 'Melding', new_alert_path, class: 'item'
+          = link_to 'Afspraak', new_event_path, class: 'item'
+          - if current_user.has_role?(:moderator, current_hoa)
+            = link_to 'Lid', new_user_invitation_path, class: 'item'
+          - if policy(Announcement).new?
+            = link_to 'Mededeling', new_announcement_path, class: 'item'
+      = link_to help_path,  class: (@active_tab == 'help' ? 'active item' : 'item'), id: 'help' do
         %i.question.icon
-        Help
       = link_to profile_path, class: (@active_tab == 'profile' ? 'active item' : 'item') do
         %i.user.icon
         = truncate(current_user.name, length: 23, separator: '@', omission: '')
@@ -54,15 +49,21 @@
             .content
               .header
                 = msg
+          %br
         - elsif name == 'alert'
           .ui.small.floating.error.message
             %i.close.icon
             .content
               .header
                 = msg
+
+          %br
+
         - else
           .ui.small.floating.warning.message
             %i.close.icon
             .content
               .header
                 = msg
+          %br
+          

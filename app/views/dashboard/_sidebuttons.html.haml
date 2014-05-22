@@ -1,0 +1,18 @@
+.small-2.column.side-buttons
+  .ui.vertical.labeled.icon.menu
+
+    %a.purple.item{ class: (@active_button == 'dashboard' ? 'active' : ''), href: '/organisation' }
+      %i.unordered.list.icon
+      Updates
+
+    %a.purple.item#members{ href: '/organisation/members', class: (@active_button == 'members' ? 'active' : '')}
+      %i.users.icon
+      Leden
+
+    / %a.green.item
+    /   %i.payment.icon
+    /   Facturatie
+
+    / %a.teal.item
+    /   %i.settings.icon
+    /   Opties

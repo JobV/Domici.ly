@@ -22,6 +22,10 @@ class HoaPolicy < ApplicationPolicy
   #   user.admin? or user.hoa == nil
   # end
 
+  def members?
+    user.hoa == hoa
+  end
+
   def destroy?
     user.admin?
   end
