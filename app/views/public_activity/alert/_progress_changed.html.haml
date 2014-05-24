@@ -1,15 +1,22 @@
 - if activity.trackable
-  .ui.segment.alert-feed-top
+  .ui.top.attached.segment.alert-feed-top
     = render 'public_activity/alert/progress_icons', progress: activity.parameters[:progress_after]
     = link_to_activity_owner activity
     heeft
     = link_to alert_path(activity.trackable) do
-      = activity.trackable.title
+      een melding
     op
     = link_to progress_name_from_string(activity.parameters[:progress_after]), alert_path(activity.trackable)
-    gezet
+    gezet.
+
+  .ui.tiny.secondary.bottom.attached.segment.alert-feed-actions
+    .ui.tiny.horizontal.link.list
+      = link_to 'Bekijk melding', alert_path(activity.trackable), class: 'item'
+      .item
+        = "#{activity.trackable.comments.count} reacties"
     .date-right
       = "#{format_time(activity.created_at)} geleden"
+
 - else
   .ui.segment.alert-feed-top
     %i.circular.inverted.red.flag.icon

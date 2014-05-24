@@ -5,19 +5,19 @@
     heeft
     = link_to 'een melding', alert_path(activity.trackable)
     aangemaakt.
-    .date-right
-      = "#{format_time(activity.created_at)} geleden"
   .ui.attached.segment
     .alert-feed-title
       = activity.trackable.title
     .alert-feed-body
-      = activity.trackable.body
+      = simple_format activity.trackable.body
 
   .ui.tiny.secondary.bottom.attached.segment.alert-feed-actions
     .ui.tiny.horizontal.link.list
       = link_to 'Bekijk melding', alert_path(activity.trackable), class: 'item'
       .item
         = "#{activity.trackable.comments.count} reacties"
+    .date-right
+      = "#{format_time(activity.created_at)} geleden"
 
 - else
   .ui.segment.alert-feed-top
