@@ -13,7 +13,7 @@
           .text
             = activity.trackable.title
           .actions
-            - if policy(activity.trackable).destroy?
+            - if moderator?(current_user) or activity.owner == current_user
               = link_to I18n.t('delete'), post_path(activity.trackable), class: 'delete', method: :delete
 
         .comments
@@ -31,7 +31,7 @@
                 .text
                   = comment.comment
                 .actions
-                  - if policy(activity.trackable).destroy?
+                  - if moderator?(current_user) or activity.owner == current_user
                     = link_to I18n.t('delete'), post_comment_path(activity.trackable, comment), class: 'delete', method: :delete
 
 

@@ -27,6 +27,10 @@
 #  invited_by_id          :integer
 #  invited_by_type        :string(255)
 #  invitations_count      :integer          default(0)
+#  address                :string(255)
+#  house_number           :string(255)
+#  postal_code            :string(255)
+#  phone_number           :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -78,6 +82,23 @@ class User < ActiveRecord::Base
   def got_started?
     ! first_name.blank? &&
     ! last_name.blank? &&
-    ! alerts.last.nil?
+    ! alerts.last.nil? &&
+    address_complete?
+  end
+
+  def address_complete?
+    ! address.blank? &&
+    ! house_number.blank? &&
+    ! postal_code.blank?
+  end
+
+  def profile_complete_percentage
+    steps_completed = 0.0
+    attributes = [:address, :house_number, :postal_code, :first_name, :last_name, :phone_number]
+    attributes.each do |atr|
+      steps_completed += 1 unless self[atr].blank?
+    end
+    steps_completed += 1 unless alerts.count == 0
+    return steps_completed / (attributes.count + 1.0) * 100
   end
 end

@@ -42,10 +42,36 @@ class UserTest < ActiveSupport::TestCase
     create(:alert, user: user)
     assert_equal 1, user.alerts.count, 'user should have one alert'
 
-    assert user.got_started?, 'user has names and an alert, should be started'
+    user.address = ''
+    assert ! user.got_started?, 'user does not have an address and should not be started'
+    user.address = 'Badhuisweg'
+  end
 
-    user.first_name = ''
+  test '#address complete?' do
+    user = build(:user)
+    assert user.address_complete?, 'address should be complete'
 
-    assert ! user.got_started?, 'user does not have a first name anymore is not started'
+    user.address = ''
+    assert ! user.address_complete?, 'address should not be complete'
+
+    user = build(:user, house_number: '')
+    assert ! user.address_complete?, 'address should not be complete'
+
+    user = build(:user, postal_code: '')
+    assert ! user.address_complete?, 'address should not be complete'
+  end
+
+  test '#profile_complete_percentage?' do
+    user = create(:user)
+    create(:alert, user: user)
+
+    assert_equal 100, user.profile_complete_percentage
+
+    user.address = ''
+    assert_equal (6.0 / 7.0) * 100, user.profile_complete_percentage
+
+    user.phone_number = ''
+    assert_equal (5.0 / 7.0) * 100, user.profile_complete_percentage
+
   end
 end

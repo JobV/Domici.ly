@@ -27,6 +27,10 @@
 #  invited_by_id          :integer
 #  invited_by_type        :string(255)
 #  invitations_count      :integer          default(0)
+#  address                :string(255)
+#  house_number           :string(255)
+#  postal_code            :string(255)
+#  phone_number           :string(255)
 #
 
 include FactoryGirl::Syntax::Methods
@@ -35,6 +39,10 @@ FactoryGirl.define do
   factory :user do
     first_name 'John'
     last_name 'Doe'
+    address 'Badhuisweg'
+    house_number '1'
+    postal_code '1506PA'
+    phone_number '0612345678'
     sequence(:email) { |n| "test#{n}@new.com" }
     password 'jobiscool'
     password_confirmation 'jobiscool'

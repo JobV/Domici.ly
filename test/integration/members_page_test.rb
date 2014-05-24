@@ -11,7 +11,6 @@ class MembersPageTest < ActionDispatch::IntegrationTest
   test 'members page lists members' do
     sign_in @home_owner
     click_on 'members'
-    save_and_open_page
     page_should_contain @home_owner.full_name
   end
 end

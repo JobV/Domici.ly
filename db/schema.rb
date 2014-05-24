@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509142330) do
+ActiveRecord::Schema.define(version: 20140524190158) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -213,6 +213,11 @@ ActiveRecord::Schema.define(version: 20140509142330) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
+    t.string   "address"
+    t.string   "house_number"
+    t.string   "postal_code"
+    t.string   "phone_number"
+    t.string   "city"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

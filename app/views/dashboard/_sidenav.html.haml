@@ -11,14 +11,23 @@
       = link_to alerts_path, class: 'item' do
         = "Je hebt #{@unread_alerts.count} ongelezen meldingen!"
 
-  - unless current_user.got_started?
+
+- unless current_user.got_started?
+  .ui.small.fluid.secondary.vertical.menu
     .header.item
-      %i.user.icon
       Aan de slag met Domici.ly
 
     - if current_user.first_name.blank? or current_user.last_name.blank?
       = link_to edit_profile_path, class: 'item' do
-        Geef je naam op in je profiel.
+        Geef je naam op in je profiel
+
+    - elsif ! current_user.address_complete?
+      = link_to edit_profile_path, class: 'item' do
+        Geef je adres op in je profiel
+
+    - elsif current_user.phone_number.blank?
+      = link_to edit_profile_path, class: 'item' do
+        Geef je telefoonnummer op
 
     - if current_user.alerts.count == 0
       = link_to new_alert_path, class: 'item' do

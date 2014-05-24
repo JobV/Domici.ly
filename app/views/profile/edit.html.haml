@@ -6,7 +6,12 @@
           
           - { first_name: 'Voornaam',
               last_name: 'Achternaam',
-              email: 'Email' }.each do |key, name|
+              email: 'Email',
+              address: 'Adres',
+              house_number: 'Huisnummer',
+              postal_code: 'Postcode',
+              city: 'Stad',
+              phone_number: 'Telefoon' }.each do |key, name|
             .field
               %label
                 = f.label name
