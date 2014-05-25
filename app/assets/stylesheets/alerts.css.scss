@@ -53,3 +53,15 @@
 .alert-body p {
   line-height: 1.3;
 }
+
+td.state {
+  min-width: 120px;
+}
+
+td.right {
+  min-width: 60px;
+}
+
+td.assignee {
+  min-width: 120px;
+}

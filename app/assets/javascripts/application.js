@@ -174,6 +174,7 @@ ready = function() {
   };
 
   var alertsTable = new List('alerts-table', options);
+
 };
 
 $(document).ready(ready);

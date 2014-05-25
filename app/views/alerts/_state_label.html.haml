@@ -1,12 +1,12 @@
 - if new_alert? alert
-  .ui.red.label
+  .ui.small.red.label
     = progress_name alert
 - elsif alert_in_progress? alert
-  .ui.purple.label
+  .ui.small.purple.label
     = progress_name alert
 - elsif alert_completed? alert
-  .ui.green.label
+  .ui.small.green.label
     = progress_name alert
 - else
-  .ui.red.label
+  .ui.small.red.label
     Geen status
