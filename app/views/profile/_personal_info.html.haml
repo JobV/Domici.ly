@@ -1,30 +1,56 @@
-.ui.relaxed.horizontal.divided.list
-  .item
-    .content
-      %a.header Naam
-      .description
-        = user.full_name
+.row
+  .small-3.column
+    .ui.small.list
+      .item
+        .content
+          .header Naam
+          .description
+            = user.full_name
 
-  / .item
-  /   .content
-  /     %a.header Adres
-  /     .description
-  /       PLACEHOLDER
+      .item
+        .content
+          .header Email
+          .description
+            = user.email
 
-  .item
-    .content
-      %a.header Email
-      .description
-        = user.email
+  .small-3.column
+    .ui.small.list
+      .item
+        .content
+          .header Vereniging
+          .description
+            = user.hoa_name
 
-  .item
-    .content
-      %a.header Vereniging
-      .description
-        = user.hoa_name
+      .item
+        .content
+          .header Rol
+          .description
+            = pretty_role user
 
-  .item
-    .content
-      %a.header Rol
-      .description
-        = pretty_role user
+  .small-3.column
+    .ui.small.list
+      .item
+        .content
+          .header Adres
+          .description
+            = "#{user.address} #{user.house_number}"
+
+      .item
+        .content
+          .header Postcode
+          .description
+            = user.postal_code
+
+  
+  .small-3.column
+    .ui.small.list
+      .item
+        .content
+          .header Stad
+          .description
+            = user.city
+      .item
+        .content
+          .header Telefoon
+          .description
+            = user.phone_number

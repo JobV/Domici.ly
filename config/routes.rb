@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     get '/' => 'homepages#show', as: :public_homepage
   end
 
-  root to: 'dashboard#index'
+  root to: 'hoas#show'
 
   post '/ufgjdiie/:id', to: 'admin#change_hoa', as: :change_hoa
 

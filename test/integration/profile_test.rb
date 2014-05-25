@@ -29,5 +29,13 @@ class ProfileTest < ActionDispatch::IntegrationTest
     assert_equal '1234 abc', user.postal_code
     assert_equal 'zaandam', user.city
     assert_equal '1234567890', user.phone_number
+
+    page_should_contain 'J'
+    page_should_contain 'D'
+    page_should_contain 'street'
+    page_should_contain '57b'
+    page_should_contain '1234 abc'
+    page_should_contain 'zaandam'
+    page_should_contain '1234567890'
   end
 end
