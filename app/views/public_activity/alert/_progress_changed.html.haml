@@ -4,7 +4,7 @@
     = link_to_activity_owner activity
     heeft
     = link_to alert_path(activity.trackable) do
-      een melding
+      = truncate(activity.trackable.title, length: 35)
     op
     = link_to progress_name_from_string(activity.parameters[:progress_after]), alert_path(activity.trackable)
     gezet.
