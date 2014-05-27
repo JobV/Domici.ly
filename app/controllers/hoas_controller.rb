@@ -10,7 +10,7 @@ class HoasController < ApplicationController
 
   # GET /hoas/1
   def show
-    current_user.hoa ? @activities = PublicActivity::Activity.where(hoa_id: current_user.hoa.id).includes(:trackable, :owner).order('created_at desc').limit(20) : @activities = []
+    current_user.hoa ? set_activities : @activities = []
     @post = Post.new user: current_user
 
     @unread_alerts = current_user.hoa.alerts.unread_by(current_user)
@@ -70,5 +70,13 @@ class HoasController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def hoa_params
       params.require(:hoa).permit(:name)
+    end
+
+    def set_activities
+      @activities = PublicActivity::Activity
+        .where(hoa_id: current_user.hoa.id)
+        .includes(:owner, :trackable)
+        .order('created_at desc')
+        .limit(20)
     end
 end

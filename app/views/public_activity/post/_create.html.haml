@@ -15,24 +15,24 @@
           .actions
             - if moderator?(current_user) or activity.owner == current_user
               = link_to I18n.t('delete'), post_path(activity.trackable), class: 'delete', method: :delete
+        - if activity.trackable.comments.count > 0
+          .comments
+            - activity.trackable.comments.includes(:user).each do |comment|
+              .comment
+                %a.avatar
+                  %img{ src: gravatar_url(comment.user) }
 
-        .comments
-          - activity.trackable.comments.includes(:user).each do |comment|
-            .comment
-              %a.avatar
-                %img{ src: gravatar_url(comment.user) }
-
-              .content
-                %a.author
-                  = link_to comment.user.full_name, user_path(comment.user)
-                .metadata
-                  %span.date
-                    = "#{format_time(comment.created_at)} geleden"
-                .text
-                  = comment.comment
-                .actions
-                  - if moderator?(current_user) or activity.owner == current_user
-                    = link_to I18n.t('delete'), post_comment_path(activity.trackable, comment), class: 'delete', method: :delete
+                .content
+                  %a.author
+                    = link_to comment.user.full_name, user_path(comment.user)
+                  .metadata
+                    %span.date
+                      = "#{format_time(comment.created_at)} geleden"
+                  .text
+                    = comment.comment
+                  .actions
+                    - if moderator?(current_user) or activity.owner == current_user
+                      = link_to I18n.t('delete'), post_comment_path(activity.trackable, comment), class: 'delete', method: :delete
 
 
     = form_for [activity.trackable, activity.trackable.comments.new(user: current_user)] do |f|
