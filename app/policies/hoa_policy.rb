@@ -34,6 +34,10 @@ class HoaPolicy < ApplicationPolicy
     admin_moderator_or_owner?
   end
 
+  def billing?
+    user.admin? or user.has_role? :moderator, @hoa
+  end
+
   def admin_moderator_or_owner?
     user.admin? or user.has_role? :moderator, hoa.hoa or hoa.user == user
   end

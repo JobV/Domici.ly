@@ -1,6 +1,6 @@
 class HoasController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_hoa, only: [:members, :edit, :update, :destroy]
+  before_action :set_hoa, only: [:billing, :members, :edit, :update, :destroy]
   after_action :verify_authorized, :except => [:show, :index, :create]
 
   # GET /hoas
@@ -59,6 +59,10 @@ class HoasController < ApplicationController
     @moderators        = @hoa.users.with_role(:moderator, current_user.hoa)
     @maintenance_staff = @hoa.users.with_role(:maintenance, current_user.hoa)
     @owners            = @hoa.users - @moderators - @maintenance_staff
+  end
+
+  def billing
+    authorize @hoa
   end
 
   private

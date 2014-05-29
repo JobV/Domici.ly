@@ -9,9 +9,9 @@
       %i.users.icon
       Leden
 
-    / %a.green.item
-    /   %i.payment.icon
-    /   Facturatie
+    %a.purple.item#billing{ href: '/organisation/billing', class: (@active_button == 'billing' ? 'active' : '')}
+      %i.payment.icon
+      Facturatie
 
     / %a.teal.item
     /   %i.settings.icon
