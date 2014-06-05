@@ -185,6 +185,9 @@ GEM
       builder
       minitest (>= 5.0)
       powerbar
+    mollie-api-ruby (1.1.1)
+      json (~> 1.8)
+      rest-client (~> 1.6)
     momentjs-rails (2.5.1)
       railties (>= 3.1)
     multi_json (1.10.0)
@@ -280,6 +283,8 @@ GEM
       redis (>= 2.2)
     ref (1.0.5)
     remotipart (1.2.1)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rolify (3.4.0)
     safe_yaml (1.0.3)
     sass (3.2.18)
@@ -375,6 +380,7 @@ DEPENDENCIES
   listjs-rails
   minitest
   minitest-reporters
+  mollie-api-ruby
   momentjs-rails
   newrelic_rpm
   pg

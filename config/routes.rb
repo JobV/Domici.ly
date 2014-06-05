@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :comments
   end
   
+  resources :billing, only: [:new]
+
   resources :hoas, except: [:show]
   get '/organisation',          to: 'hoas#show',       as: :organisation
   get '/organisation/members',  to: 'hoas#members',    as: :members

@@ -61,6 +61,9 @@ gem 'listjs-rails'
 # Redis
 gem 'redis-rails'
 
+# mollie
+gem 'mollie-api-ruby'
+
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'

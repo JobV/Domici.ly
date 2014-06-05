@@ -6,4 +6,30 @@
 
   .small-10.column
     .ui.segment
-      test
+
+      %h1.header
+        Facturatie
+
+      .ui.green.message
+        Voorlopig is Domici.ly nog onbetaald. Bij verandering brengen we je op de hoogte.
+
+      .ui.large.relaxed.list
+        .item
+          = link_to new_billing_path, class: 'right floated ui button' do
+            Verleng abonnement
+          .content
+            .header Looptijd
+            Je abonnement loopt nog tot xx
+
+    %table.ui.table.segment
+      %h2 Betalingen
+      %thead
+        %th Bedrag
+        %th Kenmerk
+        %th Datum
+
+      %tbody
+        %tr
+          %td 100
+          %td basis abonnement 1 juni - 1 september
+          %td 1 juni
