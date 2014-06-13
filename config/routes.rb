@@ -30,9 +30,11 @@ Rails.application.routes.draw do
   resources :hoas, except: [:show]
   get '/organisation',          to: 'hoas#show',       as: :organisation
   get '/organisation/members',  to: 'hoas#members',    as: :members
-  get '/organisation/billing',  to: 'hoas#billing',    as: :billing
   get '/organisation/settings', to: 'hoas#settings',   as: :settings
-  
+
+  get '/organisation/billing',        to: 'billing#index',    as: :billing
+  get '/organisation/billing/renew',  to: 'billing#renew',    as: :renew
+
   resources :participations
   resources :users, only: [:show]
   post '/users/:id/remove', to: 'users#remove_from_hoa', as: :remove_from_hoa

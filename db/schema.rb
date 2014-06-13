@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524190158) do
+ActiveRecord::Schema.define(version: 20140613223753) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(version: 20140524190158) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subdomain_name"
+    t.string   "subscription_type", default: "basic"
+    t.datetime "subscribed_until"
   end
 
   add_index "hoas", ["subdomain_name"], name: "index_hoas_on_subdomain_name", unique: true

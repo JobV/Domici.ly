@@ -9,17 +9,22 @@
 
       %h1.header
         Facturatie
-
-      .ui.green.message
-        Voorlopig is Domici.ly nog onbetaald. Bij verandering brengen we je op de hoogte.
+        = link_to new_billing_path, class: 'right positive floated ui button' do
+          Verleng abonnement
 
       .ui.large.relaxed.list
         .item
-          = link_to new_billing_path, class: 'right floated ui button' do
-            Verleng abonnement
+          .content
+            .header Type abonnement
+            = current_hoa.subscription
+        .item
           .content
             .header Looptijd
-            Je abonnement loopt nog tot xx
+            - if current_hoa.subscribed_until # WIP
+              Je abonnement loopt nog 
+              = format_event_date current_hoa.subscribed_until
+            - else
+              Je hebt geen lopend abonnement.
 
     %table.ui.table.segment
       %h2 Betalingen

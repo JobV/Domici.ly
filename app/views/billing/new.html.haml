@@ -6,5 +6,15 @@
 
   .small-10.column
     .ui.segment
-      %input
+      = link_to @pay.url, class: 'right floated ui button' do
+        Betaal met iDeal
+
+
+      = @payment.inspect
+      %br
+      = @payment.status
+      %br
+      = @payment.amount
+      %br
+      = @payment.metadata.order_id
     
