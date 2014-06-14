@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
   has_many :participations
   has_many :events, through: :participations
   has_many :collaborations
+  has_many :payments
 
   attr_reader :role
   rolify

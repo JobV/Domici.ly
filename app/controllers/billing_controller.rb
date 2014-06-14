@@ -3,7 +3,7 @@ class BillingController < ApplicationController
   end
 
   def index
-    @payments = current_user.hoa.payments.where(paid: true)
+    @payments = current_user.hoa.payments.includes(:user).where(paid: true).order('updated_at DESC')
   end
 
   def renew_subscription
@@ -17,7 +17,8 @@ class BillingController < ApplicationController
     payment = current_user.hoa.payments.new \
       amount: amount * 100, 
       order_id: mollie.metadata.order_id, 
-      payment_id: mollie.id.to_s
+      payment_id: mollie.id.to_s,
+      user_id: current_user.id
 
     puts 'payment created'
     if payment.save

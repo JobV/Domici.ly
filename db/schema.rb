@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614131120) do
+ActiveRecord::Schema.define(version: 20140614144909) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 20140614131120) do
     t.boolean  "paid",        default: false
     t.string   "payment_id"
     t.integer  "hoa_id"
+    t.integer  "user_id"
   end
 
   create_table "posts", force: true do |t|

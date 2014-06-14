@@ -7,13 +7,17 @@
   .small-10.column
     .ui.segment
 
-      = link_to renew_path, class: 'huge positive ui button' do
-        Upgrade naar Standaard
+      - if current_hoa.subscribed?
+        = link_to renew_path, class: 'right floated large blue ui button' do
+          Verleng abonnement met 1 maand
+      - else        
+        = link_to renew_path, class: 'right floated large green ui button' do
+          Upgrade naar Standaard
 
       .ui.large.relaxed.list
         .item
           .content
-            .header Huidige type abonnement
+            .header Type abonnement
             = current_hoa.subscription
         .item
           .content
@@ -29,9 +33,11 @@
       %thead
         %th Bedrag
         %th Datum
+        %th Gebruiker
 
       %tbody
         - @payments.each do |payment|
           %tr
-            %td= payment.amount
+            %td= "#{payment.amount / 100} euro"
             %td= format_event_date payment.created_at
+            %td= payment.user ? payment.user.full_name : 'onbekend'
