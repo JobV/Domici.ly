@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613223753) do
+ActiveRecord::Schema.define(version: 20140614131120) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -130,6 +130,17 @@ ActiveRecord::Schema.define(version: 20140613223753) do
 
   add_index "participations", ["event_id"], name: "index_participations_on_event_id"
   add_index "participations", ["user_id"], name: "index_participations_on_user_id"
+
+  create_table "payments", force: true do |t|
+    t.integer  "amount"
+    t.string   "description"
+    t.string   "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "paid",        default: false
+    t.string   "payment_id"
+    t.integer  "hoa_id"
+  end
 
   create_table "posts", force: true do |t|
     t.string   "title"

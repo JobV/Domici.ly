@@ -7,34 +7,31 @@
   .small-10.column
     .ui.segment
 
-      %h1.header
-        Facturatie
-        = link_to new_billing_path, class: 'right positive floated ui button' do
-          Verleng abonnement
+      = link_to renew_path, class: 'huge positive ui button' do
+        Upgrade naar Standaard
 
       .ui.large.relaxed.list
         .item
           .content
-            .header Type abonnement
+            .header Huidige type abonnement
             = current_hoa.subscription
         .item
           .content
             .header Looptijd
-            - if current_hoa.subscribed_until # WIP
-              Je abonnement loopt nog 
+            - if current_hoa.subscribed?
+              Je abonnement loopt tot 
               = format_event_date current_hoa.subscribed_until
             - else
-              Je hebt geen lopend abonnement.
+              Domici.ly basis is gratis voor altijd.
 
     %table.ui.table.segment
       %h2 Betalingen
       %thead
         %th Bedrag
-        %th Kenmerk
         %th Datum
 
       %tbody
-        %tr
-          %td 100
-          %td basis abonnement 1 juni - 1 september
-          %td 1 juni
+        - @payments.each do |payment|
+          %tr
+            %td= payment.amount
+            %td= format_event_date payment.created_at

@@ -1,56 +1,35 @@
-class MolliePayment
+module MolliePayment
   require "Mollie/API/Client"
+  @mollie       = Mollie::API::Client.new
+  @mollie.setApiKey Rails.application.secrets.mollie_api_key
+  
 
-  def initialize(params = {})
-    @amount       = params[:amount]
-    @redirect_url = params[:redirect_url]
-    @mollie       = Mollie::API::Client.new
-    @mollie.setApiKey Rails.application.secrets.mollie_api_key
-    @payment = create_payment
-  end
-
-  # Returns the url to send the user to pay.
-  def url
-    @payment.getPaymentUrl
-  end
-
-  # Does a new call to check if subscription is paid.
-  def paid?
-    get_payment
-    @payment.paid?
-  end
-
-  def payment
-    get_payment
-    @payment
-  end
-
-  def get_payment
-    @payment = @mollie.payments.get @payment.id
-  end
-
-private
-
-  # Create payment
-  # # This does a call to the mollie API and returns
-  # # the url to redirect the user to.
-  def create_payment
+  def self.create_payment(amount, redirect_url)
     @mollie.payments.create \
-      amount:         @amount,
-      description:    description,
-      redirectUrl:    @redirect_url,
-      metadata:       { order_id: order_id },
+      amount:         amount,
+      description:    "Domici.ly Abonnement",
+      redirectUrl:    redirect_url,
+      metadata:       { order_id: self.order_id },
       method:         Mollie::API::Object::Method::IDEAL
   end
 
-  # Generate a semi-unique order id
-  def order_id
-    Time.now.to_i
+  # Returns the url to send the user to pay.
+  def self.url(payment)
+    payment.getPaymentUrl
   end
 
-  # Description of the payment
-  def description
-    "Domici.ly"
+  # Does a new call to check if subscription is paid.
+  def self.paid?(payment_id)
+    self.get_payment(payment_id).paid?
+  end
+
+  def self.get_payment(payment_id)
+    @mollie.payments.get payment_id
+  end
+
+  # Generate a semi-unique order id
+  def self.order_id
+    Time.now.to_i
   end
 end
 

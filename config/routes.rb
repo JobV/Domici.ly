@@ -33,7 +33,8 @@ Rails.application.routes.draw do
   get '/organisation/settings', to: 'hoas#settings',   as: :settings
 
   get '/organisation/billing',        to: 'billing#index',    as: :billing
-  get '/organisation/billing/renew',  to: 'billing#renew',    as: :renew
+  get '/organisation/billing/renew',  to: 'billing#renew_subscription',    as: :renew
+  get '/organisation/billing/confirm', to: 'billing#confirm_payment', as: :confirm_payment
 
   resources :participations
   resources :users, only: [:show]
