@@ -3,6 +3,7 @@ class BillingController < ApplicationController
   end
 
   def index
+    authorize self
     @payments = current_user.hoa.payments.includes(:user).where(paid: true).order('updated_at DESC')
   end
 
@@ -39,6 +40,8 @@ class BillingController < ApplicationController
       redirect_to billing_path, alert: "Betaling afgebroken."
     end
   end
+
+  private
 
   def increase_subscription
     if current_user.hoa.subscribed_until
