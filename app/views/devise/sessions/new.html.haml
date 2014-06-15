@@ -1,7 +1,7 @@
+- @flat = true
 .row
   .medium-8.medium-centered.column
 
-    %h2 Sign in
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       .ui.form.segment
         .field
@@ -10,8 +10,6 @@
           .ui.left.labeled.icon.input
             = f.email_field :email, :autofocus => true
             %i.user.icon
-            .ui.corner.label
-              %i.icon.asterisk
 
         .field
           %label
@@ -19,8 +17,6 @@
           .ui.left.labeled.icon.input
             = f.password_field :password
             %i.icon.lock
-            .ui.corner.label
-              %i.icon.asterisk
 
         .ui.switch.checkbox
           = f.check_box :remember_me, class: 'ui checkbox'
