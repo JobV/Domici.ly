@@ -5,6 +5,11 @@ body {
 
 .sign-in {
   // margin-top: 300px;
+  a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: underline;
+    &:hover { color: #333; }
+  }
   input {
     background-color: #1f8dd6;
     border: 2px solid #B2D1FF;
@@ -25,11 +30,12 @@ body {
     color: #fff;
   }
 
-  .submit {
+  .flat-button {
     background-color: white;
     border: 2px solid white;
     color: #1f8dd6;
     padding: 12px;
+    font-weight: bold;
     &:hover {
       border: 2px solid white;
       background-color: #1f8dd6;

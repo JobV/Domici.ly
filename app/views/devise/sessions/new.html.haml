@@ -3,8 +3,7 @@
   .medium-5.medium-centered.column
 
     .logo
-      %h1
-        Domici.ly
+      = image_tag "logo_white.png"
 
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       .sign-in
@@ -23,6 +22,6 @@
         %br
         %br
 
-        = f.submit "Log in", class: 'submit'
+        = f.submit "Log in", class: 'flat-button'
 
         = render "devise/shared/links"
