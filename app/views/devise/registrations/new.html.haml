@@ -21,7 +21,7 @@
         %p
           = check_box_tag 'accept-me'
           Ik ga akkoord met
-          %a#gebruikersverklaring{href: '#'} de gebruikersverklaring 
+          %a#gebruikersverklaring de gebruikersverklaring 
           en geef toestemming tot het gebruik van cookies
 
         = f.submit "Registreer en log in", class: 'flat-button submit-registration'
@@ -30,6 +30,6 @@
 
 .ui.modal
   %i.close.icon
-  .header Gebruikersverklaring
+  .header Gebruikersverklaring Domici.ly
   .content
     = render 'devise/shared/gebruikersverklaring'

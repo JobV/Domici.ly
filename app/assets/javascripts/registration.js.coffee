@@ -7,3 +7,8 @@ $ ->
   $('#gebruikersverklaring').click ->
     $('.ui.modal')
       .modal('show')
+
+  $('#subdomain_full').text($('#subdomain_name').val() + '.domici.ly')
+
+  $('#subdomain_name').keyup ->
+    $('#subdomain_full').text($(this).val() + '.domici.ly')

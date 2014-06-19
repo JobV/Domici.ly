@@ -3,5 +3,6 @@ class WelcomeController < ApplicationController
 
   def welcome
     redirect_to organisation_path if current_user.hoa
+    @new_hoa = Hoa.new
   end
 end
