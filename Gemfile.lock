@@ -262,6 +262,7 @@ GEM
     rb-readline (0.5.1)
     rdoc (4.1.1)
       json (~> 1.4)
+    redcarpet (3.1.2)
     redis (3.0.7)
     redis-actionpack (4.0.0)
       actionpack (~> 4)
@@ -392,6 +393,7 @@ DEPENDENCIES
   rails_12factor
   rails_admin
   rb-readline
+  redcarpet
   redis-rails
   rolify
   sass (= 3.2.18)

@@ -10,7 +10,9 @@ body {
     text-decoration: underline;
     &:hover { color: #333; }
   }
-  input {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
     background-color: #1f8dd6;
     border: 2px solid #B2D1FF;
     width: 100%;
@@ -36,6 +38,10 @@ body {
     color: #1f8dd6;
     padding: 12px;
     font-weight: bold;
+    width: 100%;
+    transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -webkit-transition: all 0.4s;
     &:hover {
       border: 2px solid white;
       background-color: #1f8dd6;
@@ -63,4 +69,8 @@ body {
   font-weight: bold;
   color: white;
   padding: 30px;
+}
+
+.ui.modal {
+  color: #333 !important;
 }

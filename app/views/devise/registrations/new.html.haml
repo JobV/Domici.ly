@@ -3,7 +3,6 @@
   .medium-6.medium-centered.column
 
     %h2 Begin met Domici.ly
-    %p We hebben je emailadres nodig om je in te kunnen loggen in Domici.ly. Geen zorgen, je kan Domici.ly rustig uitproberen zonder te betalen.
 
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
@@ -22,9 +21,15 @@
         %p
           = check_box_tag 'accept-me'
           Ik ga akkoord met
-          %a{href: '#'} de gebruikersverklaring 
+          %a#gebruikersverklaring{href: '#'} de gebruikersverklaring 
           en geef toestemming tot het gebruik van cookies
 
         = f.submit "Registreer en log in", class: 'flat-button submit-registration'
 
         / # = render "devise/shared/links"
+
+.ui.modal
+  %i.close.icon
+  .header Gebruikersverklaring
+  .content
+    = render 'devise/shared/gebruikersverklaring'

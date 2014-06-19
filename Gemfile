@@ -64,6 +64,9 @@ gem 'redis-rails'
 # mollie
 gem 'mollie-api-ruby'
 
+# markdown
+gem 'redcarpet'
+
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
