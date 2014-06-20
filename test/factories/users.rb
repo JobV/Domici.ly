@@ -31,6 +31,7 @@
 #  house_number           :string(255)
 #  postal_code            :string(255)
 #  phone_number           :string(255)
+#  city                   :string(255)
 #
 
 include FactoryGirl::Syntax::Methods

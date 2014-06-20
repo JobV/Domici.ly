@@ -12,7 +12,8 @@ class HomepagesController < ApplicationController
   def show
     # TODO Replace by call to @homepage.title
     # @title = @homepage.hoa.name
-    @hoa = find_hoa_by_subdomain
+    # @hoa = find_hoa_by_subdomain
+    redirect_to new_user_session_path
   end
 
   # GET /homepages/new

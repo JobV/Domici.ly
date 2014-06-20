@@ -1,0 +1,20 @@
+- @active_tab     = 'home'
+- @active_button  = 'billing'
+
+.row
+  = render 'dashboard/sidebuttons'
+
+  .small-10.column
+    .ui.segment
+      = link_to @pay.url, class: 'right floated ui button' do
+        Betaal met iDeal
+
+
+      = @payment.inspect
+      %br
+      = @payment.status
+      %br
+      = @payment.amount
+      %br
+      = @payment.metadata.order_id
+    

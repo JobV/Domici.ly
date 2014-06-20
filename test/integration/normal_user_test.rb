@@ -12,8 +12,7 @@ class NormalUserTest < ActionDispatch::IntegrationTest
 
   test 'user_without_hoa without hoa should be shown join/welcome page' do
     sign_in @user_without_hoa
-    page_should_contain 'Welkom bij Domici.ly'
-    page_should_contain 'Maak een vereniging aan'
+    page_should_contain 'Maak je vereniging aan'
     page_should_contain 'Start met Domici.ly'
   end
 

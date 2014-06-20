@@ -1,8 +1,8 @@
 - if signed_in?
   .ui.inverted.domicily-blue.menu.mainnav
-    = link_to organisation_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
-      %b Domici.ly
     - if current_hoa
+      = link_to organisation_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
+        %b Domici.ly
 
       - if current_hoa && policy(current_hoa).show?            
         = link_to organisation_url(subdomain: current_hoa.subdomain_name), class: (@active_tab == 'home' ? 'active green item' : 'green item') do
@@ -23,15 +23,16 @@
         Start met Domici.ly
 
     .right.menu
-      .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
-        %i.plus.icon
-        .menu
-          = link_to 'Melding', new_alert_path, class: 'item'
-          = link_to 'Afspraak', new_event_path, class: 'item'
-          - if current_user.has_role?(:moderator, current_hoa)
-            = link_to 'Lid', new_user_invitation_path, class: 'item'
-          - if policy(Announcement).new?
-            = link_to 'Mededeling', new_announcement_path, class: 'item'
+      - if current_hoa
+        .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
+          %i.plus.icon
+          .menu
+            = link_to 'Melding', new_alert_path, class: 'item'
+            = link_to 'Afspraak', new_event_path, class: 'item'
+            - if current_user.has_role?(:moderator, current_hoa)
+              = link_to 'Lid', new_user_invitation_path, class: 'item'
+            - if policy(Announcement).new?
+              = link_to 'Mededeling', new_announcement_path, class: 'item'
       = link_to help_path,  class: (@active_tab == 'help' ? 'active item' : 'item'), id: 'help' do
         %i.question.icon
       = link_to profile_path, class: (@active_tab == 'profile' ? 'active item' : 'item') do

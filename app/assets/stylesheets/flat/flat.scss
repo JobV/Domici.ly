@@ -1,0 +1,105 @@
+body {
+  background: #1f8dd6;
+  color: #fff;
+}
+
+.sign-in {
+  a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: underline;
+    &:hover { color: #333; }
+  }
+
+  h1.header {
+    color: white;
+    font-weight: 400;
+    margin-bottom: 45px;
+    .sub.header {
+      color: white;
+    }
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    background-color: #1f8dd6;
+    border: 2px solid #B2D1FF;
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    margin-bottom: 25px;
+    transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+  }
+  input:focus, input:hover {
+    border: 2px solid #fff;
+    outline: 0;
+  }
+
+  .ui.checkbox label {
+    color: #fff;
+  }
+
+  .flat-button {
+    background-color: white;
+    border: 2px solid white;
+    color: #1f8dd6;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    &:hover {
+      border: 2px solid white;
+      background-color: #1f8dd6;
+      color: white;
+    }
+  }
+  .shared-links {
+    background: #1f8dd6;
+    border: 0;
+    box-shadow: none;
+    a {
+      color: white;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+.logo h1 {
+  border-radius: 1px;
+  font-size: 0.96em;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  padding: 30px;
+}
+
+.ui.modal {
+  color: #333 !important;
+}
+
+.ui.small.message {
+  color: #1f8dd6;
+  background: #fff;
+  margin-top: 0px;
+}
+
+.field_with_errors {
+  border-color: #333 !important;
+}
+
+.error_message {
+  position: relative !important;
+  top: -24px !important;
+  left: auto !important;
+  right: auto !important;
+}
+div.error_message.ui.floating.red.pointing.up.label {
+  margin: 0.3em 0em !important;
+}

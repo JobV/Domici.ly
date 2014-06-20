@@ -31,6 +31,7 @@
 #  house_number           :string(255)
 #  postal_code            :string(255)
 #  phone_number           :string(255)
+#  city                   :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -49,6 +50,7 @@ class User < ActiveRecord::Base
   has_many :participations
   has_many :events, through: :participations
   has_many :collaborations
+  has_many :payments
 
   attr_reader :role
   rolify

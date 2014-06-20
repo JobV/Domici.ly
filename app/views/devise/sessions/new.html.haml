@@ -1,34 +1,27 @@
+- @flat = true
 .row
-  .medium-8.medium-centered.column
+  .medium-5.medium-centered.column
 
-    %h2 Sign in
+    .logo
+      = image_tag "logo_white.png"
+
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-      .ui.form.segment
-        .field
-          %label
-            Email
-          .ui.left.labeled.icon.input
-            = f.email_field :email, :autofocus => true
-            %i.user.icon
-            .ui.corner.label
-              %i.icon.asterisk
+      .sign-in
+        %label
+          Email
+        = f.email_field :email, :autofocus => true
 
-        .field
-          %label
-            Wachtwoord
-          .ui.left.labeled.icon.input
-            = f.password_field :password
-            %i.icon.lock
-            .ui.corner.label
-              %i.icon.asterisk
+        %label
+          Wachtwoord
+        = f.password_field :password
 
         .ui.switch.checkbox
           = f.check_box :remember_me, class: 'ui checkbox'
-          = f.label :remember_me
+          = f.label 'Onthoud mij'
 
         %br
         %br
 
-        = f.submit "Log in", class: 'ui blue submit button'
+        = f.submit "Log in", class: 'flat-button'
 
         = render "devise/shared/links"

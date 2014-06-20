@@ -1,0 +1,43 @@
+- @active_tab     = 'home'
+- @active_button  = 'billing'
+
+.row
+  = render 'dashboard/sidebuttons'
+
+  .small-10.column
+    .ui.segment
+
+      - if current_hoa.subscribed?
+        = link_to renew_path, class: 'right floated large blue ui button' do
+          Verleng abonnement met 1 maand
+      - else        
+        = link_to renew_path, class: 'right floated large green ui button' do
+          Upgrade naar Standaard
+
+      .ui.large.relaxed.list
+        .item
+          .content
+            .header Type abonnement
+            = current_hoa.subscription
+        .item
+          .content
+            .header Looptijd
+            - if current_hoa.subscribed?
+              Je abonnement loopt tot 
+              = format_event_date current_hoa.subscribed_until
+            - else
+              Domici.ly basis is gratis voor altijd.
+
+    %table.ui.table.segment
+      %h2 Betalingen
+      %thead
+        %th Bedrag
+        %th Datum
+        %th Gebruiker
+
+      %tbody
+        - @payments.each do |payment|
+          %tr
+            %td= "#{payment.amount / 100} euro"
+            %td= format_event_date payment.created_at
+            %td= payment.user ? payment.user.full_name : 'onbekend'

@@ -1,11 +1,12 @@
 class HoasController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_hoa, only: [:members, :edit, :update, :destroy]
-  after_action :verify_authorized, :except => [:show, :index, :create]
+  before_action :set_hoa, only: [:billing, :members, :edit, :update, :destroy]
+  after_action :verify_authorized, :except => [:show, :index, :create, :check_subdomain_name]
 
   # GET /hoas
   def index
     @hoas = Hoa.all
+    authorize @hoas
   end
 
   # GET /hoas/1
@@ -30,8 +31,11 @@ class HoasController < ApplicationController
   # POST /hoas
   def create
     @hoa = Hoa.new(hoa_params)
+
     if @hoa.save
-      redirect_to organisation_path, notice: 'Hoa was successfully created.'
+      @hoa.users << current_user
+      current_user.add_role :moderator, @hoa
+      redirect_to organisation_url(subdomain: current_user.hoa.subdomain_name), notice: 'Jouw vereniging is aangemaakt, gefeliciteerd!'
     else
       render action: 'new'
     end
@@ -41,7 +45,7 @@ class HoasController < ApplicationController
   def update
     authorize @hoa
     if @hoa.update(hoa_params)
-      redirect_to organisation_path, notice: 'Hoa was successfully updated.'
+      redirect_to organisation_path, notice: 'Vereniging aangepast.'
     else
       render action: 'edit'
     end
@@ -61,6 +65,18 @@ class HoasController < ApplicationController
     @owners            = @hoa.users - @moderators - @maintenance_staff
   end
 
+  def billing
+    authorize @hoa
+  end
+
+  def check_subdomain_name
+    if valid_subdomain_name?(params[:name])
+      render nothing: true, status: 200
+    else
+      render nothing: true, status: 409
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hoa
@@ -69,7 +85,7 @@ class HoasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def hoa_params
-      params.require(:hoa).permit(:name)
+      params.require(:hoa).permit(:name, :subdomain_name, :address, :postal_code, :city)
     end
 
     def set_activities
@@ -78,5 +94,10 @@ class HoasController < ApplicationController
         .includes(:owner, :trackable)
         .order('created_at desc')
         .limit(20)
+    end
+
+    def valid_subdomain_name?(name)
+      Hoa.where(subdomain_name: name).count == 0 &&
+      name.length < 21
     end
 end

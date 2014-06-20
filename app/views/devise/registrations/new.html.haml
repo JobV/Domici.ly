@@ -1,44 +1,38 @@
+- @flat = true
 .row
-  .medium-8.medium-centered.column
+  .medium-6.medium-centered.column
 
-    %h2 Registreer bij Domici.ly
+
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
-      .ui.form.segment
+      .sign-in
+        %h1.ui.header 
+          Stap 1/2
+          .sub.header
+            Begin met Domici.ly
+        %label
+          Email
+        = f.email_field :email, :autofocus => true
 
-        .field
-          %label
-            Email
-          .ui.left.labeled.icon.input
-            = f.email_field :email, :autofocus => true
-            %i.user.icon
+        %label Wachtwoord (minimaal 8 karakters)
+        = f.password_field :password
 
-        .field
-          %label
-            Voornaam
-          .ui.input
-            = f.text_field :first_name
+        %label
+          Wachtwoord nogmaals
+        = f.password_field :password_confirmation
 
-        .field
-          %label
-            Achternaam
-          .ui.input
-            = f.text_field :last_name
+        %p
+          = check_box_tag 'accept-me'
+          Ik ga akkoord met
+          %a#gebruikersverklaring de gebruikersverklaring 
+          en geef toestemming tot het gebruik van cookies
 
-        .field
-          %label
-            Wachtwoord (minimaal 8 karakters)
-          .ui.left.leabeld.icon.input
-            = f.password_field :password
-            %i.icon.lock
-
-        .field
-          %label
-            Wachtwoord nogmaals
-          .ui.left.leabeld.icon.input
-            = f.password_field :password_confirmation
-            %i.icon.lock
-
-        = f.submit "Registreer en log in", class: 'ui positive submit button'
+        = f.submit "Schrijf in", class: 'flat-button submit-registration'
 
         / # = render "devise/shared/links"
+
+.ui.modal
+  %i.close.icon
+  .header Gebruikersverklaring Domici.ly
+  .content
+    = render 'devise/shared/gebruikersverklaring'

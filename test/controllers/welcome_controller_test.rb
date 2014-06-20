@@ -10,8 +10,4 @@ class WelcomeControllerTest < ActionController::TestCase
     sign_in @user
   end
 
-  test "should get welcome" do
-    get :welcome
-    assert_response :success
-  end
 end

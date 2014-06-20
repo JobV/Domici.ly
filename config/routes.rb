@@ -25,17 +25,27 @@ Rails.application.routes.draw do
     resources :comments
   end
   
-  resources :hoas, except: [:show]
+  resources :billing, only: [:new]
+
+  resources :hoas, except: [:show] do
+    collection do
+      get 'check_subdomain_name'
+    end
+  end
+
   get '/organisation',          to: 'hoas#show',       as: :organisation
   get '/organisation/members',  to: 'hoas#members',    as: :members
-  get '/organisation/billing',  to: 'hoas#billing',    as: :billing
-  get '/organisation/settings', to: 'hoas#settings',   as: :settings
-  
+  get '/organisation/settings', to: 'hoas#edit',   as: :settings
+
+  get '/organisation/billing',        to: 'billing#index',    as: :billing
+  get '/organisation/billing/renew',  to: 'billing#renew_subscription',    as: :renew
+  get '/organisation/billing/confirm', to: 'billing#confirm_payment', as: :confirm_payment
+
   resources :participations
   resources :users, only: [:show]
   post '/users/:id/remove', to: 'users#remove_from_hoa', as: :remove_from_hoa
 
-  get '/welcome', to: 'welcome#welcome', as: :welcome
+  get '/welcome', to: 'hoas#new', as: :welcome
 
   get   '/profile',         to: 'profile#index',  as: :profile
   get   '/profile/edit',    to: 'profile#edit',   as: :edit_profile

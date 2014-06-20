@@ -1,3 +1,39 @@
-%h1 New hoa
-= render 'form'
-= link_to 'Back', hoas_path
+- @active_tab = 'welcome'
+- @flat = true
+.row
+  .medium-6.small-12.medium-centered.column
+    .sign-in
+      
+      %h1.ui.header 
+        Stap 2/2
+        .sub.header
+          Maak je vereniging aan
+
+      = form_for @hoa do |f|
+
+        %label Naam vereniging
+        = f.text_field :name
+
+        .flat-field
+          %label Jouw domein
+          = f.text_field :subdomain_name, "data-validate" => "/hoas/check_subdomain_name", "data-err" => "Domeinnaam is niet beschikbaar. Kies iets anders!", autocomplete: "off"
+
+        .ui.small.message
+          .header#subdomain_full
+            naam.domici.ly
+          .content
+            Dit is waar je straks jouw vereniging kan vinden.
+
+        %label Adres van vereniging
+        = f.text_field :address
+
+        %label Postcode
+        = f.text_field :postal_code
+
+        %label Plaats
+        = f.text_field :city
+
+
+        .ui.submit
+          = f.submit 'Maak mijn vereniging aan', class: 'flat-button'
+

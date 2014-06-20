@@ -22,10 +22,10 @@ class HoasControllerTest < ActionController::TestCase
 
   test "should create hoa" do
     assert_difference('Hoa.count') do
-      post :create, hoa: { name: 'meeh' }
+      post :create, hoa: { name: 'meeh', subdomain_name: 'test' }
     end
 
-    assert_redirected_to organisation_path
+    assert_redirected_to organisation_url(subdomain: 'test')
   end
 
   test "should show hoa" do
