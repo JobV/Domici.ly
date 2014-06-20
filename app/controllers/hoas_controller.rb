@@ -6,6 +6,7 @@ class HoasController < ApplicationController
   # GET /hoas
   def index
     @hoas = Hoa.all
+    authorize @hoas
   end
 
   # GET /hoas/1
@@ -30,6 +31,7 @@ class HoasController < ApplicationController
   # POST /hoas
   def create
     @hoa = Hoa.new(hoa_params)
+
     if @hoa.save
       @hoa.users << current_user
       current_user.add_role :moderator, @hoa
@@ -83,7 +85,7 @@ class HoasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def hoa_params
-      params.require(:hoa).permit(:name)
+      params.require(:hoa).permit(:name, :subdomain_name, :address, :postal_code, :city)
     end
 
     def set_activities

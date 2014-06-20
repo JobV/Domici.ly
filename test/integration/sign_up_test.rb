@@ -22,6 +22,8 @@ class SignUpTest < ActionDispatch::IntegrationTest
       click_on 'Maak mijn vereniging aan'
     end
 
+    page_should_contain 'Updates'
+
 
 
   end

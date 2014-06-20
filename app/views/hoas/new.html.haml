@@ -14,8 +14,9 @@
         %label Naam vereniging
         = f.text_field :name
 
-        %label Domeinnaam
-        = f.text_field :subdomain_name, "data-validate" => "/hoas/check_subdomain_name", "data-validation-message" => "Subdomain al genomen"
+        .flat-field
+          %label Jouw domein
+          = f.text_field :subdomain_name, "data-validate" => "/hoas/check_subdomain_name", "data-err" => "Domeinnaam is niet beschikbaar. Kies iets anders!", autocomplete: "off"
 
         .ui.small.message
           .header#subdomain_full

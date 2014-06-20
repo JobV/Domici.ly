@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
         return organisation_url(subdomain: user.hoa.subdomain_name)
       end
     else
-      user.hoa ? organisation_url(subdomain: 'app') : welcome_url(subdomain: 'app')
+      user.hoa ? organisation_url(subdomain: 'app') : new_hoa_url(subdomain: 'app')
     end
   end
 

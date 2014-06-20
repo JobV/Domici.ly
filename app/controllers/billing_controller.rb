@@ -1,10 +1,12 @@
 class BillingController < ApplicationController
+  before_filter :authenticate_user!
+  
   def new
   end
 
   def index
-    authorize self
     @payments = current_user.hoa.payments.includes(:user).where(paid: true).order('updated_at DESC')
+    authorize self
   end
 
   def renew_subscription

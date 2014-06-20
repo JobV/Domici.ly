@@ -1,20 +1,20 @@
 class BillingControllerPolicy < ApplicationPolicy
-  attr_reader :user
+  attr_reader :user, :ctrlr
 
   def initialize(user, ctrlr)
     @user = user
     @ctrlr = ctrlr
   end
 
-  def index
+  def index?
     moderator_or_admin?
   end
 
-  def renew_subscription
+  def renew_subscription?
     moderator_or_admin?
   end
 
-  def confirm_payment
+  def confirm_payment?
     moderator_or_admin?
   end
   

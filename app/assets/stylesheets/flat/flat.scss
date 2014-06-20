@@ -4,7 +4,6 @@ body {
 }
 
 .sign-in {
-  // margin-top: 300px;
   a {
     color: rgba(255,255,255,0.8);
     text-decoration: underline;
@@ -92,5 +91,15 @@ body {
 }
 
 .field_with_errors {
-  border-color: red !important;
+  border-color: #333 !important;
+}
+
+.error_message {
+  position: relative !important;
+  top: -24px !important;
+  left: auto !important;
+  right: auto !important;
+}
+div.error_message.ui.floating.red.pointing.up.label {
+  margin: 0.3em 0em !important;
 }
