@@ -45,7 +45,7 @@ class HoasController < ApplicationController
   def update
     authorize @hoa
     if @hoa.update(hoa_params)
-      redirect_to organisation_path, notice: 'Hoa was successfully updated.'
+      redirect_to organisation_path, notice: 'Vereniging aangepast.'
     else
       render action: 'edit'
     end
@@ -70,7 +70,7 @@ class HoasController < ApplicationController
   end
 
   def check_subdomain_name
-    if Hoa.where(subdomain_name: params[:name]).count == 0
+    if valid_subdomain_name?(params[:name])
       render nothing: true, status: 200
     else
       render nothing: true, status: 409
@@ -94,5 +94,10 @@ class HoasController < ApplicationController
         .includes(:owner, :trackable)
         .order('created_at desc')
         .limit(20)
+    end
+
+    def valid_subdomain_name?(name)
+      Hoa.where(subdomain_name: name).count == 0 &&
+      name.length < 21
     end
 end

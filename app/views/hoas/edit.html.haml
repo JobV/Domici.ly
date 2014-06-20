@@ -1,5 +1,31 @@
-%h1 Editing hoa
-= render 'form'
-= link_to 'Show', @hoa
-|
-\#{link_to 'Back', hoas_path}
+- @active_tab     = 'home'
+- @active_button  = 'settings'
+
+.row
+  = render 'dashboard/sidebuttons'
+
+  .small-10.column
+    .ui.segment
+
+      = form_for @hoa do |f|
+        .ui.form
+          .field
+            %label Naam vereniging
+            = f.text_field :name
+
+          .field
+            %label Adres van vereniging
+            = f.text_field :address
+
+          .field
+            %label Postcode
+            = f.text_field :postal_code
+
+          .field
+            %label Plaats
+            = f.text_field :city
+
+        .ui.submit
+          = f.submit 'Sla aanpassingen op', class: 'ui blue button'
+
+

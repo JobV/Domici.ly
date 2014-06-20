@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   get '/organisation',          to: 'hoas#show',       as: :organisation
   get '/organisation/members',  to: 'hoas#members',    as: :members
-  get '/organisation/settings', to: 'hoas#settings',   as: :settings
+  get '/organisation/settings', to: 'hoas#edit',   as: :settings
 
   get '/organisation/billing',        to: 'billing#index',    as: :billing
   get '/organisation/billing/renew',  to: 'billing#renew_subscription',    as: :renew

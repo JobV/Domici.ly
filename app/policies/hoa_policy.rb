@@ -39,7 +39,7 @@ class HoaPolicy < ApplicationPolicy
   end
 
   def admin_moderator_or_owner?
-    user.admin? or user.has_role? :moderator, hoa.hoa or hoa.user == user
+    user.admin? or user.has_role? :moderator, hoa or hoa.user == user
   end
 
   class Scope < Struct.new(:user, :scope)
