@@ -30,7 +30,7 @@ class HomepagesControllerTest < ActionController::TestCase
   test "should show homepage" do
     @request.host = "jaxons.localhost"
     get :show, id: @homepage
-    assert_response :success
+    assert_redirected_to new_user_session_path
   end
 
   # test "should get edit" do

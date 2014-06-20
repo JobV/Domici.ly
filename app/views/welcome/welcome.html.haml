@@ -1,24 +1,39 @@
 - @active_tab = 'welcome'
+- @flat = true
 .row
   .medium-6.small-12.medium-centered.column
-    .ui.segment
-      %h1 Maak je vereniging aan
+    .sign-in
+      
+      %h1.ui.header 
+        Stap 2/2
+        .sub.header
+          Maak je vereniging aan
 
       = form_for @new_hoa do |f|
 
-        .ui.form
 
-          .field
-            %label Naam vereniging
-            = text_field_tag :hoa_name
+        %label Naam vereniging
+        = f.text_field :name
 
-          .field
-            %label Naam in Domici.ly ('vve-bos' wordt dan vve-box.domici.ly)
-            = text_field_tag :subdomain_name
-            .ui.small.message
-              .header#subdomain_full
-                naam.domici.ly
-              .content
-                Dit is waar je straks jouw vereniging kan vinden.
+        %label Domeinnaam
+        = f.text_field :subdomain_name
 
+        .ui.small.message
+          .header#subdomain_full
+            naam.domici.ly
+          .content
+            Dit is waar je straks jouw vereniging kan vinden.
+
+        %label Adres van vereniging
+        = f.text_field :address
+
+        %label Postcode
+        = f.text_field :postal_code
+
+        %label Plaats
+        = f.text_field :city
+
+
+        .ui.submit
+          = f.submit 'Maak mijn vereniging aan', class: 'flat-button'
 

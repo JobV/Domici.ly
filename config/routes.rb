@@ -27,7 +27,12 @@ Rails.application.routes.draw do
   
   resources :billing, only: [:new]
 
-  resources :hoas, except: [:show]
+  resources :hoas, except: [:show] do
+    collection do
+      get 'check_subdomain_name'
+    end
+  end
+
   get '/organisation',          to: 'hoas#show',       as: :organisation
   get '/organisation/members',  to: 'hoas#members',    as: :members
   get '/organisation/settings', to: 'hoas#settings',   as: :settings
@@ -40,7 +45,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   post '/users/:id/remove', to: 'users#remove_from_hoa', as: :remove_from_hoa
 
-  get '/welcome', to: 'welcome#welcome', as: :welcome
+  get '/welcome', to: 'hoas#new', as: :welcome
 
   get   '/profile',         to: 'profile#index',  as: :profile
   get   '/profile/edit',    to: 'profile#edit',   as: :edit_profile

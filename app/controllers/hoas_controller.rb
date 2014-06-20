@@ -1,7 +1,7 @@
 class HoasController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_hoa, only: [:billing, :members, :edit, :update, :destroy]
-  after_action :verify_authorized, :except => [:show, :index, :create]
+  after_action :verify_authorized, :except => [:show, :index, :create, :check_subdomain_name]
 
   # GET /hoas
   def index
@@ -31,7 +31,9 @@ class HoasController < ApplicationController
   def create
     @hoa = Hoa.new(hoa_params)
     if @hoa.save
-      redirect_to organisation_path, notice: 'Hoa was successfully created.'
+      @hoa.users << current_user
+      current_user.add_role :moderator, @hoa
+      redirect_to organisation_url(subdomain: current_user.hoa.subdomain_name), notice: 'Jouw vereniging is aangemaakt, gefeliciteerd!'
     else
       render action: 'new'
     end
@@ -63,6 +65,14 @@ class HoasController < ApplicationController
 
   def billing
     authorize @hoa
+  end
+
+  def check_subdomain_name
+    if Hoa.where(subdomain_name: params[:name]).count == 0
+      render nothing: true, status: 200
+    else
+      render nothing: true, status: 409
+    end
   end
 
   private

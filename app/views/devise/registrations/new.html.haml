@@ -2,11 +2,14 @@
 .row
   .medium-6.medium-centered.column
 
-    %h2 Begin met Domici.ly
 
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
       .sign-in
+        %h1.ui.header 
+          Stap 1/2
+          .sub.header
+            Begin met Domici.ly
         %label
           Email
         = f.email_field :email, :autofocus => true
@@ -24,7 +27,7 @@
           %a#gebruikersverklaring de gebruikersverklaring 
           en geef toestemming tot het gebruik van cookies
 
-        = f.submit "Registreer en log in", class: 'flat-button submit-registration'
+        = f.submit "Schrijf in", class: 'flat-button submit-registration'
 
         / # = render "devise/shared/links"
 

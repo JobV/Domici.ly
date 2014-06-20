@@ -10,6 +10,16 @@ body {
     text-decoration: underline;
     &:hover { color: #333; }
   }
+
+  h1.header {
+    color: white;
+    font-weight: 400;
+    margin-bottom: 45px;
+    .sub.header {
+      color: white;
+    }
+  }
+
   input[type="text"],
   input[type="email"],
   input[type="password"] {
@@ -73,4 +83,14 @@ body {
 
 .ui.modal {
   color: #333 !important;
+}
+
+.ui.small.message {
+  color: #1f8dd6;
+  background: #fff;
+  margin-top: 0px;
+}
+
+.field_with_errors {
+  border-color: red !important;
 }
