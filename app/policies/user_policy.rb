@@ -14,6 +14,10 @@ class UserPolicy < ApplicationPolicy
     user.has_role?(:moderator, subject.hoa) or user.admin
   end
 
+  def promote_to_moderator?
+    user.has_role?(:moderator, subject.hoa) or user.admin
+  end  
+
   class Scope < Struct.new(:user, :scope)
     def resolve
       scope

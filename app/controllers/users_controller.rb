@@ -62,6 +62,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def promote_to_moderator
+    user = User.find(params[:id])
+    authorize current_user
+    user.add_role :moderator, user.hoa
+    redirect_to members_path, notice: "#{user.full_name} is nu bestuurder."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

@@ -64,5 +64,8 @@
                 .header= owner.full_name
                 .description= owner.email
               - if current_user.has_role?(:moderator, current_user.hoa)
-                = link_to remove_from_hoa_path(owner), method: :post, class: 'right floated tiny teal ui button hover-display', id: "remove-#{owner.id}" do
+                = link_to remove_from_hoa_path(owner), method: :post, class: 'right floated tiny red ui button hover-display', id: "remove-#{owner.id}" do
                   Verwijder uit vereniging
+
+                = link_to promote_to_moderator_path(owner), method: :post, class: 'right floated tiny blue ui button hover-display', id: "remove-#{owner.id}" do
+                  Maak bestuurder
