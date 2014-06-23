@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
 
   def return_name
     return last_name unless last_name.blank?
+    return first_name unless first_name.blank?
     return email if email
     'undefined'
   end

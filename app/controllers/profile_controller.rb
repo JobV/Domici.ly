@@ -2,9 +2,14 @@ class ProfileController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @alerts = current_user.alerts.includes(:assignee).order('updated_at DESC')
-    @assigned_alerts = Alert.where(assignee: current_user)
-    @events = current_user.participations.includes(:event).where(presence: true).map {|p| p.event }.sort_by! { |e| e.date }
+    @alerts           = current_user.alerts.includes(:assignee).order('updated_at DESC')
+    @assigned_alerts  = Alert.where(assignee: current_user)
+    events            = current_user.participations.includes(:event).where(presence: true)
+    if events
+      @events           = events.map {|p| p.event }.sort_by! { |e| e.date }
+    else
+      @events = []
+    end
   end
 
   def edit

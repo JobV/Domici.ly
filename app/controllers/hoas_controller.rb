@@ -11,6 +11,7 @@ class HoasController < ApplicationController
 
   # GET /hoas/1
   def show
+    redirect_to welcome_path unless current_user.hoa
     current_user.hoa ? set_activities : @activities = []
     @post = Post.new user: current_user
 
