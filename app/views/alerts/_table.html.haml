@@ -14,7 +14,7 @@
         = "Laatste update #{format_time(alert.updated_at)} geleden"
 
       - if policy(alert).update?
-        .ui.tiny.blue.buttons
+        .ui.tiny.basic.buttons
           = link_to 'Aanpassen', edit_alert_path(alert), class: 'ui button'
           .ui.tiny.blue.floating.dropdown.icon.button
             %i.dropdown.icon

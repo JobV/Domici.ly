@@ -1,59 +1,54 @@
 .row
-  .small-12.medium-12.medium-centered.column
+  .medium-8.column
 
     = render 'alerts/show_top', alert: @alert
 
     .ui.segment
-      %h1.ui.header
-        .float-right
-          - if policy(@alert).update?
-            = link_to 'Aanpassen', edit_alert_path(@alert), class: 'ui basic button'
-
+      %h2.ui.header
         = @alert.title
-
-
-        .sub.header
-          %p
-          .ui.segment
-            .ui.selection.horizontal.list
-              .item
-                .ui.avatar.image
-                  = image_tag gravatar_url @alert.user
-                .content
-                  .header Melding door
-                  = link_to @alert.user.full_name, user_path(@alert.user)
-
-              .item
-                .ui.avatar.image
-                  - if @alert.assignee
-                    = image_tag gravatar_url @alert.assignee
-                .content
-                  .header Toegewezen aan
-                  - if @alert.assignee
-                    = link_to "#{print_assignee @alert}", user_path(@alert.assignee)
-                  - else
-                    = print_assignee @alert
-
-              .item
-                .content
-                  .header Melding aangemaakt
-                  = "#{format_time(@alert.created_at)} geleden"    
-              
-
-              .item.toggle-sidebar
-                .content
-                  .header Deelnemers
-                  = "#{@alert.collaborations.count} (klik voor details)"
-
-          - @alert.tags.each do |tag|
-            .ui.label
-              = tag.name
-              = link_to alert_remove_tag_path(@alert, id: @alert.id, tag: tag.name), method: :post do
-                %i.delete.icon
 
       .alert-body
         = simple_format @alert.body
 
+    - @alert.tags.each do |tag|
+      .ui.label
+        = tag.name
+        = link_to alert_remove_tag_path(@alert, id: @alert.id, tag: tag.name), method: :post do
+          %i.delete.icon
+
     = render 'comments/standard', comment: @comment, resource: @alert
 
+  .medium-4.column
+    .ui.secondary.segment
+      .ui.selection.list
+        .item
+          .ui.avatar.image
+            = image_tag gravatar_url @alert.user
+          .content
+            .header Melding door
+            = link_to @alert.user.full_name, user_path(@alert.user)
+
+        = link_to edit_alert_path(@alert), class: 'item' do
+          .ui.avatar.image
+            - if @alert.assignee
+              = image_tag gravatar_url @alert.assignee
+          .content
+            .header Toegewezen aan
+            - if @alert.assignee
+              = link_to "#{print_assignee @alert}", user_path(@alert.assignee)
+            - else
+              = print_assignee @alert
+
+        .item
+          .content
+            .header Melding aangemaakt
+            = "#{format_time(@alert.created_at)} geleden"
+
+        .item.toggle-sidebar
+          .content
+            .header Deelnemers
+            = "#{@alert.collaborations.count} (klik voor details)"
+
+    - if policy(@alert).update?
+      = link_to 'Melding aanpassen', edit_alert_path(@alert), class: 'ui blue fluid button'
 = render 'alerts/attendence_sidebar'
