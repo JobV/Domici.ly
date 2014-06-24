@@ -82,4 +82,39 @@ class AssignAlertTest < ActionDispatch::IntegrationTest
       assert_equal Alert.last.assignee.email, email.to[0]
     end
   end
+
+  test 'maintenance is able to change the status of an assigned alert' do
+    moderator_creates_alert(@maintenance)
+
+    sign_in @maintenance
+    click_on 'alerts'
+    click_on ExampleAlert.title
+    click_on 'In behandeling'
+    assert Alert.last.in_progress?
+  end
+
+  test 'maintence is not able to change the status of another alert' do
+    moderator_creates_alert(@home_owner)
+
+    sign_in @maintenance
+    click_on 'alerts'
+    click_on ExampleAlert.title
+    click_on 'In behandeling'
+    assert Alert.last.new?
+  end
+
+  def moderator_creates_alert(assignee)
+    sign_in @moderator
+    click_on 'alerts'
+    click_on 'new-alert'
+    fill_in 'alert_title', with: ExampleAlert.title
+    fill_in 'alert_body', with: ExampleAlert.body
+    select assignee.full_name
+    fill_in 'alert_tag_list', with: ExampleAlert.tag
+
+    assert_difference('Alert.count') do
+      click_on 'Publiceer melding'
+    end
+    click_on 'sign_out'
+  end
 end

@@ -13,10 +13,11 @@
       .updated_at
         = "Laatste update #{format_time(alert.updated_at)} geleden"
 
-      .ui.tiny.blue.buttons
-        = link_to 'Aanpassen', edit_alert_path(alert), class: 'ui button'
-        .ui.tiny.blue.floating.dropdown.icon.button
-          %i.dropdown.icon
-          .menu
-            .item
-              = link_to 'Verwijder', alert, method: :delete, data: { confirm: 'Weet je zeker dat je deze melding wilt verwijderen?' }
+      - if policy(alert).update?
+        .ui.tiny.blue.buttons
+          = link_to 'Aanpassen', edit_alert_path(alert), class: 'ui button'
+          .ui.tiny.blue.floating.dropdown.icon.button
+            %i.dropdown.icon
+            .menu
+              .item
+                = link_to 'Verwijder', alert, method: :delete, data: { confirm: 'Weet je zeker dat je deze melding wilt verwijderen?' }

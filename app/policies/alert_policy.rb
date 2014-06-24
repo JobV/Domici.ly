@@ -19,11 +19,15 @@ class AlertPolicy < ApplicationPolicy
   end
 
   def update?
-    admin_moderator_or_owner?
+    admin_moderator_or_owner? or is_assigned?
   end
 
   def part_of_hoa?
     user.hoa == alert.hoa or alert.user == user or user.admin
+  end
+
+  def is_assigned?
+    alert.assignee == user
   end
 
   def admin_moderator_or_maintenance?

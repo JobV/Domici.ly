@@ -38,7 +38,7 @@
       = link_to profile_path, class: (@active_tab == 'profile' ? 'active item' : 'item') do
         %i.user.icon
         = truncate(current_user.name, length: 23, separator: '@', omission: '')
-      = link_to destroy_user_session_path, class: 'item icon', method: :delete do
+      = link_to destroy_user_session_path, class: 'item icon', id: 'sign_out', method: :delete do
         %i.sign.out.icon
   .row
     .small-12.medium-12.medium-centered.column
