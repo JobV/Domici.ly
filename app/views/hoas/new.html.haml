@@ -15,7 +15,7 @@
         = f.text_field :name
 
         .flat-field
-          %label Jouw domein
+          %label Kies een domein
           = f.text_field :subdomain_name, "data-validate" => "/hoas/check_subdomain_name", "data-err" => "Domeinnaam is niet beschikbaar. Kies iets anders!", autocomplete: "off"
 
         .ui.small.message
