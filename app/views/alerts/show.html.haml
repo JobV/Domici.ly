@@ -33,11 +33,9 @@
             - if @alert.assignee
               = image_tag gravatar_url @alert.assignee
           .content
-            .header Toegewezen aan
-            - if @alert.assignee
-              = link_to "#{print_assignee @alert}", user_path(@alert.assignee)
-            - else
-              = print_assignee @alert
+            .header 
+              Toegewezen aan
+            = print_assignee @alert
 
         .item
           .content
