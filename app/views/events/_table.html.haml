@@ -11,10 +11,10 @@
     - events.each do |event|
       %tr{ class: "#{'positive' if event && event.unread?(current_user)}"}
         %td
-          = format_event_date event.date if event.date
+          = format_event_date event.date if event && event.date
 
         %td
-          = format_event_time event.date if event.date
+          = format_event_time event.date if event && event.date
 
         %td
           = link_to event.title, event
