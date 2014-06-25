@@ -24,5 +24,28 @@ ready = ->
     console.log sortname
     console.log sortorder
 
+  $('.filter').click ->
+    $('.filter').removeClass "active"
+    $('.default-filter').removeClass "active"
+    $(this).addClass "active"
+    filter = $(this).data("filter")
+    alertsTable.filter (item) ->
+      if item.values().state.indexOf(filter) > -1
+        true
+      else
+        false
+
+  # By default, filter out klaar
+  $('.default-filter').click ->
+    $('.filter').removeClass "active"
+    $(this).addClass "active"
+    alertsTable.filter (item) ->
+      if item.values().state.indexOf("klaar") > -1
+        false
+      else
+        true
+
+
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

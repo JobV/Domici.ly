@@ -1,13 +1,19 @@
 - @active_tab = 'alerts'
 .row
-  .medium-12.column#alerts-table
+  .medium-2.column
+    = link_to new_alert_path, id: 'new-alert' do
+      .ui.small.fluid.green.button
+        Nieuwe Melding
+    .ui.small.fluid.secondary.vertical.menu
+      %a.item.default-filter Actief
+      %a.item.filter{ "data-filter" => "nieuw" } Nieuw
+      %a.item.filter{ "data-filter" => "in behandeling" } In behandeling
+      %a.item.filter{ "data-filter" => "klaar" } Klaar
 
+  .medium-10.column#alerts-table
     .ui.small.icon.input.alert-search
       %input.search{placeholder: 'Zoek op melding..' }
       %i.inverted.search.icon
-    = link_to new_alert_path, id: 'new-alert' do
-      .ui.small.green.button.float-right
-        Nieuwe Melding
 
 
     .ui.top.attached.segment
