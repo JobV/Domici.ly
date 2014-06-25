@@ -1,4 +1,4 @@
-$ ->
+ready = ->
   
   options = valueNames: [
     "state"
@@ -23,3 +23,6 @@ $ ->
     alertsTable.sort(sortname,{order: sortorder})
     console.log sortname
     console.log sortorder
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
