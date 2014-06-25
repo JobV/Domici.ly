@@ -9,21 +9,22 @@
 
   %tbody
     - events.each do |event|
-      %tr{ class: "#{'positive' if event && event.unread?(current_user)}"}
-        %td
-          = format_event_date event.date if event && event.date
+      - if event
+        %tr{ class: "#{'positive' if event && event.unread?(current_user)}"}
+          %td
+            = format_event_date event.date if event && event.date
 
-        %td
-          = format_event_time event.date if event && event.date
+          %td
+            = format_event_time event.date if event && event.date
 
-        %td
-          = link_to event.title, event
+          %td
+            = link_to event.title, event
 
-        %td
-          = event.location
+          %td
+            = event.location
 
-        %td.right
-          = link_to edit_event_path(event) do
-            %i.black.ellipsis.horizontal.icon
-          = link_to event, method: :delete, data: { confirm: 'Weet je zeker dat je deze melding wilt verwijderen?' } do
-            %i.black.remove.icon
+          %td.right
+            = link_to edit_event_path(event) do
+              %i.black.ellipsis.horizontal.icon
+            = link_to event, method: :delete, data: { confirm: 'Weet je zeker dat je deze melding wilt verwijderen?' } do
+              %i.black.remove.icon

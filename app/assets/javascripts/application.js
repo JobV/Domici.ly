@@ -169,12 +169,6 @@ ready = function() {
       ;
   });
 
-  var options = {
-    valueNames: ['state', 'title','assignee', 'updated_at']
-  };
-
-  var alertsTable = new List('alerts-table', options);
-
 };
 
 $(document).ready(ready);

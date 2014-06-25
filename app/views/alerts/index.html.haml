@@ -1,29 +1,31 @@
 - @active_tab = 'alerts'
 .row
-  .medium-12.column
+  .medium-12.column#alerts-table
 
-    #alerts-table
-      .ui.top.attached.segment
-        .ui.small.icon.input.alert-search
-          %input.search{placeholder: 'Zoek op melding..', style: {width: "300px"}}
-          %i.inverted.search.icon
+    .ui.small.icon.input.alert-search
+      %input.search{placeholder: 'Zoek op melding..' }
+      %i.inverted.search.icon
+    = link_to new_alert_path, id: 'new-alert' do
+      .ui.small.green.button.float-right
+        Nieuwe Melding
 
-        .ui.small.icon.black.button.sort{ "data-sort" => "updated_at" }
-          %i.sort.icon
-          Update
 
-        .ui.small.icon.black.button.sort{ "data-sort" => "assignee" }
-          %i.sort.icon
-          Toegewezen
+    .ui.top.attached.segment
 
-        .ui.small.icon.black.button.sort{ "data-sort" => "state" }
-          %i.sort.icon
-          Status
+      .ui.selection.dropdown
+        .text Sorteer op..
+        %i.dropdown.icon
+        .menu
+          .item.sort{ "data-sort" => "updated_at" } Laatste Update
+          .item.sort{ "data-sort" => "assignee" } Toegewezen
+          .item.sort{ "data-sort" => "state" } Status
 
-        = link_to new_alert_path, id: 'new-alert' do
-          .ui.labeled.small.green.icon.button.float-right
-            %i.add.icon
-            Nieuwe Melding
+      .ui.selection.dropdown
+        .text Aflopend
+        %i.dropdown.icon
+        .menu
+          .item.sortorder{ "data-sort" => "desc" } Aflopend
+          .item.sortorder{ "data-sort" => "asc" } Oplopend
 
-      .ui.attached.segment
-        = render 'alerts/table', alerts: @alerts
+    .ui.attached.segment
+      = render 'alerts/table', alerts: @alerts
