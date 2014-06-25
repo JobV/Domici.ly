@@ -53,7 +53,7 @@ module ApplicationHelper
   end
 
   def link_to_activity_owner(activity)
-    link_to((activity.owner.full_name if activity.owner), user_path(activity.owner))
+    link_to((activity.owner.name if activity.owner), user_path(activity.owner))
   end
 
   def gravatar_url(user)
