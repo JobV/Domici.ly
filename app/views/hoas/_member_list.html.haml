@@ -1,0 +1,33 @@
+.ui.celled.small.selection.list
+  - members.each do |member|
+    .item.hover-show
+      %img.ui.avatar.image{ src: gravatar_url(member) }
+      = link_to user_path(member), class: 'content' do
+        .header= member.full_name
+        .description= member.email
+
+      - if current_user.has_role?(:moderator, current_user.hoa) && member != current_user
+        .ui.small.right.floated.labeled.top.right.pointing.dropdown.button
+          %span Aanpassen
+          .menu
+
+            - unless member.has_role? :moderator, member.hoa
+              .item
+                = link_to change_role_path(member, role: 'moderator'), method: :post, id: "change-to-moderator-#{member.id}" do
+                  Maak bestuurder
+
+            - unless member.has_role? :maintenance, member.hoa
+              .item
+                = link_to change_role_path(member, role: 'maintenance'), method: :post, id: "change-to-maintenance-#{member.id}" do
+                  Maak huismeester
+
+            - if member.has_role?(:moderator, member.hoa) or member.has_role?(:maintenance, member.hoa)
+              .item
+                = link_to change_role_path(member, role: ''), method: :post, id: "change-to-owner-#{member.id}" do
+                  Maak eigenaar
+
+
+            .item
+              = link_to remove_from_hoa_path(member), method: :post, id: "remove-#{member.id}" do
+                Verwijder uit vereniging
+

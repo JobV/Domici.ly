@@ -14,7 +14,7 @@ class UserPolicy < ApplicationPolicy
     user.has_role?(:moderator, subject.hoa) or user.admin
   end
 
-  def promote_to_moderator?
+  def change_role?
     user.has_role?(:moderator, subject.hoa) or user.admin
   end  
 

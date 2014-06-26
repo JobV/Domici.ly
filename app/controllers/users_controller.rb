@@ -62,11 +62,21 @@ class UsersController < ApplicationController
     end
   end
 
-  def promote_to_moderator
+  def change_role
     user = User.find(params[:id])
+    role = params[:role]
     authorize current_user
-    user.add_role :moderator, user.hoa
-    redirect_to members_path, notice: "#{user.full_name} is nu bestuurder."
+    if user == current_user
+      notice = "Je kan deze actie niet op jezelf doen."
+    elsif ! role.empty?
+      remove_roles(user)
+      user.add_role role.to_sym, user.hoa
+      notice = "#{user.full_name} heeft nu een nieuwe rol."
+    else
+      remove_roles(user)
+      notice = "#{user.full_name} is nu eigenaar."
+    end 
+    redirect_to members_path, notice: notice
   end
 
   private
@@ -78,5 +88,10 @@ class UsersController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def user_params
       params.require(:user).permit(:hoa_id)
+    end
+
+    def remove_roles(user)
+      user.remove_role :moderator
+      user.remove_role :maintenance
     end
 end

@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   resources :participations
   resources :users, only: [:show]
   post '/users/:id/remove', to: 'users#remove_from_hoa', as: :remove_from_hoa
-  post '/users/:id/promote_to_moderator', to: 'users#promote_to_moderator', as: :promote_to_moderator
+  post '/users/:id/change_role', to: 'users#change_role', as: :change_role
 
   get '/welcome', to: 'hoas#new', as: :welcome
 
