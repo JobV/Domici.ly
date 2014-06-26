@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   after_action only: [:show] do
     @event.mark_as_read! for: current_user
   end
-  
+
   # GET /events
   def index
     @events     = current_user.hoa.events.order('date ASC')
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     @event.hoa = current_user.hoa
-    @event.date = @event.date.change({hour: params[:event][:hour], min: params[:event][:min]}) if @event.date
+    @event.date = format_event_date(@event)
     if @event.save
       redirect_to @event, notice: I18n.t('event.created')
     else
@@ -54,7 +54,7 @@ class EventsController < ApplicationController
   def update
     original_date = @event.date
     @event.assign_attributes(event_params)
-    @event.date = @event.date.change({hour: params[:event][:hour], min: params[:event][:min]})
+    @event.date = format_event_date(@event)
     if @event.save
       redirect_to @event, notice: I18n.t('event.updated')
     else
@@ -69,22 +69,27 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def event_params
-      params.require(:event).permit(:date, :title, :location, :hour, :min, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    def update_date_with_time(date, time)
-      date.change({hour: time.hour, min: time.min})
-    end
+  # Only allow a trusted parameter "white list" through.
+  def event_params
+    params.require(:event).permit(:date, :title, :location, :hour, :min, :description)
+  end
 
-    # REFACTOR: make full SQL query
-    def events_with_presence(bool)
-      current_user.participations.includes(:event).where(presence: bool).map { |p| p.event }
-    end
+  def update_date_with_time(date, time)
+    date.change({hour: time.hour, min: time.min})
+  end
+
+  # REFACTOR: make full SQL query
+  def events_with_presence(bool)
+    current_user.participations.includes(:event).where(presence: bool).map { |p| p.event }
+  end
+
+  def format_event_date(event)
+    event.date.change({hour: params[:event][:hour], min: params[:event][:min]}) if event.date
+  end
 end

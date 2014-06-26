@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
-  
+
   resources :billing, only: [:new]
 
   resources :hoas, except: [:show] do
@@ -60,10 +60,6 @@ Rails.application.routes.draw do
   root to: 'hoas#show'
 
   post '/ufgjdiie/:id', to: 'admin#change_hoa', as: :change_hoa
-
-  # statistics
-  get '/ieifjfnmvnskfogihjwowpflkfjskj', to: 'statistics#user_count'
-  get '/jjoqoiwoieoriueriuisodsodofiio', to: 'statistics#hoa_count'
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
