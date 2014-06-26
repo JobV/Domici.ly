@@ -67,31 +67,32 @@ class UsersController < ApplicationController
     role = params[:role]
     authorize current_user
     if user == current_user
-      notice = "Je kan deze actie niet op jezelf doen."
-    elsif ! role.empty?
+      notice = 'Je kan deze actie niet op jezelf doen.'
+    elsif !role.empty?
       remove_roles(user)
       user.add_role role.to_sym, user.hoa
       notice = "#{user.full_name} heeft nu een nieuwe rol."
     else
       remove_roles(user)
       notice = "#{user.full_name} is nu eigenaar."
-    end 
+    end
     redirect_to members_path, notice: notice
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit(:hoa_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def remove_roles(user)
-      user.remove_role :moderator
-      user.remove_role :maintenance
-    end
+  # Only allow a trusted parameter "white list" through.
+  def user_params
+    params.require(:user).permit(:hoa_id)
+  end
+
+  def remove_roles(user)
+    user.remove_role :moderator
+    user.remove_role :maintenance
+  end
 end
