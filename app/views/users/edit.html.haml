@@ -1,7 +1,22 @@
-%h1 Editing user
+.row
+  .medium-12.small-12.medium-centered.column
+    = form_for @user do |f|
+      .ui.segment
+        .ui.form
 
-= render 'form'
+          - { first_name: 'Voornaam',
+              last_name: 'Achternaam',
+              email: 'Email',
+              address: 'Adres',
+              house_number: 'Huisnummer',
+              postal_code: 'Postcode',
+              city: 'Stad',
+              phone_number: 'Telefoon' }.each do |key, name|
+            .field
+              %label
+                = f.label name
+              = f.text_field key
 
-= link_to 'Show', @user
-\|
-= link_to 'Back', users_path
+          .ui.buttons
+            = f.submit 'Sla aanpassingen op', class: 'ui positive button'
+            = link_to 'Annuleer', members_path, class: 'ui button'

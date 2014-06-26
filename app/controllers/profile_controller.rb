@@ -1,6 +1,6 @@
 class ProfileController < ApplicationController
   before_filter :authenticate_user!
-  
+
   def index
     @alerts           = current_user.alerts.includes(:assignee).order('updated_at DESC')
     @assigned_alerts  = Alert.where(assignee: current_user)

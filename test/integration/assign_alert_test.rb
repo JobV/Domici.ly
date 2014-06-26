@@ -70,7 +70,7 @@ class AssignAlertTest < ActionDispatch::IntegrationTest
     click_on 'Meldingen'
     click_on new_alert.title
 
-    click_on 'Aanpassen' 
+    click_on 'Melding aanpassen'
     select 'Piet Doe', from: 'alert_assignee_id'
 
     Sidekiq::Testing.inline! do
