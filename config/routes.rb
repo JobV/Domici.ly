@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   get '/organisation/billing/confirm', to: 'billing#confirm_payment', as: :confirm_payment
 
   resources :participations
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit, :update]
   post '/users/:id/remove', to: 'users#remove_from_hoa', as: :remove_from_hoa
   post '/users/:id/change_role', to: 'users#change_role', as: :change_role
 

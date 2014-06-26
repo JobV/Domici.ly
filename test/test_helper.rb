@@ -52,6 +52,21 @@ def are_attrs_validated?(model, attributes)
   end
 end
 
+def default_test_setup
+  @hoa = create(:hoa)
+
+  # Random user
+  @home_owner = create(:user, hoa: @hoa, first_name: 'Job')
+
+  # Maintenance person
+  @maintenance = create(:user, hoa: @hoa, first_name: 'Piet')
+  @maintenance.add_role :maintenance, @hoa
+
+  # Board member
+  @moderator = create(:user, hoa: @hoa, first_name: 'Steve')
+  @moderator.add_role :moderator, @hoa
+end
+
 # def get_subdomain(subdomain = 'jaxons')
 #   @request.host = "#{subdomain}.localhost"
 # end

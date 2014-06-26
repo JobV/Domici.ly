@@ -6,6 +6,14 @@ class UserPolicy < ApplicationPolicy
     @subject = subject
   end
 
+  def edit?
+    user.has_role?(:moderator, subject.hoa) or user.admin
+  end
+
+  def update?
+    user.has_role?(:moderator, subject.hoa) or user.admin
+  end
+
   def show?
     user.hoa == subject.hoa
   end
@@ -16,7 +24,7 @@ class UserPolicy < ApplicationPolicy
 
   def change_role?
     user.has_role?(:moderator, subject.hoa) or user.admin
-  end  
+  end
 
   class Scope < Struct.new(:user, :scope)
     def resolve

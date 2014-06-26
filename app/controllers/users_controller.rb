@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    authorize @user
   end
 
   # POST /users
@@ -37,8 +38,9 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    authorize @user
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, notice: 'Gebruiker is aangepast.'
     else
       render action: 'edit'
     end
@@ -64,11 +66,11 @@ class UsersController < ApplicationController
 
   def change_role
     user = User.find(params[:id])
-    role = params[:role]
+    role = params[:user][:role]
     authorize current_user
     if user == current_user
       notice = 'Je kan deze actie niet op jezelf doen.'
-    elsif !role.empty?
+    elsif role
       remove_roles(user)
       user.add_role role.to_sym, user.hoa
       notice = "#{user.full_name} heeft nu een nieuwe rol."
@@ -88,7 +90,7 @@ class UsersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def user_params
-    params.require(:user).permit(:hoa_id)
+    params.require(:user).permit(:hoa_id, :role, :first_name, :last_name, :email, :address, :house_number, :phone_number, :postal_code, :city)
   end
 
   def remove_roles(user)
