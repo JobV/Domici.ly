@@ -1,6 +1,10 @@
 .ui.divided.selection.list.alert-list
   - alerts.each do |alert|
     %li.item.listed-alert
+
+        / - if alert.unread?(current_user)
+        /   ongelezen
+
       .state
         = render 'alerts/state_label', alert: alert
 
@@ -10,9 +14,6 @@
 
       .assignee
         = print_assignee_short alert
-      / .read-status
-      /   - if alert.unread?(current_user)
-      /     ongelezen
 
       .info
         .taglist.tagfil

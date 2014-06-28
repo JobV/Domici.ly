@@ -4,6 +4,7 @@
     = link_to new_alert_path, id: 'new-alert' do
       .ui.small.fluid.green.button
         Nieuwe Melding
+
     .ui.small.fluid.vertical.menu
       .header.item
         %i.list.layout.icon
@@ -18,7 +19,6 @@
         .header.item
           %i.tags.icon
           Labels
-
         %a.item.tagfilter.active{ "data-filter" => ""} Alle labels
         - @alerts.tag_counts.order('taggings_count DESC').each do |tag|
           %a.item.tagfilter{ "data-filter" => "#{tag.name}"}
