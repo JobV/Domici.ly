@@ -1,9 +1,6 @@
 .ui.divided.selection.list.alert-list
   - alerts.each do |alert|
-    %li.item.listed-alert
-
-        / - if alert.unread?(current_user)
-        /   ongelezen
+    %li.item.listed-alert{ class: "#{'item listed-alert unread' if alert.unread?(current_user)}"}
 
       .state
         = render 'alerts/state_label', alert: alert
