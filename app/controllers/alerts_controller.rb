@@ -1,16 +1,16 @@
 class AlertsController < ApplicationController
   before_filter :authenticate_user!
 
-  before_action :set_alert, 
+  before_action :set_alert,
     only: [:show, :edit, :update, :destroy, :remove_tag]
   before_action :set_assignees, only: [:create, :edit, :new]
 
   after_action :set_collaborators,  only: [:create, :update]
-  
+
   after_action only: [:show] do
     @alert.mark_as_read! for: current_user
   end
-  
+
   # after_action :verify_authorized, except: [:index]
 
   # GET /alerts

@@ -5,10 +5,17 @@
       .ui.small.fluid.green.button
         Nieuwe Melding
     .ui.small.fluid.secondary.vertical.menu
+      .header.item
+        %i.list.layout.icon
+        Status
       %a.item.default-filter Actief
       %a.item.filter{ "data-filter" => "nieuw" } Nieuw
       %a.item.filter{ "data-filter" => "in behandeling" } In behandeling
       %a.item.filter{ "data-filter" => "klaar" } Klaar
+
+      .header.item
+        %i.tags.icon
+        Labels
 
   .medium-10.column#alerts-table
     .ui.small.icon.input.alert-search
