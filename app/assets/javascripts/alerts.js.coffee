@@ -1,10 +1,11 @@
 ready = ->
-  
+
   options = valueNames: [
     "state"
     "title"
     "assignee"
     "updated_at"
+    "tagfil"
   ]
 
   alertsTable = new List("alerts-table", options)
@@ -24,28 +25,31 @@ ready = ->
     console.log sortname
     console.log sortorder
 
+  stateFilter = ''
+  tagFilter   = ''
+
   $('.filter').click ->
     $('.filter').removeClass "active"
-    $('.default-filter').removeClass "active"
-    $(this).addClass "active"
-    filter = $(this).data("filter")
-    alertsTable.filter (item) ->
-      if item.values().state.indexOf(filter) > -1
-        true
-      else
-        false
+    set_filter(this,alertsTable, stateFilter, tagFilter)
 
-  # By default, filter out klaar
-  $('.default-filter').click ->
-    $('.filter').removeClass "active"
-    $(this).addClass "active"
-    alertsTable.filter (item) ->
-      if item.values().state.indexOf("klaar") > -1
-        false
-      else
-        true
+  $('.tagfilter').click ->
+    $('.tagfilter').removeClass "active"
+    set_filter(this, alertsTable, stateFilter, tagFilter)
 
 
+set_filter = (element, table, stateFilter, tagFilter) ->
+  $(element).addClass "active"
+  stateFilter = $('.filter.active').data("filter")
+  tagFilter   = $('.tagfilter.active').data("filter")
+  filter_all(table, stateFilter, tagFilter)
+
+
+filter_all = (table, filter = '', tagfilter = '') ->
+  table.filter (item) ->
+    if item.values().state.indexOf(filter) > -1 and item.values().tagfil.indexOf(tagfilter) > -1
+      true
+    else
+      false
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

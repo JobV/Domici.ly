@@ -55,37 +55,73 @@
 }
 
 .alert-list .item {
+  position: relative;
   .title {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    max-width: 400px;
+    max-width: 510px;
   }
   .state {
     float: left;
     min-width: 125px;
-    margin-top: 12px;
-  }
-  .assignee, .updated_at {
-    display: inline-block;
   }
   .assignee {
-    min-width: 120px;
-    max-width: 230px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+    top: 22px;
+    font-size: 0.7em;
+    float: right;
+    width: 100px;
+    text-align: center;
+  }
+  .assignee {
+    position: absolute;
+    left: 13px;
+    top: 39px;
+    font-size: 0.9em;
+  }
+  .read-status {
+    position: absolute;
+    left: 13px;
+    top: 49px;
+    font-size: 0.9em;
   }
   .updated_at {
-    margin-left: 50px;
+    float: right;
+    font-size: 0.75em;
+    top: 14px;
+    position: relative;
   }
   .ui.tiny.buttons {
-    float: right;
-    position: relative;
-    top: -12px;
+    position: absolute;
+    top: 8px;
+    right: 3px;
   }
 
   .ui.horizontal.label {
     min-width: 9.2em;
   }
+}
+
+.taglist {
+  display: inline-block;
+  max-width: 360px;
+  white-space: nowrap;
+  overflow: hidden;
+  top: 7px;
+  position: relative;
+}
+
+.ui.tiny.label {
+  padding: 1px 4px;
+}
+
+.listed-alert {
+  min-height:  65px;
+  max-height: 85px;
+}
+
+.unread {
+  background-color: aliceblue;
 }

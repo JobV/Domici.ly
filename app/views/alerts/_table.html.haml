@@ -1,17 +1,26 @@
 .ui.divided.selection.list.alert-list
   - alerts.each do |alert|
-    %li.item{ class: "#{'positive item' if alert.unread?(current_user)}"}
+    %li.item.listed-alert{ class: "#{'item listed-alert unread' if alert.unread?(current_user)}"}
+
       .state
         = render 'alerts/state_label', alert: alert
 
       .title
         = link_to alert.title, alert
 
-      .assignee
-        = print_assignee alert
 
-      .updated_at
-        = "Laatste update #{format_time(alert.updated_at)} geleden"
+      .assignee
+        = print_assignee_short alert
+
+      .info
+        .taglist.tagfil
+          - alert.tag_list.each do |tag|
+            .ui.tiny.label
+              = tag
+
+        .updated_at
+          = "Laatste update #{format_time(alert.updated_at)} geleden"
+
 
       - if policy(alert).update?
         .ui.tiny.basic.buttons

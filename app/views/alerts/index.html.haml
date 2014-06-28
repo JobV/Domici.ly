@@ -4,11 +4,26 @@
     = link_to new_alert_path, id: 'new-alert' do
       .ui.small.fluid.green.button
         Nieuwe Melding
-    .ui.small.fluid.secondary.vertical.menu
-      %a.item.default-filter Actief
+
+    .ui.small.fluid.vertical.menu
+      .header.item
+        %i.list.layout.icon
+        Status
+      %a.item.filter.active{ "data-filter" => "" } Alles
       %a.item.filter{ "data-filter" => "nieuw" } Nieuw
       %a.item.filter{ "data-filter" => "in behandeling" } In behandeling
       %a.item.filter{ "data-filter" => "klaar" } Klaar
+
+    - if @alerts.tag_counts
+      .ui.small.fluid.vertical.menu
+        .header.item
+          %i.tags.icon
+          Labels
+        %a.item.tagfilter.active{ "data-filter" => ""} Alle labels
+        - @alerts.tag_counts.order('taggings_count DESC').each do |tag|
+          %a.item.tagfilter{ "data-filter" => "#{tag.name}"}
+            .ui.label= tag.taggings_count
+            = tag.name
 
   .medium-10.column#alerts-table
     .ui.small.icon.input.alert-search

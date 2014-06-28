@@ -24,11 +24,17 @@ module AlertsHelper
     return I18n.t('alert.unknown_state')
   end
 
-  def print_assignee(alert)
-    if alert.assignee
-      return alert.assignee.full_name if alert.assignee
+  def print_assignee(alert, options = {})
+    if alert.assignee && options[:short]
+      return alert.assignee.first_name
+    elsif alert.assignee
+      return alert.assignee.full_name
     else
       return t('alert.no_assignee')
     end
+  end
+
+  def print_assignee_short(alert)
+    print_assignee(alert, short: true)
   end
 end
