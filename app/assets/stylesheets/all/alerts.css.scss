@@ -125,3 +125,9 @@
 .unread {
   background-color: aliceblue;
 }
+
+.tagfilter {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

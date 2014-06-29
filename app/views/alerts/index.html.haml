@@ -23,7 +23,7 @@
         - @alerts.tag_counts.order('taggings_count DESC').each do |tag|
           %a.item.tagfilter{ "data-filter" => "#{tag.name}"}
             .ui.label= tag.taggings_count
-            = tag.name
+            = truncate(tag.name, length: 14)
 
   .medium-10.column#alerts-table
     .ui.small.icon.input.alert-search
