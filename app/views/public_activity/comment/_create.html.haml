@@ -1,19 +1,19 @@
 - if activity.trackable
-  / .ui.top.attached.segment.alert-feed-top
-  /   = link_to_activity_owner activity
-  /   heeft bij
-  /   = link_to alert_path(activity.trackable.commentable) do
-  /     = truncate(activity.trackable.commentable.title, length: 35)
-  /   een reactie geplaats.
+  .ui.top.attached.segment.alert-feed-top
+    = link_to_activity_owner activity
+    heeft bij
+    = link_to alert_path(activity.trackable.commentable) do
+      = truncate(activity.trackable.commentable.title, length: 35)
+    een reactie geplaatst.
 
-  / .ui.small.attached.segment
-  /   = activity.trackable.comment
+  .ui.small.attached.segment
+    = activity.trackable.comment
 
-  / .ui.tiny.secondary.bottom.attached.segment.alert-feed-actions
-  /   .ui.tiny.horizontal.link.list
-  /     = link_to 'Bekijk melding', alert_path(activity.trackable), class: 'item'
-  /   .date-right
-  /     = "#{format_time(activity.created_at)} geleden"
+  .ui.tiny.secondary.bottom.attached.segment.alert-feed-actions
+    .ui.tiny.horizontal.link.list
+      = link_to 'Bekijk melding', alert_path(activity.trackable), class: 'item'
+    .date-right
+      = "#{format_time(activity.created_at)} geleden"
 
 - else
   /iets anders hier
