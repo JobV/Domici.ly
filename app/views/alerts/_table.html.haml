@@ -8,7 +8,6 @@
       .title
         = link_to truncate(alert.title, length: 74), alert
 
-
       .assignee.assignedfil
         = print_assignee_short alert
 
@@ -26,7 +25,6 @@
 
         .ownedfil
           = alert.user.first_name
-
 
       - if policy(alert).update?
         .ui.tiny.basic.buttons
