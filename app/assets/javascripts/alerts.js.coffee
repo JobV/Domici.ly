@@ -6,6 +6,8 @@ ready = ->
     "assignee"
     "timestamp-hidden"
     "tagfil"
+    "assignedfil"
+    "ownedfil"
   ]
 
   alertsTable = new List("alerts-table", options)
@@ -27,26 +29,41 @@ ready = ->
 
   stateFilter = ''
   tagFilter   = ''
+  ownedFilter = ''
+  assignedFilter = ''
 
   $('.filter').click ->
     $('.filter').removeClass "active"
-    set_filter(this,alertsTable, stateFilter, tagFilter)
+    set_filter(this,alertsTable, stateFilter, tagFilter, ownedFilter, assignedFilter)
 
   $('.tagfilter').click ->
     $('.tagfilter').removeClass "active"
-    set_filter(this, alertsTable, stateFilter, tagFilter)
+    set_filter(this, alertsTable, stateFilter, tagFilter, ownedFilter, assignedFilter)
+
+  $('.ownedfilter').click ->
+    $('.assignedfilter').removeClass "active"
+    $('.ownedfilter').removeClass "active"
+    set_filter(this, alertsTable, stateFilter, tagFilter, ownedFilter, assignedFilter)
+
+  $('.assignedfilter').click ->
+    $('.assignedfilter').removeClass "active"
+    $('.ownedfilter').removeClass "active"
+    set_filter(this, alertsTable, stateFilter, tagFilter, ownedFilter, assignedFilter)
 
 
-set_filter = (element, table, stateFilter, tagFilter) ->
+set_filter = (element, table, stateFilter, tagFilter, ownedFilter, assignedFilter) ->
   $(element).addClass "active"
-  stateFilter = $('.filter.active').data("filter")
-  tagFilter   = $('.tagfilter.active').data("filter")
-  filter_all(table, stateFilter, tagFilter)
+  stateFilter       = $('.filter.active').data("filter")
+  tagFilter         = $('.tagfilter.active').data("filter")
+  ownedFilter       = $('.ownedfilter.active').data("filter")
+  assignedFilter    = $('.assignedfilter.active').data("filter")
+
+  filter_all(table, stateFilter, tagFilter, ownedFilter, assignedFilter)
 
 
-filter_all = (table, filter = '', tagfilter = '') ->
+filter_all = (table, filter = '', tagfilter = '', ownedfilter = '', assignedfilter = '') ->
   table.filter (item) ->
-    if item.values().state.indexOf(filter) > -1 and item.values().tagfil.indexOf(tagfilter) > -1
+    if item.values().state.indexOf(filter) > -1 and item.values().tagfil.indexOf(tagfilter) > -1 and item.values().ownedfil.indexOf(ownedfilter) > -1 and item.values().assignedfil.indexOf(assignedfilter) > -1
       true
     else
       false

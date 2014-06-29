@@ -7,6 +7,14 @@
 
     .ui.small.fluid.vertical.menu
       .header.item
+        %i.user.icon
+        = current_user.first_name
+      %a.item.ownedfilter.assignedfilter.active{ "data-filter" => "" } Alles
+      %a.item.ownedfilter{ "data-filter" => "#{current_user.first_name}" } Aangemaakt
+      %a.item.assignedfilter{ "data-filter" => "#{current_user.first_name}" } Toegewezen
+
+    .ui.small.fluid.vertical.menu
+      .header.item
         %i.list.layout.icon
         Status
       %a.item.filter.active{ "data-filter" => "" } Alles
@@ -29,7 +37,6 @@
     .ui.small.icon.input.alert-search
       %input.search{placeholder: 'Zoek op melding..' }
       %i.inverted.search.icon
-
 
     .ui.top.attached.segment
 

@@ -9,7 +9,7 @@
         = link_to alert.title, alert
 
 
-      .assignee
+      .assignee.assignedfil
         = print_assignee_short alert
 
       .info
@@ -23,6 +23,9 @@
 
         .timestamp-hidden
           = alert.updated_at.to_i
+
+        .ownedfil
+          = alert.user.first_name
 
 
       - if policy(alert).update?
