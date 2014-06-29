@@ -35,9 +35,6 @@
 #
 
 class User < ActiveRecord::Base
-  # unread gem
-  acts_as_reader
-  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
@@ -50,6 +47,7 @@ class User < ActiveRecord::Base
   has_many :participations
   has_many :events, through: :participations
   has_many :collaborations
+  has_many :readings
   has_many :payments
 
   validate :email, uniqueness: true, scope: :hoa

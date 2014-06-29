@@ -23,9 +23,6 @@ class Event < ActiveRecord::Base
 
   attr_writer :hour, :min
 
-  # unread gem
-  acts_as_readable on: :created_at
-
   # Comments
   acts_as_commentable
 

@@ -38,9 +38,6 @@ class Alert < ActiveRecord::Base
   acts_as_ordered_taggable # Alias for acts_as_taggable_on :tags
   acts_as_ordered_taggable_on :state
 
-  # unread gem
-  acts_as_readable on: :created_at
-
   # Comments
   acts_as_commentable
 
@@ -49,6 +46,7 @@ class Alert < ActiveRecord::Base
   belongs_to :hoa
   
   has_many :collaborations, as: :collaborable
+  has_many :readings, as: :readable
 
   def new?
     self.progress == 'new'
@@ -60,5 +58,17 @@ class Alert < ActiveRecord::Base
 
   def completed?
     self.progress == 'completed'
+  end
+
+  def unread?(user)
+    self.readings.find_by(user: user)
+  end
+
+  def mark_as_read!(user)
+    self.readings << user
+  end
+
+  def self.unread_by(user)
+    Reading.where(user: user, readable_type: 'Alert')
   end
 end
