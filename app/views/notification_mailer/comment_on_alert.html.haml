@@ -1,10 +1,16 @@
-= "#{@comment.user.full_name}:"
-%br
-= @comment.comment
-%br
+= "Bekijk onderstaande "
+= link_to('melding', alert_url(@alert))
+in Domici.ly.
 %br
 = "--"
 %br
-Bekijk
-= link_to('deze melding', alert_url(@alert))
-in Domici.ly
+= "#{@comment.user.full_name} zegt:"
+%br
+= @comment.comment
+%br
+= "--"
+%br
+= link_to('Domici.ly', organisation_url)
+%br
+%br
+= link_to('Lees ook over hoe wij Domici.ly een succes proberen te maken op ons blog.', 'http://www.domici.ly/blog')
