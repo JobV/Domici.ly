@@ -1,5 +1,5 @@
 .ui.piled.blue.segment
-  %h2.ui.header
+  %h3.ui.header
     %i.icon.inverted.circular.blue.comment
     Discussie
 
@@ -15,7 +15,7 @@
             %span.date
               = "#{format_time(c.created_at)} geleden"
           .text
-            = c.comment
+            = simple_format c.comment
           .actions
             / %a.reply Aanpassen
             = link_to 'Verwijderen', alert_comment_path(resource, c), method: :delete, class: 'delete'
