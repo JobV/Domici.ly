@@ -4,13 +4,13 @@ ready = ->
     "state"
     "title"
     "assignee"
-    "updated_at"
+    "timestamp-hidden"
     "tagfil"
   ]
 
   alertsTable = new List("alerts-table", options)
 
-  sortname = "updated_at"
+  sortname = "timestamp-hidden"
   sortorder = "desc"
 
   $('.sort').click ->

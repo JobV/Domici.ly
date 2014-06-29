@@ -18,8 +18,11 @@
             .ui.tiny.label
               = tag
 
-        .updated_at
+        .updated_at{ "data-content" => "#{alert.updated_at}", "data-variation" => 'small inverted' }
           = "Laatste update #{format_time(alert.updated_at)} geleden"
+
+        .timestamp-hidden
+          = alert.updated_at.to_i
 
 
       - if policy(alert).update?
