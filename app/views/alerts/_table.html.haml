@@ -6,7 +6,7 @@
         = render 'alerts/state_label', alert: alert
 
       .title
-        = link_to alert.title, alert
+        = link_to truncate(alert.title, length: 74), alert
 
 
       .assignee.assignedfil
