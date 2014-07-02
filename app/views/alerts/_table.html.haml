@@ -13,9 +13,9 @@
 
       .info
         .taglist.tagfil
-          - alert.tag_list.each do |tag|
+          - alert.taggings.each do |tagging|
             .ui.tiny.label
-              = tag
+              = tagging.tag.name
 
         .updated_at{ "data-content" => "#{alert.updated_at}", "data-variation" => 'small inverted' }
           = "Laatste update #{format_time(alert.updated_at)} geleden"

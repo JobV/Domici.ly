@@ -11,6 +11,7 @@
 #  paid        :boolean          default(FALSE)
 #  payment_id  :string(255)
 #  hoa_id      :integer
+#  user_id     :integer
 #
 
 class Payment < ActiveRecord::Base

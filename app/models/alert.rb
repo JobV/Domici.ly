@@ -15,19 +15,20 @@
 #
 
 class Alert < ActiveRecord::Base
+  include Readable
 
   # Validations
-  validates :title, 
-            :user_id, 
-            :hoa_id, 
-            :progress, 
+  validates :title,
+            :user_id,
+            :hoa_id,
+            :progress,
             presence: true
 
   # public_activity -> set current_user as owner by default
   # only track creation events
   include PublicActivity::Model
-  tracked only: [:create], 
-    owner:  Proc.new{ |controller, model| controller && controller.current_user }, 
+  tracked only: [:create],
+    owner:  Proc.new{ |controller, model| controller && controller.current_user },
     hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
 
   # active_admin
@@ -44,9 +45,8 @@ class Alert < ActiveRecord::Base
   belongs_to :user
   belongs_to :assignee, class_name: 'User', foreign_key: :assignee_id
   belongs_to :hoa
-  
+
   has_many :collaborations, as: :collaborable
-  has_many :readings, as: :readable
 
   def new?
     self.progress == 'new'
@@ -58,17 +58,5 @@ class Alert < ActiveRecord::Base
 
   def completed?
     self.progress == 'completed'
-  end
-
-  def unread?(user)
-    self.readings.find_by(user: user)
-  end
-
-  def mark_as_read!(user)
-    self.readings << user
-  end
-
-  def self.unread_by(user)
-    Reading.where(user: user, readable_type: 'Alert')
   end
 end

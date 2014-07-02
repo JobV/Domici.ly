@@ -14,6 +14,8 @@
 #
 
 class Event < ActiveRecord::Base
+  include Readable
+
   # Validations
   validates :date,
             :title,

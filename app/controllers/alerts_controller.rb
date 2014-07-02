@@ -8,14 +8,14 @@ class AlertsController < ApplicationController
   after_action :set_collaborators,  only: [:create, :update]
 
   after_action only: [:show] do
-    @alert.mark_as_read!(current_user)
+    @alert.mark_as_read!(current_user) unless @alert.read?(current_user)
   end
 
   # after_action :verify_authorized, except: [:index]
 
   # GET /alerts
   def index
-    @alerts     = current_user.hoa.alerts.includes(:assignee, :user, :readings).order('updated_at DESC')
+    @alerts     = current_user.hoa.alerts.includes(:assignee, :user, :readings, taggings: [:tag]).order('updated_at DESC')
   end
 
   # GET /alerts/1

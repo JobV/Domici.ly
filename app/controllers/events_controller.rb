@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   after_action only: [:show] do
-    @event.mark_as_read! for: current_user
+    @event.mark_as_read!(current_user) unless @event.read?(current_user)
   end
 
   # GET /events
