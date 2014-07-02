@@ -15,19 +15,20 @@
 #
 
 class Alert < ActiveRecord::Base
+  include Readable
 
   # Validations
-  validates :title, 
-            :user_id, 
-            :hoa_id, 
-            :progress, 
+  validates :title,
+            :user_id,
+            :hoa_id,
+            :progress,
             presence: true
 
   # public_activity -> set current_user as owner by default
   # only track creation events
   include PublicActivity::Model
-  tracked only: [:create], 
-    owner:  Proc.new{ |controller, model| controller && controller.current_user }, 
+  tracked only: [:create],
+    owner:  Proc.new{ |controller, model| controller && controller.current_user },
     hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
 
   # active_admin
@@ -38,16 +39,13 @@ class Alert < ActiveRecord::Base
   acts_as_ordered_taggable # Alias for acts_as_taggable_on :tags
   acts_as_ordered_taggable_on :state
 
-  # unread gem
-  acts_as_readable on: :created_at
-
   # Comments
   acts_as_commentable
 
   belongs_to :user
   belongs_to :assignee, class_name: 'User', foreign_key: :assignee_id
   belongs_to :hoa
-  
+
   has_many :collaborations, as: :collaborable
 
   def new?

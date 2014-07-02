@@ -35,9 +35,6 @@ gem 'public_activity', github: 'pokonski/public_activity'
 # Tags
 gem 'acts-as-taggable-on'
 
-# Unread
-gem 'unread'
-
 # Comments
 gem 'acts_as_commentable'
 

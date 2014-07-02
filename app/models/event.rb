@@ -14,6 +14,8 @@
 #
 
 class Event < ActiveRecord::Base
+  include Readable
+
   # Validations
   validates :date,
             :title,
@@ -22,9 +24,6 @@ class Event < ActiveRecord::Base
             presence: true
 
   attr_writer :hour, :min
-
-  # unread gem
-  acts_as_readable on: :created_at
 
   # Comments
   acts_as_commentable

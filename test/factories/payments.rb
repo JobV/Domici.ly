@@ -11,6 +11,7 @@
 #  paid        :boolean          default(FALSE)
 #  payment_id  :string(255)
 #  hoa_id      :integer
+#  user_id     :integer
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

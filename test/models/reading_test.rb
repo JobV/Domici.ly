@@ -1,18 +1,18 @@
 # == Schema Information
 #
-# Table name: roles
+# Table name: readings
 #
 #  id            :integer          not null, primary key
-#  name          :string(255)
-#  resource_id   :integer
-#  resource_type :string(255)
+#  readable_id   :integer
+#  user_id       :integer          not null
+#  readable_type :string(255)      not null
 #  created_at    :datetime
 #  updated_at    :datetime
 #
 
 require 'test_helper'
 
-class RoleTest < ActiveSupport::TestCase
+class ReadingTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
