@@ -11,7 +11,7 @@ class AlertPolicy < ApplicationPolicy
   end
 
   def show?
-    part_of_hoa?
+    admin_moderator_or_owner? or collaborator?
   end
 
   def destroy?
@@ -28,6 +28,10 @@ class AlertPolicy < ApplicationPolicy
 
   def is_assigned?
     alert.assignee == user
+  end
+
+  def collaborator?
+    @alert.collaborations.where(user: @user).any?
   end
 
   def admin_moderator_or_maintenance?

@@ -15,7 +15,15 @@ class AlertsController < ApplicationController
 
   # GET /alerts
   def index
-    @alerts     = current_user.hoa.alerts.includes(:assignee, :user, :readings, taggings: [:tag]).order('updated_at DESC')
+    if current_user.has_role?(:moderator, current_user.hoa)
+      @alerts = current_user.hoa.alerts \
+      .includes(:assignee, :user, :readings, taggings: [:tag]) \
+      .joins("LEFT OUTER JOIN collaborations").uniq
+    else
+      @alerts = current_user.hoa.alerts \
+      .includes(:assignee, :user, :readings, taggings: [:tag]) \
+      .joins("INNER JOIN collaborations").where(user_id: current_user.id).uniq
+    end
   end
 
   # GET /alerts/1

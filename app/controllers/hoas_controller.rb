@@ -92,7 +92,7 @@ class HoasController < ApplicationController
     def set_activities
       @activities = PublicActivity::Activity
         .where(hoa_id: current_user.hoa.id)
-        .includes(:owner, :trackable)
+        .includes(:owner, trackable: [:hoa])
         .order('created_at desc')
         .limit(20)
     end
