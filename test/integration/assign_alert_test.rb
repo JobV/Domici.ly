@@ -98,9 +98,7 @@ class AssignAlertTest < ActionDispatch::IntegrationTest
 
     sign_in @maintenance
     click_on 'alerts'
-    click_on ExampleAlert.title
-    click_on 'In behandeling'
-    assert Alert.last.new?
+    page_should_not_contain ExampleAlert.title
   end
 
   def moderator_creates_alert(assignee)

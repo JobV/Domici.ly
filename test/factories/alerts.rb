@@ -23,4 +23,11 @@ FactoryGirl.define do
     user
     hoa
   end
+
+  factory :seq_alert, class: 'Alert' do
+    sequence(:title) { |n| "lamp#{n} stuk" }
+    sequence(:body)  { |n| "lamp#{n} stuk op verdieping#{n}" }
+    user
+    hoa
+  end
 end

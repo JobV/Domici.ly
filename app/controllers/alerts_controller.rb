@@ -55,6 +55,7 @@ class AlertsController < ApplicationController
     @alert.user = current_user if current_user
     @alert.hoa  = current_user.hoa if current_user
     if @alert.save
+      set_collaborators
       notify_assignee if @alert.assignee
       redirect_to @alert, notice: I18n.t('alert.created')
     else
@@ -144,6 +145,6 @@ class AlertsController < ApplicationController
     end
 
     def collaboration_exists?(user)
-      @alert.collaborations.exists?(user: user)
+      @alert.collaborations.exists?(user_id: user.id)
     end
 end

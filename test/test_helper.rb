@@ -19,6 +19,8 @@ Devise.mailer = Devise::Mailer
 
 
 require 'capybara/rails'
+require 'public_activity/testing'
+PublicActivity.enabled = true
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL

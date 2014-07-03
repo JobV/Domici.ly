@@ -11,7 +11,7 @@ class AlertPolicy < ApplicationPolicy
   end
 
   def show?
-    admin_moderator_or_owner? or collaborator?
+    admin_moderator_or_owner? or collaborator? or is_assigned?
   end
 
   def destroy?
