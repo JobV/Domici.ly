@@ -1,30 +1,31 @@
-- if policy(activity.trackable).show?
-  - if activity.trackable
-    .ui.top.attached.segment.alert-feed-top
-      .ui.horizontal.red.label nieuw
-      = link_to_activity_owner activity
-      heeft
-      = link_to 'een melding', alert_path(activity.trackable)
-      aangemaakt.
-    .ui.attached.segment
-      .alert-feed-title
-        = activity.trackable.title
-      .alert-feed-body
-        = simple_format activity.trackable.body
+- if activity.trackable && policy(activity.trackable).show?
+  .ui.top.attached.segment.alert-feed-top
+    .ui.horizontal.red.label nieuw
+    = link_to_activity_owner activity
+    heeft
+    = link_to 'een melding', alert_path(activity.trackable)
+    aangemaakt.
+  .ui.attached.segment
+    .alert-feed-title
+      = activity.trackable.title
+    .alert-feed-body
+      = simple_format activity.trackable.body
 
-    .ui.tiny.secondary.bottom.attached.segment.alert-feed-actions
-      .ui.tiny.horizontal.link.list
-        = link_to 'Bekijk melding', alert_path(activity.trackable), class: 'item'
-        .item
-          = "#{activity.trackable.comments.count} reacties"
-      .date-right
-        = "#{format_time(activity.created_at)} geleden"
+  .ui.tiny.secondary.bottom.attached.segment.alert-feed-actions
+    .ui.tiny.horizontal.link.list
+      = link_to 'Bekijk melding', alert_path(activity.trackable), class: 'item'
+      .item
+        = "#{activity.trackable.comments.count} reacties"
+    .date-right
+      = "#{format_time(activity.created_at)} geleden"
 
-  - else
-    .ui.segment.alert-feed-top
-      %i.circular.inverted.red.flag.icon
-      = link_to_activity_owner activity
-      had een melding aangemaakt. Deze is reeds verwijderd.
-      .date-right
-        = "#{format_time(activity.created_at)} geleden"
+- elsif activity.trackable
+  / do nothing
+- else
+  .ui.segment.alert-feed-top
+    %i.circular.inverted.red.flag.icon
+    = link_to_activity_owner activity
+    had een melding aangemaakt. Deze is reeds verwijderd.
+    .date-right
+      = "#{format_time(activity.created_at)} geleden"
 

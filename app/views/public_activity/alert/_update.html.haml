@@ -1,5 +1,5 @@
-.ui.feed.segment
-  - if activity.trackable
+- if activity.trackable && policy(activity.trackable).show?
+  .ui.feed.segment
     .event
       .label
         %i.circular.inverted.black.flag.icon

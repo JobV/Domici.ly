@@ -1,4 +1,4 @@
-- if activity.trackable
+- if activity.trackable && policy(activity.trackable).show?
   .ui.top.attached.segment.alert-feed-top
     = render 'public_activity/alert/progress_icons', progress: activity.parameters[:progress_after]
     = link_to_activity_owner activity
@@ -16,7 +16,8 @@
         = "#{activity.trackable.comments.count} reacties"
     .date-right
       = "#{format_time(activity.created_at)} geleden"
-
+- elsif activity.trackable
+  / nottin
 - else
   .ui.segment.alert-feed-top
     %i.circular.inverted.red.flag.icon
