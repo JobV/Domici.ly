@@ -18,11 +18,12 @@ class AlertsController < ApplicationController
     if current_user.has_role?(:moderator, current_user.hoa)
       @alerts = current_user.hoa.alerts \
       .includes(:assignee, :user, :readings, taggings: [:tag]) \
-      .joins("LEFT OUTER JOIN collaborations").uniq
+      .order('alerts.updated_at DESC')
     else
       @alerts = current_user.hoa.alerts \
       .includes(:assignee, :user, :readings, taggings: [:tag]) \
-      .joins("INNER JOIN collaborations").where(user_id: current_user.id).uniq
+      .joins("INNER JOIN collaborations").where(user_id: current_user.id).uniq \
+      .order('alerts.updated_at DESC')
     end
   end
 
