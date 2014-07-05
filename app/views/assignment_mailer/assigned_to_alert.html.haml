@@ -1,12 +1,13 @@
-%h1 Domici.ly Melding toegewezen
+%p Domici.ly Melding toegewezen
 
 - if @assigner == @assignee
   %p= "#{@assignee.name}, je hebt jezelf een melding toegewezen:"
 - else
   %p= "#{@assignee.name}, een melding is door #{@assigner.name} aan je toegewezen:"
 
-%h2
-  = @alert.title
+%p
+  %b
+    = @alert.title
 
 %p
   = @alert.body
