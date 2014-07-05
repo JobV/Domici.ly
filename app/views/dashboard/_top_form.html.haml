@@ -1,9 +1,9 @@
 .ui.two.large.blue.fluid.buttons
-  .ui.button.lonely
+  = link_to new_alert_path, class: 'ui button lonely' do
     %i.add.icon
     doe een melding
 
-  .ui.button.lonely
+  = link_to alerts_path, class: 'ui button lonely' do
     %i.list.icon
     bekijk meldingen
 
