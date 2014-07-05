@@ -19,6 +19,10 @@
     = render 'comments/standard', comment: @comment, resource: @alert
 
   .medium-4.column
+    - if policy(@alert).update?
+      = link_to edit_alert_path(@alert), class: 'ui blue fluid button' do
+        %i.edit.icon
+        Melding aanpassen
     .ui.secondary.segment
       .ui.selection.list
         .item
@@ -26,7 +30,7 @@
             = image_tag gravatar_url @alert.user
           .content
             .header Melding door
-            = link_to @alert.user.full_name, user_path(@alert.user)
+            = link_to @alert.user.name, user_path(@alert.user)
 
         = link_to edit_alert_path(@alert), class: 'item' do
           .ui.avatar.image
@@ -35,7 +39,7 @@
           .content
             .header
               Toegewezen aan
-            = print_assignee @alert
+            = print_assignee_short @alert
 
         .item
           .content
@@ -47,6 +51,18 @@
             .header Deelnemers
             = "#{@alert.collaborations.count} (klik voor details)"
 
-    - if policy(@alert).update?
-      = link_to 'Melding aanpassen', edit_alert_path(@alert), class: 'ui blue fluid button'
+    .ui.fluid.button.toggle-sidebar.lonely
+      %i.ui.users.icon
+      Wie kan deze melding zien?
+
+    - if @collaboration
+      = link_to alert_collaboration_path(@alert, @collaboration), method: :delete, class: ' ui fluid button' do
+        %i.stop.icon
+        Stop updates
+
+    - else
+      = link_to alert_collaborations_path(@alert, @new_collaboration, collaboration: {user_id: current_user.id, collaborable_type: @alert.class, collaborable_id: @alert.id}), method: :post, class: 'ui fluid button' do
+        %i.mail.outline.icon
+        Volg updates
+
 = render 'alerts/attendence_sidebar'

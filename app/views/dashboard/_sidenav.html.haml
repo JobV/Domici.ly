@@ -1,6 +1,5 @@
-.ui.small.fluid.secondary.vertical.menu
-
-  - if @unread_alerts.count > 0
+- if @unread_alerts.count > 0
+  .ui.small.fluid.vertical.menu
     .header.item
       Laatste updates
 
@@ -13,7 +12,7 @@
 
 
 - unless current_user.got_started?
-  .ui.small.fluid.secondary.vertical.menu
+  .ui.small.fluid.vertical.menu
     .header.item
       Aan de slag met Domici.ly
 
@@ -35,7 +34,7 @@
 
   .divider
 
-.ui.small.fluid.secondary.vertical.menu
+.ui.small.fluid.vertical.menu
 
   .header.item
     Over Domici.ly

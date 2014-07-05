@@ -1,7 +1,7 @@
 .ui.piled.blue.segment
   %h3.ui.header
     %i.icon.inverted.circular.blue.comment
-    Discussie
+    Reacties
 
   .ui.comments
     - resource.comments.includes(:user).each do |c|
@@ -25,5 +25,5 @@
       .field
         = f.hidden_field :commentable_type, value: resource.class
         = f.hidden_field :commentable_id,   value: resource.id
-        = f.text_area :comment
+        = f.text_area :comment, placeholder: 'Reageer hier..'
       = f.submit 'Plaats Reactie' , class: ' ui fluid blue labeled submit icon button'
