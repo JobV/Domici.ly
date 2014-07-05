@@ -1,5 +1,5 @@
 - if signed_in?
-  .ui.inverted.domicily-blue.menu.mainnav
+  .ui.large.inverted.domicily-blue.menu.mainnav
     - if current_hoa
       = link_to organisation_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
         %b Domici.ly
@@ -17,12 +17,26 @@
         %i.calendar.icon
         Agenda
 
+      %a.purple.item#members{ href: '/organisation/members', class: (@active_button == 'members' ? 'active' : '')}
+        %i.users.icon
+        Leden
+
     - else
       = link_to welcome_path, class: (@active_tab == 'welcome' ? 'active green item' : 'green item') do
         %i.cloud.icon
         Start met Domici.ly
 
     .right.menu
+      
+      - if moderator?(current_user)
+        %a.purple.item#billing{ href: '/organisation/billing', class: (@active_button == 'billing' ? 'active' : '')}
+          %i.payment.icon
+          Betalingen
+
+        %a.purple.item#settings{ href: '/organisation/settings', class: (@active_button == 'settings' ? 'active' : '')}
+          %i.settings.icon
+          Opties
+
       - if current_hoa
         .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
           %i.plus.icon
@@ -33,13 +47,17 @@
               = link_to 'Lid', new_user_invitation_path, class: 'item'
             - if policy(Announcement).new?
               = link_to 'Mededeling', new_announcement_path, class: 'item'
-      = link_to help_path,  class: (@active_tab == 'help' ? 'active item' : 'item'), id: 'help' do
-        %i.question.icon
-      = link_to profile_path, class: (@active_tab == 'profile' ? 'active item' : 'item') do
+
+      .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
         %i.user.icon
-        = truncate(current_user.name, length: 23, separator: '@', omission: '')
-      = link_to destroy_user_session_path, class: 'item icon', id: 'sign_out', method: :delete do
-        %i.sign.out.icon
+        .menu
+          = link_to profile_path, class: 'item' do
+            Mijn profiel
+          = link_to help_path,  class: 'item', id: 'help' do
+            Help
+          = link_to destroy_user_session_path, class: 'item', id: 'sign_out', method: :delete do
+            Log uit
+        
   .row
     .small-12.medium-12.medium-centered.column
 

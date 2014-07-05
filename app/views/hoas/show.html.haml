@@ -2,9 +2,7 @@
 - @active_button  = 'dashboard'
 
 .row
-  = render 'dashboard/sidebuttons'
-
-  .small-7.column
+  .small-9.column
     = render 'dashboard/top_form'
     - @activities.each do |activity|
       = render_activity activity
