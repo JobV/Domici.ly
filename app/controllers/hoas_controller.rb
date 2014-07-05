@@ -86,7 +86,7 @@ class HoasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def hoa_params
-      params.require(:hoa).permit(:name, :subdomain_name, :address, :postal_code, :city)
+      params.require(:hoa).permit(:name, :subdomain_name, :address, :postal_code, :city, :allow_posts)
     end
 
     def set_activities

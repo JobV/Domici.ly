@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140629145735) do
+ActiveRecord::Schema.define(version: 20140705213011) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20140629145735) do
     t.string   "kvk"
     t.string   "account_nr"
     t.string   "account_owner"
+    t.boolean  "allow_posts",       default: true
   end
 
   add_index "hoas", ["subdomain_name"], name: "index_hoas_on_subdomain_name", unique: true

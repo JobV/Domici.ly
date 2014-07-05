@@ -25,6 +25,11 @@
             %label Plaats
             = f.text_field :city
 
+          .inline.field
+            .ui.toggle.checkbox
+              = f.check_box :allow_posts
+              %label Sta het toe dat iedereen berichten op de updates pagina kan plaatsen.
+
         .ui.submit
           = f.submit 'Sla aanpassingen op', class: 'ui blue button'
 

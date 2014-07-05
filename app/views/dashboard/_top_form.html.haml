@@ -1,3 +1,13 @@
-= form_for @post do |f|
-  .ui.fluid.input
-    = f.text_field :title, placeholder: 'Plaats een bericht (Enter)', autofocus: true
+.ui.two.large.blue.fluid.buttons
+  .ui.button.lonely
+    %i.add.icon
+    doe een melding
+
+  .ui.button.lonely
+    %i.list.icon
+    bekijk meldingen
+
+- if current_hoa.allow_posts
+  = form_for @post do |f|
+    .ui.fluid.input
+      = f.text_field :title, placeholder: "Plaats een bericht (Enter)", autofocus: true
