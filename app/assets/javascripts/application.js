@@ -18,6 +18,8 @@
 //= require pikaday
 //= require chosen-jquery
 //= require list
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .
 
 var ready;
