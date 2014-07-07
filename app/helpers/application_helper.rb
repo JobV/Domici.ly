@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def xeditable?(object)
+      true # Or something like current_user.xeditable?
+  end
+
   def current_hoa
     current_user.hoa
   end

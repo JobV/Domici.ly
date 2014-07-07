@@ -1,5 +1,10 @@
 ready = ->
 
+  $.fn.editable.defaults.mode = 'inline'
+
+  $('.editable').editable
+    inputclass: "inline-input"
+
   options = valueNames: [
     "state"
     "title"

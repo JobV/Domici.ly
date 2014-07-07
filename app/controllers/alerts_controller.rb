@@ -1,4 +1,6 @@
 class AlertsController < ApplicationController
+  respond_to :html, :json
+
   before_filter :authenticate_user!
 
   before_action :set_alert,
@@ -74,7 +76,13 @@ class AlertsController < ApplicationController
     if @alert.update(alert_params)
       on_assignee_change_notify(assignee_before)
       on_progress_change_post_comment(progress_before)
-      redirect_to @alert, notice: I18n.t('alert.updated')
+
+      # If inline editing
+      if request.xhr?
+        respond_with @alert
+      else
+        redirect_to @alert, notice: I18n.t('alert.updated')
+      end
     else
       render action: 'edit', alert: "Woops!"
     end

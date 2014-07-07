@@ -20,6 +20,8 @@
 //= require list
 //= require nprogress
 //= require nprogress-turbolinks
+//= require editable/jquery-editable-poshytip
+//= require editable/rails
 //= require_tree .
 
 var ready;

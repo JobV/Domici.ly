@@ -4,8 +4,8 @@
     = render 'alerts/show_top', alert: @alert
 
     .ui.segment
-      %h2.ui.header
-        = @alert.title
+      %h2.ui.header.testhead
+        = editable @alert, :title
 
       .alert-body
         = simple_format @alert.body
@@ -58,7 +58,7 @@
     - if @collaboration
       = link_to alert_collaboration_path(@alert, @collaboration), method: :delete, class: ' ui fluid button' do
         %i.stop.icon
-        Stop updates
+        Stop notificaties
 
     - else
       = link_to alert_collaborations_path(@alert, @new_collaboration, collaboration: {user_id: current_user.id, collaborable_type: @alert.class, collaborable_id: @alert.id}), method: :post, class: 'ui fluid button' do

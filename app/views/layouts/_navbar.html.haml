@@ -37,14 +37,6 @@
         %i.cloud.icon
         Start met Domici.ly
 
-
-    / .ui.sub.menu
-    /   %a.item
-    /     %i.plus.icon
-    /     melding
-    /   %a.item nieuwe afspraak
-    /   %a.item nieuwe mededeling
-
   - if current_user.hoa && policy(current_hoa).show? && @quick_add_bar
     = render 'layouts/quick_add'
   - else
