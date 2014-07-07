@@ -1,4 +1,4 @@
-- if activity.trackable && policy(activity.trackable.commentable).show?
+- if activity.trackable && activity.trackable.commentable && policy(activity.trackable.commentable).show?
   .ui.top.attached.segment.alert-feed-top
     = link_to_activity_owner activity
     heeft bij
