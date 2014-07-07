@@ -2,7 +2,7 @@
   .ui.large.tiered.fluid.labeled.icon.menu.mainnav
     - if current_hoa
       = link_to organisation_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item logo-navbar' : 'item logo-navbar') do
-        %b Domici.ly
+        %b.logo-nav Domici.ly
 
       - if current_hoa && policy(current_hoa).show?            
         = link_to organisation_url(subdomain: current_hoa.subdomain_name), class: (@active_tab == 'home' ? 'active blue item' : 'blue item') do
