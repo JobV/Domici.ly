@@ -1,21 +1,25 @@
-- @active_tab     = 'home'
 - @active_button  = 'members'
 
 .row
-  = render 'dashboard/sidebuttons'
+  .small-12.column
+    - if current_user.has_role?(:moderator, current_user.hoa) or current_user.admin
+      = link_to new_user_invitation_path, id: 'new-member' do
+        .ui.blue.domicily-blue.labeled.icon.button
+          %i.add.icon
+          Nieuwe Leden
 
-  .small-10.column
+      .float-right
+        = link_to settings_path, id: 'settings' do
+          .ui.labeled.icon.button
+            %i.settings.icon
+            Domici.ly Opties
+
+        = link_to billing_path, id: 'billing' do
+          .ui.labeled.icon.button
+            %i.payment.icon
+            Betalingen
 
     .ui.raised.segment
-      - if current_user.has_role?(:moderator, current_user.hoa) or current_user.admin
-        = link_to new_user_invitation_path, id: 'new-member' do
-          .ui.labeled.mini.icon.button
-            %i.add.icon
-            Nieuwe Leden
-
-        %br
-        %br
-
       - if ! @moderators.empty?
         .ui.green.ribbon.label
           Bestuurders

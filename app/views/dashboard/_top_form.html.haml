@@ -1,13 +1,5 @@
-.ui.two.large.blue.fluid.buttons
-  = link_to new_alert_path, class: 'ui button lonely' do
-    %i.add.icon
-    doe een melding
-
-  = link_to alerts_path, class: 'ui button lonely' do
-    %i.list.icon
-    bekijk meldingen
-
 - if current_hoa.allow_posts
   = form_for @post do |f|
     .ui.fluid.input
       = f.text_field :title, placeholder: "Plaats een bericht (Enter)", autofocus: true
+

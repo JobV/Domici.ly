@@ -170,7 +170,7 @@ ready = function() {
       .sidebar('toggle')
       ;
   });
-
+  
 };
 
 $(document).ready(ready);

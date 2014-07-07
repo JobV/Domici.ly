@@ -1,62 +1,49 @@
 - if signed_in?
-  .ui.large.inverted.domicily-blue.menu.mainnav
+  .ui.large.tiered.fluid.labeled.icon.menu.mainnav
     - if current_hoa
-      = link_to organisation_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item' : 'item') do
+      = link_to organisation_url(subdomain: current_user.subdomain), class: (@active_tab == 'homepage' ? 'active item logo-navbar' : 'item logo-navbar') do
         %b Domici.ly
 
       - if current_hoa && policy(current_hoa).show?            
-        = link_to organisation_url(subdomain: current_hoa.subdomain_name), class: (@active_tab == 'home' ? 'active green item' : 'green item') do
-          %i.home.icon
-          = truncate(current_hoa.name, length: 20)
+        = link_to organisation_url(subdomain: current_hoa.subdomain_name), class: (@active_tab == 'home' ? 'active blue item' : 'blue item') do
+          %i.list.icon
+          Overzicht
 
-      = link_to alerts_path, class: (@active_tab == 'alerts' ? 'active green item' : 'green item'), id: 'alerts' do
+      = link_to alerts_path, class: (@active_tab == 'alerts' ? 'active blue item' : 'blue item'), id: 'alerts' do
         %i.warning.icon
         Meldingen
 
-      = link_to events_path, class: (@active_tab == 'events' ? 'active green item' : 'green item') do
+      = link_to events_path, class: (@active_tab == 'events' ? 'active blue item' : 'blue item') do
         %i.calendar.icon
         Agenda
 
-      %a.purple.item#members{ href: '/organisation/members', class: (@active_button == 'members' ? 'active' : '')}
-        %i.users.icon
-        Leden
 
     - else
-      = link_to welcome_path, class: (@active_tab == 'welcome' ? 'active green item' : 'green item') do
+      = link_to welcome_path, class: (@active_tab == 'welcome' ? 'active blue item' : 'blue item') do
         %i.cloud.icon
         Start met Domici.ly
+    
+    .ui.icon.right.pointing.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
+      %i.user.icon
+      = current_user.first_name
+      .menu
+        = link_to profile_path, class: 'item' do
+          Mijn profiel
+        = link_to help_path,  class: 'item', id: 'help' do
+          Help
+        = link_to destroy_user_session_path, class: 'item', id: 'sign_out', method: :delete do
+          Log uit
 
-    .right.menu
-      
-      - if moderator?(current_user)
-        %a.purple.item#billing{ href: '/organisation/billing', class: (@active_button == 'billing' ? 'active' : '')}
-          %i.payment.icon
-          Betalingen
+    %a.blue.right.item#members{ href: '/organisation/members', class: (@active_button == 'members' ? 'active' : '')}
+      %i.users.icon
+      = truncate(current_hoa.name, length: 20)
 
-        %a.purple.item#settings{ href: '/organisation/settings', class: (@active_button == 'settings' ? 'active' : '')}
-          %i.settings.icon
-          Opties
-
-      - if current_hoa
-        .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
-          %i.plus.icon
-          .menu
-            = link_to 'Melding', new_alert_path, class: 'item'
-            = link_to 'Afspraak', new_event_path, class: 'item'
-            - if current_user.has_role?(:moderator, current_hoa)
-              = link_to 'Lid', new_user_invitation_path, class: 'item'
-            - if policy(Announcement).new?
-              = link_to 'Mededeling', new_announcement_path, class: 'item'
-
-      .ui.icon.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
-        %i.user.icon
-        .menu
-          = link_to profile_path, class: 'item' do
-            Mijn profiel
-          = link_to help_path,  class: 'item', id: 'help' do
-            Help
-          = link_to destroy_user_session_path, class: 'item', id: 'sign_out', method: :delete do
-            Log uit
+    / .ui.sub.menu
+    /   %a.item
+    /     %i.plus.icon
+    /     melding
+    /   %a.item nieuwe afspraak
+    /   %a.item nieuwe mededeling
         
   .row
     .small-12.medium-12.medium-centered.column
@@ -85,4 +72,8 @@
               .header
                 = msg
           %br
-          
+
+- if @quick_add_bar
+  = render 'layouts/quick_add'
+- else
+  .margin1rem

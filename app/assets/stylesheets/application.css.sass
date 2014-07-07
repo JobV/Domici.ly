@@ -20,14 +20,14 @@
 @import 'semantic-ui'
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900)
 
-
 body
   font-family: Source Sans Pro, 'Helvetica Neue', Helvetica, Verdana, sans-serif
   background: #E8F4FF /* #EDF1F5 */
 
 .mainnav
-  margin-bottom: 1rem !important
+  margin-bottom: 0 !important
   border-radius: 0 !important
+  z-index: 2000
 
 .ui.inverted.domicily-blue.menu
   background-color: #1f8dd6
@@ -126,3 +126,35 @@ a:visited
 
 .lonely
   margin-bottom: 16px !important
+
+.lonely-horizontal
+  margin-right: 5px !important
+
+.logo-navbar
+  float: left
+  margin: 0
+  padding-top: 30px !important
+  height: 82px !important
+
+.mainnav .right
+  float: right
+
+.ui.domicily-blue.button
+  background-color: #1f8dd6
+  
+.ui.large.tiered.fluid.labeled.icon.menu.mainnav
+  z-index: 2000
+
+.quick-add-buttons
+  margin-left: auto
+  margin-right: auto
+  text-align: center
+  margin-bottom: 10px
+  background: #FAF9FA
+  padding: 10px 0px
+  border-top: 1px solid rgba(0, 0, 0, 0.1)
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+
+
+.margin1rem
+  margin-bottom: 1rem !important
