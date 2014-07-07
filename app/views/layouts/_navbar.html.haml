@@ -17,26 +17,26 @@
         %i.calendar.icon
         Agenda
 
+      .ui.icon.right.pointing.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
+        %i.user.icon
+        = current_user.first_name
+        .menu
+          = link_to profile_path, class: 'item' do
+            Mijn profiel
+          = link_to help_path,  class: 'item', id: 'help' do
+            Help
+          = link_to destroy_user_session_path, class: 'item', id: 'sign_out', method: :delete do
+            Log uit
+
+      %a.blue.right.item#members{ href: '/organisation/members', class: (@active_button == 'members' ? 'active' : '')}
+        %i.users.icon
+        = truncate(current_hoa.name, length: 20)
 
     - else
       = link_to welcome_path, class: (@active_tab == 'welcome' ? 'active blue item' : 'blue item') do
         %i.cloud.icon
         Start met Domici.ly
     
-    .ui.icon.right.pointing.dropdown{ class: (@active_tab == 'add' ? 'active item' : 'item') }
-      %i.user.icon
-      = current_user.first_name
-      .menu
-        = link_to profile_path, class: 'item' do
-          Mijn profiel
-        = link_to help_path,  class: 'item', id: 'help' do
-          Help
-        = link_to destroy_user_session_path, class: 'item', id: 'sign_out', method: :delete do
-          Log uit
-
-    %a.blue.right.item#members{ href: '/organisation/members', class: (@active_button == 'members' ? 'active' : '')}
-      %i.users.icon
-      = truncate(current_hoa.name, length: 20)
 
     / .ui.sub.menu
     /   %a.item
@@ -44,6 +44,11 @@
     /     melding
     /   %a.item nieuwe afspraak
     /   %a.item nieuwe mededeling
+
+  - if current_user.hoa && policy(current_hoa).show? && @quick_add_bar
+    = render 'layouts/quick_add'
+  - else
+    .margin1rem
         
   .row
     .small-12.medium-12.medium-centered.column
@@ -73,7 +78,3 @@
                 = msg
           %br
 
-- if @quick_add_bar
-  = render 'layouts/quick_add'
-- else
-  .margin1rem
