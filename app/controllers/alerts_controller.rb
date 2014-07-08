@@ -49,6 +49,7 @@ class AlertsController < ApplicationController
 
   # GET /alerts/1/edit
   def edit
+    authorize @alert
   end
 
   # POST /alerts

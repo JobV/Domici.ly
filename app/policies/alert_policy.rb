@@ -18,6 +18,10 @@ class AlertPolicy < ApplicationPolicy
     admin_moderator_or_owner?
   end
 
+  def edit?
+    admin_moderator_or_owner? or is_assigned?
+  end
+
   def update?
     admin_moderator_or_owner? or is_assigned?
   end
