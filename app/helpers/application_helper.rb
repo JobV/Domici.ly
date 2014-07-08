@@ -1,7 +1,15 @@
 module ApplicationHelper
 
   def xeditable?(object)
-      true # Or something like current_user.xeditable?
+    true # Or something like current_user.xeditable?
+  end
+
+  def inline_edit(object, attribute, type = 'text')
+    if policy(object).update?
+      editable object, attribute, type: type
+    else
+      simple_format object.send(attribute.to_s)
+    end
   end
 
   def current_hoa

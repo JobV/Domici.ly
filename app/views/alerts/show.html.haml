@@ -4,11 +4,11 @@
     = render 'alerts/show_top', alert: @alert
 
     .ui.segment
-      %h2.ui.header.testhead
-        = editable @alert, :title
+      %h2.ui.header
+        = inline_edit @alert, :title
 
       .alert-body
-        = simple_format @alert.body
+        = inline_edit(@alert, :body, 'textarea')
 
     - @alert.tags.each do |tag|
       .ui.label
