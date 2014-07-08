@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/JobV/x-editable-rails.git
+  revision: d9001f258931be0a397420bcc818032c4e78f88e
+  specs:
+    x-editable-rails (1.5.4)
+      railties
+
+GIT
   remote: git://github.com/ctran/annotate_models.git
   revision: 9634ea6e67851d4a9a4d0b89597a6a9d3fc4d1f4
   specs:
@@ -172,7 +179,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (5.3.5)
+    minitest (5.4.0)
     minitest-reporters (1.0.4)
       ansi
       builder
@@ -341,8 +348,6 @@ GEM
     uniform_notifier (1.6.2)
     warden (1.2.3)
       rack (>= 1.0)
-    x-editable-rails (1.5.3)
-      railties
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -404,4 +409,4 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
-  x-editable-rails
+  x-editable-rails (~> 1.5.4)!

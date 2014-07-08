@@ -68,7 +68,7 @@ gem 'redcarpet'
 gem 'nprogress-rails'
 
 # x-editable
-gem 'x-editable-rails'
+gem 'x-editable-rails', '~> 1.5.4', github: 'JobV/x-editable-rails'
 
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
