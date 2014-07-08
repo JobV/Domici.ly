@@ -1,5 +1,8 @@
 ready = ->
 
+  $('.editable').editable
+    inputclass: "inline-input"
+
   $.fn.editable.defaults.mode = 'inline'
 
   $.fn.editableform.buttons = '<button type="submit" class="ui tiny green button editable-submit">Aanpassen</i></button>
@@ -12,10 +15,6 @@ ready = ->
                                     <div class="editable-error-block"></div>
                                   </div>
                                 </form>'
-
-  $('.editable').editable
-    inputclass: "inline-input"
-
   options = valueNames: [
     "state"
     "title"
