@@ -1,3 +1,7 @@
+String::regexIndexOf = (regex, startpos) ->
+  indexOf = @substring(startpos or 0).search(regex)
+  (if (indexOf >= 0) then (indexOf + (startpos or 0)) else indexOf)
+
 ready = ->
   $.fn.editable.defaults.mode = 'inline'
 
@@ -78,8 +82,10 @@ set_filter = (element, table, stateFilter, tagFilter, ownedFilter, assignedFilte
 
 
 filter_all = (table, filter = '', tagfilter = '', ownedfilter = '', assignedfilter = '') ->
+  tagfilter = RegExp("\\b" + tagfilter + "\\b", "i")
+  console.log tagfilter
   table.filter (item) ->
-    if item.values().state.indexOf(filter) > -1 and item.values().tagfil.indexOf(tagfilter) > -1 and item.values().ownedfil.indexOf(ownedfilter) > -1 and item.values().assignedfil.indexOf(assignedfilter) > -1
+    if item.values().state.indexOf(filter) > -1 and item.values().tagfil.regexIndexOf(tagfilter) > -1 and item.values().ownedfil.indexOf(ownedfilter) > -1 and item.values().assignedfil.indexOf(assignedfilter) > -1
       true
     else
       false
