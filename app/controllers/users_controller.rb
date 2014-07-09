@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  respond_to :html, :json
+
   before_filter :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -40,7 +42,11 @@ class UsersController < ApplicationController
   def update
     authorize @user
     if @user.update(user_params)
-      redirect_to @user, notice: 'Gebruiker is aangepast.'
+      if request.xhr?
+        respond_with @user
+      else
+        redirect_to @user, notice: 'Gebruiker is aangepast.'
+      end
     else
       render action: 'edit'
     end

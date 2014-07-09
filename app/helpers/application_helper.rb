@@ -8,7 +8,11 @@ module ApplicationHelper
     if policy(object).update?
       editable object, attribute, type: type
     else
-      simple_format object.send(attribute.to_s)
+      if type == 'text'
+        object.send(attribute.to_s)
+      else
+        simple_format object.send(attribute.to_s)
+      end
     end
   end
 

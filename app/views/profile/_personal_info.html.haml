@@ -1,20 +1,26 @@
 .row
-  .small-3.column
-    .ui.small.list
+  .small-12.column
+    .ui.message
+      Als je iets wilt aanpassen, klik dan op het betreffende veld.
+    .ui.selection.list
       .item
         .content
-          .header Naam
+          .header Voornaam
           .description
-            = user.full_name
+            = inline_edit user, :first_name
+
+      .item
+        .content
+          .header Achternaam
+          .description
+            = inline_edit user, :last_name
 
       .item
         .content
           .header Email
           .description
-            = user.email
+            = inline_edit user, :email
 
-  .small-3.column
-    .ui.small.list
       .item
         .content
           .header Vereniging
@@ -27,30 +33,31 @@
           .description
             = pretty_role user
 
-  .small-3.column
-    .ui.small.list
       .item
         .content
           .header Adres
           .description
-            = "#{user.address} #{user.house_number}"
+            = inline_edit user, :address
+
+      .item
+        .content
+          .header Huisnummer
+          .description
+            = inline_edit user, :house_number
 
       .item
         .content
           .header Postcode
           .description
-            = user.postal_code
+            = inline_edit user, :postal_code
 
-  
-  .small-3.column
-    .ui.small.list
       .item
         .content
           .header Stad
           .description
-            = user.city
+            = inline_edit user, :city
       .item
         .content
           .header Telefoon
           .description
-            = user.phone_number
+            = inline_edit user, :phone_number

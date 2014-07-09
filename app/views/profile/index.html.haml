@@ -1,55 +1,20 @@
 - @active_tab = 'profile'
 .row
-  .medium-12.small-12.medium-centered.column
-    .row
-      .small-12.column
-        .ui.raised.segment
-          %h2.ui.black.header
-            = image_tag(big_gravatar(current_user,65), class: 'ui circular image profile-image')
+  .small-7.small-centered.column
+    .ui.raised.segment
+      %h2.ui.black.header
+        = image_tag(big_gravatar(current_user,65), class: 'ui circular image profile-image')
 
-            .content
-              = current_user.full_name
-              .sub.header
-                = "#{pretty_role(current_user)} in #{current_user.hoa_name}"
+        .content
+          = current_user.full_name
+          .sub.header
+            = "#{pretty_role(current_user)} in #{current_user.hoa_name}"
 
-            = link_to "Pas mijn gegevens aan", edit_profile_path, class: 'ui basic button', style: "float: right; position: relative;"
+        / = link_to "Pas mijn gegevens aan", edit_profile_path, class: 'ui basic button', style: "float: right; position: relative;"
 
-          %br
+      %br
 
-          .ui.teal.ribbon.label
-            Mijn gegevens
-          %p
-            = render 'personal_info', user: current_user
-            %br
-
-
-          %br
-          .ui.blue.ribbon.label
-            Mijn afspraken
-
-          %p
-            = render 'events/table', events: @events
-
-          %br
-          
-          .ui.orange.ribbon.label
-            Mijn meldingen
-
-          %p
-            .ui.tabular.menu
-              %a.item{href: '#tab1'} 
-                Aangemaakt
-                .ui.label
-                  = @alerts.count
-              %a.item{href: '#tab2'} 
-                Toegewezen
-                .ui.label
-                  = @assigned_alerts.count
-
-            #tabs
-              .tab#tab1
-                = render 'alerts/table', alerts: @alerts
-
-              .tab#tab2
-                = render 'alerts/table', alerts: @assigned_alerts
-
+      .ui.teal.ribbon.label
+        Mijn gegevens
+      %p
+        = render 'personal_info', user: current_user

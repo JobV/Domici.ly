@@ -11,7 +11,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user.has_role?(:moderator, subject.hoa) or user.admin
+    user == subject || user.has_role?(:moderator, subject.hoa) or user.admin
   end
 
   def show?

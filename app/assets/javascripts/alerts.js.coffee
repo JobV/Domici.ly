@@ -13,7 +13,8 @@ ready = ->
                                 </form>'
 
   $('.editable').editable
-    inputclass: "inline-input"
+    inputclass: "inline-input",
+    emptytext: "Klik om in te vullen"
 
   options = valueNames: [
     "state"
