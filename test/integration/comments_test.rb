@@ -4,6 +4,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
   test 'commenting on an alert adds you to the collaborators' do
     hoa   = create(:hoa)
     user  = create(:user, hoa: hoa)
+    user.add_role :moderator, hoa
     alert = create(:alert, hoa: hoa, user: create(:user))
 
     sign_in user

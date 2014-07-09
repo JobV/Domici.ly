@@ -77,10 +77,12 @@ group :test, :development do
   gem 'minitest-reporters'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'guard-rspec', require: false
   gem 'capybara'
   gem 'rb-readline'
   gem 'launchy'
   gem 'quiet_assets'
+  gem 'rspec-rails', '~> 3.0.0'
 end
 
 group :development do
@@ -90,6 +92,7 @@ group :development do
   gem "binding_of_caller"
   gem "better_errors"
   gem 'bullet'
+  gem 'flamegraph'
 end
 
 group :test do

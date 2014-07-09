@@ -33,9 +33,9 @@ nl:
       updated_not_active: 'Je wachtwoord is gewijzigd.'
     registrations:
       signed_up_but_unconfirmed: 'Je ontvangt via e-mail instructies hoe je je account kunt activeren.'
-      signed_up_but_inactive: 'Je bent inschreven. Je kon alleen niet automatisch ingelogd worden omdat je account nog niet geactiveerd is.'
-      signed_up_but_locked: 'Je bent inschreven. Je kon alleen niet automatisch ingelogd worden omdat je account geblokkeerd is.'
-      signed_up: 'Je bent inschreven.'
+      signed_up_but_inactive: 'Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat je account nog niet geactiveerd is.'
+      signed_up_but_locked: 'Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat je account geblokkeerd is.'
+      signed_up: 'Je bent ingeschreven.'
       update_needs_confirmation: 'Je hebt je e-mailadres succesvol gewijzigd, maar we moeten je nieuwe mailadres nog verifiëren. Controleer je e-mail en klik op de link in de mail om je mailadres te verifiëren.'
       updated: 'Je account gegevens zijn opgeslagen.'
       destroyed: 'Je account is verwijderd, wellicht tot ziens!'

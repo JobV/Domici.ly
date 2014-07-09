@@ -11,7 +11,8 @@ class BillingTest < ActionDispatch::IntegrationTest
 
   test 'billing page' do
     sign_in @user
-    click_on 'Facturatie'
+    click_on @hoa.name
+    click_on 'Betalingen'
     page_should_contain 'abonnement'
   end
 end
