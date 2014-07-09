@@ -1,32 +1,6 @@
 - @active_tab = 'alerts'
 - @quick_add_bar = true
 .row
-
-  .medium-10.column#alerts-table
-    .ui.small.icon.input.alert-search
-      %input.search{placeholder: 'Zoek op melding..' }
-      %i.inverted.search.icon
-
-    .ui.top.attached.segment
-
-      .ui.selection.dropdown
-        .text Sorteer op..
-        %i.dropdown.icon
-        .menu
-          .item.sort{ "data-sort" => "timestamp-hidden" } Laatste Update
-          .item.sort{ "data-sort" => "assignee" } Toegewezen
-          .item.sort{ "data-sort" => "state" } Status
-
-      .ui.selection.dropdown
-        .text Aflopend
-        %i.dropdown.icon
-        .menu
-          .item.sortorder{ "data-sort" => "desc" } Aflopend
-          .item.sortorder{ "data-sort" => "asc" } Oplopend
-
-    .ui.attached.segment
-      = render 'alerts/table', alerts: @alerts
-
   .medium-2.column
     .ui.small.fluid.vertical.menu
       .header.item
@@ -55,3 +29,29 @@
           %a.item.tagfilter{ "data-filter" => "#{tag.name}"}
             .ui.label= tag.taggings_count
             = truncate(tag.name, length: 14)
+
+  .medium-10.column#alerts-table
+    .ui.small.icon.input.alert-search
+      %input.search{placeholder: 'Zoek op melding..' }
+      %i.inverted.search.icon
+
+    .ui.top.attached.segment
+
+      .ui.selection.dropdown
+        .text Sorteer op..
+        %i.dropdown.icon
+        .menu
+          .item.sort{ "data-sort" => "timestamp-hidden" } Laatste Update
+          .item.sort{ "data-sort" => "assignee" } Toegewezen
+          .item.sort{ "data-sort" => "state" } Status
+
+      .ui.selection.dropdown
+        .text Aflopend
+        %i.dropdown.icon
+        .menu
+          .item.sortorder{ "data-sort" => "desc" } Aflopend
+          .item.sortorder{ "data-sort" => "asc" } Oplopend
+
+    .ui.attached.segment
+      = render 'alerts/table', alerts: @alerts
+
