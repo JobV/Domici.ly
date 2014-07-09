@@ -83,7 +83,6 @@ set_filter = (element, table, stateFilter, tagFilter, ownedFilter, assignedFilte
 
 filter_all = (table, filter = '', tagfilter = '', ownedfilter = '', assignedfilter = '') ->
   tagfilter = RegExp("\\b" + tagfilter + "\\b", "i")
-  console.log tagfilter
   table.filter (item) ->
     if item.values().state.indexOf(filter) > -1 and item.values().tagfil.regexIndexOf(tagfilter) > -1 and item.values().ownedfil.indexOf(ownedfilter) > -1 and item.values().assignedfil.indexOf(assignedfilter) > -1
       true
