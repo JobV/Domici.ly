@@ -17,6 +17,8 @@
 class Alert < ActiveRecord::Base
   include Readable
 
+  default_scope { where(archived: false) }
+
   # Validations
   validates :title,
             :user_id,
