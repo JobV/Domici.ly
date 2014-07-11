@@ -15,6 +15,7 @@
 #  kvk               :string(255)
 #  account_nr        :string(255)
 #  account_owner     :string(255)
+#  allow_posts       :boolean          default(TRUE)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

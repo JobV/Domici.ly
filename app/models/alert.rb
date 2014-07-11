@@ -12,12 +12,13 @@
 #  hoa_id      :integer
 #  progress    :string(255)      default("new")
 #  assignee_id :integer
+#  archived    :boolean          default(FALSE)
 #
 
 class Alert < ActiveRecord::Base
   include Readable
 
-  default_scope { where(archived: false) }
+  # default_scope { where(archived: false) }
 
   # Validations
   validates :title,

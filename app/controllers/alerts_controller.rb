@@ -4,7 +4,7 @@ class AlertsController < ApplicationController
   before_filter :authenticate_user!
 
   before_action :set_alert,
-    only: [:show, :edit, :update, :destroy, :remove_tag]
+    only: [:show, :edit, :update, :destroy, :remove_tag, :archive]
   before_action :set_assignees, only: [:create, :edit, :new]
 
   after_action :set_collaborators,  only: [:create, :update]
@@ -19,10 +19,12 @@ class AlertsController < ApplicationController
   def index
     if current_user.has_role?(:moderator, current_user.hoa)
       @alerts = current_user.hoa.alerts \
+      .where(archived: false) \
       .includes(:assignee, :user, :readings, taggings: [:tag]) \
       .order('alerts.updated_at DESC')
     else
       @alerts = current_user.hoa.alerts \
+      .where(archived: false) \
       .includes(:assignee, :user, :readings, taggings: [:tag]) \
       .joins("INNER JOIN collaborations").where(user_id: current_user.id).uniq \
       .order('alerts.updated_at DESC')
@@ -102,6 +104,16 @@ class AlertsController < ApplicationController
     @alert.tag_list.remove(params[:tag])
     @alert.save
     redirect_to session.delete(:return_to)
+  end
+
+  # POST /alert/1/archive
+  def archive
+    @alert.archived ? @alert.archived = false : @alert.archived = true
+    if @alert.save
+      redirect_to @alert
+    else
+      redirect_to @alert, alert: 'er ging iets fout'
+    end
   end
 
   private

@@ -1,4 +1,23 @@
 ready = ->
+  # Archive buttons
+  $('.archive').click ->
+    text = $(this).find('.text').text()
+    
+    if text == 'Haal uit archief'
+       text = $(this).find('.text').text('Archiveer')
+    else
+       text = $(this).find('.text').text('Haal uit archief')
+   
+    $(this).find('i').toggleClass('archive')
+    $(this).find('i').toggleClass('undo')
+    $(this).toggleClass('unarchive')
+    $(this).toggleClass('archive')
+
+  # State toggling
+  $('.state-toggle').click ->
+    $('.state-toggle').removeClass('active')
+    $(this).addClass('active')
+
   $.fn.editable.defaults.mode = 'inline'
 
   $.fn.editableform.buttons = '<button type="submit" class="ui tiny green button editable-submit">Aanpassen</i></button>
@@ -65,7 +84,6 @@ ready = ->
     $('.assignedfilter').removeClass "active"
     $('.ownedfilter').removeClass "active"
     set_filter(this, alertsTable, stateFilter, tagFilter, ownedFilter, assignedFilter)
-
 
 set_filter = (element, table, stateFilter, tagFilter, ownedFilter, assignedFilter) ->
   $(element).addClass "active"

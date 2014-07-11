@@ -1,0 +1,53 @@
+- if policy(@alert).update?
+  = link_to edit_alert_path(@alert), class: 'ui blue fluid button' do
+    %i.edit.icon
+    Melding aanpassen
+.ui.secondary.segment
+  .ui.selection.list
+    .item
+      .ui.avatar.image
+        = image_tag gravatar_url @alert.user
+      .content
+        .header Melding door
+        = link_to @alert.user.name, user_path(@alert.user)
+
+    = link_to edit_alert_path(@alert), class: 'item' do
+      .ui.avatar.image
+        - if @alert.assignee
+          = image_tag gravatar_url @alert.assignee
+      .content
+        .header
+          Toegewezen aan
+        = print_assignee_short @alert
+
+    .item
+      .content
+        .header Melding aangemaakt
+        = "#{format_time(@alert.created_at)} geleden"
+
+    .item.toggle-sidebar
+      .content
+        .header Deelnemers
+        = "#{@alert.collaborations.count} (klik voor details)"
+
+.ui.fluid.labeled.icon.button.toggle-sidebar.lonely
+  %i.ui.users.icon
+  Wie kan deze melding zien?
+
+// Archive button
+= link_to alert_archive_path(@alert, id: @alert.id), method: :post, class: 'ui fluid labeled icon button lonely archive', remote: true do
+  %i.archive.icon
+  .text= @alert.archived ? 'Haal uit archief' : 'Archiveer'
+
+
+// Notification button
+- if @collaboration
+  = link_to alert_collaboration_path(@alert, @collaboration), method: :delete, class: ' ui fluid labeled icon button' do
+    %i.stop.icon
+    Stop notificaties
+
+- else
+  = link_to alert_collaborations_path(@alert, @new_collaboration, collaboration: {user_id: current_user.id, collaborable_type: @alert.class, collaborable_id: @alert.id}), method: :post, class: 'ui fluid labeled icon button' do
+    %i.mail.outline.icon
+    Volg updates
+
