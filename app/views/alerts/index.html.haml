@@ -3,9 +3,11 @@
 .row
 
   .medium-10.column#alerts-table
-    .ui.small.icon.input.alert-search
+    .ui.icon.input.alert-search
       %input.search{placeholder: 'Zoek op melding..' }
       %i.inverted.search.icon
+
+    = link_to 'Bekijk Archief', alerts_path(archive: true), class: 'ui basic button'
 
     .ui.top.attached.segment
 

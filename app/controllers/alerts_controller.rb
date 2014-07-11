@@ -3,8 +3,11 @@ class AlertsController < ApplicationController
 
   before_filter :authenticate_user!
 
+  before_action :set_alerts, only: [:index]
+
   before_action :set_alert,
     only: [:show, :edit, :update, :destroy, :remove_tag, :archive]
+
   before_action :set_assignees, only: [:create, :edit, :new]
 
   after_action :set_collaborators,  only: [:create, :update]
@@ -17,18 +20,10 @@ class AlertsController < ApplicationController
 
   # GET /alerts
   def index
-    if current_user.has_role?(:moderator, current_user.hoa)
-      @alerts = current_user.hoa.alerts \
-      .where(archived: false) \
-      .includes(:assignee, :user, :readings, taggings: [:tag]) \
-      .order('alerts.updated_at DESC')
-    else
-      @alerts = current_user.hoa.alerts \
-      .where(archived: false) \
-      .includes(:assignee, :user, :readings, taggings: [:tag]) \
-      .joins("INNER JOIN collaborations").where(user_id: current_user.id).uniq \
-      .order('alerts.updated_at DESC')
-    end
+  end
+
+  # Get /alerts/archives
+  def archives
   end
 
   # GET /alerts/1
@@ -122,13 +117,32 @@ class AlertsController < ApplicationController
       @alert = Alert.find(params[:id])
     end
 
+    def set_alerts
+      params[:archive] ? query_alerts(true) : query_alerts(false)
+    end
+
+    def query_alerts(archived = false)
+      if current_user.has_role?(:moderator, current_user.hoa)
+        @alerts = current_user.hoa.alerts \
+        .where(archived: archived) \
+        .includes(:assignee, :user, :readings, taggings: [:tag]) \
+        .order('alerts.updated_at DESC')
+      else
+        @alerts = current_user.hoa.alerts \
+        .where(archived: archived) \
+        .includes(:assignee, :user, :readings, taggings: [:tag]) \
+        .joins("INNER JOIN collaborations").where(user_id: current_user.id).uniq \
+        .order('alerts.updated_at DESC')
+      end
+    end
+
     def find_assignee(id)
       User.find(id)
     end
 
     # Only allow a trusted parameter "white list" through.
     def alert_params
-      params.require(:alert).permit(:title, :body, :severity, :progress, :assignee_id, :tag_list, :tag, :user_id)
+      params.require(:alert).permit(:title, :body, :severity, :progress, :assignee_id, :tag_list, :tag, :user_id, :archive)
     end
 
     def set_assignees

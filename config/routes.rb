@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     post '/archive',    to: 'alerts#archive',     as: :archive
   end
 
+  get '/archives', to: 'alerts#archives', as: :archives
+
   resources :events do
     resources :comments
   end
