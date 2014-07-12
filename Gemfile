@@ -26,7 +26,7 @@ gem 'rolify'
 gem 'pundit'
 
 # Bug tracking
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem 'appsignal'
 
 # Activity Feed => at release of 2.0, remove git ref.
