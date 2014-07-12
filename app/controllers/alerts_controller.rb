@@ -122,6 +122,7 @@ class AlertsController < ApplicationController
     end
 
     def query_alerts(archived = false)
+      @archived = archived
       if current_user.has_role?(:moderator, current_user.hoa)
         @alerts = current_user.hoa.alerts \
         .where(archived: archived) \
