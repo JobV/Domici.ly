@@ -33,9 +33,14 @@
             = truncate(tag.name, length: 14)
 
   .medium-10.column#alerts-table
-    .ui.small.icon.input.alert-search
-      %input.search{placeholder: 'Zoek op melding..' }
+    .ui.icon.input.alert-search
+      %input.search{ placeholder: 'Zoek op melding..' }
       %i.inverted.search.icon
+
+    - unless @archived
+      = link_to 'Bekijk Archief', alerts_path(archive: true), class: 'ui basic button float-right'
+    - else
+      = link_to 'Ga terug uit archief', alerts_path, class: 'ui basic button float-right'
 
     .ui.top.attached.segment
 
@@ -56,4 +61,3 @@
 
     .ui.attached.segment
       = render 'alerts/table', alerts: @alerts
-

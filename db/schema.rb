@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140705213011) do
+ActiveRecord::Schema.define(version: 20140709162407) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140705213011) do
     t.integer  "hoa_id"
     t.string   "progress",    default: "new"
     t.integer  "assignee_id"
+    t.boolean  "archived",    default: false
   end
 
   add_index "alerts", ["assignee_id"], name: "index_alerts_on_assignee_id"

@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     resources :comments
     resources :collaborations
     post '/remove_tag', to: 'alerts#remove_tag', as: :remove_tag
+    post '/archive',    to: 'alerts#archive',     as: :archive
   end
+
+  get '/archives', to: 'alerts#archives', as: :archives
 
   resources :events do
     resources :comments
@@ -37,8 +40,8 @@ Rails.application.routes.draw do
   get '/organisation/members',  to: 'hoas#members',    as: :members
   get '/organisation/settings', to: 'hoas#edit',   as: :settings
 
-  get '/organisation/billing',        to: 'billing#index',    as: :billing
-  get '/organisation/billing/renew',  to: 'billing#renew_subscription',    as: :renew
+  get '/organisation/billing',         to: 'billing#index',    as: :billing
+  get '/organisation/billing/renew',   to: 'billing#renew_subscription',    as: :renew
   get '/organisation/billing/confirm', to: 'billing#confirm_payment', as: :confirm_payment
 
   resources :participations
