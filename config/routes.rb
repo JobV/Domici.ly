@@ -16,9 +16,11 @@ Rails.application.routes.draw do
     resources :collaborations
     post '/remove_tag', to: 'alerts#remove_tag', as: :remove_tag
     post '/archive',    to: 'alerts#archive',     as: :archive
+    collection do
+      patch '/archive', to: 'alerts#archive_all', as: :archive_all
+    end
   end
 
-  get '/archives', to: 'alerts#archives', as: :archives
 
   resources :events do
     resources :comments

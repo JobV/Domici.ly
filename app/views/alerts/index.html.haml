@@ -38,9 +38,13 @@
       %i.inverted.search.icon
 
     - unless @archived
-      = link_to 'Bekijk Archief', alerts_path(archive: true), class: 'ui basic button float-right'
+      = link_to alerts_path(archive: true), class: 'ui labeled icon button float-right' do
+        %i.archive.icon
+        Archief
     - else
-      = link_to 'Ga terug uit archief', alerts_path, class: 'ui basic button float-right'
+      = link_to alerts_path, class: 'ui labeled icon button float-right' do
+        %i.list.icon
+        Verlaat archief
 
     .ui.top.attached.segment
 
@@ -58,6 +62,13 @@
         .menu
           .item.sortorder{ "data-sort" => "desc" } Aflopend
           .item.sortorder{ "data-sort" => "asc" } Oplopend
+
+      - if current_user.has_role?(:moderator, current_hoa) && ! @archived
+        = link_to archive_all_alerts_path(alert_ids: @alerts.collect{ |a| a.id } ), data: { confirm: 'Weet je zeker dat je alles wilt archiveren dat op klaar staat?' }, method: :patch, class: 'ui basic animated button float-right' do
+          .visible.content
+            Archiveer alles op klaar
+          .hidden.content
+            %i.forward.icon
 
     .ui.attached.segment
       = render 'alerts/table', alerts: @alerts

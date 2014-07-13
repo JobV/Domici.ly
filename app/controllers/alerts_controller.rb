@@ -105,10 +105,16 @@ class AlertsController < ApplicationController
   def archive
     @alert.archived ? @alert.archived = false : @alert.archived = true
     if @alert.save
-      redirect_to @alert
+      redirect_to alerts_path
     else
-      redirect_to @alert, alert: 'er ging iets fout'
+      redirect_to alerts_path, alert: 'er ging iets fout'
     end
+  end
+
+  # PATCH /alerts/archive
+  def archive_all
+    Alert.where( id: params[:alert_ids], progress: 'completed' ).update_all({ archived: true })
+    redirect_to alerts_path
   end
 
   private

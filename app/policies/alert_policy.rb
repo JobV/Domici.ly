@@ -26,6 +26,10 @@ class AlertPolicy < ApplicationPolicy
     admin_moderator_or_owner? or is_assigned?
   end
 
+  def archive?
+    admin_moderator_or_owner?
+  end
+
   def part_of_hoa?
     user.hoa == alert.hoa or alert.user == user or user.admin
   end

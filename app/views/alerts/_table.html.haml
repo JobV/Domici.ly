@@ -33,4 +33,10 @@
             %i.dropdown.icon
             .menu
               .item
-                = link_to 'Verwijder', alert, method: :delete, data: { confirm: 'Weet je zeker dat je deze melding wilt verwijderen?' }
+                = link_to alert_archive_path(alert, id: alert.id), method: :post do
+                  %i.archive.icon
+                  = alert.archived ? 'Haal uit archief' : 'Archiveer'
+              .item
+                = link_to alert, method: :delete, data: { confirm: 'Weet je zeker dat je deze melding wilt verwijderen?' } do
+                  %i.delete.icon
+                  Verwijder
