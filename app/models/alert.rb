@@ -18,6 +18,8 @@
 class Alert < ActiveRecord::Base
   include Readable
 
+  mount_uploader :attachment, AlertAttachmentUploader
+
   # default_scope { where(archived: false) }
 
   # Validations

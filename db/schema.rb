@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709162407) do
+ActiveRecord::Schema.define(version: 20140715204600) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140709162407) do
     t.string   "progress",    default: "new"
     t.integer  "assignee_id"
     t.boolean  "archived",    default: false
+    t.string   "attachment"
   end
 
   add_index "alerts", ["assignee_id"], name: "index_alerts_on_assignee_id"
@@ -85,6 +86,21 @@ ActiveRecord::Schema.define(version: 20140709162407) do
   add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type"
   add_index "comments", ["hoa_id"], name: "index_comments_on_hoa_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "documents", force: true do |t|
+    t.integer  "user_id",                             null: false
+    t.string   "direct_upload_url",                   null: false
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.boolean  "processed",           default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "documents", ["processed"], name: "index_documents_on_processed"
+  add_index "documents", ["user_id"], name: "index_documents_on_user_id"
 
   create_table "events", force: true do |t|
     t.datetime "date"
