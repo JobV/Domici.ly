@@ -13,6 +13,7 @@
 #  progress    :string(255)      default("new")
 #  assignee_id :integer
 #  archived    :boolean          default(FALSE)
+#  attachment  :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

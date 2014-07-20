@@ -13,12 +13,11 @@
 #  progress    :string(255)      default("new")
 #  assignee_id :integer
 #  archived    :boolean          default(FALSE)
+#  attachment  :string(255)
 #
 
 class Alert < ActiveRecord::Base
   include Readable
-
-  mount_uploader :attachment, AlertAttachmentUploader
 
   # default_scope { where(archived: false) }
 
@@ -52,6 +51,8 @@ class Alert < ActiveRecord::Base
   belongs_to :hoa
 
   has_many :collaborations, as: :collaborable
+  has_many :attachments
+  accepts_nested_attributes_for :attachments
 
   def new?
     self.progress == 'new'

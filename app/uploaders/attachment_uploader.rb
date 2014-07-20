@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class AlertAttachmentUploader < CarrierWave::Uploader::Base
+class AttachmentUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -13,6 +13,10 @@ class AlertAttachmentUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/alerts/#{model.id}"
+  end
+
+  def fog_directory
+    Rails.application.secrets.bucket
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715204600) do
+ActiveRecord::Schema.define(version: 20140720210436) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20140715204600) do
     t.integer  "hoa_id"
     t.integer  "user_id"
     t.string   "target_group"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attachments", force: true do |t|
+    t.integer  "alert_id"
+    t.string   "attachment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

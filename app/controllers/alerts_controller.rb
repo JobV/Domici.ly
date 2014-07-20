@@ -2,16 +2,12 @@ class AlertsController < ApplicationController
   respond_to :html, :json
 
   before_filter :authenticate_user!
-
   before_action :set_alerts, only: [:index]
-
   before_action :set_alert,
     only: [:show, :edit, :update, :destroy, :remove_tag, :archive]
-
   before_action :set_assignees, only: [:create, :edit, :new]
 
   after_action :set_collaborators,  only: [:create, :update]
-
   after_action only: [:show] do
     @alert.mark_as_read!(current_user) unless @alert.read?(current_user)
   end
@@ -42,6 +38,7 @@ class AlertsController < ApplicationController
   # GET /alerts/new
   def new
     @alert = Alert.new
+    @alert_attachment = @alert.attachments.build
   end
 
   # GET /alerts/1/edit
@@ -56,7 +53,8 @@ class AlertsController < ApplicationController
     @alert.hoa  = current_user.hoa if current_user
     if @alert.save
       set_collaborators
-      notify_assignee if @alert.assignee
+      notify_assignee
+      create_attachments
       redirect_to @alert, notice: I18n.t('alert.created')
     else
       render action: 'new'
@@ -74,7 +72,7 @@ class AlertsController < ApplicationController
     if @alert.update(alert_params)
       on_assignee_change_notify(assignee_before)
       on_progress_change_post_comment(progress_before)
-
+      create_attachments
       # If inline editing
       if request.xhr?
         respond_with @alert
@@ -121,6 +119,7 @@ class AlertsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_alert
       @alert = Alert.find(params[:id])
+      @alert_attachments = @alert.attachments.all
     end
 
     def set_alerts
@@ -161,7 +160,7 @@ class AlertsController < ApplicationController
     end
 
     def notify_assignee
-      AssignmentMailer.delay.assigned_to_alert(current_user, @alert.assignee, @alert)
+      AssignmentMailer.delay.assigned_to_alert(current_user, @alert.assignee, @alert) if @alert.assignee
     end
 
     def on_progress_change_post_comment(progress_before)
@@ -188,5 +187,13 @@ class AlertsController < ApplicationController
 
     def collaboration_exists?(user)
       @alert.collaborations.exists?(user_id: user.id)
+    end
+
+    def create_attachments
+      if params[:attachments]
+        params[:attachments]['alert'].each do |a|
+          @attachment = @alert.attachments.create!(:attachment => a, :alert_id => @alert.id)
+        end
+      end
     end
 end

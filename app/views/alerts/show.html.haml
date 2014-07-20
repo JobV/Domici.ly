@@ -10,6 +10,14 @@
       .alert-body
         = inline_edit(@alert, :body, 'textarea')
 
+      - if @alert_attachments
+        .ui.small.selection.list
+          - @alert_attachments.each do |a|
+            .item
+              .right.floated.mini.ui.button
+                Verwijder attachment
+              = link_to a.name, a.attachment_url
+
     - @alert.tags.each do |tag|
       .ui.label
         = tag.name

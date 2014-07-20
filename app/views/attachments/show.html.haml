@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Alert:
+  = @attachment.alert_id
+%p
+  %b Attachment:
+  = @attachment.attachment
+
+= link_to 'Edit', edit_attachment_path(@attachment)
+\|
+= link_to 'Back', attachments_path

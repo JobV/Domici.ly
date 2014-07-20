@@ -1,0 +1,21 @@
+%h1 Listing attachments
+
+%table
+  %tr
+    %th Alert
+    %th Attachment
+    %th
+    %th
+    %th
+
+  - @attachments.each do |attachment|
+    %tr
+      %td= attachment.alert_id
+      %td= attachment.attachment
+      %td= link_to 'Show', attachment
+      %td= link_to 'Edit', edit_attachment_path(attachment)
+      %td= link_to 'Destroy', attachment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Attachment', new_attachment_path
