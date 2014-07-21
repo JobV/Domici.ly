@@ -44,6 +44,7 @@ class AlertsController < ApplicationController
   # GET /alerts/1/edit
   def edit
     authorize @alert
+    @alert_attachment = @alert.attachments.build
   end
 
   # POST /alerts

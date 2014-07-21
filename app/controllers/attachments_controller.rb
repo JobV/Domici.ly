@@ -24,7 +24,7 @@ class AttachmentsController < ApplicationController
     @attachment = Attachment.new(attachment_params)
 
     if @attachment.save
-      redirect_to @attachment, notice: 'Attachment was successfully created.'
+      redirect_to @attachment, notice: 'Attachment toegevoegd.'
     else
       render :new
     end
@@ -41,8 +41,9 @@ class AttachmentsController < ApplicationController
 
   # DELETE /attachments/1
   def destroy
+    alert = @attachment.alert
     @attachment.destroy
-    redirect_to attachments_url, notice: 'Attachment was successfully destroyed.'
+    redirect_to alert_path(alert), notice: 'Attachment is verwijderd.'
   end
 
   private

@@ -51,7 +51,7 @@ class Alert < ActiveRecord::Base
   belongs_to :hoa
 
   has_many :collaborations, as: :collaborable
-  has_many :attachments
+  has_many :attachments, dependent: :destroy
   accepts_nested_attributes_for :attachments
 
   def new?

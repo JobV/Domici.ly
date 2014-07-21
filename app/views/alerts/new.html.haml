@@ -8,4 +8,48 @@
         .sub.header 
           Maak een melding aan. Deze kan later nog worden aangepast.
 
-      = render 'form'
+      = form_for(@alert) do |f|
+        - if @alert.errors.any?
+          .ui.error.message
+            %ul
+              - @alert.errors.full_messages.each do |msg|
+                %li= msg
+
+        .ui.form.alert
+
+          .field
+            %label
+              = f.label 'Melding'
+            .ui.left.input
+              = f.text_field :title, autofocus: true
+
+          .field
+            %label
+              = f.label 'Details'
+            = f.text_area :body
+
+          - if policy(@alert).assign?
+            .field
+              %label
+                = f.label 'Toewijzen aan (deze persoon krijgt een email met deze melding)'
+              = f.select :assignee_id, @assignees.map {|u| [u.full_name, u.id]}, { include_blank: true }, {class: 'chosen-select', "data-placeholder" => 'Selecteer iemand om die op de hoogte te brengen van deze melding' }
+
+          .field
+            %label
+              = f.label 'Labels (komma tussen elk label)'
+            = f.text_field :tag_list, class: 'form-control input-lg'
+
+          = f.fields_for :attachments do |a|
+            .field
+              %label
+                Uploads
+              = a.file_field :attachment, multiple: true, name: "attachments[alert][]"
+
+
+          .ui.buttons
+            = f.submit 'Publiceer melding', class: 'ui positive button'
+            = link_to 'Annuleer', (request.referrer || root_path), class: 'ui button'
+
+          - if @alert.created_at
+            = link_to 'Verwijder Melding', alert_path(@alert), class: 'ui negative button float-right', method: :delete
+

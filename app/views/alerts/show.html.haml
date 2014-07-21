@@ -14,9 +14,9 @@
         .ui.small.selection.list
           - @alert_attachments.each do |a|
             .item
-              .right.floated.mini.ui.button
-                Verwijder attachment
-              = link_to a.name, a.attachment_url
+              = link_to 'Verwijder', attachment_path(a), class: 'right floated ui mini basic button', method: :delete
+              .content
+                = link_to a.name, a.attachment_url
 
     - @alert.tags.each do |tag|
       .ui.label

@@ -42,12 +42,18 @@
 
 // Notification button
 - if @collaboration
-  = link_to alert_collaboration_path(@alert, @collaboration), method: :delete, class: ' ui fluid labeled icon button' do
+  = link_to alert_collaboration_path(@alert, @collaboration), method: :delete, class: 'lonely ui fluid labeled icon button' do
     %i.stop.icon
     Stop notificaties
 
 - else
-  = link_to alert_collaborations_path(@alert, @new_collaboration, collaboration: {user_id: current_user.id, collaborable_type: @alert.class, collaborable_id: @alert.id}), method: :post, class: 'ui fluid labeled icon button' do
+  = link_to alert_collaborations_path(@alert, @new_collaboration, collaboration: {user_id: current_user.id, collaborable_type: @alert.class, collaborable_id: @alert.id}), method: :post, class: 'loneley ui fluid labeled icon button' do
     %i.mail.outline.icon
     Volg updates
 
+
+// Upload button
+- if policy(@alert).update?
+  = link_to edit_alert_path(@alert), class: 'ui fluid labeled icon button' do
+    %i.upload.icon
+    Upload een bestand
