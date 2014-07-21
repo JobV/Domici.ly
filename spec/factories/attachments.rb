@@ -2,11 +2,13 @@
 #
 # Table name: attachments
 #
-#  id         :integer          not null, primary key
-#  alert_id   :integer
-#  attachment :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id           :integer          not null, primary key
+#  alert_id     :integer
+#  attachment   :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  content_type :string(255)
+#  file_size    :integer
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

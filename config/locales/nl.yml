@@ -115,6 +115,9 @@ nl:
       greater_than_or_equal_to: moet groter dan of gelijk zijn aan %{count}
       inclusion: is niet in de lijst opgenomen
       invalid: is ongeldig
+      wrong_size: "is de verkeerde grootte (moet zijn: %{file_size})"
+      size_too_small: "is te klein (moet minstens %{file_size} zijn)"
+      size_too_big: "is te groot (moet minstens %{file_size} zijn)"
       less_than: moet minder zijn dan %{count}
       less_than_or_equal_to: moet minder dan of gelijk zijn aan %{count}
       not_a_number: is geen getal

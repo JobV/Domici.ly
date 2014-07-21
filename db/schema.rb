@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140720210436) do
+ActiveRecord::Schema.define(version: 20140721153509) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20140720210436) do
     t.string   "attachment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "content_type"
+    t.integer  "file_size"
   end
 
   create_table "collaborations", force: true do |t|
@@ -93,21 +95,6 @@ ActiveRecord::Schema.define(version: 20140720210436) do
   add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type"
   add_index "comments", ["hoa_id"], name: "index_comments_on_hoa_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
-
-  create_table "documents", force: true do |t|
-    t.integer  "user_id",                             null: false
-    t.string   "direct_upload_url",                   null: false
-    t.string   "upload_file_name"
-    t.string   "upload_content_type"
-    t.integer  "upload_file_size"
-    t.datetime "upload_updated_at"
-    t.boolean  "processed",           default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "documents", ["processed"], name: "index_documents_on_processed"
-  add_index "documents", ["user_id"], name: "index_documents_on_user_id"
 
   create_table "events", force: true do |t|
     t.datetime "date"
