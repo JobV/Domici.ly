@@ -52,7 +52,9 @@ class Alert < ActiveRecord::Base
 
   has_many :collaborations, as: :collaborable
   has_many :attachments, dependent: :destroy
+
   accepts_nested_attributes_for :attachments
+  validates_associated :attachments
 
   def new?
     self.progress == 'new'

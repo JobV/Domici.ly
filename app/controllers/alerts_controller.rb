@@ -53,12 +53,12 @@ class AlertsController < ApplicationController
     @alert.user = current_user if current_user
     @alert.hoa  = current_user.hoa if current_user
     if @alert.save
+      create_attachments
       set_collaborators
       notify_assignee
-      create_attachments
       redirect_to @alert, notice: I18n.t('alert.created')
     else
-      render action: 'new'
+      render action: 'new', message: @alert.errors
     end
   end
 
@@ -193,7 +193,10 @@ class AlertsController < ApplicationController
     def create_attachments
       if params[:attachments]
         params[:attachments]['alert'].each do |a|
-          @attachment = @alert.attachments.create!(:attachment => a, :alert_id => @alert.id, hoa_id: @alert.hoa.id)
+          @attachment = @alert.attachments.create(:attachment => a, :alert_id => @alert.id, hoa_id: @alert.hoa.id)
+          if @attachment.errors.any?
+            flash[:alert] = @attachment.errors.full_messages.first
+          end
         end
       end
     end

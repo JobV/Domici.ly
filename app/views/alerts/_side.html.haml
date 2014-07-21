@@ -47,7 +47,7 @@
     Stop notificaties
 
 - else
-  = link_to alert_collaborations_path(@alert, @new_collaboration, collaboration: {user_id: current_user.id, collaborable_type: @alert.class, collaborable_id: @alert.id}), method: :post, class: 'loneley ui fluid labeled icon button' do
+  = link_to alert_collaborations_path(@alert, @new_collaboration, collaboration: {user_id: current_user.id, collaborable_type: @alert.class, collaborable_id: @alert.id}), method: :post, class: 'lonely ui fluid labeled icon button' do
     %i.mail.outline.icon
     Volg updates
 
