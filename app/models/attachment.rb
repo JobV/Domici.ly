@@ -14,6 +14,7 @@
 class Attachment < ActiveRecord::Base
   mount_uploader :attachment, AttachmentUploader
   belongs_to :alert
+  belongs_to :hoa
   validates :attachment,
     presence: true,
     file_size: {

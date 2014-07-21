@@ -193,7 +193,7 @@ class AlertsController < ApplicationController
     def create_attachments
       if params[:attachments]
         params[:attachments]['alert'].each do |a|
-          @attachment = @alert.attachments.create!(:attachment => a, :alert_id => @alert.id)
+          @attachment = @alert.attachments.create!(:attachment => a, :alert_id => @alert.id, hoa_id: @alert.hoa.id)
         end
       end
     end
