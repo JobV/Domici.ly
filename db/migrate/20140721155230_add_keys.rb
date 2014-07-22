@@ -12,7 +12,6 @@ class AddKeys < ActiveRecord::Migration
     add_foreign_key "events", "hoas", name: "events_hoa_id_fk"
     add_foreign_key "events", "users", name: "events_user_id_fk"
     add_foreign_key "homepages", "hoas", name: "homepages_hoa_id_fk"
-    add_foreign_key "participations", "events", name: "participations_event_id_fk"
     add_foreign_key "participations", "users", name: "participations_user_id_fk"
     add_foreign_key "payments", "hoas", name: "payments_hoa_id_fk"
     add_foreign_key "payments", "users", name: "payments_user_id_fk"
