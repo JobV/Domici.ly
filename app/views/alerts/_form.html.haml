@@ -4,7 +4,7 @@
       %ul
         - @alert.errors.full_messages.each do |msg|
           %li= msg
-          
+
   .ui.form.alert
 
     .field
@@ -28,6 +28,13 @@
       %label
         = f.label 'Labels (komma tussen elk label)'
       = f.text_field :tag_list, class: 'form-control input-lg'
+
+    = f.fields_for :attachments do |a|
+      .field
+        %label
+          Uploads
+        = a.file_field :attachment, multiple: true, name: "attachments[alert][]"
+
 
     .ui.buttons
       = f.submit 'Publiceer melding', class: 'ui positive button'

@@ -19,6 +19,8 @@
 #
 
 class Hoa < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
+
   validates :name, :subdomain_name, presence: true
   validates :subdomain_name, uniqueness: true
 
@@ -30,6 +32,7 @@ class Hoa < ActiveRecord::Base
   has_many :events
   has_many :announcements
   has_many :payments
+  has_many :attachments
   has_one :homepage
 
   def subscription
@@ -40,5 +43,9 @@ class Hoa < ActiveRecord::Base
     subscribed_until &&
     subscribed_until > DateTime.now &&
     subscription_type == 'standard'
+  end
+
+  def storage_used
+    number_to_human_size(attachments.sum(:file_size))
   end
 end

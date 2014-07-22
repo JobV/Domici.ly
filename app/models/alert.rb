@@ -13,6 +13,7 @@
 #  progress    :string(255)      default("new")
 #  assignee_id :integer
 #  archived    :boolean          default(FALSE)
+#  attachment  :string(255)
 #
 
 class Alert < ActiveRecord::Base
@@ -50,6 +51,10 @@ class Alert < ActiveRecord::Base
   belongs_to :hoa
 
   has_many :collaborations, as: :collaborable
+  has_many :attachments, dependent: :destroy
+
+  accepts_nested_attributes_for :attachments
+  validates_associated :attachments
 
   def new?
     self.progress == 'new'

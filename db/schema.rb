@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709162407) do
+ActiveRecord::Schema.define(version: 20140721155800) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140709162407) do
     t.string   "progress",    default: "new"
     t.integer  "assignee_id"
     t.boolean  "archived",    default: false
+    t.string   "attachment"
   end
 
   add_index "alerts", ["assignee_id"], name: "index_alerts_on_assignee_id"
@@ -56,6 +57,16 @@ ActiveRecord::Schema.define(version: 20140709162407) do
     t.string   "target_group"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "attachments", force: true do |t|
+    t.integer  "alert_id"
+    t.string   "attachment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "content_type"
+    t.integer  "file_size"
+    t.integer  "hoa_id"
   end
 
   create_table "collaborations", force: true do |t|

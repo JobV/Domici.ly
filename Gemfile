@@ -72,6 +72,10 @@ gem 'x-editable-rails', '~> 1.5.4', github: 'JobV/x-editable-rails'
 
 gem 'skylight'
 
+gem 'carrierwave'
+gem 'fog'
+gem 'foreigner'
+
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
@@ -95,6 +99,7 @@ group :development do
   gem "better_errors"
   gem 'bullet'
   gem 'flamegraph'
+  gem 'immigrant'
 end
 
 group :test do

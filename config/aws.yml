@@ -1,0 +1,13 @@
+defaults: &defaults
+  access_key_id: "AKIAIC2KY3OPBRE6MNBQ"
+  secret_access_key: "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"
+development:
+  <<: *defaults
+  bucket: "domicilydev"
+test:
+  <<: *defaults
+  bucket: "domicilydev"
+production:
+  access_key_id: <%=ENV["AWS_ACCESS_KEY_ID"]%>
+  secret_access_key: <%=ENV["AWS_SECRET_ACCESS_KEY"]%>
+  bucket: "domicily"
