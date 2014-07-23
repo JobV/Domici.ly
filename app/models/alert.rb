@@ -17,7 +17,7 @@
 #
 
 class Alert < ActiveRecord::Base
-  include Readable
+  include Readable, Trackable
 
   # default_scope { where(archived: false) }
 
@@ -27,13 +27,6 @@ class Alert < ActiveRecord::Base
             :hoa_id,
             :progress,
             presence: true
-
-  # public_activity -> set current_user as owner by default
-  # only track creation events
-  include PublicActivity::Model
-  tracked only: [:create],
-    owner:  Proc.new{ |controller, model| controller && controller.current_user },
-    hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
 
   # active_admin
   resourcify

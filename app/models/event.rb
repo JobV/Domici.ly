@@ -14,7 +14,7 @@
 #
 
 class Event < ActiveRecord::Base
-  include Readable
+  include Readable, Trackable
 
   # Validations
   validates :date,
@@ -33,11 +33,6 @@ class Event < ActiveRecord::Base
   belongs_to :hoa
   has_many :participations
   has_many :users, through: :participations
-
-  include PublicActivity::Model
-  tracked only: [:create], 
-    owner:  Proc.new{ |controller, model| controller && controller.current_user }, 
-    hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
 
   has_many :collaborations, as: :collaborable
 end

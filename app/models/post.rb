@@ -12,12 +12,9 @@
 #
 
 class Post < ActiveRecord::Base
-  validates :title, presence: true
+  include Trackable
 
-  # Public Activity
-  include PublicActivity::Model
-  tracked only: [:create],
-    owner: Proc.new{ |controller, model| controller && controller.current_user }, hoa_id: Proc.new{ |controller, model| controller && controller.current_user.hoa.id }
+  validates :title, presence: true
 
   # Associations
   belongs_to :user
