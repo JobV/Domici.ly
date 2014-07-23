@@ -38,7 +38,7 @@ class HoasController < ApplicationController
       current_user.add_role :moderator, @hoa
       redirect_to organisation_url(subdomain: current_user.hoa.subdomain_name), notice: 'Jouw vereniging is aangemaakt, gefeliciteerd!'
     else
-      render action: 'new'
+      render 'new'
     end
   end
 
@@ -48,7 +48,7 @@ class HoasController < ApplicationController
     if @hoa.update(hoa_params)
       redirect_to organisation_path, notice: 'Vereniging aangepast.'
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 

@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to @comment, notice: 'Comment was successfully updated.'
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 
@@ -89,4 +89,3 @@ class CommentsController < ApplicationController
       end
     end
 end
-    

@@ -58,7 +58,7 @@ class AlertsController < ApplicationController
       notify_assignee
       redirect_to @alert, notice: I18n.t('alert.created')
     else
-      render action: 'new', message: @alert.errors
+      render 'new', message: @alert.errors
     end
   end
 
@@ -81,7 +81,7 @@ class AlertsController < ApplicationController
         redirect_to @alert, notice: I18n.t('alert.updated')
       end
     else
-      render action: 'edit', alert: "Woops!"
+      render 'edit', alert: "Woops!"
     end
   end
 

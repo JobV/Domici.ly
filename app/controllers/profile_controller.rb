@@ -20,7 +20,7 @@ class ProfileController < ApplicationController
     if user.update(profile_params)
       redirect_to profile_path, notice: 'Profiel aangepast.'
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 

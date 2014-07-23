@@ -27,7 +27,7 @@ class ParticipationsController < ApplicationController
     if @participation.save
       redirect_to @participation, notice: 'Participation was successfully created.'
     else
-      render action: 'new'
+      render 'new'
     end
   end
 
@@ -36,7 +36,7 @@ class ParticipationsController < ApplicationController
     if @participation.update(participation_params)
       redirect_to @participation.event, notice: 'Participation was successfully updated.'
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 

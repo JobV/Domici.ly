@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
-  has_many :alerts 
+  has_many :alerts
   has_many :announcements
   belongs_to :hoa
   has_many :participations

@@ -46,7 +46,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to @event, notice: I18n.t('event.created')
     else
-      render action: 'new'
+      render 'new'
     end
   end
 
@@ -58,7 +58,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to @event, notice: I18n.t('event.updated')
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 

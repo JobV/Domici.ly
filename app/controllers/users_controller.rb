@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to @user, notice: 'User was successfully created.'
     else
-      render action: 'new'
+      render 'new'
     end
   end
 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
         redirect_to @user, notice: 'Gebruiker is aangepast.'
       end
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 
@@ -70,6 +70,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /users/:id/change_role
   def change_role
     user = User.find(params[:id])
     role = params[:user][:role]
@@ -78,7 +79,7 @@ class UsersController < ApplicationController
       notice = 'Je kan deze actie niet op jezelf doen.'
     elsif role
       remove_roles(user)
-      user.add_role role.to_sym, user.hoa
+      user.add_role to_safe_sym(role, ['moderator', 'maintenance']), user.hoa
       notice = "#{user.full_name} heeft nu een nieuwe rol."
     else
       remove_roles(user)
@@ -102,5 +103,16 @@ class UsersController < ApplicationController
   def remove_roles(user)
     user.remove_role :moderator
     user.remove_role :maintenance
+  end
+
+  def to_safe_sym(value, valid_values)
+    symbolized = nil
+    valid_values.each do |v|
+      if v == value
+         symbolized = v.to_sym
+        break
+      end
+    end
+    symbolized
   end
 end

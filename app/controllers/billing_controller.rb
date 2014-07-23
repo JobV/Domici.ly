@@ -1,6 +1,6 @@
 class BillingController < ApplicationController
   before_filter :authenticate_user!
-  
+
   def new
   end
 
@@ -18,12 +18,11 @@ class BillingController < ApplicationController
 
     # Set the payment in the db
     payment = current_user.hoa.payments.new \
-      amount: amount * 100, 
-      order_id: mollie.metadata.order_id, 
+      amount: amount * 100,
+      order_id: mollie.metadata.order_id,
       payment_id: mollie.id.to_s,
       user_id: current_user.id
 
-    puts 'payment created'
     if payment.save
       redirect_to MolliePayment.url(mollie)
     else
