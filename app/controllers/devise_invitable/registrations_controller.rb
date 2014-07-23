@@ -20,7 +20,7 @@ class DeviseInvitable::RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
-  
+
   protected
 
   def build_resource(hash = nil)

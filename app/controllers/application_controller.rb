@@ -37,8 +37,8 @@ protected
 
     devise_parameter_sanitizer.for(:invite).concat [:first_name, :last_name, :hoa, :role, :emails]
 
-    devise_parameter_sanitizer.for(:account_update) { |u| 
-          u.permit(:password, :password_confirmation, :current_password) 
+    devise_parameter_sanitizer.for(:account_update) { |u|
+          u.permit(:password, :password_confirmation, :current_password)
         }
   end
 
@@ -48,13 +48,4 @@ private
     flash[:error] = "Die actie mag je niet doen."
     redirect_to(request.referrer || root_path)
   end
-
 end
-
-## Include if necessary
-# http://railscasts.com/episodes/406-public-activity?view=asciicast
-# def current_user
-#   @current_user ||= User.find(session[:user_id]) if session[:user_id]
-# end
-# helper_method :current_user
-# hide_action :current_user
