@@ -70,8 +70,6 @@ gem 'nprogress-rails'
 # x-editable
 gem 'x-editable-rails', '~> 1.5.4', github: 'JobV/x-editable-rails'
 
-gem 'skylight'
-
 gem 'carrierwave'
 gem 'fog'
 gem 'foreigner'

@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
             :hoa_id,
             presence: true
 
-  attr_writer :hour, :min
+  attr_writer :hour, :min, :invitees
 
   # Comments
   acts_as_commentable

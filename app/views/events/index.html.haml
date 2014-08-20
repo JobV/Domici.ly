@@ -7,14 +7,12 @@
     .ui.segment
       = link_to 'Nieuwe Afspraak', new_event_path, class: 'ui button'
 
-      .ui.divider
-      
       .ui.tabular.menu
         %a.item{href: '#tab1'}
           Alle
           .ui.label
             = @events.count
-        %a.item{href: '#tab2'} 
+        %a.item{href: '#tab2'}
           Aanwezig
           .ui.label
             = @coming.count

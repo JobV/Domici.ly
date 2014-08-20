@@ -1,0 +1,16 @@
+= "Bekijk onderstaande "
+= link_to('afspraak', event_url(@event))
+in Domici.ly.
+%br
+%br
+Je bent uitgenodigd voor:
+%br
+= @event.title
+%br
+= @event.description
+%br
+%br
+= link_to('Domici.ly', organisation_url)
+%br
+%br
+= link_to('Lees ook over hoe wij Domici.ly een succes proberen te maken op ons blog.', 'http://www.domici.ly/blog')

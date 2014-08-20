@@ -6,7 +6,7 @@
           %li= msg
 
   .ui.form.event
-    
+
     .field
       = f.label 'Afspraak naam'
       .ui.left.icon.input
@@ -45,22 +45,21 @@
       = f.label 'Beschrijving'
       = f.text_area :description
 
-    / .field
-    /   = f.label 'Genodigden'
-    
-    / .grouped.inline.fields
+    .field
+      = f.label 'Genodigden (ontvangen een email hierover)'
 
-    /   .field
-    /     .ui.radio.checkbox
-    /       = radio_button_tag :invitees, 'everyone', true
-    /       %label
-    /     %label Iedereen
+    .grouped.inline.fields
+      .field
+        .ui.radio.checkbox
+          = radio_button_tag :invitees, 'everyone', true
+          %label
+        %label Iedereen
 
-    /   .field
-    /     .ui.radio.checkbox
-    /       = radio_button_tag :invitees, 'moderators'
-    /       %label
-    /     %label Bestuurders
+      .field
+        .ui.radio.checkbox
+          = radio_button_tag :invitees, 'moderators'
+          %label
+        %label Bestuurders
 
     .ui.error.message
 

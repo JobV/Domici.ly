@@ -44,6 +44,7 @@ class EventsController < ApplicationController
     @event.hoa = current_user.hoa
     @event.date = format_event_date(@event)
     if @event.save
+      notify_invitees(params[:invitees])
       redirect_to @event, notice: I18n.t('event.created')
     else
       render 'new'
@@ -70,6 +71,10 @@ class EventsController < ApplicationController
 
   private
 
+  def notify_invitees(invitees)
+    NotificationMailer.delay.invitees(@event, invitees)
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])
@@ -77,7 +82,7 @@ class EventsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def event_params
-    params.require(:event).permit(:date, :title, :location, :hour, :min, :description)
+    params.require(:event).permit(:date, :title, :location, :hour, :min, :description, :invitees)
   end
 
   def update_date_with_time(date, time)
