@@ -36,6 +36,8 @@
       = link_to welcome_path, class: (@active_tab == 'welcome' ? 'active blue item' : 'blue item') do
         %i.cloud.icon
         Start met Domici.ly
+      = link_to destroy_user_session_path, class: 'blue item', id: 'sign_out', method: :delete do
+        Log uit
 
   - if current_user.hoa && policy(current_hoa).show? && @quick_add_bar
     = render 'layouts/quick_add'
