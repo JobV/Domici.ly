@@ -44,7 +44,7 @@ class EventsController < ApplicationController
     @event.hoa = current_user.hoa
     @event.date = format_event_date(@event)
     if @event.save
-      notify_invitees(params[:invitees])
+      notify_invitees(@event.id, params[:invitees])
       redirect_to @event, notice: I18n.t('event.created')
     else
       render 'new'
@@ -71,8 +71,8 @@ class EventsController < ApplicationController
 
   private
 
-  def notify_invitees(invitees)
-    NotificationMailer.delay.invitees(@event, invitees)
+  def notify_invitees(event_id, invitees)
+    NotificationMailer.delay.invitees(event_id, invitees)
   end
 
   # Use callbacks to share common setup or constraints between actions.
