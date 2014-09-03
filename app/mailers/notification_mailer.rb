@@ -9,7 +9,8 @@ class NotificationMailer < ActionMailer::Base
   end
 
   def invitees(event_id, group)
-    mail(bcc: recipients_from_target_group(event_id, group), subject: "[Domici.ly] Uitnodiging voor #{Event.find(event_id).title}", content_type: "text/html")
+    @event = Event.find(event_id)
+    mail(bcc: recipients_from_target_group(event_id, group), subject: "[Domici.ly] Uitnodiging voor #{@event.title}", content_type: "text/html")
   end
 
   private
