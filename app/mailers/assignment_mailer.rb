@@ -1,5 +1,5 @@
 class AssignmentMailer < ActionMailer::Base
-  default from: "info@domici.ly"
+  default from: "noreply@domici.ly"
 
   def assigned_to_alert(assigner, assignee, alert)
     @assigner = assigner

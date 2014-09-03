@@ -2,7 +2,7 @@
   .ui.top.attached.segment.alert-feed-top
     = link_to_activity_owner activity
     heeft bij
-    = link_to alert_path(activity.trackable.commentable) do
+    = link_to alert_path(activity.trackable) do
       = truncate(activity.trackable.commentable.title, length: 35)
     een reactie geplaatst.
 
