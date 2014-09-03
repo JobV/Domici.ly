@@ -9,12 +9,13 @@ class NotificationMailer < ActionMailer::Base
   end
 
   def invitees(event_id, group)
-    mail(bcc: recipients_from_target_group(event_id, group), subject: "[Domici.ly] Uitnodiging voor #{event.title}", content_type: "text/html")
+    mail(bcc: recipients_from_target_group(event_id, group), subject: "[Domici.ly] Uitnodiging voor #{Event.find(event_id).title}", content_type: "text/html")
   end
 
   private
 
-  def recipients_from_target_group(event, group)
+  def recipients_from_target_group(event_id, group)
+    event = Event.find(event_id)
     if group == 'everyone'
       return event.hoa.users.pluck(:email)
     elsif group == 'moderators'
