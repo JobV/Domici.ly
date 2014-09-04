@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   post '/ufgjdiie/:id', to: 'admin#change_hoa', as: :change_hoa
 
   require 'sidekiq/web'
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, lambda { |u| true } do
     mount Sidekiq::Web => '/sidekiq'
   end
 end

@@ -13,8 +13,8 @@ Devise.setup do |config|
   config.mailer_sender = 'info@domici.ly'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
-  config.mailer = "DeviseBackgrounder"
+  config.mailer = 'Devise::Mailer'
+  # config.mailer = "DeviseBackgrounder"
 
 
   # ==> ORM configuration

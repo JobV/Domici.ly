@@ -19,6 +19,7 @@ gem 'unicorn'
 # Devise
 gem 'devise'
 gem 'devise_invitable'
+gem 'devise-async'
 
 gem 'rails_admin'
 

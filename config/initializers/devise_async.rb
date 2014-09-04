@@ -1,2 +1,3 @@
 # Supported options: :resque, :sidekiq, :delayed_job
-# Devise::Async.backend = :sidekiq
+Devise::Async.enabled = true
+Devise::Async.backend = :sidekiq
