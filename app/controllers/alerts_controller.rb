@@ -138,7 +138,6 @@ class AlertsController < ApplicationController
         @alerts = current_user.hoa.alerts \
         .where(archived: archived) \
         .includes(:assignee, :user, :readings, taggings: [:tag]) \
-        .joins("INNER JOIN collaborations").where(user_id: current_user.id).uniq \
         .order('alerts.updated_at DESC')
       end
     end

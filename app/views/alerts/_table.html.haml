@@ -1,42 +1,43 @@
 .ui.divided.selection.list.alert-list
   - alerts.each do |alert|
-    %li.item.listed-alert{ class: "#{'item listed-alert unread' if alert.unread?(current_user)}"}
+    - if alert.collaborations.where(user: current_user).exists?
+      %li.item.listed-alert{ class: "#{'item listed-alert unread' if alert.unread?(current_user)}"}
 
-      .state
-        = render 'alerts/state_label', alert: alert
+        .state
+          = render 'alerts/state_label', alert: alert
 
-      .title
-        = link_to truncate(alert.title, length: 74), alert
+        .title
+          = link_to truncate(alert.title, length: 74), alert
 
-      .assignee.assignedfil
-        = print_assignee_short alert
+        .assignee.assignedfil
+          = print_assignee_short alert
 
-      .info
-        .taglist.tagfil
-          - alert.taggings.each do |tagging|
-            .ui.tiny.label
-              = tagging.tag.name
+        .info
+          .taglist.tagfil
+            - alert.taggings.each do |tagging|
+              .ui.tiny.label
+                = tagging.tag.name
 
-        .updated_at{ "data-content" => "#{alert.updated_at}", "data-variation" => 'small inverted' }
-          = "Laatste update #{format_time(alert.updated_at)} geleden"
+          .updated_at{ "data-content" => "#{alert.updated_at}", "data-variation" => 'small inverted' }
+            = "Laatste update #{format_time(alert.updated_at)} geleden"
 
-        .timestamp-hidden
-          = alert.updated_at.to_i
+          .timestamp-hidden
+            = alert.updated_at.to_i
 
-        .ownedfil
-          = alert.user.first_name
+          .ownedfil
+            = alert.user.first_name
 
-      - if policy(alert).update?
-        .ui.tiny.basic.buttons
-          = link_to 'Aanpassen', edit_alert_path(alert), class: 'ui button'
-          .ui.tiny.blue.floating.dropdown.icon.button
-            %i.dropdown.icon
-            .menu
-              .item
-                = link_to alert_archive_path(alert, id: alert.id), method: :post do
-                  %i.archive.icon
-                  = alert.archived ? 'Haal uit archief' : 'Archiveer'
-              .item
-                = link_to alert, method: :delete, data: { confirm: 'Weet je zeker dat je deze melding wilt verwijderen?' } do
-                  %i.delete.icon
-                  Verwijder
+        - if policy(alert).update?
+          .ui.tiny.basic.buttons
+            = link_to 'Aanpassen', edit_alert_path(alert), class: 'ui button'
+            .ui.tiny.blue.floating.dropdown.icon.button
+              %i.dropdown.icon
+              .menu
+                .item
+                  = link_to alert_archive_path(alert, id: alert.id), method: :post do
+                    %i.archive.icon
+                    = alert.archived ? 'Haal uit archief' : 'Archiveer'
+                .item
+                  = link_to alert, method: :delete, data: { confirm: 'Weet je zeker dat je deze melding wilt verwijderen?' } do
+                    %i.delete.icon
+                    Verwijder
