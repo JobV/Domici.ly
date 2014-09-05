@@ -31,11 +31,11 @@ class AlertPolicy < ApplicationPolicy
   end
 
   def part_of_hoa?
-    user.hoa == alert.hoa or alert.user == user or user.admin
+    @user.hoa == @alert.hoa or @alert.user == @user or @user.admin
   end
 
   def is_assigned?
-    alert.assignee == user
+    @alert.assignee == @user
   end
 
   def collaborator?
@@ -47,7 +47,7 @@ class AlertPolicy < ApplicationPolicy
   end
 
   def admin_moderator_or_owner?
-    @user.admin? or @user.has_role? :moderator, alert.hoa or alert.user == @user
+    @user.admin? or @user.has_role? :moderator, @alert.hoa or @alert.user == @user
   end
 
   class Scope < Struct.new(:user, :scope)

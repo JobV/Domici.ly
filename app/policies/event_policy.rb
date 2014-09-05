@@ -19,11 +19,11 @@ class EventPolicy < ApplicationPolicy
   end
 
   def part_of_hoa?
-    user.hoa == event.hoa
+    @user.hoa == @event.hoa
   end
 
   def admin_moderator_or_owner?
-    user.admin? or user.has_role? :moderator, event.hoa or event.user == user
+    @user.admin? or @user.has_role? :moderator, @event.hoa or @event.user == @user
   end
 
   class Scope < Struct.new(:user, :scope)
