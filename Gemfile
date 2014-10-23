@@ -74,6 +74,8 @@ gem 'x-editable-rails', '~> 1.5.4', github: 'JobV/x-editable-rails'
 gem 'carrierwave'
 gem 'fog'
 gem 'foreigner'
+gem 'active_model_serializers'
+
 
 group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
@@ -96,7 +98,6 @@ group :development do
   gem 'annotate', github: 'ctran/annotate_models'
   gem "binding_of_caller"
   gem "better_errors"
-  gem 'bullet'
   gem 'flamegraph'
   gem 'immigrant'
 end

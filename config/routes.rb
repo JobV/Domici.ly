@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   get   '/profile/edit',    to: 'profile#edit',   as: :edit_profile
   patch '/profile/update',  to: 'profile#update', as: :update_profile
 
+  get '/export', to: 'hoas#export', as: :export
 
   constraints(Subdomain) do
     get '/' => 'homepages#show', as: :public_homepage

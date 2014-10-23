@@ -1,7 +1,7 @@
 class HoasController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_hoa, only: [:billing, :members, :edit, :update, :destroy]
-  after_action :verify_authorized, :except => [:show, :index, :create, :check_subdomain_name]
+  before_action :set_hoa, only: [:billing, :members, :edit, :update, :destroy, :export]
+  after_action :verify_authorized, :except => [:show, :index, :create, :check_subdomain_name, :export]
 
   # GET /hoas
   def index
@@ -76,6 +76,10 @@ class HoasController < ApplicationController
     else
       render nothing: true, status: 409
     end
+  end
+
+  def export
+    render text: @hoa.alerts.to_csv
   end
 
   private

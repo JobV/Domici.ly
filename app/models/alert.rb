@@ -60,4 +60,19 @@ class Alert < ActiveRecord::Base
   def completed?
     self.progress == 'completed'
   end
+
+    def self.to_csv
+    CSV.generate do |csv|
+      csv << ['Melding Titel', 'Melding Beschrijving', 'Status', 'Gebruiker','Gemaakt','Reacties']
+      all.each do |alert|
+        csv << [
+          alert.title,
+          alert.body,
+          alert.progress,
+          alert.user.full_name,
+          alert.created_at,
+          alert.comments.pluck(:comment).join('; ').squish ]
+      end
+    end
+  end
 end

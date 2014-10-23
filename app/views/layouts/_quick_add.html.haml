@@ -10,3 +10,6 @@
   = link_to new_announcement_path, class: 'ui tiny blue domicily-blue button lonely-horizontal', id: 'new-announcement' do
     %i.mail.icon
     nieuwe mededeling
+
+  - if policy(current_user.hoa).update?
+    = link_to 'EXPORT', export_path(format: :csv), class: 'ui tiny blue button lonely-horizontal'
